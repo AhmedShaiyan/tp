@@ -11,8 +11,9 @@ import java.util.logging.Logger;
 public class NewsOnTheGo {
 
     public static final String FILENAME = "data/sampleNews.txt";
-    private static final Logger logger = Logger.getLogger("NewsOnTheGo");
     public static final ArrayList<NewsTopic> newsTopics = new ArrayList<>();
+    private static final Logger logger = Logger.getLogger("NewsOnTheGo");
+
 
     /**
      * Main entry-point for the java.newsonthego.NewsOnTheGo application.

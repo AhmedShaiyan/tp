@@ -3,7 +3,6 @@ package newsonthego;
 import java.util.List;
 import newsonthego.commands.DailyNewsCommand;
 import newsonthego.commands.InfoNewsCommand;
-import newsonthego.commands.TopicShowCommand;
 
 import static newsonthego.commands.TopicShowCommand.showTopics;
 
