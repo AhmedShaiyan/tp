@@ -12,7 +12,7 @@ public class NewsOnTheGo {
 
     public static final String FILENAME = "data/sampleNews.txt";
     private static final Logger logger = Logger.getLogger("NewsOnTheGo");
-    private static final ArrayList<NewsTopic> newsTopics = new ArrayList<>();
+    public static final ArrayList<NewsTopic> newsTopics = new ArrayList<>();
 
     /**
      * Main entry-point for the java.newsonthego.NewsOnTheGo application.
@@ -54,12 +54,7 @@ public class NewsOnTheGo {
      * Displays the list of available news topics.
      * This method prints the list of topics along with their names.
      */
-    static void showTopics() {
-        System.out.println("Here are the list of topics for your viewing:");
-        for (NewsTopic topic : newsTopics) {
-            System.out.println(" - " + topic.getTopicName());
-        }
-    }
+
 
     static void getNews(String line, List<NewsArticle> list) {
     }

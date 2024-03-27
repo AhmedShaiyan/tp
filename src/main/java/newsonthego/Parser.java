@@ -3,6 +3,9 @@ package newsonthego;
 import java.util.List;
 import newsonthego.commands.DailyNewsCommand;
 import newsonthego.commands.InfoNewsCommand;
+import newsonthego.commands.TopicShowCommand;
+
+import static newsonthego.commands.TopicShowCommand.showTopics;
 
 public class Parser {
 
@@ -15,7 +18,8 @@ public class Parser {
             NewsOnTheGo.getNews(line, list);
             break;
         case TOPICS:
-            NewsOnTheGo.showTopics();
+            // Assuming getNewsTopics() is a static method that returns a List<NewsTopic>
+            showTopics();
             break;
         case FILTER:
             NewsOnTheGo.filterNews(line);
