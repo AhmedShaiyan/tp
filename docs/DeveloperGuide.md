@@ -77,6 +77,24 @@ This feature also implements the following operations:
 - [Proposed] `FilterNewsCommand#save()` — Saves the list of news articles in the topic to their reading list
 - [Proposed] `FilterNewsCommand#back()` — Exits the filter topic feature loop.
 
+### Information Function
+
+The Information Feature provides users with insights into the importance, reliability, and bias of news articles stored 
+in the application. This feature is implemented through the `InfoNewsCommand` class.
+
+Implementation:
+
+The `InfoNewsCommand` class contains a method `printNewsInfo` that prints the importance, reliability, and bias 
+of a news article based on its index in the list of news articles.
+
+Example Usage:
+
+To retrieve information about a specific news article, the user can input this command specifying the index of the 
+article they are interested in. 
+
+`info 1`
+
+
 ### User Preferences Feature
 
 This feature allows users to personalize their news feed by specifying topics of interest. The `UserPreferences` class stores and manages these preferences, allowing the application to deliver relevant news articles to the user.
