@@ -57,7 +57,7 @@ public class NewsOnTheGo {
         DAILY, GET, TOPICS, FILTER, SAVE, SOURCE, INFO, CLEAR, BYE
     }
 
-    private static boolean processCommand(String command, String line, List<NewsArticle> list) throws IOException {
+    private static boolean processCommand(String command, String line, List<NewsArticle> list) {
         assert !command.isEmpty();
 
         Parser.handleCommand(command, line, list);
@@ -122,7 +122,7 @@ public class NewsOnTheGo {
         }
     }
 
-    static void saveNews(String line, List<NewsArticle> list) throws IOException {
+    static void saveNews(String line, List<NewsArticle> list) {
         String[] split = line.split(" ");
         int index = Integer.parseInt(split[1]) - 1;
         if (index >= 0 && index < list.size()) {
@@ -130,8 +130,12 @@ public class NewsOnTheGo {
                 System.out.println(list.get(index).getHeadline() + " has already been saved! \n" +
                         "find your saved articles at " +savedNews.getPathName());
             } else {
-                savedNews.saveNews(list.get(index));
-                list.get(index).setSaved(true);
+                try {
+                    savedNews.saveNews(list.get(index));
+                    list.get(index).setSaved(true);
+                } catch (IOException e) {
+                    System.out.println("An error occurred while appending text to the file: " + e.getMessage());
+                }
             }
         } else {
             System.out.println("Please provide a valid news index!");

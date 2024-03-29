@@ -22,7 +22,7 @@ public class FormatDate {
                 Date formattedDate = targetFormat.parse(date);
                 result = FILE_FORMAT.format(formattedDate);
                 return result;
-            } catch (ParseException ignore) {
+            } catch (ParseException ignored) {
                 // Try another format
             }
         }

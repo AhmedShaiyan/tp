@@ -1,14 +1,14 @@
 package newsonthego;
 
-import java.io.IOException;
 import java.util.List;
+
 import newsonthego.commands.DailyNewsCommand;
 import newsonthego.commands.InfoNewsCommand;
 
 public class Parser {
     public static final String INDENT = "    ";
 
-    public static void handleCommand(String command, String line, List<NewsArticle> list) throws IOException {
+    public static void handleCommand(String command, String line, List<NewsArticle> list) {
         switch (NewsOnTheGo.Command.valueOf(command.toUpperCase())) {
         case DAILY:
             new DailyNewsCommand(line, list);
