@@ -13,6 +13,7 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Scanner;
 import java.util.Set;
 
 class NewsOnTheGoTest {
@@ -42,7 +43,6 @@ class NewsOnTheGoTest {
     public void dailyFunctionTest() {
         String input = "daily March 10 2024";
         String expected = "\"Scientists Discover New Species of Butterfly in the Amazon\"";
-
         List<NewsArticle> newsArticles = NewsImporter.importNewsFromText(NewsOnTheGo.FILENAME, new ArrayList<>());
 
         DailyNewsCommand command = new DailyNewsCommand(input, newsArticles);
