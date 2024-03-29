@@ -73,7 +73,7 @@ public class DailyNewsCommand {
         Scanner dailyIn = new Scanner(System.in);
         while (isPolling) {
             String[] dailyLine = dailyIn.nextLine().split(" ");
-            String command = dailyLine[commandidx];
+            String command = dailyLine[commandidx].toLowerCase();
             switch (command) {
             case "save":
                 save(dailyLine);
