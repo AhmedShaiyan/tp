@@ -10,6 +10,9 @@ import java.util.List;
 import java.util.Scanner;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+
 
 import static newsonthego.ArticleScrapper.scrapeArticle;
 
@@ -54,7 +57,7 @@ public class NewsOnTheGo {
     }
 
     public enum Command {
-        DAILY, GET, TOPICS, FILTER, SAVE, SOURCE, INFO, CLEAR, BYE
+        DAILY, GET, TOPICS, FILTER, SAVE, SOURCE, INFO, CLEAR, LOAD, BYE
     }
 
     private static boolean processCommand(String command, String line, List<NewsArticle> list) {
@@ -141,6 +144,28 @@ public class NewsOnTheGo {
             System.out.println("Please provide a valid news index!");
         }
     }
+
+    static void loadAndDisplaySavedNews() {
+        List<String> lines;
+        try {
+            lines = Files.readAllLines(Paths.get(savedNews.getPathName()));
+        } catch (IOException e) {
+            System.out.println("An error occurred while reading the save file: " + e.getMessage());
+            return;
+        }
+
+        if (lines.isEmpty()) {
+            System.out.println("No saved news articles to display.");
+            return;
+        }
+
+        System.out.println("Displaying saved news articles:");
+        for (String line : lines) {
+
+            System.out.println(line);
+        }
+    }
+
 
     static void clearSavedNews() {
         savedNews.clearFile();
