@@ -4,11 +4,13 @@ import java.util.List;
 
 import newsonthego.commands.DailyNewsCommand;
 import newsonthego.commands.InfoNewsCommand;
+import newsonthego.newstopic.NewsTopic;
+import newsonthego.ui.UI;
 
 public class Parser {
     public static final String INDENT = "    ";
 
-    public static void handleCommand(String command, String line, List<NewsArticle> list) {
+    public static void handleCommand(String command, String line, List<NewsArticle> list, List<NewsTopic> topics) {
         switch (NewsOnTheGo.Command.valueOf(command.toUpperCase())) {
         case DAILY:
             new DailyNewsCommand(line, list);
@@ -17,7 +19,7 @@ public class Parser {
             NewsOnTheGo.getNews(line, list);
             break;
         case TOPICS:
-            NewsOnTheGo.showTopics();
+            UI.printTopics(topics);
             break;
         case FILTER:
             NewsOnTheGo.filterNews(line);
