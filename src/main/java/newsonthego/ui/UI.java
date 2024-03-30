@@ -1,6 +1,7 @@
 package newsonthego.ui;
 
 import newsonthego.NewsArticle;
+import newsonthego.newstopic.NewsTopic;
 
 import java.util.List;
 import java.util.Scanner;
@@ -65,5 +66,16 @@ public class UI {
 
     public static void printEmptyLine() {
         System.out.println();
+    }
+
+    /**
+     * Displays the list of available news topics.
+     * This method prints the list of topics along with their names.
+     */
+    public static void printTopics(List<NewsTopic> newsTopics) {
+        System.out.println("Here are the list of topics for your viewing:");
+        for (NewsTopic topic : newsTopics) {
+            System.out.println(" - " + topic.getTopicName());
+        }
     }
 }

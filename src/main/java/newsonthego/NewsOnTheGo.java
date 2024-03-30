@@ -60,20 +60,10 @@ public class NewsOnTheGo {
     private static boolean processCommand(String command, String line, List<NewsArticle> list) {
         assert !command.isEmpty();
 
-        Parser.handleCommand(command, line, list);
+        Parser.handleCommand(command, line, list, newsTopics);
         return command.equalsIgnoreCase(Command.BYE.toString());
     }
 
-    /**
-     * Displays the list of available news topics.
-     * This method prints the list of topics along with their names.
-     */
-    static void showTopics() {
-        System.out.println("Here are the list of topics for your viewing:");
-        for (NewsTopic topic : newsTopics) {
-            System.out.println(" - " + topic.getTopicName());
-        }
-    }
 
     static void getNews(String line, List<NewsArticle> list) {
     }
