@@ -11,7 +11,8 @@ public class Parser {
     public static final String INDENT = "    ";
     public static int topic = -1;
 
-    public static void handleCommand(String command, String line, List<NewsArticle> list, List<NewsTopic> topics) {
+    public static void handleCommand(String command, String line,
+                                     List<NewsArticle> list, List<NewsTopic> topics, List<NewsTopic> favouriteTopics) {
         NewsOnTheGo.Command commandEnum = null;
         try {
             commandEnum = NewsOnTheGo.Command.valueOf(command.toUpperCase());
@@ -31,6 +32,15 @@ public class Parser {
             break;
         case TOPICS:
             UI.printTopics(topics);
+            break;
+        case STAR:
+            NewsOnTheGo.starTopic(line, topics, favouriteTopics);
+            break;
+        case STARRED:
+            UI.printFavouriteTopics(favouriteTopics);
+            break;
+        case REMOVE:
+            NewsOnTheGo.removeStarredTopic(line, favouriteTopics);
             break;
         case FILTER:
             topic = NewsOnTheGo.filterNews(line);

@@ -21,16 +21,17 @@ public class NewsOnTheGo {
     public static final String FILENAME = "data/sampleNews.txt";
     private static final Logger logger = Logger.getLogger("NewsOnTheGo");
     private static final ArrayList<NewsTopic> newsTopics = new ArrayList<>();
+    private static final ArrayList<NewsTopic> favouriteTopics = new ArrayList<>();
     private static NewsFile savedNews;
 
     public enum Command {
-        DAILY, GET, TOPICS, FILTER, SAVE, SOURCE, INFO, CLEAR, LOAD, BACK, BYE, VOID
+        DAILY, GET, TOPICS, FILTER, SAVE, SOURCE, INFO, CLEAR, LOAD, STAR, STARRED, REMOVE, BACK, BYE, VOID
     }
 
     private static boolean processCommand(String command, String line, List<NewsArticle> list) {
         assert !command.isEmpty();
 
-        Parser.handleCommand(command, line, list, newsTopics);
+        Parser.handleCommand(command, line, list, newsTopics, favouriteTopics);
         return command.equalsIgnoreCase(Command.BYE.toString());
     }
 
@@ -61,13 +62,13 @@ public class NewsOnTheGo {
      * @param topic the name of the topic to search for
      * @return the index of the topic if found, or -1 if the topic is not found
      */
-    static int findTopicIndex(String topic) {
+    static int findTopicIndex(String topic, List<NewsTopic> topics) {
         int left = 0;
-        int right = newsTopics.size() - 1;
+        int right = topics.size() - 1;
         String topicToFind = topic.trim();
         while (left <= right) {
             int mid = left + (right - left) / 2;
-            String midTopic = newsTopics.get(mid).getTopicName().trim();
+            String midTopic = topics.get(mid).getTopicName().trim();
             int comparisonResult = (topicToFind).compareToIgnoreCase(midTopic);
             if (comparisonResult == 0) {
                 return mid;
@@ -87,7 +88,11 @@ public class NewsOnTheGo {
      * @param line the input string containing the topic to filter
      */
     static int filterNews(String line) {
-        int topicIndex = findTopicIndex(line.substring(6).trim());
+        if (line.substring(6).trim().isEmpty()) {
+            System.out.println("Please provide a topic.");
+            return -1;
+        }
+        int topicIndex = findTopicIndex(line.substring(6).trim(), newsTopics);
         if (topicIndex < 0) {
             System.out.println("Sorry, this topic is not available right now :(");
         } else {
@@ -99,6 +104,35 @@ public class NewsOnTheGo {
                     ", use command 'BACK' to return to main list of articles.");
         }
         return topicIndex;
+    }
+
+    public static void starTopic(String line, List<NewsTopic> newsTopics, List<NewsTopic> favouriteTopics) {
+        if (line.substring(4).trim().isEmpty()) {
+            System.out.println("Please provide a topic to add to your favourites.");
+            return;
+        }
+        int topicIndex = findTopicIndex(line.substring(4).trim(), newsTopics);
+        if (topicIndex < 0) {
+            System.out.println("Sorry, this topic is not available right now :(");
+        } else {
+            favouriteTopics.add(newsTopics.get(topicIndex));
+            System.out.println(newsTopics.get(topicIndex).getTopicName()+
+                    " has been added to your list of favourite topics");
+        }
+    }
+    public static void removeStarredTopic(String line, List<NewsTopic> favouriteTopics) {
+        if (line.substring(6).trim().isEmpty()) {
+            System.out.println("Please provide a topic to remove from your favourites.");
+            return;
+        }
+        int topicIndex = findTopicIndex(line.substring(6).trim(), favouriteTopics);
+        if (topicIndex < 0) {
+            System.out.println("Topic is not found in favourites");
+        } else {
+            System.out.println(newsTopics.get(topicIndex).getTopicName()+
+                    " has been removed from your list of favourite topics");
+            favouriteTopics.remove(topicIndex);
+        }
     }
 
     /**
