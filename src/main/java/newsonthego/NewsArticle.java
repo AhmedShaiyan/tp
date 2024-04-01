@@ -95,5 +95,13 @@ public class NewsArticle {
     public void setSaved(boolean saved) {
         isSaved = saved;
     }
+    private String topic;
+
+    public void setTopic(String topic) {
+        this.topic = topic;
+    }
+    public String getTopic() {
+        return this.topic;
+    }
 }
 

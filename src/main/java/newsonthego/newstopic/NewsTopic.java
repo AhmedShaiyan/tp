@@ -6,7 +6,7 @@ import java.util.ArrayList;
 
 public class NewsTopic {
     protected String topicName;
-    protected ArrayList<NewsArticle> relatedNewsArticles;
+    public ArrayList<NewsArticle> relatedNewsArticles;
     public NewsTopic(String topicName, NewsArticle newsArticle) {
         this.topicName = topicName;
         relatedNewsArticles = new ArrayList<>();

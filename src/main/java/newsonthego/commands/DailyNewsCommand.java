@@ -1,6 +1,8 @@
 package newsonthego.commands;
 
 import newsonthego.NewsArticle;
+import newsonthego.NewsFile;
+import newsonthego.newstopic.NewsTopic;
 
 import java.io.IOException;
 import java.util.List;
@@ -36,7 +38,7 @@ public class DailyNewsCommand {
      * @param input is the user input
      * @param list is the list of articles
      */
-    public DailyNewsCommand(String input, List<NewsArticle> list) {
+    public DailyNewsCommand(String input, List<NewsArticle> list, List<NewsTopic> topics) {
         assert !list.isEmpty();
 
         String[] splitInput = input.split(" ", 2);
@@ -52,6 +54,16 @@ public class DailyNewsCommand {
         articlesOfTheDay = list.stream()
                 .filter(article -> article.getDate().equals(formattedDate))
                 .collect(Collectors.toList());
+
+
+        for (NewsArticle article : articlesOfTheDay) {
+            for (NewsTopic topic : topics) {
+                if (topic.relatedNewsArticles.contains(article)) {
+                    article.setTopic(topic.getTopicName());
+                    break;
+                }
+            }
+        }
 
         if (articlesOfTheDay.isEmpty()) {
             printHeadlinesNotFound(date);
@@ -95,9 +107,16 @@ public class DailyNewsCommand {
      * @param input is the user's input
      */
     private static void save(String[] input) {
-        int articleIdx = Integer.parseInt(input[articleidx]) - 1;
+        int articleIdx;
+        try {
+            articleIdx = Integer.parseInt(input[articleidx]) - 1;
+        } catch (NumberFormatException | ArrayIndexOutOfBoundsException e) {
+            System.out.println("Invalid input. Please specify the article index to save.");
+            return;
+        }
+
         if (articleIdx < 0 || articleIdx >= articlesOfTheDay.size()) {
-            printIndexError(articlesOfTheDay);
+            printIndexError(articlesOfTheDay); // Pass the articles list to the method
             return;
         }
         NewsArticle article = articlesOfTheDay.get(articleIdx);
@@ -106,13 +125,17 @@ public class DailyNewsCommand {
             if (article.isSaved()) {
                 printArticleIsSaved(article);
             } else {
-                saveNews(article);
+                // Use the article's topic to save it, ensuring the topic information is included
+                String topic = article.getTopic(); // Retrieve the topic from the article
+                NewsFile.saveNewsWithTopic(article, topic); // Save the article with its topic
                 article.setSaved(true);
             }
-        } catch (IOException ignored) {
-            // Exception handled in function
+        } catch (IOException e) {
+            System.out.println("An error occurred while saving the article: " + e.getMessage());
         }
     }
+
+
 
     public List<NewsArticle> getArticlesOfTheDay() {
         return articlesOfTheDay;

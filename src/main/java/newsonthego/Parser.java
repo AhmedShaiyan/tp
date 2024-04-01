@@ -13,7 +13,7 @@ public class Parser {
     public static void handleCommand(String command, String line, List<NewsArticle> list, List<NewsTopic> topics) {
         switch (NewsOnTheGo.Command.valueOf(command.toUpperCase())) {
         case DAILY:
-            new DailyNewsCommand(line, list);
+            new DailyNewsCommand(line, list, topics);
             break;
         case GET:
             NewsOnTheGo.getNews(line, list);

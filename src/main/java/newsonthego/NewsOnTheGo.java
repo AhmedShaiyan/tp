@@ -115,17 +115,20 @@ public class NewsOnTheGo {
         }
     }
 
+    // In NewsOnTheGo class
     static void saveNews(String line, List<NewsArticle> list) {
         String[] split = line.split(" ");
         int index = Integer.parseInt(split[1]) - 1;
         if (index >= 0 && index < list.size()) {
-            if (list.get(index).isSaved()) {
-                System.out.println(list.get(index).getHeadline() + " has already been saved! \n" +
-                        "find your saved articles at " +savedNews.getPathName());
+            NewsArticle article = list.get(index);
+            if (article.isSaved()) {
+                System.out.println(article.getHeadline() + " has already been saved! \n" +
+                        "find your saved articles at " + savedNews.getPathName());
             } else {
                 try {
-                    savedNews.saveNews(list.get(index));
-                    list.get(index).setSaved(true);
+                    String topicName = findArticleTopic(article); // Implement this method
+                    NewsFile.saveNewsWithTopic(article, topicName);
+                    article.setSaved(true);
                 } catch (IOException e) {
                     System.out.println("An error occurred while appending text to the file: " + e.getMessage());
                 }
@@ -133,6 +136,15 @@ public class NewsOnTheGo {
         } else {
             System.out.println("Please provide a valid news index!");
         }
+    }
+
+    static String findArticleTopic(NewsArticle article) {
+        for (NewsTopic topic : newsTopics) {
+            if (topic.relatedNewsArticles.contains(article)) {
+                return topic.getTopicName();
+            }
+        }
+        return "Unknown"; // Default or error value if the article's topic isn't found
     }
 
     static void loadAndDisplaySavedNews() {

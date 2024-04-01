@@ -31,6 +31,24 @@ public class NewsFile {
             System.out.println("An error occurred while appending text to the file: " + e.getMessage());
         }
     }
+
+
+    // In NewsFile class
+    // In NewsFile class, adding a method to save news with topic information
+    public static void saveNewsWithTopic(NewsArticle article, String topicName) throws IOException {
+        Files.createDirectories(Paths.get("data")); // Ensure the directory exists
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter(pathName, true))) {
+            String articleText = parseToText(article) + " | Topic: " + topicName; // Combine article text with topic
+            writer.write(articleText);
+            writer.newLine();
+            System.out.println("Successfully saved " + article.getHeadline() + " under topic " + topicName + "\n" +
+                    "Find your saved articles at " + pathName);
+        } catch (IOException e) {
+            System.out.println("An error occurred while appending text to the file: " + e.getMessage());
+        }
+    }
+
+
     public void clearFile() {
         try {
             FileWriter fw = new FileWriter(pathName);
