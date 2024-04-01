@@ -23,41 +23,6 @@ public class NewsOnTheGo {
     private static final ArrayList<NewsTopic> newsTopics = new ArrayList<>();
     private static NewsFile savedNews;
 
-    /**
-     * Main entry-point for the java.newsonthego.NewsOnTheGo application.
-     */
-    public static void main(String[] args) {
-        String url = "https://www.firstpost.com/tech/" +
-                "nasas-budget-cuts-may-force-them-to-shut-down-one-of-a-kind-" +
-                "chandra-x-ray-observatory-satellite-13753316.html";
-
-        String inputFilePath = "data/ListOfURLs.txt";
-        String outputFolderPath = "data";
-        scrapeArticles(inputFilePath, outputFolderPath);
-
-        Scanner in = new Scanner(System.in);
-        UI.initializeUI(in);
-        savedNews = new NewsFile();
-
-        List<NewsArticle> newsArticles = NewsImporter.importNewsFromText(FILENAME, newsTopics);
-
-        while (true) {
-            System.out.println("What do you want from me?");
-            String line = in.nextLine();
-            String command = line.split(" ")[0];
-            try {
-                boolean endLoop = processCommand(command, line, newsArticles);
-                if (endLoop) {
-                    break;
-                }
-            } catch (Exception e) {
-                UI.printError(e.getMessage());
-            }
-        }
-        logger.log(Level.INFO, "Ending NewsOnTheGo");
-    }
-
-
     public enum Command {
         DAILY, GET, TOPICS, FILTER, SAVE, SOURCE, INFO, CLEAR, LOAD, BACK, BYE, VOID
     }
@@ -182,5 +147,38 @@ public class NewsOnTheGo {
         } catch (IndexOutOfBoundsException | NumberFormatException e) {
             System.out.println(UI.INVALID_ARTICLE_INDEX_MESSAGE);
         }
+    }
+    /**
+     * Main entry-point for the java.newsonthego.NewsOnTheGo application.
+     */
+    public static void main(String[] args) {
+        String url = "https://www.firstpost.com/tech/" +
+                "nasas-budget-cuts-may-force-them-to-shut-down-one-of-a-kind-" +
+                "chandra-x-ray-observatory-satellite-13753316.html";
+
+        String inputFilePath = "data/ListOfURLs.txt";
+        String outputFolderPath = "data";
+        scrapeArticles(inputFilePath, outputFolderPath);
+
+        Scanner in = new Scanner(System.in);
+        UI.initializeUI(in);
+        savedNews = new NewsFile();
+
+        List<NewsArticle> newsArticles = NewsImporter.importNewsFromText(FILENAME, newsTopics);
+
+        while (true) {
+            System.out.println("What do you want from me?");
+            String line = in.nextLine();
+            String command = line.split(" ")[0];
+            try {
+                boolean endLoop = processCommand(command, line, newsArticles);
+                if (endLoop) {
+                    break;
+                }
+            } catch (Exception e) {
+                UI.printError(e.getMessage());
+            }
+        }
+        logger.log(Level.INFO, "Ending NewsOnTheGo");
     }
 }
