@@ -56,7 +56,7 @@ public class NewsOnTheGo {
     }
 
     public enum Command {
-        DAILY, GET, TOPICS, FILTER, SAVE, SOURCE, INFO, CLEAR, LOAD, BYE
+        DAILY, GET, TOPICS, FILTER, SAVE, SOURCE, INFO, CLEAR, LOAD, BACK, BYE
     }
 
     private static boolean processCommand(String command, String line, List<NewsArticle> list) {
@@ -102,14 +102,18 @@ public class NewsOnTheGo {
      *
      * @param line the input string containing the topic to filter
      */
-    static void filterNews(String line) {
+    static int filterNews(String line) {
         int topicIndex = findTopicIndex(line.substring(6).trim());
         if (topicIndex < 0) {
             System.out.println("Sorry, this topic is not available right now :(");
         } else {
             System.out.println("Here are the news articles related to " +newsTopics.get(topicIndex).getTopicName()+ ": ");
             newsTopics.get(topicIndex).printNewsArticles();
+            System.out.println("You are currently in access to the list of articles in "
+                    +newsTopics.get(topicIndex).getTopicName()+
+                    ", use command 'BACK' to return to main list of articles.");
         }
+        return topicIndex;
     }
 
     static void saveNews(String line, List<NewsArticle> list) {

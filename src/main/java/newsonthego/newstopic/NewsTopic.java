@@ -17,6 +17,10 @@ public class NewsTopic {
         return topicName;
     }
 
+    public ArrayList<NewsArticle> getRelatedNewsArticles() {
+        return relatedNewsArticles;
+    }
+
     public void addNewsArticle(NewsArticle newsArticle) {
         this.relatedNewsArticles.add(newsArticle);
     }
