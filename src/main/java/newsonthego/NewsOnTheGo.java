@@ -35,7 +35,8 @@ public class NewsOnTheGo {
     }
 
     /**
-     * Retrieves and displays the details of a news article from the provided list based on the index specified in the input line.
+     * Retrieves and displays the details of a news article from the provided list based on the index specified in the
+     * input line.
      * The input line is expected to contain the command followed by the index of the news article to retrieve.
      * If the index is valid and the article exists in the list, its details are printed to the console.
      * If the index is out of bounds or not a valid integer, an error message is displayed.
@@ -90,7 +91,8 @@ public class NewsOnTheGo {
         if (topicIndex < 0) {
             System.out.println("Sorry, this topic is not available right now :(");
         } else {
-            System.out.println("Here are the news articles related to " +newsTopics.get(topicIndex).getTopicName()+ ": ");
+            System.out.println("Here are the news articles related to "
+                    +newsTopics.get(topicIndex).getTopicName()+ ": ");
             newsTopics.get(topicIndex).printNewsArticles();
             System.out.println("You are currently in access to the list of articles in "
                     +newsTopics.get(topicIndex).getTopicName()+
@@ -155,7 +157,8 @@ public class NewsOnTheGo {
     }
 
     /**
-     * Retrieves and displays the details of a news article from the provided list based on the index specified in the input line.
+     * Retrieves and displays the details of a news article from the provided list based on the index specified in the
+     * input line.
      * The input line is expected to contain the command "source" followed by the index of the news article to retrieve.
      * If the index is valid and the article exists in the list, its details are printed to the console.
      * If the index is out of bounds or not a valid integer, an error message is displayed.
@@ -173,9 +176,9 @@ public class NewsOnTheGo {
         }
     }
 
-     /**
-     * Main entry-point for the java.newsonthego.NewsOnTheGo application.
-     */
+    /**
+    * Main entry-point for the java.newsonthego.NewsOnTheGo application.
+    */
     public static void main(String[] args) {
         String url = "https://www.firstpost.com/tech/" +
                 "nasas-budget-cuts-may-force-them-to-shut-down-one-of-a-kind-" +

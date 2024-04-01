@@ -68,7 +68,8 @@ public class Parser {
                         "Currently in access to the main list of articles");
                 topic = -1;
             } else {
-                System.out.println("You are already in access to the main list of articles, back command is invalid :(");
+                System.out.println("You are already in access to the main list of articles, " +
+                        "back command is invalid :(");
             }
             break;
         case BYE:
