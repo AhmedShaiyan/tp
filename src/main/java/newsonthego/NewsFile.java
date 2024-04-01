@@ -1,6 +1,4 @@
-package newsonthego.storage;
-
-import newsonthego.NewsArticle;
+package newsonthego;
 
 import java.io.BufferedWriter;
 import java.io.FileWriter;

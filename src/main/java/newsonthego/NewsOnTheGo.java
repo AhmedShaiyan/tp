@@ -2,7 +2,6 @@ package newsonthego;
 
 
 import newsonthego.newstopic.NewsTopic;
-import newsonthego.storage.NewsFile;
 import newsonthego.storage.TopicsFile;
 import newsonthego.ui.UI;
 
