@@ -2,7 +2,10 @@ package newsonthego.ui;
 
 import newsonthego.NewsArticle;
 import newsonthego.newstopic.NewsTopic;
+import newsonthego.UserPreferences;
 
+import java.io.IOException;
+import java.nio.file.Files;
 import java.util.List;
 import java.util.Scanner;
 import java.util.logging.Level;
@@ -12,8 +15,9 @@ import static newsonthego.NewsFile.SAVED_NEWS_PATH;
 
 public class UI {
     private static final Logger logger = Logger.getLogger("NewsOnTheGo");
+    private static final UserPreferences userPreferences = new UserPreferences();
 
-    public static void initializeUI(Scanner in) {
+    public static void initializeUI(Scanner in) throws IOException {
         logger.log(Level.INFO, "Starting NewsOnTheGo");
         String logo = "\n" +
                 ",-,-.                 ,---.     ,--,--'.       ,---.      \n" +
@@ -23,8 +27,27 @@ public class UI {
                 "                                                ,-.|      \n" +
                 "                                                `-+'      \n";
         System.out.println("Hello from\n" + logo);
-        System.out.println("What is your name?");
-        System.out.println("Hello " + in.nextLine());
+
+        System.out.print("What is your name? ");
+        String userName = in.nextLine();
+        System.out.println("Hello " + userName);
+
+        userPreferences.suggestArticleForUser(userName);
+        displaySuggestedArticle(userName);
+    }
+
+    private static void displaySuggestedArticle(String userName) throws IOException {
+        try {
+            List<String> lines = Files.readAllLines(UserPreferences.PREFERENCES_FILE);
+            String suggestedArticle = lines.stream()
+                    .filter(line -> line.contains("Suggested Article for " + userName + ":"))
+                    .findFirst()
+                    .orElse("No article suggestion available.");
+
+            System.out.println(suggestedArticle);
+        } catch (IOException e) {
+            System.out.println("An error occurred while reading the suggested article: " + e.getMessage());
+        }
     }
 
     public static void printError(String message) {
@@ -36,7 +59,7 @@ public class UI {
     }
 
     public static void printArticlesInList(List<NewsArticle> articles) {
-        int i = 1; // index for user starts from 1
+        int i = 1;
         for (NewsArticle article : articles) {
             printHeadline(i + ": " + article.getHeadline());
             i++;

@@ -3,6 +3,7 @@ package newsonthego.commands;
 import newsonthego.NewsArticle;
 import newsonthego.NewsFile;
 import newsonthego.newstopic.NewsTopic;
+import newsonthego.UserPreferences;
 
 import java.io.IOException;
 import java.util.List;
@@ -11,7 +12,7 @@ import java.util.logging.Level;
 import java.util.stream.Collectors;
 
 import static newsonthego.FormatDate.formatFromUser;
-import static newsonthego.NewsFile.saveNews;
+import static newsonthego.NewsOnTheGo.newsTopics;
 import static newsonthego.ui.UI.printArticleIsSaved;
 import static newsonthego.ui.UI.printIndexError;
 import static newsonthego.ui.UI.printHeadlinesFound;
@@ -26,47 +27,33 @@ public class DailyNewsCommand {
 
     private static final Logger LOGGER = Logger.getLogger("NewsOnTheGo");
     private static List<NewsArticle> articlesOfTheDay;
+    private static final UserPreferences userPreferences = new UserPreferences(); // One instance for all uses
 
     private static final int dateindex = 1;
     private static final int commandidx = 0;
     private static final int articleidx = 1;
 
-
-    /**
-     * Finds articles that match the date input by the user and prints out the list
-     *
-     * @param input is the user input
-     * @param list is the list of articles
-     */
     public DailyNewsCommand(String input, List<NewsArticle> list, List<NewsTopic> topics) {
-        assert !list.isEmpty();
-
         String[] splitInput = input.split(" ", 2);
-        String date = splitInput[dateindex];
-
-        String formattedDate = formatFromUser(date);
+        if (splitInput.length < 2) {
+            LOGGER.log(Level.WARNING, "Invalid command syntax for DAILY.");
+            return;
+        }
+        String dateInput = splitInput[dateindex];
+        String formattedDate = formatFromUser(dateInput);
 
         if (formattedDate == null) {
-            LOGGER.log(Level.WARNING, "Invalid date format");
+            LOGGER.log(Level.WARNING, "Invalid date format or date could not be parsed: " + dateInput);
+            printHeadlinesNotFound(dateInput);
             return;
         }
 
         articlesOfTheDay = list.stream()
-                .filter(article -> article.getDate().equals(formattedDate))
+                .filter(article -> formattedDate.equals(article.getDate()))
                 .collect(Collectors.toList());
 
-
-        for (NewsArticle article : articlesOfTheDay) {
-            for (NewsTopic topic : topics) {
-                if (topic.relatedNewsArticles.contains(article)) {
-                    article.setTopic(topic.getTopicName());
-                    break;
-                }
-            }
-        }
-
         if (articlesOfTheDay.isEmpty()) {
-            printHeadlinesNotFound(date);
+            printHeadlinesNotFound(formattedDate);
         } else {
             printHeadlinesFound();
             printEmptyLine();
@@ -76,36 +63,22 @@ public class DailyNewsCommand {
         }
     }
 
-
-    /**
-     * Allows user to save daily news articles shown to their reading list
-     */
     private static void saveDailyArticlesParser() {
-        boolean isPolling = true;
         Scanner dailyIn = new Scanner(System.in);
+        boolean isPolling = true;
         while (isPolling) {
-            String[] dailyLine = dailyIn.nextLine().split(" ");
-            String command = dailyLine[commandidx].toLowerCase();
-            switch (command) {
-            case "save":
-                save(dailyLine);
-                break;
-            case "back":
+            System.out.println("Enter the article index to save or type 'back' to return: ");
+            String line = dailyIn.nextLine();
+            String[] splitLine = line.split(" ");
+            if (splitLine[0].equalsIgnoreCase("back")) {
                 isPolling = false;
-                break;
-            default:
-                printSaveDailyDefaultMessage();
-                break;
+            } else {
+                save(splitLine);
             }
         }
     }
 
-    /**
-     * Checks whether the index the user keyed in is valid
-     * It will save the article if it is valid and return an error otherwise
-     *
-     * @param input is the user's input
-     */
+
     private static void save(String[] input) {
         int articleIdx;
         try {
@@ -116,7 +89,7 @@ public class DailyNewsCommand {
         }
 
         if (articleIdx < 0 || articleIdx >= articlesOfTheDay.size()) {
-            printIndexError(articlesOfTheDay); // Pass the articles list to the method
+            printIndexError(articlesOfTheDay);
             return;
         }
         NewsArticle article = articlesOfTheDay.get(articleIdx);
@@ -125,14 +98,28 @@ public class DailyNewsCommand {
             if (article.isSaved()) {
                 printArticleIsSaved(article);
             } else {
-                // Use the article's topic to save it, ensuring the topic information is included
-                String topic = article.getTopic(); // Retrieve the topic from the article
-                NewsFile.saveNewsWithTopic(article, topic); // Save the article with its topic
+                String topic = findArticleTopic(article);
+                if (topic.equals("Unknown")) {
+                    System.out.println("The topic for this article could not be found.");
+                    return;
+                }
+                NewsFile.saveNewsWithTopic(article, topic);
                 article.setSaved(true);
+                userPreferences.suggestArticleForUser(article.getAuthor());
             }
         } catch (IOException e) {
             System.out.println("An error occurred while saving the article: " + e.getMessage());
         }
+    }
+
+    // Method to find an article's topic
+    private static String findArticleTopic(NewsArticle article) {
+        for (NewsTopic topic : newsTopics) {
+            if (topic.relatedNewsArticles.contains(article)) {
+                return topic.getTopicName();
+            }
+        }
+        return "Unknown";
     }
 
 

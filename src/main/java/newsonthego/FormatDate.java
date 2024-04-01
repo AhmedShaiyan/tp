@@ -23,7 +23,7 @@ public class FormatDate {
                 result = FILE_FORMAT.format(formattedDate);
                 return result;
             } catch (ParseException ignored) {
-                // Try another format
+
             }
         }
         return null;

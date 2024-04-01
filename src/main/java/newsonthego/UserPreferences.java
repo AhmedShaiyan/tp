@@ -1,59 +1,73 @@
 package newsonthego;
 
 import java.nio.file.Files;
+import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.HashSet;
-import java.util.Set;
+import java.nio.file.StandardOpenOption;
+import java.util.*;
 import java.io.IOException;
+import java.util.stream.Collectors;
 
 public class UserPreferences {
 
-    private static final String PREFERENCES_FILE = "userPreferences.txt";
-    private final Set<String> interestedTopics;
+    public static final Path PREFERENCES_FILE = Paths.get("data","userPreferences.txt");
+    private static final Path SAVED_NEWS_PATH = Paths.get("data", "saved_news.txt");
+    private static final Path SAMPLE_NEWS_FILE = Paths.get("data", "sampleNews.txt");
 
+    private String suggestedArticleTitle;
 
     public UserPreferences() {
-        this.interestedTopics = new HashSet<>();
-        loadPreferences();
+
     }
 
-    public void addTopic(String topic) {
-        interestedTopics.add(topic.trim().toLowerCase());
-        savePreferences();
+    public void suggestArticleForUser(String userName) {
+        String mostFrequentTopic = findMostFrequentTopic();
+        if (mostFrequentTopic != null) {
+            suggestRandomArticleFromTopic(mostFrequentTopic);
+            if (suggestedArticleTitle != null) {
+                saveSuggestedArticleForUser(userName);
+            }
+        }
     }
 
-    public void removeTopic(String topic) {
-        interestedTopics.remove(topic.trim().toLowerCase());
-        savePreferences();
-    }
-
-    public Set<String> getInterestedTopics() {
-        return interestedTopics;
-    }
-
-    private void loadPreferences() {
+    private String findMostFrequentTopic() {
         try {
-            Files.lines(Paths.get(PREFERENCES_FILE)).forEach(line -> interestedTopics.add(line.trim().toLowerCase()));
+            Map<String, Long> topicCounts = Files.lines(SAVED_NEWS_PATH)
+                    .filter(line -> line.contains("| Topic: "))
+                    .map(line -> line.substring(line.indexOf("| Topic: ") + "| Topic: ".length()).trim())
+                    .collect(Collectors.groupingBy(topic -> topic, Collectors.counting()));
+
+            return topicCounts.entrySet().stream()
+                    .max(Map.Entry.comparingByValue())
+                    .map(Map.Entry::getKey)
+                    .orElse(null);
         } catch (IOException e) {
-            System.out.println("Could not load user preferences. Starting with an empty list of topics.");
+            System.out.println("Could not load saved news to find the most frequent topic.");
+            return null;
         }
     }
 
-    private void savePreferences() {
+    private void suggestRandomArticleFromTopic(String topic) {
         try {
-            Files.write(Paths.get(PREFERENCES_FILE), interestedTopics);
+            List<String> articles = Files.lines(SAMPLE_NEWS_FILE)
+                    .filter(line -> line.endsWith(topic))
+                    .collect(Collectors.toList());
+            if (!articles.isEmpty()) {
+                Collections.shuffle(articles);
+                suggestedArticleTitle = articles.get(0).split(";")[0].trim();
+            }
         } catch (IOException e) {
-            System.out.println("Could not save user preferences.");
+            System.out.println("Could not load sample news to suggest an article.");
         }
     }
 
-    @Override
-    public String toString() {
-        if (interestedTopics.isEmpty()) {
-            return "You are not currently interested in any topics.";
+    private void saveSuggestedArticleForUser(String userName) {
+        String userPrefContent = "Suggested Article for " + userName + ": " + suggestedArticleTitle + "\n";
+        try {
+
+            Files.writeString(PREFERENCES_FILE, userPrefContent, StandardOpenOption.CREATE, StandardOpenOption.APPEND);
+        } catch (IOException e) {
+            System.out.println("Could not save the suggested article for the user.");
         }
-        StringBuilder sb = new StringBuilder("You are interested in the following topics:\n");
-        interestedTopics.forEach(topic -> sb.append("- ").append(topic).append("\n"));
-        return sb.toString();
     }
 }

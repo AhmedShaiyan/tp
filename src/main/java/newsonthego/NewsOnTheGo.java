@@ -20,13 +20,13 @@ public class NewsOnTheGo {
 
     public static final String FILENAME = "data/sampleNews.txt";
     private static final Logger logger = Logger.getLogger("NewsOnTheGo");
-    private static final ArrayList<NewsTopic> newsTopics = new ArrayList<>();
+    public static final ArrayList<NewsTopic> newsTopics = new ArrayList<>();
     private static NewsFile savedNews;
 
     /**
      * Main entry-point for the java.newsonthego.NewsOnTheGo application.
      */
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
 
         String url = "https://www.firstpost.com/tech/" +
                 "nasas-budget-cuts-may-force-them-to-shut-down-one-of-a-kind-" +
@@ -36,6 +36,7 @@ public class NewsOnTheGo {
 
         Scanner in = new Scanner(System.in);
         UI.initializeUI(in);
+
         savedNews = new NewsFile();
 
         List<NewsArticle> newsArticles = NewsImporter.importNewsFromText(FILENAME, newsTopics);
@@ -62,6 +63,12 @@ public class NewsOnTheGo {
 
     private static boolean processCommand(String command, String line, List<NewsArticle> list) {
         assert !command.isEmpty();
+
+        if (command.equalsIgnoreCase(Command.BYE.toString())) {
+            System.out.println("Bye. Hope to see you again soon!");
+            return true;
+        }
+
 
         Parser.handleCommand(command, line, list, newsTopics);
         return command.equalsIgnoreCase(Command.BYE.toString());
