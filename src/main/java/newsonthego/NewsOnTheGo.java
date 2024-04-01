@@ -27,7 +27,6 @@ public class NewsOnTheGo {
      * Main entry-point for the java.newsonthego.NewsOnTheGo application.
      */
     public static void main(String[] args) {
-
         String url = "https://www.firstpost.com/tech/" +
                 "nasas-budget-cuts-may-force-them-to-shut-down-one-of-a-kind-" +
                 "chandra-x-ray-observatory-satellite-13753316.html";
@@ -105,7 +104,6 @@ public class NewsOnTheGo {
      */
     static void filterNews(String line) {
         int topicIndex = findTopicIndex(line.substring(6).trim());
-        assert topicIndex >= 0 : "Topic index should be valid";
         System.out.println(topicIndex);
         if (topicIndex < 0) {
             System.out.println("Sorry, this topic is not available right now :(");
@@ -155,7 +153,6 @@ public class NewsOnTheGo {
             System.out.println(line);
         }
     }
-
 
     static void clearSavedNews() {
         savedNews.clearFile();
