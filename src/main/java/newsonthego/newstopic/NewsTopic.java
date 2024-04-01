@@ -22,8 +22,10 @@ public class NewsTopic {
     }
 
     public void printNewsArticles() {
+        int i = 1;
         for (NewsArticle newsArticle : this.relatedNewsArticles) {
-            System.out.println(newsArticle.getHeadline());
+            System.out.println(i+ ". " +newsArticle.getHeadline());
+            i ++;
         }
     }
 }

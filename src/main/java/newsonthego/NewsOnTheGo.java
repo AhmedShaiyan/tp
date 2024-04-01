@@ -104,11 +104,10 @@ public class NewsOnTheGo {
      */
     static void filterNews(String line) {
         int topicIndex = findTopicIndex(line.substring(6).trim());
-        System.out.println(topicIndex);
         if (topicIndex < 0) {
             System.out.println("Sorry, this topic is not available right now :(");
         } else {
-            System.out.println("Here are the news articles related to the topic of your interest:");
+            System.out.println("Here are the news articles related to " +newsTopics.get(topicIndex).getTopicName()+ ": ");
             newsTopics.get(topicIndex).printNewsArticles();
         }
     }
