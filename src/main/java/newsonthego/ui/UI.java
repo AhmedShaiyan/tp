@@ -105,8 +105,8 @@ public class UI {
                 "STARRED - gives the list of bookmarked topics \n" +
                 "REMOVE [topic index] - removes a topic from the bookmarked list \n" +
                 "GET [article number] - gives all the details relating to a specific article \n" +
-                "INFO [article number] - gives the information on the importance, reliability and bias of an article \n" +
-                "SOURCE [article number] - gives the source of the article \n" +
+                "INFO [article number] - gives the information on the importance, reliability and bias of an article \n"
+                + "SOURCE [article number] - gives the source of the article \n" +
                 "SAVE [article number] - saves the specified article into a reading list \n" +
                 "LOAD - displays the list of saved articles \n" +
                 "CLEAR - clears the current list of saved articles \n" +
