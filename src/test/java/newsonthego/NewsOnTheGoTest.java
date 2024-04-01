@@ -1,15 +1,18 @@
 package newsonthego;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static newsonthego.storage.TopicsFile.saveTopics;
+import static org.junit.jupiter.api.Assertions.*;
 
 import newsonthego.newstopic.NewsTopic;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 
+import java.io.IOException;
 import java.nio.file.Files;
+import java.io.File;
+import java.io.BufferedReader;
+import java.io.FileReader;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
@@ -92,5 +95,31 @@ class NewsOnTheGoTest {
         userPreferences.addTopic(testTopic);
         String expectedMessageAfterAddition = "You are interested in the following topics:\n- health\n";
         assertEquals(expectedMessageAfterAddition, userPreferences.toString(), "Message should list added topics");
+    }
+
+    @Test
+    void testTopicsFileSaveTopics() {
+        try {
+            ArrayList<NewsTopic> topics = new ArrayList<>();
+            topics.add(new NewsTopic("hello"));
+            saveTopics(topics);
+            File savedFile = new File(Paths.get("data","saved_topics.txt")
+                    .normalize().toString());
+            assertTrue(savedFile.exists());
+
+            BufferedReader reader = new BufferedReader(new FileReader(savedFile));
+            String savedContent = reader.readLine();
+            reader.close();
+            assertEquals(savedContent, "hello");
+        } catch (IOException e) {
+            fail("An error occurred while saving the file: " + e.getMessage());
+        } finally {
+            // Clean up: Delete the test file after the test
+            File fileToDelete = new File(Paths.get("data","saved_topics.txt")
+                    .normalize().toString());
+            if (fileToDelete.exists()) {
+                fileToDelete.delete();
+            }
+        }
     }
 }
