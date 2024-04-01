@@ -1,6 +1,7 @@
 package newsonthego.commands;
 
 import newsonthego.NewsArticle;
+import newsonthego.ui.UI;
 
 import java.util.List;
 
@@ -14,14 +15,18 @@ public class InfoNewsCommand {
      */
     public static void printNewsInfo(String line, List<NewsArticle> list) {
         String[] split = line.split(" ");
-        int index = Integer.parseInt(split[1]) - 1;
-        if (index >= 0 && index < list.size()) {
-            NewsArticle article = list.get(index);
-            System.out.println("Importance: " + article.getImportance());
-            System.out.println("Reliability: " + article.getReliability());
-            System.out.println("Bias: " + article.getBias());
-        } else {
-            System.out.println("Invalid article index.");
+        try {
+            int index = Integer.parseInt(split[1]) - 1;
+            if (index >= 0 && index < list.size()) {
+                NewsArticle article = list.get(index);
+                System.out.println("Importance: " + article.getImportance());
+                System.out.println("Reliability: " + article.getReliability());
+                System.out.println("Bias: " + article.getBias());
+            } else {
+                System.out.println("Invalid article index.");
+            }
+        } catch (IndexOutOfBoundsException | NumberFormatException e) {
+            System.out.println(UI.INVALID_ARTICLE_INDEX_MESSAGE);
         }
     }
 }

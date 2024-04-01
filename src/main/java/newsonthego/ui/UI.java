@@ -11,8 +11,8 @@ import java.util.logging.Logger;
 import static newsonthego.NewsFile.SAVED_NEWS_PATH;
 
 public class UI {
+    public static final String INVALID_ARTICLE_INDEX_MESSAGE = "Please provide a valid article index!!";
     private static final Logger logger = Logger.getLogger("NewsOnTheGo");
-
     public static void initializeUI(Scanner in) {
         logger.log(Level.INFO, "Starting NewsOnTheGo");
         String logo = "\n" +
@@ -73,9 +73,22 @@ public class UI {
      * This method prints the list of topics along with their names.
      */
     public static void printTopics(List<NewsTopic> newsTopics) {
-        System.out.println("Here are the list of topics for your viewing:");
         for (NewsTopic topic : newsTopics) {
             System.out.println(" - " + topic.getTopicName());
         }
+    }
+
+    public static void printAllTopics(List<NewsTopic> newsTopics) {
+        System.out.println("Here are the list of topics for your viewing:");
+        printTopics(newsTopics);
+    }
+
+    public static void printFavouriteTopics(List<NewsTopic> favouriteTopics) {
+        if (favouriteTopics.size() <= 0) {
+            System.out.println("You do not have any favourite topics. \n" +
+                    "Use the command 'star [topic name]' to add a topic to your favourites.");
+        }
+        System.out.println("Here is the list of your favourite topics: ");
+        printTopics(favouriteTopics);
     }
 }
