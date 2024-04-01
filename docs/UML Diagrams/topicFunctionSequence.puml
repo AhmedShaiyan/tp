@@ -1,0 +1,18 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+
+[->Parser: handleCommand()
+activate Parser
+alt Command == TOPIC
+Parser -> UI: printAllTopics()
+activate UI
+UI -> UI: printTopic()
+activate UI
+UI --> UI
+deactivate UI
+UI --> Parser
+deactivate UI
+end
+deactivate Parser
+
+@enduml

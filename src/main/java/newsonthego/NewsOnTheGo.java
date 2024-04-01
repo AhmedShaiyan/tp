@@ -175,7 +175,7 @@ public class NewsOnTheGo {
                         "find your saved articles at " + savedNews.getPathName());
             } else {
                 try {
-                    savedNews.saveNews(list.get(index));
+                    NewsFile.saveNews(list.get(index));
                     list.get(index).setSaved(true);
                 } catch (IOException e) {
                     System.out.println("An error occurred while appending text to the file: " + e.getMessage());

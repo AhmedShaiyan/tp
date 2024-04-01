@@ -31,7 +31,7 @@ public class Parser {
             }
             break;
         case TOPICS:
-            UI.printTopics(topics);
+            UI.printAllTopics(topics);
             break;
         case STAR:
             NewsOnTheGo.starTopic(line, topics, favouriteTopics);
