@@ -126,11 +126,11 @@ public class NewsOnTheGo {
 
     static void saveNews(String line, List<NewsArticle> list) {
         String[] split = line.split(" ");
-        int index = Integer.parseInt(split[1]) - 1;
-        if (index >= 0 && index < list.size()) {
+        try {
+            int index = Integer.parseInt(split[1]) - 1;
             if (list.get(index).isSaved()) {
                 System.out.println(list.get(index).getHeadline() + " has already been saved! \n" +
-                        "find your saved articles at " +savedNews.getPathName());
+                        "find your saved articles at " + savedNews.getPathName());
             } else {
                 try {
                     savedNews.saveNews(list.get(index));
@@ -139,7 +139,7 @@ public class NewsOnTheGo {
                     System.out.println("An error occurred while appending text to the file: " + e.getMessage());
                 }
             }
-        } else {
+        } catch (IndexOutOfBoundsException | NumberFormatException e) {
             System.out.println(UI.INVALID_ARTICLE_INDEX_MESSAGE);
         }
     }
