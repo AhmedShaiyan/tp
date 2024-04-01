@@ -12,7 +12,13 @@ public class Parser {
     public static int topic = -1;
 
     public static void handleCommand(String command, String line, List<NewsArticle> list, List<NewsTopic> topics) {
-        switch (NewsOnTheGo.Command.valueOf(command.toUpperCase())) {
+        NewsOnTheGo.Command commandEnum = null;
+        try {
+            commandEnum = NewsOnTheGo.Command.valueOf(command.toUpperCase());
+        } catch (IllegalArgumentException e) {
+            commandEnum = NewsOnTheGo.Command.VOID;
+        }
+        switch (commandEnum) {
         case DAILY:
             new DailyNewsCommand(line, list);
             break;
@@ -64,6 +70,8 @@ public class Parser {
         case BYE:
             System.out.println("Bye. Hope to see you again soon!");
             break;
+        case VOID:
+            // fall through
         default:
             System.out.println("I'm sorry, but I don't know what that means :-(");
             break;
