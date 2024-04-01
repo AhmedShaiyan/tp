@@ -73,10 +73,9 @@ public class NewsOnTheGo {
         try{
             int index = Integer.parseInt(split[1]) - 1;
             System.out.println(parseToText(list.get(index)));
-        } catch (IndexOutOfBoundsException e) {
+        } catch (IndexOutOfBoundsException | NumberFormatException e) {
             System.out.println(UI.INVALID_ARTICLE_INDEX_MESSAGE);
         }
-
     }
 
     /**
@@ -178,7 +177,7 @@ public class NewsOnTheGo {
         try{
             int index = Integer.parseInt(split[1]) - 1;
             System.out.println(parseToText(list.get(index)));
-        } catch (IndexOutOfBoundsException e) {
+        } catch (IndexOutOfBoundsException | NumberFormatException e) {
             System.out.println(UI.INVALID_ARTICLE_INDEX_MESSAGE);
         }
     }
