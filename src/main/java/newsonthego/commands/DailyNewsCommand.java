@@ -9,7 +9,7 @@ import java.util.logging.Level;
 import java.util.stream.Collectors;
 
 import static newsonthego.FormatDate.formatFromUser;
-import static newsonthego.NewsFile.saveNews;
+import static newsonthego.storage.NewsFile.saveNews;
 import static newsonthego.ui.UI.printArticleIsSaved;
 import static newsonthego.ui.UI.printIndexError;
 import static newsonthego.ui.UI.printHeadlinesFound;

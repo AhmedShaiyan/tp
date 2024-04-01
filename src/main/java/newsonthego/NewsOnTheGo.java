@@ -2,6 +2,8 @@ package newsonthego;
 
 
 import newsonthego.newstopic.NewsTopic;
+import newsonthego.storage.NewsFile;
+import newsonthego.storage.TopicsFile;
 import newsonthego.ui.UI;
 
 import java.io.IOException;
@@ -23,6 +25,7 @@ public class NewsOnTheGo {
     private static final ArrayList<NewsTopic> newsTopics = new ArrayList<>();
     private static final ArrayList<NewsTopic> favouriteTopics = new ArrayList<>();
     private static NewsFile savedNews;
+    private static TopicsFile savedTopics;
 
     public enum Command {
         DAILY, GET, TOPICS, FILTER, SAVE, SOURCE, INFO, CLEAR, LOAD, STAR, STARRED, REMOVE, BACK, BYE, VOID
@@ -232,7 +235,7 @@ public class NewsOnTheGo {
     /**
     * Main entry-point for the java.newsonthego.NewsOnTheGo application.
     */
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
         String url = "https://www.firstpost.com/tech/" +
                 "nasas-budget-cuts-may-force-them-to-shut-down-one-of-a-kind-" +
                 "chandra-x-ray-observatory-satellite-13753316.html";
@@ -246,6 +249,7 @@ public class NewsOnTheGo {
         savedNews = new NewsFile();
 
         List<NewsArticle> newsArticles = NewsImporter.importNewsFromText(FILENAME, newsTopics);
+        TopicsFile.loadTopics(favouriteTopics);
 
         while (true) {
             System.out.println("What do you want from me?");
@@ -260,6 +264,7 @@ public class NewsOnTheGo {
                 UI.printError(e.getMessage());
             }
         }
+        TopicsFile.saveTopics(favouriteTopics);
         logger.log(Level.INFO, "Ending NewsOnTheGo");
     }
 }

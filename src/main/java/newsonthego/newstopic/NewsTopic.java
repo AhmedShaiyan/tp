@@ -7,10 +7,9 @@ import java.util.ArrayList;
 public class NewsTopic {
     protected String topicName;
     protected ArrayList<NewsArticle> relatedNewsArticles;
-    public NewsTopic(String topicName, NewsArticle newsArticle) {
+    public NewsTopic(String topicName) {
         this.topicName = topicName;
         relatedNewsArticles = new ArrayList<>();
-        relatedNewsArticles.add(newsArticle);
     }
 
     public String getTopicName() {
