@@ -13,8 +13,7 @@ import java.util.logging.Logger;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 
-
-import static newsonthego.ArticleScrapper.scrapeArticle;
+import static newsonthego.ArticleScrapper.scrapeArticles;
 
 public class NewsOnTheGo {
 
@@ -28,11 +27,9 @@ public class NewsOnTheGo {
      */
     public static void main(String[] args) {
 
-        String url = "https://www.firstpost.com/tech/" +
-                "nasas-budget-cuts-may-force-them-to-shut-down-one-of-a-kind-" +
-                "chandra-x-ray-observatory-satellite-13753316.html";
+        String inputFilePath = "data/ListOfURLs.txt";
         String outputFolderPath = "data";
-        scrapeArticle(url, outputFolderPath);
+        scrapeArticles(inputFilePath, outputFolderPath);
 
         Scanner in = new Scanner(System.in);
         UI.initializeUI(in);
@@ -55,6 +52,7 @@ public class NewsOnTheGo {
         }
         logger.log(Level.INFO, "Ending NewsOnTheGo");
     }
+
 
     public enum Command {
         DAILY, GET, TOPICS, FILTER, SAVE, SOURCE, INFO, CLEAR, LOAD, BYE
