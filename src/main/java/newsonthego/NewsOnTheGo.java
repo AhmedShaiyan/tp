@@ -106,6 +106,15 @@ public class NewsOnTheGo {
         return topicIndex;
     }
 
+    /**
+     * Adds a specified news topic to the user's list of favorite topics.
+     * If the provided line contains a valid topic name, it is added to the list of favorite topics.
+     * If the topic name is empty or not found in the list of available topics, an appropriate message is displayed.
+     *
+     * @param line           The input line containing the command and topic name to be starred.
+     * @param newsTopics     The list of available NewsTopic objects.
+     * @param favouriteTopics The list of favorite NewsTopic objects to which the specified topic will be added.
+     */
     public static void starTopic(String line, List<NewsTopic> newsTopics, List<NewsTopic> favouriteTopics) {
         if (line.substring(4).trim().isEmpty()) {
             System.out.println("Please provide a topic to add to your favourites.");
@@ -120,6 +129,16 @@ public class NewsOnTheGo {
                     " has been added to your list of favourite topics");
         }
     }
+
+    /**
+     * Removes a specified news topic from the user's list of favorite topics.
+     * If the provided line contains a valid topic name that exists in the list of favorite topics,
+     * it is removed from the list.
+     * If the topic name is empty or not found in the list of favorite topics, an appropriate message is displayed.
+     *
+     * @param line           The input line containing the command and topic name to be removed from favorites.
+     * @param favouriteTopics The list of favorite NewsTopic objects from which the specified topic will be removed.
+     */
     public static void removeStarredTopic(String line, List<NewsTopic> favouriteTopics) {
         if (line.substring(6).trim().isEmpty()) {
             System.out.println("Please provide a topic to remove from your favourites.");
