@@ -34,7 +34,15 @@ public class NewsOnTheGo {
         return command.equalsIgnoreCase(Command.BYE.toString());
     }
 
-
+    /**
+     * Retrieves and displays the details of a news article from the provided list based on the index specified in the input line.
+     * The input line is expected to contain the command followed by the index of the news article to retrieve.
+     * If the index is valid and the article exists in the list, its details are printed to the console.
+     * If the index is out of bounds or not a valid integer, an error message is displayed.
+     *
+     * @param line The input line containing the command and index of the news article.
+     * @param list The list of NewsArticle objects from which to retrieve the news article.
+     */
     static void getNews(String line, List<NewsArticle> list) {
         String[] split = line.split(" ");
         try{
@@ -91,6 +99,16 @@ public class NewsOnTheGo {
         return topicIndex;
     }
 
+    /**
+     * Saves a news article from the list to a user's reading list based on the index specified in the input line.
+     * The input line is expected to contain the command "save" followed by the index of the news article to save.
+     * If the index is valid and the article exists in the list, it is saved to the reading list.
+     * If the article has already been saved, a message indicating that it's already saved is displayed.
+     * If an error occurs while saving the article, an error message is displayed.
+     *
+     * @param line The input line containing the command and index of the news article.
+     * @param list The list of NewsArticle objects from which to retrieve the news article.
+     */
     static void saveNews(String line, List<NewsArticle> list) {
         String[] split = line.split(" ");
         try {
@@ -137,7 +155,13 @@ public class NewsOnTheGo {
     }
 
     /**
-     * Enter the news article number as stored in the array, and it will return the source of the news article.
+     * Retrieves and displays the details of a news article from the provided list based on the index specified in the input line.
+     * The input line is expected to contain the command "source" followed by the index of the news article to retrieve.
+     * If the index is valid and the article exists in the list, its details are printed to the console.
+     * If the index is out of bounds or not a valid integer, an error message is displayed.
+     *
+     * @param line The input line containing the command and index of the news article.
+     * @param list The list of NewsArticle objects from which to retrieve the news article.
      */
     static void sourceNews(String line, List<NewsArticle> list) {
         String[] split = line.split(" ");
@@ -148,7 +172,8 @@ public class NewsOnTheGo {
             System.out.println(UI.INVALID_ARTICLE_INDEX_MESSAGE);
         }
     }
-    /**
+
+     /**
      * Main entry-point for the java.newsonthego.NewsOnTheGo application.
      */
     public static void main(String[] args) {
