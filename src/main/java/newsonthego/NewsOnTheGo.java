@@ -74,7 +74,7 @@ public class NewsOnTheGo {
             int index = Integer.parseInt(split[1]) - 1;
             System.out.println(parseToText(list.get(index)));
         } catch (IndexOutOfBoundsException e) {
-            System.out.println("Please provide a valid article index!");
+            System.out.println(UI.INVALID_ARTICLE_INDEX_MESSAGE);
         }
 
     }
@@ -141,7 +141,7 @@ public class NewsOnTheGo {
                 }
             }
         } else {
-            System.out.println("Please provide a valid news index!");
+            System.out.println(UI.INVALID_ARTICLE_INDEX_MESSAGE);
         }
     }
 
@@ -175,7 +175,11 @@ public class NewsOnTheGo {
      */
     static void sourceNews(String line, List<NewsArticle> list) {
         String[] split = line.split(" ");
-        int index = Integer.parseInt(split[1]) + 1;
-        System.out.println(list.get(index).getSource());
+        try{
+            int index = Integer.parseInt(split[1]) - 1;
+            System.out.println(parseToText(list.get(index)));
+        } catch (IndexOutOfBoundsException e) {
+            System.out.println(UI.INVALID_ARTICLE_INDEX_MESSAGE);
+        }
     }
 }

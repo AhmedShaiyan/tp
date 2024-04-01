@@ -12,7 +12,7 @@ import static newsonthego.NewsFile.SAVED_NEWS_PATH;
 
 public class UI {
     private static final Logger logger = Logger.getLogger("NewsOnTheGo");
-
+    public static final String INVALID_ARTICLE_INDEX_MESSAGE = "Please provide a valid article index!!";
     public static void initializeUI(Scanner in) {
         logger.log(Level.INFO, "Starting NewsOnTheGo");
         String logo = "\n" +
