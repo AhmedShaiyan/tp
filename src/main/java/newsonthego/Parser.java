@@ -20,6 +20,9 @@ public class Parser {
             commandEnum = NewsOnTheGo.Command.VOID;
         }
         switch (commandEnum) {
+        case HELP:
+            UI.printHelpMessage();
+            break;
         case DAILY:
             new DailyNewsCommand(line, list);
             break;
