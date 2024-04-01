@@ -15,6 +15,7 @@ import java.nio.file.Paths;
 
 
 import static newsonthego.ArticleScrapper.scrapeArticle;
+import static newsonthego.Parser.parseToText;
 
 public class NewsOnTheGo {
 
@@ -68,6 +69,14 @@ public class NewsOnTheGo {
 
 
     static void getNews(String line, List<NewsArticle> list) {
+        String[] split = line.split(" ");
+        try{
+            int index = Integer.parseInt(split[1]) - 1;
+            System.out.println(parseToText(list.get(index)));
+        } catch (IndexOutOfBoundsException e) {
+            System.out.println("Please provide a valid article index!");
+        }
+
     }
 
     /**

@@ -23,7 +23,11 @@ public class Parser {
             new DailyNewsCommand(line, list);
             break;
         case GET:
-            NewsOnTheGo.getNews(line, list);
+            if (topic >= 0) { //save using index based on the current topic list shown to user
+                NewsOnTheGo.getNews(line, topics.get(topic).getRelatedNewsArticles());
+            } else {
+                NewsOnTheGo.getNews(line, list);
+            }
             break;
         case TOPICS:
             UI.printTopics(topics);
