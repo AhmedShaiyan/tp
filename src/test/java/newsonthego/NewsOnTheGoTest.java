@@ -9,15 +9,21 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 
+import java.io.IOException;
 import java.nio.file.Files;
+import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.nio.file.StandardOpenOption;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
 class NewsOnTheGoTest {
 
-    private static final String PREFERENCES_FILE = "userPreferences.txt";
+
+    private static final Path SAVED_TOPICS_PATH = Paths.get("data", "saved_topics.txt");
+
+
     private UserPreferences userPreferences;
 
     @Test
@@ -49,48 +55,48 @@ class NewsOnTheGoTest {
     }
 
     // UserPreferences Tests
+
     @BeforeEach
-    void setUpUserPreferences() {
-        // Initialize UserPreferences before each test
-        userPreferences = new UserPreferences();
-        userPreferences.getInterestedTopics().clear();
+    void setUp() throws IOException {
+        Path dataDirectory = Paths.get("data");
+        if (!Files.exists(dataDirectory)) {
+            Files.createDirectories(dataDirectory);
+        }
+        Files.writeString(SAVED_TOPICS_PATH, "", StandardOpenOption.TRUNCATE_EXISTING, StandardOpenOption.CREATE);
     }
+
 
     @AfterEach
-    void tearDownUserPreferences() throws Exception {
-        Files.deleteIfExists(Paths.get(PREFERENCES_FILE));
+    void tearDown() throws IOException {
+        Files.deleteIfExists(SAVED_TOPICS_PATH);
     }
 
     @Test
-    void testAddAndRemoveTopic() {
-        String testTopic = "science";
-        userPreferences.addTopic(testTopic);
-        assertTrue(userPreferences.getInterestedTopics().contains(testTopic), "Topic should be added to preferences");
-
-        userPreferences.removeTopic(testTopic);
-        assertFalse(userPreferences.getInterestedTopics().contains(testTopic), "Topic should be removed");
+    void getSuggestedArticlesFromFavoriteTopics_WithNoFavoriteTopics_ReturnsNoFavoriteTopicsMessage() {
+        String suggestions = UserPreferences.getSuggestedArticlesFromFavoriteTopics();
+        String expectedMessage = "You do not have any favorite topics. Please star a topic first.\n";
+        assertEquals(expectedMessage, suggestions);
     }
 
     @Test
-    void testPersistence() {
-        String testTopic = "technology";
-        userPreferences.addTopic(testTopic);
+    void getSuggestedArticlesFromFavoriteTopics_WithFavoriteTopicsButNoArticles_ReturnsNoArticlesFoundMessage() throws IOException {
 
-        // Simulate reloading preferences by creating a new instance
-        UserPreferences newUserPreferences = new UserPreferences();
-        Set<String> loadedTopics = newUserPreferences.getInterestedTopics();
+        Files.writeString(SAVED_TOPICS_PATH, "NonexistentTopic\n");
 
-        assertTrue(loadedTopics.contains(testTopic), "Persisted topic should be loaded on new instance initialization");
+        String suggestions = UserPreferences.getSuggestedArticlesFromFavoriteTopics();
+        assertTrue(suggestions.contains("No articles found for the topic: NonexistentTopic"));
     }
 
     @Test
-    void testToString() {
-        String expectedInitialMessage = "You are not currently interested in any topics.";
-        assertEquals(expectedInitialMessage, userPreferences.toString(), "Message should indicate no interests");
+    void getSuggestedArticlesFromFavoriteTopics_WithFavoriteTopics_ReturnsSuggestions() throws IOException {
+        String knownTopic = "Science";
+        Files.writeString(SAVED_TOPICS_PATH, knownTopic + "\n");
 
-        String testTopic = "health";
-        userPreferences.addTopic(testTopic);
-        String expectedMessageAfterAddition = "You are interested in the following topics:\n- health\n";
-        assertEquals(expectedMessageAfterAddition, userPreferences.toString(), "Message should list added topics");
+
+        String suggestions = UserPreferences.getSuggestedArticlesFromFavoriteTopics();
+
+        assertFalse(suggestions.trim().isEmpty());
+        assertTrue(suggestions.contains("Suggesting an article from your favorite topic: " + knownTopic));
     }
+
 }

@@ -8,11 +8,13 @@ import newsonthego.ui.UI;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 import java.util.Scanner;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.util.stream.Collectors;
 
 import static newsonthego.Parser.parseToText;
 import static newsonthego.ArticleScrapper.scrapeArticles;
@@ -27,7 +29,7 @@ public class NewsOnTheGo {
     private static TopicsFile savedTopics;
 
     public enum Command {
-        DAILY, GET, TOPICS, FILTER, SAVE, SOURCE, INFO, CLEAR, LOAD, STAR, STARRED, REMOVE, BACK, BYE, VOID
+        DAILY, GET, TOPICS, FILTER, SAVE, SOURCE, INFO, CLEAR, LOAD, STAR, STARRED, SUGGEST, REMOVE, BACK, BYE, VOID
     }
 
     private static boolean processCommand(String command, String line, List<NewsArticle> list) {
@@ -54,6 +56,18 @@ public class NewsOnTheGo {
             System.out.println(parseToText(list.get(index)));
         } catch (IndexOutOfBoundsException | NumberFormatException e) {
             System.out.println(UI.INVALID_ARTICLE_INDEX_MESSAGE);
+        }
+    }
+
+
+    public static void saveFavoriteTopics() {
+        try {
+            List<String> topicNames = favouriteTopics.stream()
+                    .map(NewsTopic::getTopicName)
+                    .collect(Collectors.toList());
+            Files.write(Paths.get("data", "saved_topics.txt"), topicNames);
+        } catch (IOException e) {
+            System.out.println("An error occurred while saving favorite topics: " + e.getMessage());
         }
     }
 
@@ -117,18 +131,27 @@ public class NewsOnTheGo {
      * @param newsTopics     The list of available NewsTopic objects.
      * @param favouriteTopics The list of favorite NewsTopic objects to which the specified topic will be added.
      */
+
     public static void starTopic(String line, List<NewsTopic> newsTopics, List<NewsTopic> favouriteTopics) {
-        if (line.substring(4).trim().isEmpty()) {
+        String topicNameToStar = line.substring(4).trim();
+        if (topicNameToStar.isEmpty()) {
             System.out.println("Please provide a topic to add to your favourites.");
             return;
         }
-        int topicIndex = findTopicIndex(line.substring(4).trim(), newsTopics);
+        long count = favouriteTopics.stream()
+                .filter(topic -> topic.getTopicName().equalsIgnoreCase(topicNameToStar))
+                .count();
+        if (count > 0) {
+            System.out.println(topicNameToStar + " is already in your list of favourite topics.");
+            return;
+        }
+        int topicIndex = findTopicIndex(topicNameToStar, newsTopics);
         if (topicIndex < 0) {
             System.out.println("Sorry, this topic is not available right now :(");
         } else {
             favouriteTopics.add(newsTopics.get(topicIndex));
-            System.out.println(newsTopics.get(topicIndex).getTopicName()+
-                    " has been added to your list of favourite topics");
+            saveFavoriteTopics();
+            System.out.println(topicNameToStar + " has been added to your list of favourite topics.");
         }
     }
 
@@ -141,20 +164,24 @@ public class NewsOnTheGo {
      * @param line           The input line containing the command and topic name to be removed from favorites.
      * @param favouriteTopics The list of favorite NewsTopic objects from which the specified topic will be removed.
      */
+
     public static void removeStarredTopic(String line, List<NewsTopic> favouriteTopics) {
-        if (line.substring(6).trim().isEmpty()) {
+        String topicToRemove = line.substring(6).trim();
+        if (topicToRemove.isEmpty()) {
             System.out.println("Please provide a topic to remove from your favourites.");
             return;
         }
-        int topicIndex = findTopicIndex(line.substring(6).trim(), favouriteTopics);
-        if (topicIndex < 0) {
-            System.out.println("Topic is not found in favourites");
+
+        boolean removed = favouriteTopics.removeIf(topic -> topic.getTopicName().equalsIgnoreCase(topicToRemove));
+
+        if (removed) {
+            System.out.println(topicToRemove + " has been removed from your list of favourite topics");
+            saveFavoriteTopics(); // Save the updated favorite topics list to file
         } else {
-            System.out.println(newsTopics.get(topicIndex).getTopicName()+
-                    " has been removed from your list of favourite topics");
-            favouriteTopics.remove(topicIndex);
+            System.out.println("Topic is not found in favourites");
         }
     }
+
 
     /**
      * Saves a news article from the list to a user's reading list based on the index specified in the input line.
@@ -175,7 +202,7 @@ public class NewsOnTheGo {
                         "find your saved articles at " + savedNews.getPathName());
             } else {
                 try {
-                    savedNews.saveNews(list.get(index));
+                    NewsFile.saveNews(list.get(index));
                     list.get(index).setSaved(true);
                 } catch (IOException e) {
                     System.out.println("An error occurred while appending text to the file: " + e.getMessage());
@@ -206,6 +233,18 @@ public class NewsOnTheGo {
             System.out.println(line);
         }
     }
+
+
+    static void suggestArticle() {
+        String suggestions = UserPreferences.getSuggestedArticlesFromFavoriteTopics();
+        if (suggestions == null || suggestions.isEmpty()) {
+            System.out.println("No suggestions available at the moment.");
+        } else {
+            System.out.println(suggestions);
+        }
+    }
+
+
 
     static void clearSavedNews() {
         savedNews.clearFile();

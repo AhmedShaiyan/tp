@@ -16,10 +16,25 @@ public class NewsFile {
         pathName = SAVED_NEWS_PATH;
     }
 
+
+    /**
+     * Retrieves the path to the saved news file.
+     *
+     * @return The path name as a String.
+     */
     public String getPathName() {
         return pathName;
     }
 
+
+
+    /**
+     * Saves a given news article to the saved news file.
+     * The article is converted to text format and appended to the file.
+     *
+     * @param article The news article to save.
+     * @throws IOException If an I/O error occurs writing to or creating the file.
+     */
     public static void saveNews(NewsArticle article) throws IOException {
         Files.createDirectories(Paths.get("user_data"));
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(pathName, true))) {
@@ -31,6 +46,11 @@ public class NewsFile {
             System.out.println("An error occurred while appending text to the file: " + e.getMessage());
         }
     }
+
+
+    /**
+     * Clears the saved news file by deleting its contents.
+     */
     public void clearFile() {
         try {
             FileWriter fw = new FileWriter(pathName);
