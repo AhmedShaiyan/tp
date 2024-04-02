@@ -72,14 +72,14 @@ class NewsOnTheGoTest {
     }
 
     @Test
-    void getSuggestedArticlesFromFavoriteTopics_WithNoFavoriteTopics_ReturnsNoFavoriteTopicsMessage() {
+    void getArticleWithNoFavoriteTopics() {
         String suggestions = UserPreferences.getSuggestedArticlesFromFavoriteTopics();
         String expectedMessage = "You do not have any favorite topics. Please star a topic first.\n";
         assertEquals(expectedMessage, suggestions);
     }
 
     @Test
-    void getSuggestedArticlesFromFavoriteTopics_WithFavoriteTopicsButNoArticles_ReturnsNoArticlesFoundMessage() throws IOException {
+    void getArticlesWithError() throws IOException {
 
         Files.writeString(SAVED_TOPICS_PATH, "NonexistentTopic\n");
 
@@ -88,7 +88,7 @@ class NewsOnTheGoTest {
     }
 
     @Test
-    void getSuggestedArticlesFromFavoriteTopics_WithFavoriteTopics_ReturnsSuggestions() throws IOException {
+    void getArticlesSuccessfully() throws IOException {
         String knownTopic = "Science";
         Files.writeString(SAVED_TOPICS_PATH, knownTopic + "\n");
 
