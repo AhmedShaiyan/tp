@@ -29,7 +29,8 @@ public class NewsOnTheGo {
 
     public enum Command {
 
-        HELP, DAILY, GET, TOPICS, FILTER, SAVE, SOURCE, INFO, CLEAR, LOAD, STAR, STARRED, SUGGEST, REMOVE, BACK, BYE, VOID
+        HELP, DAILY, GET, TOPICS, FILTER, SAVE, SOURCE, INFO, CLEAR, LOAD, STAR, 
+        STARRED, SUGGEST, REMOVE, BACK, BYE, VOID
     }
 
     private static boolean processCommand(String command, String line, List<NewsArticle> list) {
