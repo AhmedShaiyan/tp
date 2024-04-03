@@ -10,7 +10,11 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.File;
-
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Locale;
 
 
 public class ArticleScrapper {
@@ -51,13 +55,12 @@ public class ArticleScrapper {
 
             // Write the extracted information to the output file in append mode
             try (BufferedWriter writer = new BufferedWriter(new FileWriter(outputFilePath, true))) {
-                writer.write("\"" + headline + "\";" + author + ";" + publishedDate + ";" + theme + ";" + url + ";");
-                writer.write("Abstract: " + abstractText + "\n");
+                writer.write("\"" + headline + "\";" + author + ";" + publishedDate + ";" + theme + ";"
+                        + url + ";" + abstractText + "\n");
                 //System.out.println("Data saved to: " + outputFilePath);
             } catch (IOException e) {
                 e.printStackTrace();
             }
-
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -92,17 +95,73 @@ public class ArticleScrapper {
         // Try to extract published date in multiple formats
         Element dateElement = doc.selectFirst("meta[property=article:published_time]");
         if (dateElement != null) {
-            return dateElement.attr("content");
+            return normalizeDate(dateElement.attr("content"));
         }
 
         // If published date not found in the first format, try another format
         Element anotherDateElement = doc.selectFirst("meta[name=cXenseParse:recs:publishtime]");
-        return (anotherDateElement != null) ? anotherDateElement.attr("content") : "Published date not found";
+        if (anotherDateElement != null) {
+            return normalizeDate(anotherDateElement.attr("content"));
+        }
+
+        // If published date not found in the second format, try "article:published" metadata
+        Element publishedElement = doc.selectFirst("meta[property=article:published]");
+        if (publishedElement != null) {
+            return normalizeDate(publishedElement.attr("content"));
+        }
+
+        return "Published date not found";
     }
 
-    private static String extractAuthor(Document doc) {
-        // Try to extract author name
-        Element authorElement = doc.selectFirst("meta[name=cXenseParse:author]");
-        return (authorElement != null) ? authorElement.attr("content") : "Unknown";
+    private static String normalizeDate(String dateString) {
+        String[] formats = {
+                "yyyy-MM-dd'T'HH:mm:ss'Z'", // Example: 2024-03-10T12:30:45Z
+                "yyyy-MM-dd'T'HH:mm:ss",    // Example: 2024-03-10T12:30:45
+                "yyyy-MM-dd",               // Example: 2024-03-10
+                "yyyy/MM/dd",               // Example: 2024/03/10
+                "MM/dd/yyyy",               // Example: 03/10/2024
+                "dd-MM-yyyy",               // Example: 10-03-2024
+                "dd/MM/yyyy",               // Example: 10/03/2024
+                "MMM dd, yyyy",             // Example: Mar 10, 2024
+                "MMMM dd, yyyy"             // Example: March 10, 2024
+        };
+
+        for (String format : formats) {
+            try {
+                DateFormat dateFormat = new SimpleDateFormat(format, Locale.ENGLISH);
+                Date date = dateFormat.parse(dateString);
+                SimpleDateFormat outputFormat = new SimpleDateFormat("MMMM dd,yyyy", Locale.ENGLISH);
+                return outputFormat.format(date);
+            } catch (ParseException ignored) {
+            }
+        }
+
+        return "Invalid date format";
     }
+
+
+
+    private static String extractAuthor(Document doc) {
+        // Try to extract author name from meta tag with name="author"
+        Element authorElement = doc.selectFirst("meta[name=author]");
+        if (authorElement != null) {
+            String authorName = authorElement.attr("content");
+            if (!authorName.isEmpty()) {
+                return authorName;
+            }
+        }
+
+        // If author not found in the meta tag, try another format
+        Element cXenseAuthorElement = doc.selectFirst("meta[name=cXenseParse:author]");
+        if (cXenseAuthorElement != null) {
+            String authorName = cXenseAuthorElement.attr("content");
+            if (!authorName.isEmpty()) {
+                return authorName;
+            }
+        }
+
+        // If author not found in both formats, return "Unknown"
+        return "Unknown";
+    }
+
 }
