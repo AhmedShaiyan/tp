@@ -17,6 +17,7 @@ import static newsonthego.ui.UI.printHeadlinesNotFound;
 import static newsonthego.ui.UI.printEmptyLine;
 import static newsonthego.ui.UI.printArticlesInList;
 import static newsonthego.ui.UI.printSaveDailyDefaultMessage;
+import static newsonthego.ui.UI.printInvalidDateFormatMessage;
 
 import java.util.logging.Logger;
 
@@ -40,34 +41,30 @@ public class DailyNewsCommand {
         assert !list.isEmpty();
 
         String[] splitInput = input.split(" ", 2);
-        try {
-            String date = splitInput[dateindex];
+        String date = splitInput[dateindex];
 
-            String formattedDate = formatFromUser(date);
+        String formattedDate = formatFromUser(date);
 
-            if (formattedDate == null) {
-                LOGGER.log(Level.WARNING, "Invalid date format");
-                return;
-            }
+        if (formattedDate == null) {
+            LOGGER.log(Level.WARNING, "Invalid date format");
+            printInvalidDateFormatMessage();
+            return;
+        }
 
-            articlesOfTheDay = list.stream()
-                    .filter(article -> article.getDate().equals(formattedDate))
-                    .collect(Collectors.toList());
+        articlesOfTheDay = list.stream()
+                .filter(article -> article.getDate().equals(formattedDate))
+                .collect(Collectors.toList());
 
-            if (articlesOfTheDay.isEmpty()) {
-                printHeadlinesNotFound(date);
-            } else {
-                printHeadlinesFound();
-                printEmptyLine();
-                printArticlesInList(articlesOfTheDay);
-                printEmptyLine();
-                saveDailyArticlesParser();
-            }
-        } catch (IndexOutOfBoundsException e) {
-            System.out.println("Please input a valid date!");
+        if (articlesOfTheDay.isEmpty()) {
+            printHeadlinesNotFound(formattedDate);
+        } else {
+            printHeadlinesFound(formattedDate);
+            printEmptyLine();
+            printArticlesInList(articlesOfTheDay);
+            printEmptyLine();
+            saveDailyArticlesParser();
         }
     }
-
 
     /**
      * Allows user to save daily news articles shown to their reading list
@@ -98,7 +95,7 @@ public class DailyNewsCommand {
      *
      * @param input is the user's input
      */
-    private static void save(String[] input) {
+    static void save(String[] input) {
         int articleIdx = Integer.parseInt(input[articleidx]) - 1;
         if (articleIdx < 0 || articleIdx >= articlesOfTheDay.size()) {
             printIndexError(articlesOfTheDay);
