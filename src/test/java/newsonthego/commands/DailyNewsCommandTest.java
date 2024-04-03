@@ -16,6 +16,7 @@ import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.List;
 
+import static newsonthego.ui.UI.printEmptyLine;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class DailyNewsCommandTest {
@@ -78,7 +79,7 @@ public class DailyNewsCommandTest {
                 "\"MM dd yyyy\" (01 02 2024), \n" +
                 "\"MMMM dd yyyy\" (January 02 2024), \n" +
                 "\"dd MMMM yyyy\" (02 January 2024)\n" + 
-            System.out.println();
+            printEmptyLine();
 
         new DailyNewsCommand(input, newsArticles);
         assertEquals(expected, outputContent.toString());
@@ -91,7 +92,7 @@ public class DailyNewsCommandTest {
                 "\"MM dd yyyy\" (01 02 2024), \n" +
                 "\"MMMM dd yyyy\" (January 02 2024), \n" +
                 "\"dd MMMM yyyy\" (02 January 2024)\n" + 
-            System.out.println();
+            printEmptyLine();
 
         new DailyNewsCommand(input, newsArticles);
         assertEquals(expected, outputContent.toString());
@@ -105,7 +106,7 @@ public class DailyNewsCommandTest {
                 "\"MM dd yyyy\" (01 02 2024), \n" +
                 "\"MMMM dd yyyy\" (January 02 2024), \n" +
                 "\"dd MMMM yyyy\" (02 January 2024)\n";
-        System.out.println();
+        printEmptyLine();
 
         new DailyNewsCommand(input, newsArticles);
         assertEquals(expected, outputContent.toString());
