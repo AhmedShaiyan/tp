@@ -20,14 +20,14 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class DailyNewsCommandTest {
 
-    private final ByteArrayOutputStream outputContent = new ByteArrayOutputStream();
-
     @TempDir
     public static Path testFolder;
 
     private static final String TEST_DATA_FILENAME = "test/data/DailyNewsCommandTest";
 
     private static List<NewsArticle> newsArticles;
+
+    private final ByteArrayOutputStream outputContent = new ByteArrayOutputStream();
 
     @BeforeAll
     public static void setupAll() {
