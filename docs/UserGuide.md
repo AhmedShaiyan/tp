@@ -24,6 +24,25 @@ This guide will help you get started with using NewsOnTheGo and understand its f
 
 ## Features
 
+### Getting Help: `help`
+Shows all the commands available and their brief description.
+
+Format: `help`
+
+### Find articles on a particular day: `daily`
+Gets the list of articles from our text file and outputs it to the user.
+
+Format: `daily {DATE}`
+
+* The `DATE` format: `MM dd yyyy`/`MMMM dd yyyy`
+
+Example of usage:
+
+`daily March 10 2024`
+
+`daily 03 10 2024`
+
+
 
 ### Star a topic: `star`
 
@@ -60,6 +79,19 @@ Format: `save {index of article on displayed list}`
 Example: 
 'save 1'
 
+### Loading saved news: `load`
+Displays all saved news articles from the saved articles text file.
+
+Format: `load`
+
+### Returning to the previous menu or list: `back`
+Returns from a filtered list of news or the saved news window to the main list of articles.
+
+Format: `back`
+
+* Only applicable if you have filtered the list of news using the `filter` command or used the `save` command to save an article.
+
+
 ### Exiting the program: `bye`
 
 Exits the application.
@@ -70,10 +102,12 @@ Format: `bye`
 
 | Commands    | Format, Examples                       |
 |-------------|----------------------------------------|
+| **HELP**    | `help`                                 |
 | **DAILY**   | `daily March 10 2024`                  |
-| **SAVE**    | `save 1`                               |
-| **STAR**    | `star TOPIC` <br> e.g., `star Science` |
-| **REMOVE**  | `remove INDEX` <br> e.g., `remove 3`   |
+| **STAR**    | `star Technology`                      |
+| **REMOVE**  | `remove Technology`                    |
 | **SUGGEST** | `suggest`                              |
 | **SAVE**    | `save 1`                               |
+| **LOAD**    | `load`                                 |
+| **BACK**    | `back`                                 |
 | **BYE**     | `bye`                                  |
