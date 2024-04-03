@@ -16,7 +16,6 @@ import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.List;
 
-import static newsonthego.ui.UI.printEmptyLine;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class DailyNewsCommandTest {
