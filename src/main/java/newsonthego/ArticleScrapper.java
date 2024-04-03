@@ -115,15 +115,15 @@ public class ArticleScrapper {
 
     private static String normalizeDate(String dateString) {
         String[] formats = {
-                "yyyy-MM-dd'T'HH:mm:ss'Z'", // Example: 2024-03-10T12:30:45Z
-                "yyyy-MM-dd'T'HH:mm:ss",    // Example: 2024-03-10T12:30:45
-                "yyyy-MM-dd",               // Example: 2024-03-10
-                "yyyy/MM/dd",               // Example: 2024/03/10
-                "MM/dd/yyyy",               // Example: 03/10/2024
-                "dd-MM-yyyy",               // Example: 10-03-2024
-                "dd/MM/yyyy",               // Example: 10/03/2024
-                "MMM dd, yyyy",             // Example: Mar 10, 2024
-                "MMMM dd, yyyy"             // Example: March 10, 2024
+            "yyyy-MM-dd'T'HH:mm:ss'Z'", // Example: 2024-03-10T12:30:45Z
+            "yyyy-MM-dd'T'HH:mm:ss",    // Example: 2024-03-10T12:30:45
+            "yyyy-MM-dd",               // Example: 2024-03-10
+            "yyyy/MM/dd",               // Example: 2024/03/10
+            "MM/dd/yyyy",               // Example: 03/10/2024
+            "dd-MM-yyyy",               // Example: 10-03-2024
+            "dd/MM/yyyy",               // Example: 10/03/2024
+            "MMM dd, yyyy",             // Example: Mar 10, 2024
+            "MMMM dd, yyyy"             // Example: March 10, 2024
         };
 
         for (String format : formats) {
@@ -133,6 +133,8 @@ public class ArticleScrapper {
                 SimpleDateFormat outputFormat = new SimpleDateFormat("MMMM dd,yyyy", Locale.ENGLISH);
                 return outputFormat.format(date);
             } catch (ParseException ignored) {
+
+                System.out.println("Scrapping & Processing...");
             }
         }
 

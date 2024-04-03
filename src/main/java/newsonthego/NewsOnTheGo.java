@@ -18,7 +18,7 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.stream.Collectors;
 
-import static newsonthego.ArticleScrapper.scrapeArticle;
+
 import static newsonthego.Parser.parseToText;
 import static newsonthego.ArticleScrapper.scrapeArticles;
 
