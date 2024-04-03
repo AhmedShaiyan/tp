@@ -46,7 +46,7 @@ Given below is an example usage of the daily mechanism behaves at each step.
 Step 1: The user launches the application. This initialises a list of news articles named `newsArticles` by reading
 from a text file.
 
-Step 2: When the user executes the `daily March 10 2024` to find news articles on that day. The `DailyNewsCommand`
+Step 2: When the user executes the `daily 10 March 2024` to find news articles on that day. The `DailyNewsCommand`
 constructor is called, which searches the `newsArticles` list to find the corresponding news articles. The list of 
 articles found are collected into a list `articlesOfTheDay`, which will be output to the user.
 
