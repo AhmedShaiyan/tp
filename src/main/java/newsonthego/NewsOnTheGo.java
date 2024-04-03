@@ -5,7 +5,10 @@ import newsonthego.newstopic.NewsTopic;
 import newsonthego.storage.TopicsFile;
 import newsonthego.ui.UI;
 
+import java.io.BufferedReader;
+import java.io.FileReader;
 import java.io.IOException;
+import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -14,6 +17,7 @@ import java.util.logging.Logger;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.stream.Collectors;
+
 
 import static newsonthego.Parser.parseToText;
 import static newsonthego.ArticleScrapper.scrapeArticles;
@@ -29,7 +33,7 @@ public class NewsOnTheGo {
 
     public enum Command {
 
-        HELP, DAILY, GET, TOPICS, FILTER, SAVE, SOURCE, INFO, CLEAR, LOAD, STAR, 
+        HELP, DAILY, GET, TOPICS, FILTER, SAVE, SOURCE, INFO, CLEAR, LOAD, STAR,
         STARRED, SUGGEST, REMOVE, BACK, BYE, VOID
     }
 
@@ -52,7 +56,7 @@ public class NewsOnTheGo {
      */
     static void getNews(String line, List<NewsArticle> list) {
         String[] split = line.split(" ");
-        try{
+        try {
             int index = Integer.parseInt(split[1]) - 1;
             System.out.println(parseToText(list.get(index)));
         } catch (IndexOutOfBoundsException | NumberFormatException e) {
@@ -114,10 +118,10 @@ public class NewsOnTheGo {
             System.out.println("Sorry, this topic is not available right now :(");
         } else {
             System.out.println("Here are the news articles related to "
-                    +newsTopics.get(topicIndex).getTopicName()+ ": ");
+                    + newsTopics.get(topicIndex).getTopicName() + ": ");
             newsTopics.get(topicIndex).printNewsArticles();
             System.out.println("You are currently in access to the list of articles in "
-                    +newsTopics.get(topicIndex).getTopicName()+
+                    + newsTopics.get(topicIndex).getTopicName() +
                     ", use command 'BACK' to return to main list of articles.");
         }
         return topicIndex;
@@ -128,8 +132,8 @@ public class NewsOnTheGo {
      * If the provided line contains a valid topic name, it is added to the list of favorite topics.
      * If the topic name is empty or not found in the list of available topics, an appropriate message is displayed.
      *
-     * @param line           The input line containing the command and topic name to be starred.
-     * @param newsTopics     The list of available NewsTopic objects.
+     * @param line            The input line containing the command and topic name to be starred.
+     * @param newsTopics      The list of available NewsTopic objects.
      * @param favouriteTopics The list of favorite NewsTopic objects to which the specified topic will be added.
      */
 
@@ -162,7 +166,7 @@ public class NewsOnTheGo {
      * it is removed from the list.
      * If the topic name is empty or not found in the list of favorite topics, an appropriate message is displayed.
      *
-     * @param line           The input line containing the command and topic name to be removed from favorites.
+     * @param line            The input line containing the command and topic name to be removed from favorites.
      * @param favouriteTopics The list of favorite NewsTopic objects from which the specified topic will be removed.
      */
 
@@ -246,7 +250,6 @@ public class NewsOnTheGo {
     }
 
 
-
     static void clearSavedNews() {
         savedNews.clearFile();
     }
@@ -263,7 +266,7 @@ public class NewsOnTheGo {
      */
     static void sourceNews(String line, List<NewsArticle> list) {
         String[] split = line.split(" ");
-        try{
+        try {
             int index = Integer.parseInt(split[1]) - 1;
             System.out.println(parseToText(list.get(index)));
         } catch (IndexOutOfBoundsException | NumberFormatException e) {
@@ -271,17 +274,34 @@ public class NewsOnTheGo {
         }
     }
 
+    public static boolean isFileEmpty(String filePath) throws IOException {
+        try (BufferedReader reader = new BufferedReader(new FileReader(filePath))) {
+            return reader.readLine() == null; // Check if the file has no lines
+        }
+    }
+
+
     /**
-    * Main entry-point for the java.newsonthego.NewsOnTheGo application.
-    */
+     * Main entry-point for the java.newsonthego.NewsOnTheGo application.
+     */
     public static void main(String[] args) throws IOException {
-        String url = "https://www.firstpost.com/tech/" +
-                "nasas-budget-cuts-may-force-them-to-shut-down-one-of-a-kind-" +
-                "chandra-x-ray-observatory-satellite-13753316.html";
 
         String inputFilePath = "data/ListOfURLs.txt";
         String outputFolderPath = "data";
-        scrapeArticles(inputFilePath, outputFolderPath);
+        String outputFilePath = "data/testArticleScrapper.txt";
+
+        // Check if the file already exists and has content
+        Path path = Paths.get(inputFilePath);
+
+        if (Files.notExists(path)) {
+            scrapeArticles(inputFilePath, outputFolderPath);
+        } else {
+            if (isFileEmpty(outputFilePath)) {
+                scrapeArticles(inputFilePath, outputFolderPath);
+            } else {
+                System.out.println("File exists and has content. Skipping scrapeArticles.");
+            }
+        }
 
         Scanner in = new Scanner(System.in);
         UI.initializeUI(in);
