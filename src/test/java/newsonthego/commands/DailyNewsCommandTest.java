@@ -78,8 +78,7 @@ public class DailyNewsCommandTest {
                 "The date format is: \n" +
                 "\"MM dd yyyy\" (01 02 2024), \n" +
                 "\"MMMM dd yyyy\" (January 02 2024), \n" +
-                "\"dd MMMM yyyy\" (02 January 2024)"; 
-        System.out.println();
+                "\"dd MMMM yyyy\" (02 January 2024)\n" + System.lineSeparator(); 
 
         new DailyNewsCommand(input, newsArticles);
         assertEquals(expected, outputContent.toString());
@@ -92,8 +91,7 @@ public class DailyNewsCommandTest {
                 "The date format is: \n" +
                 "\"MM dd yyyy\" (01 02 2024), \n" +
                 "\"MMMM dd yyyy\" (January 02 2024), \n" +
-                "\"dd MMMM yyyy\" (02 January 2024)"; 
-        System.out.println();
+                "\"dd MMMM yyyy\" (02 January 2024)\n" + System.lineSeparator(); 
 
         new DailyNewsCommand(input, newsArticles);
         assertEquals(expected, outputContent.toString());
@@ -106,8 +104,7 @@ public class DailyNewsCommandTest {
                 "The date format is: \n" +
                 "\"MM dd yyyy\" (01 02 2024), \n" +
                 "\"MMMM dd yyyy\" (January 02 2024), \n" +
-                "\"dd MMMM yyyy\" (02 January 2024)";
-        System.out.println();
+                "\"dd MMMM yyyy\" (02 January 2024)\n" + System.lineSeparator();
 
         new DailyNewsCommand(input, newsArticles);
         assertEquals(expected, outputContent.toString());
