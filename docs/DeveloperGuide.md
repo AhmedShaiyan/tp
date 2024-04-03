@@ -8,6 +8,51 @@
 
 {Describe the design and implementation of the product. Use UML diagrams and short code snippets where applicable.}
 
+### Article Scrapper
+
+The `ArticleScrapper` class is designed to scrape information from web articles given their URLs. It utilizes the Jsoup
+library for web scraping. 
+
+Here's a breakdown of its key functionalities:
+
+#### Scrape Articles Functionality:
+
+`scrapeArticles(String inputFilePath, String outputFolderPath)`: 
+
+Reads a list of article URLs from a text file specified 
+by `inputFilePath` and scrapes each article using the `scrapeArticle` method.
+
+#### Web Scraping Logic 1:
+
+`extractTheme(Document doc)`: 
+
+Attempts to extract the theme of the article from its metadata using various formats such 
+as Open Graph metadata, "categories" metadata, "theme" metadata, or "article:section" metadata.
+
+#### Web Scraping Logic 2:
+
+`extractPublishedDate(Document doc)`: 
+
+Tries to extract the published date of the article using different metadata formats
+like "article:published_time" or "cXenseParse:recs:publishtime".
+
+#### Web Scraping Logic 3:
+
+`extractAuthor(Document doc)`: 
+
+Extracts the author's name from the article metadata using the "cXenseParse:author" 
+metadata tag.
+
+#### File Handling:
+
+Uses Java's file handling classes (`BufferedReader`, `BufferedWriter`, `FileReader`, `FileWriter`) to 
+read input URLs from a text file and write scraped data to an output text file.
+
+#### Dependency:
+
+Relies on the Jsoup library (`org.jsoup.Jsoup`) for web scraping functionalities, specifically for parsing HTML and 
+extracting data elements.
+
 
 ### Daily feature
 
@@ -62,20 +107,84 @@ static void sourceNews(String line, List<NewsArticle> list) {
 }
 ```
 
-### Topics Function
+### Filter News by Topic Feature
+
+#### Topic Function
+
 The `showTopics` function in  `NewsOnTheGo` class is used to show the list of topics linked to the current list of news 
 articles. 
 
-In `importNewsFromText` in the `NewsImporter` class, the function not only parses the articles from the text file into a
-list of `NewsArticle` objects, it also creates a list of `NewsTopic` objects. Each `NewsTopic` object stores a list of 
-`NewsArticle` objects for articles related to that specific topic. 
+This mechanism makes use of the `NewsTopic` class to store each distinct News Topic as `NewsTopic` object, stored as a 
+`newsTopics` ArrayList. 
 
-### Filter Function
+The `Topic` function is complemented by the `Filter` Function which displays the list of articles related to the 
+specified topic.
+
+#### Filter Function
 The `filterNews` function in `NewsOnTheGo` class is used to show the list of articles linked to a specific topic.
 
+This mechanism makes use of the ArrayList of `relatedNewsArticles` in a `NewsTopic` object. 
+
 This feature also implements the following operations:
-- [Proposed] `FilterNewsCommand#save()` — Saves the list of news articles in the topic to their reading list
-- [Proposed] `FilterNewsCommand#back()` — Exits the filter topic feature loop.
+- `FilterNewsCommand#save()` — Saves the list of news articles in the topic to their reading list
+- `FilterNewsCommand#get()` — gets the details of the article and displays it to the user.
+- `FilterNewsCommand#source()` — displays the source of the article to the user.
+- `FilterNewsCommand#info()` — displays the importance, reliability and bias measure of the article to the user.
+- `FilterNewsCommand#back()` — Exits the filter topic feature.
+
+Given Below is an example usage scenario and how the filter and topic mechanism behaves at each step.
+
+Step 1. The user inputs the command `TOPICS`. The `handleCommand` method will parse the input message into the command. 
+The `TOPICS` command will cause `printAllTopics` in the UI class to be called, which will display the current list of 
+topics of the news articles.
+
+The following sequence diagram shows how the topic operation works.
+<img src="UML Diagrams/topicFunctionSequence.png">
+
+Step 2. Suppose the user wants to see news articles related to politics, the user then inputs `filter politics`. 
+The `handleCommand` takes in the command and calls `filterNews` which used a binary search function `findTopicIndex` to 
+search for the index of the topic in the ArrayList of `NewsTopic`, returning -1 if the topic is not valid, else the 
+index of the topic in the list will be returned. the `filterNews` function will then print out the list of articles for 
+the user. 
+
+output may look like this:
+```
+What do you want from me?
+filter politics
+Here are the news articles related to Politics: 
+1. "Political Tensions Rise in Region X Following Border Dispute"
+2. "Education Reform Bill Passes in Parliament Amid Controversy"
+3. "Humanitarian Crisis Deepens in Conflict-Stricken Region"
+4. "Investigation Reveals Government Officials Involved in Bribery Scandal"
+5. "New Legislation Aims to Address Housing Crisis in Urban Centers"
+You are currently in access to the list of articles in Politics, use command 'BACK' to return to main list of articles.
+```
+
+Step 3. If the user wants to save the 3rd article in the list displayed, they would then input `save 3`. The 
+`handleCommand` in `Parser` will then check the `topicIndex` to identify the correct list to extract the 
+specified article from. If `topicIndex` is -1, the article will be taken from the main list of articles. 
+The `saveNews` in the `NewsFile` class will save the specified article into the text file `saved_news.txt` in 
+`user_data`. 
+
+output may look like this:
+```
+What do you want from me?
+save 3
+Successfully saved "Humanitarian Crisis Deepens in Conflict-Stricken Region"
+find your saved articles at user_data\saved_news.txt
+```
+
+The following sequence diagram shows how the topics and filter mechanism may work in conjunction with other commands.
+<img src="UML Diagrams\filterFunctionSequence.png">
+
+#### Design Considerations
+Alternative 1 (current choice): check for topicIndex in handleCommand
+- Pros: easy to implement
+- Con: duplicate checking of topicIndex for article commands
+
+Alternative 2: loop in filter command
+- Con: have to come up with handle commands inside the filter command loop
+- Con: initialising another Scanner object may cause unexpected conflicts
 
 ### Information Function
 

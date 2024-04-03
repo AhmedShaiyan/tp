@@ -7,6 +7,8 @@ import newsonthego.commands.InfoNewsCommand;
 import newsonthego.newstopic.NewsTopic;
 import newsonthego.ui.UI;
 
+import static newsonthego.NewsOnTheGo.suggestArticle;
+
 public class Parser {
     public static final String INDENT = "    ";
     public static int topic = -1;
@@ -20,6 +22,9 @@ public class Parser {
             commandEnum = NewsOnTheGo.Command.VOID;
         }
         switch (commandEnum) {
+        case HELP:
+            UI.printHelpMessage();
+            break;
         case DAILY:
             new DailyNewsCommand(line, list);
             break;
@@ -31,13 +36,16 @@ public class Parser {
             }
             break;
         case TOPICS:
-            UI.printTopics(topics);
+            UI.printAllTopics(topics);
             break;
         case STAR:
             NewsOnTheGo.starTopic(line, topics, favouriteTopics);
             break;
         case STARRED:
             UI.printFavouriteTopics(favouriteTopics);
+            break;
+        case SUGGEST:
+            suggestArticle();
             break;
         case REMOVE:
             NewsOnTheGo.removeStarredTopic(line, favouriteTopics);

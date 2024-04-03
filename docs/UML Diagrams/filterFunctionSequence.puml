@@ -1,0 +1,29 @@
+
+@startuml
+'https://plantuml.com/sequence-diagram
+
+activate Parser
+alt Command == FILTER
+Parser->NewsOnTheGo: filterNews()
+activate NewsOnTheGo
+NewsOnTheGo->NewsOnTheGo: findTopicIndex()
+activate NewsOnTheGo
+NewsOnTheGo-->NewsOnTheGo: topicIndex
+deactivate NewsOnTheGo
+NewsOnTheGo-->Parser: topicIndex
+end
+
+alt Command == SAVE
+alt topicIndex >= 0
+Parser->NewsFile: saveNews(filteredList)
+activate NewsFile
+NewsFile-->Parser
+deactivate NewsFile
+else topicIndex = -1
+Parser->NewsFile: saveNews(mainList)
+activate NewsFile
+NewsFile-->Parser
+deactivate NewsFile
+end
+end
+@enduml

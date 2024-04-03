@@ -2,40 +2,37 @@ package newsonthego.storage;
 
 import newsonthego.newstopic.NewsTopic;
 
-import java.io.File;
 import java.io.IOException;
-
 import java.nio.file.Files;
 import java.nio.file.LinkOption;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.StandardOpenOption;
-import java.util.ArrayList;
-import java.util.Scanner;
+import java.util.List;
 
 public class TopicsFile {
     public static final String SAVED_NEWS_PATH = Paths.get("data","saved_topics.txt")
             .normalize().toString();
     private static final String pathName = SAVED_NEWS_PATH;
-    public static void saveTopics(ArrayList<NewsTopic> favouriteTopics) throws IOException {
-        Path filePath = Path.of(pathName);
+
+    public static void saveTopics(List<NewsTopic> favouriteTopics) throws IOException {
+        Path filePath = Paths.get(pathName);
         Files.deleteIfExists(filePath);
         Files.createFile(filePath);
         for (NewsTopic topic : favouriteTopics) {
-            Files.write(filePath, (topic.getTopicName()).getBytes(), StandardOpenOption.APPEND);
+            Files.writeString(filePath, topic.getTopicName() + System.lineSeparator(), StandardOpenOption.APPEND);
         }
     }
 
-    public static void loadTopics(ArrayList<NewsTopic> favouriteTopics) throws IOException {
+
+    public static void loadTopics(List<NewsTopic> favouriteTopics) throws IOException {
         Files.createDirectories(Paths.get("data"));
-        if (Files.exists(Path.of(pathName), LinkOption.NOFOLLOW_LINKS)) {
-            File savedTopics = new File(pathName);
-            Scanner s = new Scanner(savedTopics);
-            while (s.hasNextLine()){
-                String topic = s.nextLine();
-                favouriteTopics.add(new NewsTopic(topic));
+        Path filePath = Paths.get(pathName);
+        if (Files.exists(filePath, LinkOption.NOFOLLOW_LINKS)) {
+            List<String> topicNames = Files.readAllLines(filePath);
+            for (String topicName : topicNames) {
+                favouriteTopics.add(new NewsTopic(topicName));
             }
-            s.close();
         }
     }
 }
