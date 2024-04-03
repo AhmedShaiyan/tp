@@ -1,42 +1,69 @@
-# User Guide
+ # ![img.png](img.png) User Guide
 
-## Introduction
-
-{Give a product intro}
+NewsOnTheGo is a command-line application that helps users stay up-to-date with the latest news articles based on their favorite topics. This guide will help you get started with using NewsOnTheGo and understand its features.
 
 ## Quick Start
 
-{Give steps to get started quickly}
+1. Ensure you have Java `11` or above installed in your Computer.
+2. Download the latest version of `NewsOnTheGo.jar` from the releases page.
+3. Copy the file to the folder you want to use as the home folder for your NewsOnTheGo.
+4. Open your command-line interface and navigate to the folder where you placed the jar file.
+5. Run the command `java -jar NewsOnTheGo.jar` to start the application.
+6. Type the command in the command box and press Enter to execute it.
+7. Refer to the Features section below for details of each command.
 
-1. Ensure that you have Java 11 or above installed.
-1. Down the latest version of `Duke` from [here](http://link.to/duke).
+## Features
 
-## Features 
 
-{Give detailed description of each feature}
+### Star a topic: `star`
 
-### Adding a todo: `todo`
-Adds a new item to the list of todo items.
+Stars a topic to add it to your list of favorite topics.
 
-Format: `todo n/TODO_NAME d/DEADLINE`
+Format: `star TOPIC`
 
-* The `DEADLINE` can be in a natural language format.
-* The `TODO_NAME` cannot contain punctuation.  
+- Star a topic to receive suggestions based on it.
 
-Example of usage: 
+Example:
+`star Technology`
 
-`todo n/Write the rest of the User Guide d/next week`
+### remove a topic: `remove`
 
-`todo n/Refactor the User Guide to remove passive voice d/13/04/2020`
+Removes a topic from your list of favorite topics.
 
-## FAQ
+Format: `remove TOPIC`
 
-**Q**: How do I transfer my data to another computer? 
+Example:
+`remove  Technology`
 
-**A**: {your answer here}
+### Suggesting articles: `suggest`
+
+Suggests articles from your favorite topics.
+
+Format: `suggest`
+
+### Saving : `save`
+
+Saves an article title into a text file.
+
+Format: `save {index of article on displayed list}`
+
+Example: 
+'save 1'
+
+### Exiting the program: `bye`
+
+Exits the application.
+
+Format: `bye`
 
 ## Command Summary
 
-{Give a 'cheat sheet' of commands here}
-
-* Add todo `todo n/TODO_NAME d/DEADLINE`
+| Commands    | Format, Examples                       |
+|-------------|----------------------------------------|
+| **DAILY**   | `daily March 10 2024`                  |
+| **SAVE**    | `save 1`                               |
+| **STAR**    | `star TOPIC` <br> e.g., `star Science` |
+| **REMOVE**  | `remove INDEX` <br> e.g., `remove 3`   |
+| **SUGGEST** | `suggest`                              |
+| **SAVE**    | `save 1`                               |
+| **BYE**     | `bye`                                  |
