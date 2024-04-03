@@ -23,6 +23,9 @@ Format: `daily {DATE}`
 
 Example of usage:
 
+`daily March 10 2024`
+
+`daily 03 10 2024`
 
 
 ### Adding a todo: `todo`
