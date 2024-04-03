@@ -1,59 +1,70 @@
 package newsonthego;
 
-import java.nio.file.Files;
-import java.nio.file.Paths;
-import java.util.HashSet;
-import java.util.Set;
 import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.util.List;
+import java.util.Random;
+import java.util.stream.Collectors;
 
+/**
+ * Handles logic for news article suggestions based on favorite topics.
+ */
 public class UserPreferences {
+    private static final Path SAMPLE_NEWS_FILE = Paths.get("data", "sampleNews.txt");
+    private static final Path SAVED_TOPICS_PATH = Paths.get("data", "saved_topics.txt");
 
-    private static final String PREFERENCES_FILE = "userPreferences.txt";
-    private final Set<String> interestedTopics;
 
-
-    public UserPreferences() {
-        this.interestedTopics = new HashSet<>();
-        loadPreferences();
-    }
-
-    public void addTopic(String topic) {
-        interestedTopics.add(topic.trim().toLowerCase());
-        savePreferences();
-    }
-
-    public void removeTopic(String topic) {
-        interestedTopics.remove(topic.trim().toLowerCase());
-        savePreferences();
-    }
-
-    public Set<String> getInterestedTopics() {
-        return interestedTopics;
-    }
-
-    private void loadPreferences() {
+    /**
+     * Generates a list of suggested articles from the user's favorite topics.
+     * It reads the favorite topics from a saved file and then suggests random articles from those topics.
+     * If no favorite topics are saved, it suggests the user to star a topic first.
+     * If no articles are found for a topic, it notes that no articles were found.
+     *
+     * @return A string containing the suggestions or error message.
+     */
+    public static String getSuggestedArticlesFromFavoriteTopics() {
+        StringBuilder suggestions = new StringBuilder();
+        Random random = new Random();
         try {
-            Files.lines(Paths.get(PREFERENCES_FILE)).forEach(line -> interestedTopics.add(line.trim().toLowerCase()));
+            List<String> favoriteTopics = Files.readAllLines(SAVED_TOPICS_PATH);
+            if (favoriteTopics.isEmpty()) {
+                return "You do not have any favorite topics. Please star a topic first.\n";
+            }
+
+            List<String> allArticles = Files.readAllLines(SAMPLE_NEWS_FILE);
+
+            for (String topic : favoriteTopics) {
+                List<String> articlesForTopic = allArticles.stream()
+                        .filter(article -> article.matches(".*;" + topic.trim() + "$"))
+                        .collect(Collectors.toList());
+
+                if (!articlesForTopic.isEmpty()) {
+                    String randomArticle = articlesForTopic.get(random.nextInt(articlesForTopic.size()));
+                    suggestions.append("Suggesting an article from your favorite topic: ")
+                            .append(topic.trim())
+                            .append("\n")
+                            .append(parseArticleTitle(randomArticle))
+                            .append("\n\n");
+                } else {
+                    suggestions.append("No articles found for the topic: ").append(topic.trim()).append("\n");
+                }
+            }
         } catch (IOException e) {
-            System.out.println("Could not load user preferences. Starting with an empty list of topics.");
+            return "An error occurred while suggesting an article: " + e.getMessage() + "\n";
         }
+        return suggestions.toString();
     }
 
-    private void savePreferences() {
-        try {
-            Files.write(Paths.get(PREFERENCES_FILE), interestedTopics);
-        } catch (IOException e) {
-            System.out.println("Could not save user preferences.");
-        }
-    }
-
-    @Override
-    public String toString() {
-        if (interestedTopics.isEmpty()) {
-            return "You are not currently interested in any topics.";
-        }
-        StringBuilder sb = new StringBuilder("You are interested in the following topics:\n");
-        interestedTopics.forEach(topic -> sb.append("- ").append(topic).append("\n"));
-        return sb.toString();
+    /**
+     * Extracts and returns the article title from a given line of text.
+     * Assumes that the article title is the first element in a semicolon-separated line.
+     *
+     * @param articleLine The line of text from which to extract the title.
+     * @return The extracted title.
+     */
+    private static String parseArticleTitle(String articleLine) {
+        return articleLine.split(";")[0];
     }
 }
