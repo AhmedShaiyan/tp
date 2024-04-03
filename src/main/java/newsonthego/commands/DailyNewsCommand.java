@@ -40,27 +40,31 @@ public class DailyNewsCommand {
         assert !list.isEmpty();
 
         String[] splitInput = input.split(" ", 2);
-        String date = splitInput[dateindex];
+        try {
+            String date = splitInput[dateindex];
 
-        String formattedDate = formatFromUser(date);
+            String formattedDate = formatFromUser(date);
 
-        if (formattedDate == null) {
-            LOGGER.log(Level.WARNING, "Invalid date format");
-            return;
-        }
+            if (formattedDate == null) {
+                LOGGER.log(Level.WARNING, "Invalid date format");
+                return;
+            }
 
-        articlesOfTheDay = list.stream()
-                .filter(article -> article.getDate().equals(formattedDate))
-                .collect(Collectors.toList());
+            articlesOfTheDay = list.stream()
+                    .filter(article -> article.getDate().equals(formattedDate))
+                    .collect(Collectors.toList());
 
-        if (articlesOfTheDay.isEmpty()) {
-            printHeadlinesNotFound(date);
-        } else {
-            printHeadlinesFound();
-            printEmptyLine();
-            printArticlesInList(articlesOfTheDay);
-            printEmptyLine();
-            saveDailyArticlesParser();
+            if (articlesOfTheDay.isEmpty()) {
+                printHeadlinesNotFound(date);
+            } else {
+                printHeadlinesFound();
+                printEmptyLine();
+                printArticlesInList(articlesOfTheDay);
+                printEmptyLine();
+                saveDailyArticlesParser();
+            }
+        } catch (IndexOutOfBoundsException e) {
+            System.out.println("Please input a valid date!");
         }
     }
 
