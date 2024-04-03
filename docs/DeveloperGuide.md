@@ -54,7 +54,7 @@ Relies on the Jsoup library (`org.jsoup.Jsoup`) for web scraping functionalities
 extracting data elements.
 
 
-### Daily feature
+### Daily function
 
 
 This daily mechanism is facilitated by a constructor from the `DailyNewsCommand` class. It takes in an input from 
@@ -204,51 +204,64 @@ article they are interested in.
 `info 1`
 
 
-### User Preferences Feature
+### User Preferences Function
 
-This feature allows users to personalize their news feed by specifying topics of interest. The `UserPreferences` class stores and manages these preferences, allowing the application to deliver relevant news articles to the user.
+#### SUGGEST Feature
 
 #### Implementation
 
-The User Preferences feature is implemented through the `UserPreferences` class, which manages a set of topics. It includes functionality to add and remove topics from the preferences and handles loading and saving these preferences to a text file.
+The `SUGGEST` feature provides users with article recommendations based on their favorite topics. The user's favorite topics are stored and managed by the `UserPreferences` class, which retrieves and suggests news articles related to these topics.
 
-The main operations of this feature include:
+#### How the SUGGEST feature works:
 
-- `UserPreferences.addTopic(String topic)` — Adds a new topic to the user's list of interests.
-- `UserPreferences.removeTopic(String topic)` — Removes a topic from the user's list of interests.
+1. When the `SUGGEST` command is invoked, `UserPreferences.getSuggestedArticlesFromFavoriteTopics()` is called.
+2. This method reads the user's favorite topics from the `saved_topics.txt` file.
+3. It then fetches all news articles from `sampleNews.txt`.
+4. For each favorite topic, it filters articles related to that topic and randomly selects one to suggest to the user.
 
-The persistence of user preferences is achieved through file I/O operations, specifically using the `java.nio.file.Files` class for reading from and writing to the `userPreferences.txt` file.
-
-#### Example Usage
-
-When a user first starts the application, the `UserPreferences` class is instantiated, automatically loading any previously saved preferences. As the user interacts with the application, they can add or remove topics from their preferences, which are immediately persisted to the file system.
-
-```java
-UserPreferences userPrefs = new UserPreferences();
-userPrefs.addTopic("technology"); // Adds technology to the list of interested topics.
-userPrefs.removeTopic("sports"); // Removes sports from the list of interested topics.
-```
-
-#### Persistence Mechanism
-
-The user preferences are saved in a text file named userPreferences.txt, with each line representing a topic of interest. The loadPreferences and savePreferences methods handle the reading and writing of this file, respectively.
+#### Code Snippet:
+The following code snippet describes the `getSuggestedArticlesFromFavoriteTopics()` method, highlighting how it processes user's favorite topics to suggest random articles. It also includes the parseArticleTitle helper method to extract article titles from the data lines.
 
 ```java
-private void loadPreferences() {
-    try {
-        Files.lines(Paths.get(PREFERENCES_FILE))
-            .forEach(line -> interestedTopics.add(line.trim().toLowerCase()));
-    } catch (IOException e) {
-        System.out.println("Could not load user preferences. Starting with an empty list of topics.");
+
+ List<String> favoriteTopics = Files.readAllLines(SAVED_TOPICS_PATH);
+ List<String> allArticles = Files.readAllLines(SAMPLE_NEWS_FILE);
+
+    favoriteTopics.forEach(topic -> {
+    List<String> articlesForTopic = allArticles.stream()
+            .filter(article -> article.endsWith(";" + topic))
+            .collect(Collectors.toList());
+
+    if (!articlesForTopic.isEmpty()) {
+        String suggestedArticle = articlesForTopic.get(random.nextInt(articlesForTopic.size()));
+        suggestions.append(parseArticleTitle(suggestedArticle)).append("\n");
+    } else {
+        suggestions.append("No articles found for topic: ").append(topic).append("\n");
     }
-}
+    });
+
+    return suggestions.toString();
+```
+```java
+private static String parseArticleTitle(String articleLine) {
+        return articleLine.split(";")[0];
+    }
 ```
 
 #### Design Considerations
-The design of the User Preferences feature aimed to achieve simplicity and efficiency, opting for a lightweight file-based storage solution to avoid the overhead of more complex persistence mechanisms. 
+The decision to use a random selection approach was to provide a dynamic user experience. This encourages users to discover a variety of articles within their favourite topics.
 
 #### Alternatives Considered
-- **Cloud-Based Storage:** Providing cross-device synchronization was deemed unnecessary at this stage, given the application's primary focus on delivering a personalized news experience on individual devices.
+Alternative 1 (current choice): Randomly select an article from the list of articles corresponding to each favorite topic.
+
+- Pros: Simple to implement and ensures a variety of articles are suggested to the user.
+- Cons: A user might see the same article suggested multiple times, especially if the topic has a small set of related articles.
+
+
+Alternative 2: Implement a more sophisticated algorithm that keeps track of previously suggested articles and ensures a new selection in each suggestion cycle.
+
+- Pros: Ensures that users do not receive the same suggestion more than once until all available articles have been suggested.
+- Cons: More complex to implement, and might require additional storage to keep track of suggestion history.
 
 ## Product scope
 ### Target user profile
