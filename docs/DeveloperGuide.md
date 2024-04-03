@@ -8,8 +8,53 @@
 
 {Describe the design and implementation of the product. Use UML diagrams and short code snippets where applicable.}
 
+### Article Scrapper
 
-### Daily feature
+The `ArticleScrapper` class is designed to scrape information from web articles given their URLs. It utilizes the Jsoup
+library for web scraping. 
+
+Here's a breakdown of its key functionalities:
+
+#### Scrape Articles Functionality:
+
+`scrapeArticles(String inputFilePath, String outputFolderPath)`: 
+
+Reads a list of article URLs from a text file specified 
+by `inputFilePath` and scrapes each article using the `scrapeArticle` method.
+
+#### Web Scraping Logic 1:
+
+`extractTheme(Document doc)`: 
+
+Attempts to extract the theme of the article from its metadata using various formats such 
+as Open Graph metadata, "categories" metadata, "theme" metadata, or "article:section" metadata.
+
+#### Web Scraping Logic 2:
+
+`extractPublishedDate(Document doc)`: 
+
+Tries to extract the published date of the article using different metadata formats
+like "article:published_time" or "cXenseParse:recs:publishtime".
+
+#### Web Scraping Logic 3:
+
+`extractAuthor(Document doc)`: 
+
+Extracts the author's name from the article metadata using the "cXenseParse:author" 
+metadata tag.
+
+#### File Handling:
+
+Uses Java's file handling classes (`BufferedReader`, `BufferedWriter`, `FileReader`, `FileWriter`) to 
+read input URLs from a text file and write scraped data to an output text file.
+
+#### Dependency:
+
+Relies on the Jsoup library (`org.jsoup.Jsoup`) for web scraping functionalities, specifically for parsing HTML and 
+extracting data elements.
+
+
+### Daily function
 
 
 This daily mechanism is facilitated by a constructor from the `DailyNewsCommand` class. It takes in an input from 
@@ -85,20 +130,84 @@ static void sourceNews(String line, List<NewsArticle> list) {
 }
 ```
 
-### Topics Function
+### Filter News by Topic Feature
+
+#### Topic Function
+
 The `showTopics` function in  `NewsOnTheGo` class is used to show the list of topics linked to the current list of news 
 articles. 
 
-In `importNewsFromText` in the `NewsImporter` class, the function not only parses the articles from the text file into a
-list of `NewsArticle` objects, it also creates a list of `NewsTopic` objects. Each `NewsTopic` object stores a list of 
-`NewsArticle` objects for articles related to that specific topic. 
+This mechanism makes use of the `NewsTopic` class to store each distinct News Topic as `NewsTopic` object, stored as a 
+`newsTopics` ArrayList. 
 
-### Filter Function
+The `Topic` function is complemented by the `Filter` Function which displays the list of articles related to the 
+specified topic.
+
+#### Filter Function
 The `filterNews` function in `NewsOnTheGo` class is used to show the list of articles linked to a specific topic.
 
+This mechanism makes use of the ArrayList of `relatedNewsArticles` in a `NewsTopic` object. 
+
 This feature also implements the following operations:
-- [Proposed] `FilterNewsCommand#save()` — Saves the list of news articles in the topic to their reading list
-- [Proposed] `FilterNewsCommand#back()` — Exits the filter topic feature loop.
+- `FilterNewsCommand#save()` — Saves the list of news articles in the topic to their reading list
+- `FilterNewsCommand#get()` — gets the details of the article and displays it to the user.
+- `FilterNewsCommand#source()` — displays the source of the article to the user.
+- `FilterNewsCommand#info()` — displays the importance, reliability and bias measure of the article to the user.
+- `FilterNewsCommand#back()` — Exits the filter topic feature.
+
+Given Below is an example usage scenario and how the filter and topic mechanism behaves at each step.
+
+Step 1. The user inputs the command `TOPICS`. The `handleCommand` method will parse the input message into the command. 
+The `TOPICS` command will cause `printAllTopics` in the UI class to be called, which will display the current list of 
+topics of the news articles.
+
+The following sequence diagram shows how the topic operation works.
+<img src="UML Diagrams/topicFunctionSequence.png">
+
+Step 2. Suppose the user wants to see news articles related to politics, the user then inputs `filter politics`. 
+The `handleCommand` takes in the command and calls `filterNews` which used a binary search function `findTopicIndex` to 
+search for the index of the topic in the ArrayList of `NewsTopic`, returning -1 if the topic is not valid, else the 
+index of the topic in the list will be returned. the `filterNews` function will then print out the list of articles for 
+the user. 
+
+output may look like this:
+```
+What do you want from me?
+filter politics
+Here are the news articles related to Politics: 
+1. "Political Tensions Rise in Region X Following Border Dispute"
+2. "Education Reform Bill Passes in Parliament Amid Controversy"
+3. "Humanitarian Crisis Deepens in Conflict-Stricken Region"
+4. "Investigation Reveals Government Officials Involved in Bribery Scandal"
+5. "New Legislation Aims to Address Housing Crisis in Urban Centers"
+You are currently in access to the list of articles in Politics, use command 'BACK' to return to main list of articles.
+```
+
+Step 3. If the user wants to save the 3rd article in the list displayed, they would then input `save 3`. The 
+`handleCommand` in `Parser` will then check the `topicIndex` to identify the correct list to extract the 
+specified article from. If `topicIndex` is -1, the article will be taken from the main list of articles. 
+The `saveNews` in the `NewsFile` class will save the specified article into the text file `saved_news.txt` in 
+`user_data`. 
+
+output may look like this:
+```
+What do you want from me?
+save 3
+Successfully saved "Humanitarian Crisis Deepens in Conflict-Stricken Region"
+find your saved articles at user_data\saved_news.txt
+```
+
+The following sequence diagram shows how the topics and filter mechanism may work in conjunction with other commands.
+<img src="UML Diagrams\filterFunctionSequence.png">
+
+#### Design Considerations
+Alternative 1 (current choice): check for topicIndex in handleCommand
+- Pros: easy to implement
+- Con: duplicate checking of topicIndex for article commands
+
+Alternative 2: loop in filter command
+- Con: have to come up with handle commands inside the filter command loop
+- Con: initialising another Scanner object may cause unexpected conflicts
 
 ### Information Function
 
@@ -118,51 +227,64 @@ article they are interested in.
 `info 1`
 
 
-### User Preferences Feature
+### User Preferences Function
 
-This feature allows users to personalize their news feed by specifying topics of interest. The `UserPreferences` class stores and manages these preferences, allowing the application to deliver relevant news articles to the user.
+#### SUGGEST Feature
 
 #### Implementation
 
-The User Preferences feature is implemented through the `UserPreferences` class, which manages a set of topics. It includes functionality to add and remove topics from the preferences and handles loading and saving these preferences to a text file.
+The `SUGGEST` feature provides users with article recommendations based on their favorite topics. The user's favorite topics are stored and managed by the `UserPreferences` class, which retrieves and suggests news articles related to these topics.
 
-The main operations of this feature include:
+#### How the SUGGEST feature works:
 
-- `UserPreferences.addTopic(String topic)` — Adds a new topic to the user's list of interests.
-- `UserPreferences.removeTopic(String topic)` — Removes a topic from the user's list of interests.
+1. When the `SUGGEST` command is invoked, `UserPreferences.getSuggestedArticlesFromFavoriteTopics()` is called.
+2. This method reads the user's favorite topics from the `saved_topics.txt` file.
+3. It then fetches all news articles from `sampleNews.txt`.
+4. For each favorite topic, it filters articles related to that topic and randomly selects one to suggest to the user.
 
-The persistence of user preferences is achieved through file I/O operations, specifically using the `java.nio.file.Files` class for reading from and writing to the `userPreferences.txt` file.
-
-#### Example Usage
-
-When a user first starts the application, the `UserPreferences` class is instantiated, automatically loading any previously saved preferences. As the user interacts with the application, they can add or remove topics from their preferences, which are immediately persisted to the file system.
-
-```java
-UserPreferences userPrefs = new UserPreferences();
-userPrefs.addTopic("technology"); // Adds technology to the list of interested topics.
-userPrefs.removeTopic("sports"); // Removes sports from the list of interested topics.
-```
-
-#### Persistence Mechanism
-
-The user preferences are saved in a text file named userPreferences.txt, with each line representing a topic of interest. The loadPreferences and savePreferences methods handle the reading and writing of this file, respectively.
+#### Code Snippet:
+The following code snippet describes the `getSuggestedArticlesFromFavoriteTopics()` method, highlighting how it processes user's favorite topics to suggest random articles. It also includes the parseArticleTitle helper method to extract article titles from the data lines.
 
 ```java
-private void loadPreferences() {
-    try {
-        Files.lines(Paths.get(PREFERENCES_FILE))
-            .forEach(line -> interestedTopics.add(line.trim().toLowerCase()));
-    } catch (IOException e) {
-        System.out.println("Could not load user preferences. Starting with an empty list of topics.");
+
+ List<String> favoriteTopics = Files.readAllLines(SAVED_TOPICS_PATH);
+ List<String> allArticles = Files.readAllLines(SAMPLE_NEWS_FILE);
+
+    favoriteTopics.forEach(topic -> {
+    List<String> articlesForTopic = allArticles.stream()
+            .filter(article -> article.endsWith(";" + topic))
+            .collect(Collectors.toList());
+
+    if (!articlesForTopic.isEmpty()) {
+        String suggestedArticle = articlesForTopic.get(random.nextInt(articlesForTopic.size()));
+        suggestions.append(parseArticleTitle(suggestedArticle)).append("\n");
+    } else {
+        suggestions.append("No articles found for topic: ").append(topic).append("\n");
     }
-}
+    });
+
+    return suggestions.toString();
+```
+```java
+private static String parseArticleTitle(String articleLine) {
+        return articleLine.split(";")[0];
+    }
 ```
 
 #### Design Considerations
-The design of the User Preferences feature aimed to achieve simplicity and efficiency, opting for a lightweight file-based storage solution to avoid the overhead of more complex persistence mechanisms. 
+The decision to use a random selection approach was to provide a dynamic user experience. This encourages users to discover a variety of articles within their favourite topics.
 
 #### Alternatives Considered
-- **Cloud-Based Storage:** Providing cross-device synchronization was deemed unnecessary at this stage, given the application's primary focus on delivering a personalized news experience on individual devices.
+Alternative 1 (current choice): Randomly select an article from the list of articles corresponding to each favorite topic.
+
+- Pros: Simple to implement and ensures a variety of articles are suggested to the user.
+- Cons: A user might see the same article suggested multiple times, especially if the topic has a small set of related articles.
+
+
+Alternative 2: Implement a more sophisticated algorithm that keeps track of previously suggested articles and ensures a new selection in each suggestion cycle.
+
+- Pros: Ensures that users do not receive the same suggestion more than once until all available articles have been suggested.
+- Cons: More complex to implement, and might require additional storage to keep track of suggestion history.
 
 ## Product scope
 ### Target user profile
