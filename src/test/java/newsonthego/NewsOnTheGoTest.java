@@ -4,6 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
+import newsonthego.newstopic.NewsTopic;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
@@ -33,7 +34,8 @@ class NewsOnTheGoTest {
 
     @Test
     public void testFindTopicIndex() {
-        int index = NewsOnTheGo.findTopicIndex("abcdefg");
+        ArrayList<NewsTopic> topics = new ArrayList<>();
+        int index = NewsOnTheGo.findTopicIndex("abcdefg", topics);
         assertEquals(-1,index);
     }
 

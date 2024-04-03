@@ -9,7 +9,7 @@ import java.nio.file.Paths;
 import static newsonthego.Parser.parseToText;
 
 public class NewsFile {
-    public static final String SAVED_NEWS_PATH = java.nio.file.Paths.get("data","saved_news.txt")
+    public static final String SAVED_NEWS_PATH = java.nio.file.Paths.get("user_data","saved_news.txt")
             .normalize().toString();
     private static String pathName;
     public NewsFile() {
@@ -21,7 +21,7 @@ public class NewsFile {
     }
 
     public static void saveNews(NewsArticle article) throws IOException {
-        Files.createDirectories(Paths.get("data"));
+        Files.createDirectories(Paths.get("user_data"));
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(pathName, true))) {
             writer.write(parseToText(article));
             writer.newLine();

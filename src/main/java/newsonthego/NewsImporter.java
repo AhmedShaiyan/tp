@@ -48,7 +48,8 @@ public class NewsImporter {
                 }
             }
             if (!topicFound) {
-                NewsTopic newsTopic = new NewsTopic(topic, newsArticle);
+                NewsTopic newsTopic = new NewsTopic(topic);
+                newsTopic.addNewsArticle(newsArticle);
                 newsTopics.add(newsTopic);
             }
         }
