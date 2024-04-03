@@ -62,7 +62,7 @@ public class DailyNewsCommandTest {
     @Test
     public void noArticlesFoundTest() {
         String input = "daily 10 03 2025";
-        String expected = "Nothing is found on this day: October 03, 2025\n";
+        String expected = "Nothing is found on this day: October 03, 2025" + System.lineSeparator();
 
         DailyNewsCommand command = new DailyNewsCommand(input, newsArticles);
         List<NewsArticle> outputHeadlines = command.getArticlesOfTheDay();
@@ -73,11 +73,12 @@ public class DailyNewsCommandTest {
     @Test
     public void invalidDateFormat() {
         String input = "daily 30 March 2024";
-        String expected = "Date format is invalid! \n" +
-                "The date format is: \n" +
-                "\"MM dd yyyy\" (01 02 2024), \n" +
-                "\"MMMM dd yyyy\" (January 02 2024), \n" +
-                "\"dd MMMM yyyy\" (02 January 2024)\n" + System.lineSeparator(); 
+        String expected = "Date format is invalid! " + System.lineSeparator() +
+                "The date format is: " + System.lineSeparator() +
+                "\"MM dd yyyy\" (01 02 2024), " + System.lineSeparator() +
+                "\"MMMM dd yyyy\" (January 02 2024), " + System.lineSeparator() +
+                "\"dd MMMM yyyy\" (02 January 2024)" + System.lineSeparator() +
+                System.lineSeparator();
 
         new DailyNewsCommand(input, newsArticles);
         assertEquals(expected, outputContent.toString());
@@ -86,11 +87,12 @@ public class DailyNewsCommandTest {
     @Test
     public void invalidDayFormat() {
         String input = "daily 1 32 2025";
-        String expected = "Date format is invalid! \n" +
-                "The date format is: \n" +
-                "\"MM dd yyyy\" (01 02 2024), \n" +
-                "\"MMMM dd yyyy\" (January 02 2024), \n" +
-                "\"dd MMMM yyyy\" (02 January 2024)\n" + System.lineSeparator(); 
+        String expected = "Date format is invalid! " + System.lineSeparator() +
+                "The date format is: " + System.lineSeparator() +
+                "\"MM dd yyyy\" (01 02 2024), " + System.lineSeparator() +
+                "\"MMMM dd yyyy\" (January 02 2024), " + System.lineSeparator() +
+                "\"dd MMMM yyyy\" (02 January 2024)" + System.lineSeparator() +
+                System.lineSeparator();
 
         new DailyNewsCommand(input, newsArticles);
         assertEquals(expected, outputContent.toString());
@@ -99,11 +101,12 @@ public class DailyNewsCommandTest {
     @Test
     public void invalidMonthFormat() {
         String input = "daily 15 31 2024";
-        String expected = "Date format is invalid! \n" +
-                "The date format is: \n" +
-                "\"MM dd yyyy\" (01 02 2024), \n" +
-                "\"MMMM dd yyyy\" (January 02 2024), \n" +
-                "\"dd MMMM yyyy\" (02 January 2024)\n" + System.lineSeparator();
+        String expected = "Date format is invalid! " + System.lineSeparator() +
+                "The date format is: " + System.lineSeparator() +
+                "\"MM dd yyyy\" (01 02 2024), " + System.lineSeparator() +
+                "\"MMMM dd yyyy\" (January 02 2024), " + System.lineSeparator() +
+                "\"dd MMMM yyyy\" (02 January 2024)" + System.lineSeparator() +
+                System.lineSeparator();
 
         new DailyNewsCommand(input, newsArticles);
         assertEquals(expected, outputContent.toString());
