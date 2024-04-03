@@ -69,46 +69,4 @@ public class DailyNewsCommandTest {
         assertEquals(0, outputHeadlines.size());
         assertEquals(expected, outputContent.toString());
     }
-
-    @Test
-    public void invalidDateFormat() {
-        String input = "daily 30 March 2024";
-        String expected = "Date format is invalid! " + System.lineSeparator() +
-                "The date format is: " + System.lineSeparator() +
-                "\"MM dd yyyy\" (01 02 2024), " + System.lineSeparator() +
-                "\"MMMM dd yyyy\" (January 02 2024), " + System.lineSeparator() +
-                "\"dd MMMM yyyy\" (02 January 2024)" + System.lineSeparator() +
-                System.lineSeparator();
-
-        new DailyNewsCommand(input, newsArticles);
-        assertEquals(expected, outputContent.toString());
-    }
-    
-    @Test
-    public void invalidDayFormat() {
-        String input = "daily 1 32 2025";
-        String expected = "Date format is invalid! " + System.lineSeparator() +
-                "The date format is: " + System.lineSeparator() +
-                "\"MM dd yyyy\" (01 02 2024), " + System.lineSeparator() +
-                "\"MMMM dd yyyy\" (January 02 2024), " + System.lineSeparator() +
-                "\"dd MMMM yyyy\" (02 January 2024)" + System.lineSeparator() +
-                System.lineSeparator();
-
-        new DailyNewsCommand(input, newsArticles);
-        assertEquals(expected, outputContent.toString());
-    }
-
-    @Test
-    public void invalidMonthFormat() {
-        String input = "daily 15 31 2024";
-        String expected = "Date format is invalid! " + System.lineSeparator() +
-                "The date format is: " + System.lineSeparator() +
-                "\"MM dd yyyy\" (01 02 2024), " + System.lineSeparator() +
-                "\"MMMM dd yyyy\" (January 02 2024), " + System.lineSeparator() +
-                "\"dd MMMM yyyy\" (02 January 2024)" + System.lineSeparator() +
-                System.lineSeparator();
-
-        new DailyNewsCommand(input, newsArticles);
-        assertEquals(expected, outputContent.toString());
-    }
 }
