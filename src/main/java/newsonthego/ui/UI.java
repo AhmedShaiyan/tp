@@ -42,8 +42,17 @@ public class UI {
         }
     }
 
-    public static void printHeadlinesFound() {
-        System.out.println("Sure! Here are the headlines for today:");
+    public static void printInvalidDateFormatMessage() {
+        System.out.println("Date format is invalid! \n" +
+                "The date format is: \n" +
+                "\"MM dd yyyy\" (01 02 2024), \n" +
+                "\"MMMM dd yyyy\" (January 02 2024), \n" +
+                "\"dd MMMM yyyy\" (02 January 2024)");
+        printEmptyLine();
+    }
+
+    public static void printHeadlinesFound(String date) {
+        System.out.println("Sure! Here are the headlines for today (" + date +") :");
     }
 
     public static void printHeadlinesNotFound(String date) {

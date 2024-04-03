@@ -17,6 +17,7 @@ import static newsonthego.ui.UI.printHeadlinesNotFound;
 import static newsonthego.ui.UI.printEmptyLine;
 import static newsonthego.ui.UI.printArticlesInList;
 import static newsonthego.ui.UI.printSaveDailyDefaultMessage;
+import static newsonthego.ui.UI.printInvalidDateFormatMessage;
 
 import java.util.logging.Logger;
 
@@ -46,6 +47,7 @@ public class DailyNewsCommand {
 
         if (formattedDate == null) {
             LOGGER.log(Level.WARNING, "Invalid date format");
+            printInvalidDateFormatMessage();
             return;
         }
 
@@ -54,16 +56,15 @@ public class DailyNewsCommand {
                 .collect(Collectors.toList());
 
         if (articlesOfTheDay.isEmpty()) {
-            printHeadlinesNotFound(date);
+            printHeadlinesNotFound(formattedDate);
         } else {
-            printHeadlinesFound();
+            printHeadlinesFound(formattedDate);
             printEmptyLine();
             printArticlesInList(articlesOfTheDay);
             printEmptyLine();
             saveDailyArticlesParser();
         }
     }
-
 
     /**
      * Allows user to save daily news articles shown to their reading list
@@ -94,7 +95,7 @@ public class DailyNewsCommand {
      *
      * @param input is the user's input
      */
-    private static void save(String[] input) {
+    static void save(String[] input) {
         int articleIdx = Integer.parseInt(input[articleidx]) - 1;
         if (articleIdx < 0 || articleIdx >= articlesOfTheDay.size()) {
             printIndexError(articlesOfTheDay);
