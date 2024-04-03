@@ -24,6 +24,21 @@ This guide will help you get started with using NewsOnTheGo and understand its f
 
 ## Features
 
+{Give detailed description of each feature}
+### Find articles on a particular day: `daily`
+Gets the list of articles from our text file and outputs it to the user.
+
+Format: `daily {DATE}`
+
+* The `DATE` format: `MM dd yyyy`/`MMMM dd yyyy`
+
+Example of usage:
+
+`daily March 10 2024`
+
+`daily 03 10 2024`
+
+
 
 ### Star a topic: `star`
 

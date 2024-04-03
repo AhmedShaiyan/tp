@@ -60,15 +60,38 @@ extracting data elements.
 This daily mechanism is facilitated by a constructor from the `DailyNewsCommand` class. It takes in an input from 
 the user and the current list of articles to display the news on published on a particular day to the user.  
 This feature also implements the following operations:  
-- [Proposed] `DailyNewsCommand#save()` — Saves a news article from the list given to their reading list
-- [Proposed] `DailyNewsCommand#back()` — Exits the daily feature loop.
+- `DailyNewsCommand#save()` — Saves a news article from the list given to their reading list
+- `DailyNewsCommand#back()` — Exits the daily feature loop.
+
+Below is a snippit of the parser function that handles both of the operations above:
+```java
+private static void saveDailyArticlesParser() {
+        boolean isPolling = true;
+        Scanner dailyIn = new Scanner(System.in);
+        while (isPolling) {
+            String[] dailyLine = dailyIn.nextLine().split(" ");
+            String command = dailyLine[commandidx].toLowerCase();
+            switch (command) {
+            case "save":
+                save(dailyLine);
+                break;
+            case "back":
+                isPolling = false;
+                break;
+            default:
+                printSaveDailyDefaultMessage();
+                break;
+            }
+        }
+    }
+```
 
 Given below is an example usage of the daily mechanism behaves at each step.
 
 Step 1: The user launches the application. This initialises a list of news articles named `newsArticles` by reading
 from a text file.
 
-Step 2: When the user executes the `daily March 10 2024` to find news articles on that day. The `DailyNewsCommand`
+Step 2: When the user executes the `daily 10 March 2024` to find news articles on that day. The `DailyNewsCommand`
 constructor is called, which searches the `newsArticles` list to find the corresponding news articles. The list of 
 articles found are collected into a list `articlesOfTheDay`, which will be output to the user.
 
