@@ -1,6 +1,15 @@
- # ![img.png](img.png) User Guide
+ # ![img.png](img.png) NewsOnTheGo User Guide
 
-NewsOnTheGo is a command-line application that helps users stay up-to-date with the latest news articles based on their favorite topics. This guide will help you get started with using NewsOnTheGo and understand its features.
+NewsOnTheGo is a command-line application (CLI) that helps users stay up-to-date with the latest news articles by 
+providing users with a list of the current headlines. 
+
+Users are able to personalise this application by saving their
+preferred topics and articles.
+
+There are other features, as described below, that further enhance the user experience and convenience
+of this application
+
+This guide will help you get started with using NewsOnTheGo and understand its features.
 
 ## Quick Start
 
@@ -11,6 +20,7 @@ NewsOnTheGo is a command-line application that helps users stay up-to-date with 
 5. Run the command `java -jar NewsOnTheGo.jar` to start the application.
 6. Type the command in the command box and press Enter to execute it.
 7. Refer to the Features section below for details of each command.
+
 
 ## Features
 
@@ -26,7 +36,7 @@ Format: `star TOPIC`
 Example:
 `star Technology`
 
-### remove a topic: `remove`
+### Remove a topic: `remove`
 
 Removes a topic from your list of favorite topics.
 

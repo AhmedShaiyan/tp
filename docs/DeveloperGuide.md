@@ -8,6 +8,51 @@
 
 {Describe the design and implementation of the product. Use UML diagrams and short code snippets where applicable.}
 
+### Article Scrapper
+
+The `ArticleScrapper` class is designed to scrape information from web articles given their URLs. It utilizes the Jsoup
+library for web scraping. 
+
+Here's a breakdown of its key functionalities:
+
+#### Scrape Articles Functionality:
+
+`scrapeArticles(String inputFilePath, String outputFolderPath)`: 
+
+Reads a list of article URLs from a text file specified 
+by `inputFilePath` and scrapes each article using the `scrapeArticle` method.
+
+#### Web Scraping Logic 1:
+
+`extractTheme(Document doc)`: 
+
+Attempts to extract the theme of the article from its metadata using various formats such 
+as Open Graph metadata, "categories" metadata, "theme" metadata, or "article:section" metadata.
+
+#### Web Scraping Logic 2:
+
+`extractPublishedDate(Document doc)`: 
+
+Tries to extract the published date of the article using different metadata formats
+like "article:published_time" or "cXenseParse:recs:publishtime".
+
+#### Web Scraping Logic 3:
+
+`extractAuthor(Document doc)`: 
+
+Extracts the author's name from the article metadata using the "cXenseParse:author" 
+metadata tag.
+
+#### File Handling:
+
+Uses Java's file handling classes (`BufferedReader`, `BufferedWriter`, `FileReader`, `FileWriter`) to 
+read input URLs from a text file and write scraped data to an output text file.
+
+#### Dependency:
+
+Relies on the Jsoup library (`org.jsoup.Jsoup`) for web scraping functionalities, specifically for parsing HTML and 
+extracting data elements.
+
 
 ### Daily feature
 
