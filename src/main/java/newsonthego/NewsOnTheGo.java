@@ -5,8 +5,6 @@ import newsonthego.newstopic.NewsTopic;
 import newsonthego.storage.TopicsFile;
 import newsonthego.ui.UI;
 
-import java.io.BufferedReader;
-import java.io.FileReader;
 import java.io.IOException;
 import java.nio.file.Path;
 import java.util.ArrayList;
