@@ -142,7 +142,6 @@ public class ArticleScrapper {
     }
 
 
-
     private static String extractAuthor(Document doc) {
         // Try to extract author name from meta tag with name="author"
         Element authorElement = doc.selectFirst("meta[name=author]");

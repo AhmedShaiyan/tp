@@ -20,7 +20,7 @@ import java.util.stream.Collectors;
 
 
 import static newsonthego.Parser.parseToText;
-import static newsonthego.ArticleScrapper.scrapeArticles;
+
 
 public class NewsOnTheGo {
 
@@ -286,21 +286,22 @@ public class NewsOnTheGo {
      */
     public static void main(String[] args) throws IOException {
 
-        String inputFilePath = "data/ListOfURLs.txt";
+        StorageURL storageURL = new StorageURL();
         String outputFolderPath = "data";
         String outputFilePath = "data/testArticleScrapper.txt";
 
-        // Check if the file already exists and has content
-        Path path = Paths.get(inputFilePath);
+        Path path = Paths.get(outputFilePath);
 
         if (Files.notExists(path)) {
-            scrapeArticles(inputFilePath, outputFolderPath);
-        } else {
-            if (isFileEmpty(outputFilePath)) {
-                scrapeArticles(inputFilePath, outputFolderPath);
-            } else {
-                System.out.println("File exists and has content. Skipping scrapeArticles.");
+            Files.createFile(path); // Create a new file if it doesn't exist
+        }
+
+        if (isFileEmpty(outputFilePath)) {
+            for (String url : storageURL.getURLs()) {
+                ArticleScrapper.scrapeArticle(url, outputFolderPath);
             }
+        } else {
+            System.out.println("File exists and has content. Skipping scrapeArticles.");
         }
 
         Scanner in = new Scanner(System.in);
