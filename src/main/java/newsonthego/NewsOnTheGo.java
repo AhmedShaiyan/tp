@@ -286,17 +286,21 @@ public class NewsOnTheGo {
      */
     public static void main(String[] args) throws IOException {
 
-        StorageURL storageURL = new StorageURL();
         String outputFolderPath = "data";
         String outputFilePath = "data/testArticleScrapper.txt";
 
         Path path = Paths.get(outputFilePath);
+
+        if (Files.notExists(path.getParent())) {
+            Files.createDirectories(path.getParent()); // Create parent directories if they don't exist
+        }
 
         if (Files.notExists(path)) {
             Files.createFile(path); // Create a new file if it doesn't exist
         }
 
         if (isFileEmpty(outputFilePath)) {
+            StorageURL storageURL = new StorageURL(); // Moved inside the condition to avoid unnecessary object creation
             for (String url : storageURL.getURLs()) {
                 ArticleScrapper.scrapeArticle(url, outputFolderPath);
             }
