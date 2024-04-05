@@ -303,14 +303,12 @@ public class NewsOnTheGo {
                     for (String url : urls) {
                         ArticleScrapper.scrapeArticle(url, outputDirectoryPath);
                     }
-                } else {
-                    System.out.println("File exists and has content. Skipping scrapeArticles.");
                 }
+                
             } else {
                 // File doesn't exist, create the file and directory if needed
                 Files.createDirectories(outputFilePath.getParent());
                 Files.createFile(outputFilePath);
-                System.out.println("New file created at: " + outputFilePath);
 
                 // Scrape articles since it's a new file
                 StorageURL storageURL = new StorageURL();
