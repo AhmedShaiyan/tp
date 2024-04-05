@@ -9,7 +9,6 @@ import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.File;
-import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -52,7 +51,6 @@ public class ArticleScrapper {
             e.printStackTrace();
         }
     }
-
 
     private static String extractTheme(Document doc) {
         // Try to extract theme from Open Graph metadata (og:category)
@@ -114,20 +112,23 @@ public class ArticleScrapper {
         };
 
         for (String format : formats) {
+            SimpleDateFormat dateFormat = new SimpleDateFormat(format, Locale.ENGLISH);
+            Date date = null;
+            boolean parseSuccess = true;
+
             try {
-                DateFormat dateFormat = new SimpleDateFormat(format, Locale.ENGLISH);
-                Date date = dateFormat.parse(dateString);
+                date = dateFormat.parse(dateString);
+            } catch (ParseException e) {
+                parseSuccess = false;
+            }
+
+            if (parseSuccess && date != null) {
                 SimpleDateFormat outputFormat = new SimpleDateFormat("MMMM dd,yyyy", Locale.ENGLISH);
                 return outputFormat.format(date);
-            } catch (ParseException ignored) {
-
-                System.out.println("Scrapping & Processing...");
             }
         }
-
         return "Invalid date format";
     }
-
 
     private static String extractAuthor(Document doc) {
         // Try to extract author name from meta tag with name="author"
@@ -151,5 +152,4 @@ public class ArticleScrapper {
         // If author not found in both formats, return "Unknown"
         return "Unknown";
     }
-
 }
