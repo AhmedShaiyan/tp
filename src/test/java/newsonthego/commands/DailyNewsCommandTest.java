@@ -46,7 +46,7 @@ public class DailyNewsCommandTest {
     @Test
     public void dailyFunctionTest() {
         String input = "daily March 10 2024";
-        String expected = "\"Scientists Discover New Species of Butterfly in the Amazon\"";
+        String expected = "Scientists Discover New Species of Butterfly in the Amazon";
 
         // To test dailyParser
         String dailyParserInput = "back";
