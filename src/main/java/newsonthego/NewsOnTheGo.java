@@ -5,8 +5,6 @@ import newsonthego.newstopic.NewsTopic;
 import newsonthego.storage.TopicsFile;
 import newsonthego.ui.UI;
 
-import java.io.BufferedReader;
-import java.io.FileReader;
 import java.io.IOException;
 import java.nio.file.Path;
 import java.util.ArrayList;
@@ -20,7 +18,7 @@ import java.util.stream.Collectors;
 
 
 import static newsonthego.Parser.parseToText;
-import static newsonthego.ArticleScrapper.scrapeArticles;
+
 
 public class NewsOnTheGo {
 
@@ -274,9 +272,14 @@ public class NewsOnTheGo {
         }
     }
 
-    public static boolean isFileEmpty(String filePath) throws IOException {
-        try (BufferedReader reader = new BufferedReader(new FileReader(filePath))) {
-            return reader.readLine() == null; // Check if the file has no lines
+    private static boolean isFileEmpty(String filePath) {
+        Path path = Paths.get(filePath);
+        try {
+            return Files.size(path) == 0;
+        } catch (IOException e) {
+            System.err.println("Error checking file size: " + filePath);
+            e.printStackTrace();
+            return false;
         }
     }
 
@@ -286,21 +289,37 @@ public class NewsOnTheGo {
      */
     public static void main(String[] args) throws IOException {
 
-        String inputFilePath = "data/ListOfURLs.txt";
-        String outputFolderPath = "data";
-        String outputFilePath = "data/testArticleScrapper.txt";
+        String outputDirectoryPath = "data";
+        String outputFileName = "testArticleScrapper.txt";
 
-        // Check if the file already exists and has content
-        Path path = Paths.get(inputFilePath);
+        Path outputFilePath = Paths.get(outputDirectoryPath, outputFileName);
 
-        if (Files.notExists(path)) {
-            scrapeArticles(inputFilePath, outputFolderPath);
-        } else {
-            if (isFileEmpty(outputFilePath)) {
-                scrapeArticles(inputFilePath, outputFolderPath);
+        try {
+            if (Files.exists(outputFilePath)) {
+                // File exists, proceed with your logic
+                if (isFileEmpty(String.valueOf(outputFilePath))) {
+                    StorageURL storageURL = new StorageURL();
+                    List<String> urls = storageURL.getURLs();
+                    for (String url : urls) {
+                        ArticleScrapper.scrapeArticle(url, outputDirectoryPath);
+                    }
+                }
+                
             } else {
-                System.out.println("File exists and has content. Skipping scrapeArticles.");
+                // File doesn't exist, create the file and directory if needed
+                Files.createDirectories(outputFilePath.getParent());
+                Files.createFile(outputFilePath);
+
+                // Scrape articles since it's a new file
+                StorageURL storageURL = new StorageURL();
+                List<String> urls = storageURL.getURLs();
+                for (String url : urls) {
+                    ArticleScrapper.scrapeArticle(url, outputDirectoryPath);
+                }
             }
+        } catch (IOException e) {
+            System.out.println("An error occurred while handling the file: " + outputFilePath);
+            e.printStackTrace();
         }
 
         Scanner in = new Scanner(System.in);
