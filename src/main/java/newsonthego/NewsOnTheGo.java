@@ -272,30 +272,6 @@ public class NewsOnTheGo {
         }
     }
 
-    private static void createDirectoryIfNotExists(String directoryPath) {
-        Path path = Paths.get(directoryPath);
-        if (Files.notExists(path)) {
-            try {
-                Files.createDirectories(path);
-            } catch (IOException e) {
-                System.err.println("Error creating directory: " + directoryPath);
-                e.printStackTrace();
-            }
-        }
-    }
-
-    private static void createFileIfNotExists(String filePath) {
-        Path path = Paths.get(filePath);
-        if (Files.notExists(path)) {
-            try {
-                Files.createFile(path);
-            } catch (IOException e) {
-                System.err.println("Error creating file: " + filePath);
-                e.printStackTrace();
-            }
-        }
-    }
-
     private static boolean isFileEmpty(String filePath) {
         Path path = Paths.get(filePath);
         try {
@@ -303,7 +279,7 @@ public class NewsOnTheGo {
         } catch (IOException e) {
             System.err.println("Error checking file size: " + filePath);
             e.printStackTrace();
-            return false; // Return false in case of an error
+            return false;
         }
     }
 
@@ -313,24 +289,39 @@ public class NewsOnTheGo {
      */
     public static void main(String[] args) throws IOException {
 
-        String outputFolderPath = "data";
-        String outputFilePath = "data/testArticleScrapper.txt";
+        String outputDirectoryPath = "data";
+        String outputFileName = "testArticleScrapper.txt";
 
-        // Create output directory if it doesn't exist
-        createDirectoryIfNotExists(outputFolderPath);
+        Path outputFilePath = Paths.get(outputDirectoryPath, outputFileName);
 
-        // Create output file if it doesn't exist
-        createFileIfNotExists(outputFilePath);
+        try {
+            if (Files.exists(outputFilePath)) {
+                // File exists, proceed with your logic
+                if (isFileEmpty(String.valueOf(outputFilePath))) {
+                    StorageURL storageURL = new StorageURL();
+                    List<String> urls = storageURL.getURLs();
+                    for (String url : urls) {
+                        ArticleScrapper.scrapeArticle(url, outputDirectoryPath);
+                    }
+                } else {
+                    System.out.println("File exists and has content. Skipping scrapeArticles.");
+                }
+            } else {
+                // File doesn't exist, create the file and directory if needed
+                Files.createDirectories(outputFilePath.getParent());
+                Files.createFile(outputFilePath);
+                System.out.println("New file created at: " + outputFilePath);
 
-        // Scraping articles if the file is empty
-        if (isFileEmpty(outputFilePath)) {
-            StorageURL storageURL = new StorageURL();
-            List<String> urls = storageURL.getURLs();
-            for (String url : urls) {
-                ArticleScrapper.scrapeArticle(url, outputFolderPath);
+                // Scrape articles since it's a new file
+                StorageURL storageURL = new StorageURL();
+                List<String> urls = storageURL.getURLs();
+                for (String url : urls) {
+                    ArticleScrapper.scrapeArticle(url, outputDirectoryPath);
+                }
             }
-        } else {
-            System.out.println("File exists and has content. Skipping scrapeArticles.");
+        } catch (IOException e) {
+            System.out.println("An error occurred while handling the file: " + outputFilePath);
+            e.printStackTrace();
         }
 
         Scanner in = new Scanner(System.in);

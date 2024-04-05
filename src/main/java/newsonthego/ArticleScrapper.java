@@ -4,9 +4,8 @@ import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 
-import java.io.BufferedReader;
+
 import java.io.BufferedWriter;
-import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.File;
@@ -18,17 +17,6 @@ import java.util.Locale;
 
 
 public class ArticleScrapper {
-
-    public static void scrapeArticles(String inputFilePath, String outputFolderPath) {
-        try (BufferedReader reader = new BufferedReader(new FileReader(inputFilePath))) {
-            String url;
-            while ((url = reader.readLine()) != null) {
-                scrapeArticle(url, outputFolderPath);
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
 
     public static void scrapeArticle(String url, String outputFolderPath) {
         try {
@@ -57,7 +45,6 @@ public class ArticleScrapper {
             try (BufferedWriter writer = new BufferedWriter(new FileWriter(outputFilePath, true))) {
                 writer.write("\"" + headline + "\";" + author + ";" + publishedDate + ";" + theme + ";"
                         + url + ";" + abstractText + "\n");
-                //System.out.println("Data saved to: " + outputFilePath);
             } catch (IOException e) {
                 e.printStackTrace();
             }
