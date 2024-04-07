@@ -17,6 +17,12 @@ import java.util.Locale;
 
 public class ArticleScraper {
 
+    /**
+     * Scrapes an article from the given URL and saves its details to a file.
+     *
+     * @param url             The URL of the article.
+     * @param outputFolderPath The path to the folder where the output file will be saved.
+     */
     public static void scrapeArticle(String url, String outputFolderPath) {
         try {
             Document doc = Jsoup.connect(url).get();
@@ -52,6 +58,12 @@ public class ArticleScraper {
         }
     }
 
+    /**
+     * Extracts the theme of the article.
+     *
+     * @param doc The document object representing the HTML content of the article.
+     * @return The theme of the article.
+     */
     private static String extractTheme(Document doc) {
         // Try to extract theme from Open Graph metadata (og:category)
         Element metaTag = doc.selectFirst("meta[property=og:category]");
@@ -77,6 +89,12 @@ public class ArticleScraper {
         return standardizeTheme(theme);
     }
 
+    /**
+     * Standardizes the theme/topic of the article.
+     *
+     * @param theme The extracted theme/topic.
+     * @return The standardized theme/topic.
+     */
     private static String standardizeTheme(String theme) {
 
         if (theme.equalsIgnoreCase("tech") || theme.equalsIgnoreCase("technology")) {
@@ -99,11 +117,29 @@ public class ArticleScraper {
             return "Asia";
         } else if (theme.equalsIgnoreCase("singapore") || theme.equalsIgnoreCase("singapore news")) {
             return "Singapore";
+        } else if (theme.equalsIgnoreCase("india") || theme.equalsIgnoreCase("indian news")) {
+            return "India";
+        } else if (theme.equalsIgnoreCase("china") || theme.equalsIgnoreCase("chinese news")) {
+            return "China";
+        } else if (theme.equalsIgnoreCase("americas") || theme.equalsIgnoreCase("american news") ||
+                theme.equalsIgnoreCase("north america") || theme.equalsIgnoreCase("south america")) {
+            return "Americas";
+        } else if (theme.equalsIgnoreCase("europe") || theme.equalsIgnoreCase("european news")) {
+            return "Europe";
+        } else if (theme.equalsIgnoreCase("uk") || theme.equalsIgnoreCase("united kingdom") ||
+                theme.equalsIgnoreCase("britain") || theme.equalsIgnoreCase("british news") ||
+                theme.equalsIgnoreCase("uk news")) {
+            return "UK";
         }
         return theme;
     }
 
-
+    /**
+     * Extracts the published date of the article.
+     *
+     * @param doc The document object representing the HTML content of the article.
+     * @return The published date of the article.
+     */
     private static String extractPublishedDate(Document doc) {
         // Try to extract published date in multiple formats
         Element dateElement = doc.selectFirst("meta[property=article:published_time]");
@@ -126,6 +162,12 @@ public class ArticleScraper {
         return "Published date not found";
     }
 
+    /**
+     * Normalizes the date format.
+     *
+     * @param dateString The date string to be normalized.
+     * @return The normalized date string.
+     */
     private static String normalizeDate(String dateString) {
         String[] formats = {
             "yyyy-MM-dd'T'HH:mm:ss'Z'", // Example: 2024-03-10T12:30:45Z
@@ -158,6 +200,12 @@ public class ArticleScraper {
         return "Invalid date format";
     }
 
+    /**
+     * Extracts the author of the article.
+     *
+     * @param doc The document object representing the HTML content of the article.
+     * @return The author of the article.
+     */
     private static String extractAuthor(Document doc) {
         // Try to extract author name from meta tag with name="author"
         Element authorElement = doc.selectFirst("meta[name=author]");
@@ -176,7 +224,6 @@ public class ArticleScraper {
                 return authorName;
             }
         }
-
         // If author not found in both formats, return "Unknown"
         return "Unknown";
     }

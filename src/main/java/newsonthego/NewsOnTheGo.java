@@ -271,7 +271,6 @@ public class NewsOnTheGo {
             System.out.println(UI.INVALID_ARTICLE_INDEX_MESSAGE);
         }
     }
-
     private static boolean isFileEmpty(String filePath) {
         Path path = Paths.get(filePath);
         try {
@@ -282,7 +281,6 @@ public class NewsOnTheGo {
             return false;
         }
     }
-
 
     /**
      * Main entry-point for the java.newsonthego.NewsOnTheGo application.
@@ -304,7 +302,7 @@ public class NewsOnTheGo {
                         ArticleScraper.scrapeArticle(url, outputDirectoryPath);
                     }
                 }
-                
+
             } else {
                 // File doesn't exist, create the file and directory if needed
                 Files.createDirectories(outputFilePath.getParent());
