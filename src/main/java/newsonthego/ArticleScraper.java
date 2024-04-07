@@ -15,7 +15,7 @@ import java.util.Date;
 import java.util.Locale;
 
 
-public class ArticleScrapper {
+public class ArticleScraper {
 
     public static void scrapeArticle(String url, String outputFolderPath) {
         try {
@@ -42,8 +42,8 @@ public class ArticleScrapper {
 
             // Write the extracted information to the output file in append mode
             try (BufferedWriter writer = new BufferedWriter(new FileWriter(outputFilePath, true))) {
-                writer.write("\"" + headline + "\";" + author + ";" + publishedDate + ";" + theme + ";"
-                        + url + ";" + abstractText + "\n");
+                writer.write("\"" + headline + "\";" + author + ";" + publishedDate + ";"
+                        + url + ";" + abstractText + ";" + theme + "\n");
             } catch (IOException e) {
                 e.printStackTrace();
             }
