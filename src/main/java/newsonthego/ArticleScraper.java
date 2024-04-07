@@ -15,7 +15,7 @@ import java.util.Date;
 import java.util.Locale;
 
 
-public class ArticleScrapper {
+public class ArticleScraper {
 
     public static void scrapeArticle(String url, String outputFolderPath) {
         try {

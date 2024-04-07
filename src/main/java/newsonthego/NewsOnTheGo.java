@@ -301,7 +301,7 @@ public class NewsOnTheGo {
                     StorageURL storageURL = new StorageURL();
                     List<String> urls = storageURL.getURLs();
                     for (String url : urls) {
-                        ArticleScrapper.scrapeArticle(url, outputDirectoryPath);
+                        ArticleScraper.scrapeArticle(url, outputDirectoryPath);
                     }
                 }
                 
@@ -314,7 +314,7 @@ public class NewsOnTheGo {
                 StorageURL storageURL = new StorageURL();
                 List<String> urls = storageURL.getURLs();
                 for (String url : urls) {
-                    ArticleScrapper.scrapeArticle(url, outputDirectoryPath);
+                    ArticleScraper.scrapeArticle(url, outputDirectoryPath);
                 }
             }
         } catch (IOException e) {
