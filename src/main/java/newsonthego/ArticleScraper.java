@@ -38,7 +38,7 @@ public class ArticleScraper {
             String headline = doc.title();
 
             // Generate the output file path within the data folder
-            String outputFilePath = outputFolderPath + File.separator + "testArticleScrapper.txt";
+            String outputFilePath = outputFolderPath + File.separator + "testArticleScraper.txt";
 
             // Write the extracted information to the output file in append mode
             try (BufferedWriter writer = new BufferedWriter(new FileWriter(outputFilePath, true))) {
@@ -56,25 +56,53 @@ public class ArticleScraper {
         // Try to extract theme from Open Graph metadata (og:category)
         Element metaTag = doc.selectFirst("meta[property=og:category]");
         if (metaTag != null) {
-            return metaTag.attr("content");
+            return standardizeTheme(metaTag.attr("content"));
         }
 
         // If theme not found in Open Graph metadata, try another format
         Element themeElement = doc.selectFirst("meta[name=categories]");
         if (themeElement != null) {
-            return themeElement.attr("content");
+            return standardizeTheme(themeElement.attr("content"));
         }
 
         // If theme not found in the second format, try "theme" metadata
         Element themeMetaElement = doc.selectFirst("meta[name=theme]");
         if (themeMetaElement != null) {
-            return themeMetaElement.attr("content");
+            return standardizeTheme(themeMetaElement.attr("content"));
         }
 
         // If theme not found in the third format, try "article:section" metadata
         Element sectionElement = doc.selectFirst("meta[property=article:section]");
-        return (sectionElement != null) ? sectionElement.attr("content") : "Theme not found";
+        String theme = (sectionElement != null) ? sectionElement.attr("content") : "Theme not found";
+        return standardizeTheme(theme);
     }
+
+    private static String standardizeTheme(String theme) {
+
+        if (theme.equalsIgnoreCase("tech") || theme.equalsIgnoreCase("technology")) {
+            return "Technology";
+        } else if (theme.equalsIgnoreCase("world") || theme.equalsIgnoreCase("international") ||
+                theme.equalsIgnoreCase("world news")) {
+            return "World";
+        } else if (theme.equalsIgnoreCase("politics") || theme.equalsIgnoreCase("political")) {
+            return "Politics";
+        } else if (theme.equalsIgnoreCase("business") || theme.equalsIgnoreCase("finance") ||
+                theme.equalsIgnoreCase("economy")) {
+            return "Business";
+        } else if (theme.equalsIgnoreCase("health") || theme.equalsIgnoreCase("medical")) {
+            return "Health";
+        } else if (theme.equalsIgnoreCase("sports") || theme.equalsIgnoreCase("sport")) {
+            return "Sports";
+        } else if (theme.equalsIgnoreCase("entertainment") || theme.equalsIgnoreCase("celebrity")) {
+            return "Entertainment";
+        } else if (theme.equalsIgnoreCase("asia") || theme.equalsIgnoreCase("asian news")) {
+            return "Asia";
+        } else if (theme.equalsIgnoreCase("singapore") || theme.equalsIgnoreCase("singapore news")) {
+            return "Singapore";
+        }
+        return theme;
+    }
+
 
     private static String extractPublishedDate(Document doc) {
         // Try to extract published date in multiple formats

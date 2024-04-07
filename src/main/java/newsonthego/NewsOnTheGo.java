@@ -290,7 +290,7 @@ public class NewsOnTheGo {
     public static void main(String[] args) throws IOException {
 
         String outputDirectoryPath = "data";
-        String outputFileName = "testArticleScrapper.txt";
+        String outputFileName = "testArticleScraper.txt";
 
         Path outputFilePath = Paths.get(outputDirectoryPath, outputFileName);
 
