@@ -10,6 +10,53 @@ public class StorageURL {
     public StorageURL() {
         urls = new ArrayList<>();
 
+        urls.add("https://edition.cnn.com/2024/04/07/entertainment/kristen-" +
+                "wiig-ryan-gosling-matt-damon-snl/index.html");
+        urls.add("https://edition.cnn.com/2024/04/03/entertainment/matrix-fifth-movie/index.html");
+        urls.add("https://edition.cnn.com/2024/03/04/entertainment/dune-part-two-sequel/index.html");
+        urls.add("https://edition.cnn.com/2024/04/04/entertainment/angelina-jolie-brad-pitt-abuse-history/index.html");
+        urls.add("https://edition.cnn.com/2024/04/05/entertainment/adrian-schiller-death/index.html");
+        urls.add("https://edition.cnn.com/2024/04/03/entertainment/kanye-west-" +
+                "discrimination-donda-academy-lawsuit/index.html");
+        urls.add("https://edition.cnn.com/2024/04/06/politics/fafsa-financial-aid-what-matters/index.html");
+        urls.add("https://edition.cnn.com/2024/04/06/politics/biden-netanyahu-israel-gaza-war-phone-" +
+                "call-details/index.html");
+        urls.add("https://edition.cnn.com/2024/04/06/world/ukraine-defenses-russia-weak-spots-intl/index.html");
+        urls.add("https://edition.cnn.com/2024/03/28/india/india-state-department-" +
+                "kejriwal-objection-intl-hnk/index.html");
+        urls.add("https://edition.cnn.com/2024/03/23/asia/china-coast-guard-water-cannon-" +
+                "philippine-south-china-sea-intl-hnk/index.html");
+        urls.add("https://edition.cnn.com/2024/04/06/americas/ecuador-vice-president-arrest-mexico-embassy-" +
+                "diplomatic-tensions-intl-hnk/index.html");
+        urls.add("https://cnalifestyle.channelnewsasia.com/women/anti-scam-command-singapore-police-force-" +
+                "dsp-sindhu-dasan-387631");
+        urls.add("https://cnalifestyle.channelnewsasia.com/entertainment/abba-50th-anniversary-" +
+                "waterloo-eurovision-song-contest-388066");
+        urls.add("https://www.channelnewsasia.com/world/australia-flood-new-south-wales-4248716");
+        urls.add("https://cnalifestyle.channelnewsasia.com/entertainment/itzy-born-be-singapore-concert-review-" +
+                "kpop-388076");
+        urls.add("https://www.channelnewsasia.com/sport/buttler-roars-back-form-rajasthan-remain-unbeaten-4248676");
+        urls.add("https://cnalifestyle.channelnewsasia.com/women/4b-movement-south-korea-viral-tiktok-388051");
+        urls.add("https://cnalifestyle.channelnewsasia.com/entertainment/toy-story-5-2026-release-date-388071");
+        urls.add("https://www.channelnewsasia.com/world/climate-activist-greta-thunberg-" +
+                "detained-twice-dutch-protest-4248066");
+        urls.add("https://www.channelnewsasia.com/world/alien-fever-dreams-fuel-peruvian-grave-robbings-4247641");
+        urls.add("https://www.firstpost.com/world/greta-thunberg-detained-by-dutch-police-13757012.html");
+        urls.add("https://www.firstpost.com/world/mexico-breaks-off-ties-with-ecuador-mexican-embassy-stormed-in-" +
+                "quito13756857-13756857.html");
+        urls.add("https://www.firstpost.com/world/peter-pellegrini-slovakia-president-elections-13757093.html");
+        urls.add("https://www.nytimes.com/2024/04/04/dining/drinks/best-chicago-wine-lists.html");
+        urls.add("https://www.nytimes.com/2024/04/06/arts/television/curb-your-enthusiasm-finale.html");
+        urls.add("https://www.nytimes.com/2024/04/06/technology/ai-data-tech-companies.html");
+        urls.add("https://www.nytimes.com/2024/04/05/technology/invest-private-tech-openai-spacex.html");
+        urls.add("https://www.nytimes.com/2024/04/05/science/eclipse-webcast-first-1998-aruba.html");
+        urls.add("https://www.nytimes.com/2024/04/04/business/ford-delays-electric-vehicles.html");
+        urls.add("https://www.nytimes.com/2024/04/06/technology/ai-data-tech-takeaways.html");
+        urls.add("https://www.nytimes.com/2024/04/04/business/media/tiktok-marketing-blitz-ban.html");
+        urls.add("https://www.nytimes.com/2024/04/06/technology/tech-giants-harvest-data-artificial-intelligence.html");
+        urls.add("https://www.nytimes.com/2024/04/02/technology/an-ai-researcher-takes-on-election-deepfakes.html");
+        urls.add("https://www.nytimes.com/2024/04/01/business/media/china-online-disinformation-us-election.html");
+        urls.add("https://www.nytimes.com/2024/04/01/technology/google-chrome-browser-data.html");
         urls.add("https://www.forbes.com/sites/antoniopequenoiv/2024/03/29/prosecutors-suggest-trump-" +
                 "gag-order-should-cover-repeated-attacks-on-judges-daughter/?sh=215b377472b1");
         urls.add("https://www.forbes.com/sites/maryroeloffs/2024/04/01/the-bachelor-finale-with-daisy-" +
