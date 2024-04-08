@@ -1,4 +1,4 @@
-package newsonthego;
+package newsonthego.storage;
 
 
 import java.util.ArrayList;

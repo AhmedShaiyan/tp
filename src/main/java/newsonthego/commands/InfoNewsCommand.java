@@ -1,7 +1,7 @@
 package newsonthego.commands;
 
 import newsonthego.NewsArticle;
-import newsonthego.ui.UI;
+import newsonthego.utilities.UI;
 
 import java.util.List;
 

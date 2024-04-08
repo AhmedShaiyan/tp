@@ -1,4 +1,4 @@
-package newsonthego;
+package newsonthego.storage;
 
 import java.io.IOException;
 import java.nio.file.Files;

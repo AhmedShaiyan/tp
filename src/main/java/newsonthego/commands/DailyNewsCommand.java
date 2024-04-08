@@ -8,16 +8,16 @@ import java.util.Scanner;
 import java.util.logging.Level;
 import java.util.stream.Collectors;
 
-import static newsonthego.FormatDate.formatFromUser;
-import static newsonthego.NewsFile.saveNews;
-import static newsonthego.ui.UI.printArticleIsSaved;
-import static newsonthego.ui.UI.printIndexError;
-import static newsonthego.ui.UI.printHeadlinesFound;
-import static newsonthego.ui.UI.printHeadlinesNotFound;
-import static newsonthego.ui.UI.printEmptyLine;
-import static newsonthego.ui.UI.printArticlesInList;
-import static newsonthego.ui.UI.printSaveDailyDefaultMessage;
-import static newsonthego.ui.UI.printInvalidDateFormatMessage;
+import static newsonthego.utilities.FormatDate.formatFromUser;
+import static newsonthego.storage.NewsFile.saveNews;
+import static newsonthego.utilities.UI.printArticleIsSaved;
+import static newsonthego.utilities.UI.printIndexError;
+import static newsonthego.utilities.UI.printHeadlinesFound;
+import static newsonthego.utilities.UI.printHeadlinesNotFound;
+import static newsonthego.utilities.UI.printEmptyLine;
+import static newsonthego.utilities.UI.printArticlesInList;
+import static newsonthego.utilities.UI.printSaveDailyDefaultMessage;
+import static newsonthego.utilities.UI.printInvalidDateFormatMessage;
 
 import java.util.logging.Logger;
 

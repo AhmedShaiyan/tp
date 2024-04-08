@@ -5,7 +5,7 @@ import java.util.List;
 import newsonthego.commands.DailyNewsCommand;
 import newsonthego.commands.InfoNewsCommand;
 import newsonthego.newstopic.NewsTopic;
-import newsonthego.ui.UI;
+import newsonthego.utilities.UI;
 
 import static newsonthego.NewsOnTheGo.suggestArticle;
 
