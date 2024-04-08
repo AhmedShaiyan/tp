@@ -1,7 +1,6 @@
 package newsonthego.utilities;
 
 import newsonthego.NewsOnTheGoExceptions;
-import newsonthego.utilities.UI;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
