@@ -61,6 +61,7 @@ public class DailyNewsCommand {
             printHeadlinesFound(formattedDate);
             printEmptyLine();
             printArticlesInList(articlesOfTheDay);
+            URLCommand.printArticleURLsForDay(articlesOfTheDay);
             printEmptyLine();
             saveDailyArticlesParser();
         }
@@ -115,7 +116,8 @@ public class DailyNewsCommand {
         }
     }
 
-    public List<NewsArticle> getArticlesOfTheDay() {
+    public static List<NewsArticle> getArticlesOfTheDay() {
         return articlesOfTheDay;
     }
 }
+
