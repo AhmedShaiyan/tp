@@ -9,7 +9,7 @@ import newsonthego.newstopic.NewsTopic;
 import newsonthego.utilities.UI;
 
 import static newsonthego.NewsOnTheGo.suggestArticle;
-import static newsonthego.commands.URLCommand.printArticleURL;
+
 
 public class Parser {
     public static final String INDENT = "    ";
