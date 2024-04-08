@@ -1,5 +1,6 @@
-package newsonthego;
+package newsonthego.storage;
 
+import newsonthego.NewsArticle;
 import newsonthego.newstopic.NewsTopic;
 import newsonthego.newstopic.TopicComparator;
 

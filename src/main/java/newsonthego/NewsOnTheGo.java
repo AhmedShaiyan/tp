@@ -2,8 +2,8 @@ package newsonthego;
 
 
 import newsonthego.newstopic.NewsTopic;
-import newsonthego.storage.TopicsFile;
-import newsonthego.ui.UI;
+import newsonthego.storage.*;
+import newsonthego.utilities.UI;
 
 import java.io.IOException;
 import java.nio.file.Path;

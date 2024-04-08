@@ -1,4 +1,4 @@
-package newsonthego.ui;
+package newsonthego.utilities;
 
 import newsonthego.NewsArticle;
 import newsonthego.newstopic.NewsTopic;
@@ -8,7 +8,7 @@ import java.util.Scanner;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-import static newsonthego.NewsFile.SAVED_NEWS_PATH;
+import static newsonthego.storage.NewsFile.SAVED_NEWS_PATH;
 
 public class UI {
     public static final String INVALID_ARTICLE_INDEX_MESSAGE = "Please provide a valid article index!!";

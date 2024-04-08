@@ -1,7 +1,7 @@
 package newsonthego.commands;
 
 import newsonthego.NewsArticle;
-import newsonthego.NewsImporter;
+import newsonthego.storage.NewsImporter;
 import newsonthego.NewsOnTheGo;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
