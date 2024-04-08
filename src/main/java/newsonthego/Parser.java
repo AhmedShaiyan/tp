@@ -4,6 +4,7 @@ import java.util.List;
 
 import newsonthego.commands.DailyNewsCommand;
 import newsonthego.commands.InfoNewsCommand;
+import newsonthego.commands.URLCommand;
 import newsonthego.newstopic.NewsTopic;
 import newsonthego.utilities.UI;
 
@@ -65,6 +66,9 @@ public class Parser {
             break;
         case CLEAR:
             NewsOnTheGo.clearSavedNews();
+            break;
+        case URL:
+            URLCommand.printArticleURL(line, list);
             break;
         case SOURCE:
             if (topic >= 0) { //find source of news using index based on the current topic list shown to user
