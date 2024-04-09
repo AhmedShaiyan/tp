@@ -23,7 +23,10 @@ import java.util.stream.Collectors;
 
 
 import static newsonthego.Parser.parseToText;
-import static newsonthego.utilities.UI.*;
+import static newsonthego.utilities.UI.INDENT;
+import static newsonthego.utilities.UI.printLine;
+import static newsonthego.utilities.UI.printEmptyLine;
+import static newsonthego.utilities.UI.printMessage;
 
 
 public class NewsOnTheGo {

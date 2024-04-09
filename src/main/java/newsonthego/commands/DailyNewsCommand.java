@@ -10,8 +10,16 @@ import java.util.stream.Collectors;
 
 import static newsonthego.utilities.FormatDate.formatFromUser;
 import static newsonthego.storage.NewsFile.saveNews;
-import static newsonthego.utilities.UI.*;
-
+import static newsonthego.utilities.UI.INDENT;
+import static newsonthego.utilities.UI.printInvalidDateFormatMessage;
+import static newsonthego.utilities.UI.printHeadlinesNotFound;
+import static newsonthego.utilities.UI.printHeadlinesFound;
+import static newsonthego.utilities.UI.printLine;
+import static newsonthego.utilities.UI.printEmptyLine;
+import static newsonthego.utilities.UI.printArticlesInList;
+import static newsonthego.utilities.UI.printSaveDailyDefaultMessage;
+import static newsonthego.utilities.UI.printArticleIsSaved;
+import static newsonthego.utilities.UI.printIndexError;
 import java.util.logging.Logger;
 
 public class DailyNewsCommand {
