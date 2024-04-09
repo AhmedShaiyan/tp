@@ -23,7 +23,7 @@ import java.util.stream.Collectors;
 
 
 import static newsonthego.Parser.parseToText;
-import static newsonthego.utilities.UI.printMessage;
+import static newsonthego.utilities.UI.*;
 
 
 public class NewsOnTheGo {
@@ -77,7 +77,7 @@ public class NewsOnTheGo {
             int index = Integer.parseInt(split[1]) - 1;
             printMessage(parseToText(list.get(index)));
         } catch (IndexOutOfBoundsException | NumberFormatException e) {
-            System.out.println(UI.INVALID_ARTICLE_INDEX_MESSAGE);
+            printMessage(UI.INVALID_ARTICLE_INDEX_MESSAGE);
         }
     }
 
@@ -127,19 +127,20 @@ public class NewsOnTheGo {
      */
     static int filterNews(String line) {
         if (line.substring(6).trim().isEmpty()) {
-            System.out.println("Please provide a topic.");
+            printMessage("Please provide a topic.");
             return -1;
         }
         int topicIndex = findTopicIndex(line.substring(6).trim(), newsTopics);
         if (topicIndex < 0) {
-            System.out.println("Sorry, this topic is not available right now :(");
+            printMessage("Sorry, this topic is not available right now :(");
         } else {
+            printLine();
             System.out.println("Here are the news articles related to "
                     + newsTopics.get(topicIndex).getTopicName() + ": ");
             newsTopics.get(topicIndex).printNewsArticles();
-            System.out.println("You are currently in access to the list of articles in "
-                    + newsTopics.get(topicIndex).getTopicName() +
-                    ", use command 'BACK' to return to main list of articles.");
+            printMessage("You are currently in access to the list of articles in "
+                    + newsTopics.get(topicIndex).getTopicName() + ", \n" +
+                    INDENT + "use command 'BACK' to return to main list of articles.");
         }
         return topicIndex;
     }

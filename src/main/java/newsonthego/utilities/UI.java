@@ -18,6 +18,14 @@ public class UI {
     private static final Logger logger = Logger.getLogger("NewsOnTheGo");
     public static void initializeUI(Scanner in) {
         logger.log(Level.INFO, "Starting NewsOnTheGo");
+        String logo1 = "__________________________________________________________________________________________\n" +
+                "    _     _                           __             ______                     __        \n" +
+                "    /|   /                          /    )             /      /               /    )      \n" +
+                "---/-| -/-----__----------__-------/----/----__-------/------/__----__-------/---------__-\n" +
+                "  /  | /    /___)| /| /  (_ `     /    /   /   )     /      /   ) /___)     /  --,   /   )\n" +
+                "_/___|/____(___ _|/_|/__(__)_____(____/___/___/_____/______/___/_(___ _____(____/___(___/_\n" +
+                "                                                                                          \n" +
+                "                                                                                          ";
         String logo = "\n" +
                 ",-,-.                 ,---.     ,--,--'.       ,---.      \n" +
                 "` | |   ,-. . , , ,-. |   | ,-. `- |   |-. ,-. |  -'  ,-. \n" +
@@ -25,8 +33,7 @@ public class UI {
                 " ,' `-' `-' ' '   `-' `---' ' '  `-'   ' ' `-' `---|  `-' \n" +
                 "                                                ,-.|      \n" +
                 "                                                `-+'      \n";
-        System.out.println("Hello from\n" + logo);
-        printLine();
+        System.out.println("Hello from\n" + logo1);
         askForName(in);
     }
 
@@ -108,13 +115,15 @@ public class UI {
      */
     public static void printTopics(List<NewsTopic> newsTopics) {
         for (NewsTopic topic : newsTopics) {
-            System.out.println(" - " + topic.getTopicName());
+            System.out.println(INDENT + " - " + topic.getTopicName());
         }
     }
 
     public static void printAllTopics(List<NewsTopic> newsTopics) {
+        printLine();
         System.out.println("Here are the list of topics for your viewing:");
         printTopics(newsTopics);
+        printLine();
     }
 
     public static void printFavouriteTopics(List<NewsTopic> favouriteTopics) {
