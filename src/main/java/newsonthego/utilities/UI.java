@@ -134,8 +134,8 @@ public class UI {
                         "        | `remove business`    |\n" +
                         "| `URL`      | Gives the URL of the article.                               " +
                         "        | `url 2`              |\n" +
-                        "| `LIST`     | Returns article headlines directly from the list            " +
-                        "        | `list 10`            |\n" +
+                        "| `HEADLINES`| Returns article headlines directly from the list            " +
+                        "        | `headlines 10`       |\n" +
                         "| `GET`      | Details of a specific article.                              " +
                         "        | `get 3`              |\n" +
                         "| `INFO`     | Information on article's importance, reliability, bias.     " +

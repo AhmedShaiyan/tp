@@ -15,7 +15,7 @@ import java.util.stream.Collectors;
 
 
 
-    public class ShowListCommand {
+    public class ShowHeadlines {
 
         private static final Path NEWS_FILE_PATH = Path.of("data", "sampleNews.txt");
         /**
@@ -24,12 +24,13 @@ import java.util.stream.Collectors;
          * @param line the input command line that contains the "list" command followed by an index.
          *             The index determines how many article headlines will be shown.
          */
-        public static void showList(String line) {
+        public static void showHeadlines(String line) {
             String[] parts = line.trim().split("\\s+");
             if (parts.length != 2) {
                 System.out.println("Invalid command format. Usage: list <number of articles>");
                 return;
             }
+
 
             try {
                 int numberOfArticles = Integer.parseInt(parts[1]);
