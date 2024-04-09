@@ -42,7 +42,9 @@ public class UI {
             i++;
         }
     }
-
+    public static void printUnknownCommand() {
+        System.out.println("I'm sorry, but I don't recognize that command. Please try again.");
+    }
     public static void printInvalidDateFormatMessage() {
         System.out.println("Date format is invalid! \n" +
                 "The date format is: \n" +
