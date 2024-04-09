@@ -48,7 +48,6 @@ public class NewsOnTheGo {
         }
 
         try {
-
             Parser.handleCommand(command.trim(), line, list, newsTopics, favouriteTopics);
             return command.trim().equalsIgnoreCase(Command.BYE.toString());
         } catch (IllegalArgumentException e) {
@@ -215,7 +214,7 @@ public class NewsOnTheGo {
      * @param line The input line containing the command and index of the news article.
      * @param list The list of NewsArticle objects from which to retrieve the news article.
      */
-    static void saveNews(String line, List<NewsArticle> list) {
+    static void saveNewsFromList(String line, List<NewsArticle> list) {
         String[] split = line.split(" ");
         try {
             int index = Integer.parseInt(split[1]) - 1;

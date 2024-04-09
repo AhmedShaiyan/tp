@@ -47,8 +47,7 @@ public class UI {
         System.out.println("Date format is invalid! \n" +
                 "The date format is: \n" +
                 "\"MM dd yyyy\" (01 02 2024), \n" +
-                "\"MMMM dd yyyy\" (January 02 2024), \n" +
-                "\"dd MMMM yyyy\" (02 January 2024)");
+                "\"MMMM dd yyyy\" (January 02 2024), \n");
         printEmptyLine();
     }
 
@@ -124,6 +123,7 @@ public class UI {
                         "Thank you for using News On The Go! \n" +
                         "Enjoy reading :))"
         );
+
     }
 
 }
