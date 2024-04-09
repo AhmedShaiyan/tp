@@ -45,7 +45,7 @@ public class Parser {
         case HEADLINES:
             ShowHeadlines.showHeadlines(line);
             break;
-            case STAR:
+        case STAR:
             NewsOnTheGo.starTopic(line, topics, favouriteTopics);
             break;
         case STARRED:
