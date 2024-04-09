@@ -16,6 +16,7 @@ public class Parser {
     public static void handleCommand(String command, String line,
                                      List<NewsArticle> list, List<NewsTopic> topics, List<NewsTopic> favouriteTopics) {
         NewsOnTheGo.Command commandEnum = null;
+
         try {
             commandEnum = NewsOnTheGo.Command.valueOf(command.toUpperCase());
         } catch (IllegalArgumentException e) {
@@ -55,9 +56,9 @@ public class Parser {
             break;
         case SAVE:
             if (topic >= 0) { //save using index based on the current topic list shown to user
-                NewsOnTheGo.saveNews(line, topics.get(topic).getRelatedNewsArticles());
+                NewsOnTheGo.saveNewsFromList(line, topics.get(topic).getRelatedNewsArticles());
             } else {
-                NewsOnTheGo.saveNews(line, list);
+                NewsOnTheGo.saveNewsFromList(line, list);
             }
             break;
         case LOAD:

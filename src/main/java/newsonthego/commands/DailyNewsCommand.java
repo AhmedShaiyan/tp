@@ -41,6 +41,10 @@ public class DailyNewsCommand {
         assert !list.isEmpty();
 
         String[] splitInput = input.split(" ", 2);
+        if (splitInput.length != 2) {
+            printInvalidDateFormatMessage();
+            return;
+        }
         String date = splitInput[dateindex];
 
         String formattedDate = formatFromUser(date);

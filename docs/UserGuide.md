@@ -34,15 +34,23 @@ Gets the list of articles from our text file and outputs it to the user.
 
 Format: `daily {DATE}`
 
-* The `DATE` format: `MM dd yyyy`/`MMMM dd yyyy`
+* The `DATE` format: `MM dd yyyy`/`MMMM dd yyyy`/`dd MMMM yyyy`
 
 Example of usage:
 
-`daily March 10 2024`
-
 `daily 03 10 2024`
 
+`daily March 10 2024`
 
+`daily March 10 2024`
+
+After using the `daily` command, you can use `save` or `back`.
+
+Format: `save`  
+This allows the user to save the news articles displayed by the `daily` function.
+
+Format: `back`  
+This allows the user to exit the daily function.
 
 ### Star a topic: `star`
 
@@ -77,7 +85,7 @@ Saves an article title into a text file.
 Format: `save {index of article on displayed list}`
 
 Example: 
-'save 1'
+`save 1`
 
 ### Loading saved news: `load`
 Displays all saved news articles from the saved articles text file.
