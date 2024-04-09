@@ -47,8 +47,7 @@ public class UI {
         System.out.println("Date format is invalid! \n" +
                 "The date format is: \n" +
                 "\"MM dd yyyy\" (01 02 2024), \n" +
-                "\"MMMM dd yyyy\" (January 02 2024), \n" +
-                "\"dd MMMM yyyy\" (02 January 2024)");
+                "\"MMMM dd yyyy\" (January 02 2024), \n");
         printEmptyLine();
     }
 
@@ -105,7 +104,7 @@ public class UI {
         System.out.println("Thank you for using News On The Go! \n" +
                 "Refer to below for commands and functions: \n" +
                 "DAILY [date] - gives articles published on a specific date \n" +
-                "e.g. daily 10 March 2024 \n" +
+                "e.g. daily March 10 2024 \n" +
                 "TOPICS - gives a comprehensive list of topics that the articles are classified by \n" +
                 "FILTER [topic index] - gives a list of articles related to the specified topic \n" +
                 "e.g. filter politics \n" +

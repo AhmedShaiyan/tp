@@ -1,4 +1,6 @@
- # ![img.png](img.png) NewsOnTheGo User Guide
+![img.png](img.png) 
+
+# NewsOnTheGo User Guide
 
 NewsOnTheGo is a command-line application (CLI) that helps users stay up-to-date with the latest news articles by 
 providing users with a list of the current headlines. 
@@ -34,15 +36,23 @@ Gets the list of articles from our text file and outputs it to the user.
 
 Format: `daily {DATE}`
 
-* The `DATE` format: `MM dd yyyy`/`MMMM dd yyyy`
+* The `DATE` format: `MM dd yyyy`/`MMMM dd yyyy`/`dd MMMM yyyy`
 
 Example of usage:
 
-`daily March 10 2024`
-
 `daily 03 10 2024`
 
+`daily March 10 2024`
 
+`daily March 10 2024`
+
+After using the `daily` command, you can use `save` or `back`.
+
+Format: `save`  
+This allows the user to save the news articles displayed by the `daily` function.
+
+Format: `back`  
+This allows the user to exit the daily function.
 
 ### Star a topic: `star`
 
@@ -62,7 +72,7 @@ Removes a topic from your list of favorite topics.
 Format: `remove TOPIC`
 
 Example:
-`remove  Technology`
+`remove Technology`
 
 ### Suggesting articles: `suggest`
 
@@ -77,7 +87,7 @@ Saves an article title into a text file.
 Format: `save {index of article on displayed list}`
 
 Example: 
-'save 1'
+`save 1`
 
 ### Loading saved news: `load`
 Displays all saved news articles from the saved articles text file.
@@ -88,6 +98,13 @@ Format: `load`
 Displays the source of the article.
 
 Format: `source {index of article on displayed list}`
+
+### Filtering the list of news: `filter`
+Filters the list of news articles based on the user's input.
+
+Format: `filter {topic index}`
+Example:
+`filter 1`
 
 ### Returning to the previous menu or list: `back`
 Returns from a filtered list of news or the saved news window to the main list of articles.
@@ -102,6 +119,11 @@ Format: `back`
 Exits the application.
 
 Format: `bye`
+
+## Known Issues
+1. When keying in floating point values to `daily` function, the parser is unable to parse in the daily function. Take 
+note by keying in integers only. Make sure the integer do not exceed the size of an integer too.
+
 
 ## Command Summary
 

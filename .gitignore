@@ -15,4 +15,5 @@ bin/
 
 /text-ui-test/ACTUAL.TXT
 text-ui-test/EXPECTED-UNIX.TXT
-user_data/saved_news.txt
+/user_data/saved_news.txt
+/data/saved_topics.txt
