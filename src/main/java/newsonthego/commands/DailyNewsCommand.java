@@ -92,7 +92,10 @@ public class DailyNewsCommand {
                 save(dailyLine);
                 break;
             case "back":
+                // Fallthrough
+            case "quit":
                 isPolling = false;
+                System.out.println("You are back to the main function!");
                 break;
             default:
                 printSaveDailyDefaultMessage();
