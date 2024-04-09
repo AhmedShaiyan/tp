@@ -41,11 +41,25 @@ public class NewsOnTheGo {
     }
 
     private static boolean processCommand(String command, String line, List<NewsArticle> list) {
-        //assert !command.isEmpty();
 
-        Parser.handleCommand(command, line, list, newsTopics, favouriteTopics);
-        return command.equalsIgnoreCase(Command.BYE.toString());
+        // Check for null or empty command
+        if (command == null || command.trim().isEmpty()) {
+            System.out.println("No command entered. Please try again.");
+            return false;
+        }
+
+        try {
+            Parser.handleCommand(command.trim(), line, list, newsTopics, favouriteTopics);
+            return command.trim().equalsIgnoreCase(Command.BYE.toString());
+        } catch (IllegalArgumentException e) {
+            System.out.println("Unknown command: '" + command + "'. Please try again.");
+        } catch (Exception e) {
+            // Catch any other unexpected exceptions
+            System.out.println("An error occurred while processing the command: " + e.getMessage());
+        }
+        return false;
     }
+
 
     /**
      * Retrieves and displays the details of a news article from the provided list based on the index specified in the
@@ -201,7 +215,7 @@ public class NewsOnTheGo {
      * @param line The input line containing the command and index of the news article.
      * @param list The list of NewsArticle objects from which to retrieve the news article.
      */
-    static void saveNews(String line, List<NewsArticle> list) {
+    static void saveNewsFromList(String line, List<NewsArticle> list) {
         String[] split = line.split(" ");
         try {
             int index = Integer.parseInt(split[1]) - 1;
@@ -257,25 +271,6 @@ public class NewsOnTheGo {
         savedNews.clearFile();
     }
 
-    /**
-     * Retrieves and displays the details of a news article from the provided list based on the index specified in the
-     * input line.
-     * The input line is expected to contain the command "source" followed by the index of the news article to retrieve.
-     * If the index is valid and the article exists in the list, its details are printed to the console.
-     * If the index is out of bounds or not a valid integer, an error message is displayed.
-     *
-     * @param line The input line containing the command and index of the news article.
-     * @param list The list of NewsArticle objects from which to retrieve the news article.
-     */
-    static void sourceNews(String line, List<NewsArticle> list) {
-        String[] split = line.split(" ");
-        try {
-            int index = Integer.parseInt(split[1]) - 1;
-            System.out.println(parseToText(list.get(index)));
-        } catch (IndexOutOfBoundsException | NumberFormatException e) {
-            System.out.println(UI.INVALID_ARTICLE_INDEX_MESSAGE);
-        }
-    }
     private static boolean isFileEmpty(String filePath) {
         Path path = Paths.get(filePath);
         try {
@@ -334,7 +329,7 @@ public class NewsOnTheGo {
         TopicsFile.loadTopics(favouriteTopics);
 
         while (true) {
-            System.out.println("What do you want from me?");
+            UI.printInitialPrompt();
             String line = in.nextLine();
             String command = line.split(" ")[0];
             try {

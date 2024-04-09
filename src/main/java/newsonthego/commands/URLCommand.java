@@ -30,7 +30,7 @@ public class URLCommand {
             int index = Integer.parseInt(split[1]) - 1;
             NewsArticle article = list.get(index);
             String url = article.getUrl();
-            printMessage("URL of the article: " + "[Click here](" + url + ")");
+            printMessage("Article URL: " + url );
         } catch (IndexOutOfBoundsException | NumberFormatException e) {
             printMessage("Invalid index. Please provide a valid article index.");
         }

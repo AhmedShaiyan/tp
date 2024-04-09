@@ -25,7 +25,9 @@ public class DailyNewsCommand {
 
 
     /**
-     * Finds articles that match the date input by the user and prints out the list
+     * Finds articles that match the date input by the user and prints out a list on the command line.
+     * Prints out an error if the format for calling the function is wrong.
+     * Errors include wrong daily format, invalid date format.
      *
      * @param input is the user input
      * @param list is the list of articles
@@ -34,7 +36,16 @@ public class DailyNewsCommand {
         assert !list.isEmpty();
 
         String[] splitInput = input.split(" ", 2);
+        if (splitInput.length != 2) {
+            printInvalidDateFormatMessage();
+            return;
+        }
         String date = splitInput[dateindex];
+
+        if (date.split(" ").length != 3) {
+            printInvalidDateFormatMessage();
+            return;
+        }
 
         String formattedDate = formatFromUser(date);
 
@@ -43,7 +54,7 @@ public class DailyNewsCommand {
             printInvalidDateFormatMessage();
             return;
         }
-
+        // Filters the articles by the date input and saves the articles found into articles of the day
         articlesOfTheDay = list.stream()
                 .filter(article -> article.getDate().equals(formattedDate))
                 .collect(Collectors.toList());
@@ -62,7 +73,7 @@ public class DailyNewsCommand {
     }
 
     /**
-     * Allows user to save daily news articles shown to their reading list
+     * Parser to allow user to save daily news articles shown on the command line to their reading list
      */
     private static void saveDailyArticlesParser() {
         printLine();

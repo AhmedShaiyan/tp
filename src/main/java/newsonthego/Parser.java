@@ -4,6 +4,7 @@ import java.util.List;
 
 import newsonthego.commands.DailyNewsCommand;
 import newsonthego.commands.InfoNewsCommand;
+import newsonthego.commands.GetNewsSourceCommand;
 import newsonthego.commands.URLCommand;
 import newsonthego.newstopic.NewsTopic;
 import newsonthego.utilities.UI;
@@ -19,6 +20,7 @@ public class Parser {
     public static void handleCommand(String command, String line,
                                      List<NewsArticle> list, List<NewsTopic> topics, List<NewsTopic> favouriteTopics) {
         NewsOnTheGo.Command commandEnum = null;
+
         try {
             commandEnum = NewsOnTheGo.Command.valueOf(command.toUpperCase());
         } catch (IllegalArgumentException e) {
@@ -58,9 +60,9 @@ public class Parser {
             break;
         case SAVE:
             if (topic >= 0) { //save using index based on the current topic list shown to user
-                NewsOnTheGo.saveNews(line, topics.get(topic).getRelatedNewsArticles());
+                NewsOnTheGo.saveNewsFromList(line, topics.get(topic).getRelatedNewsArticles());
             } else {
-                NewsOnTheGo.saveNews(line, list);
+                NewsOnTheGo.saveNewsFromList(line, list);
             }
             break;
         case LOAD:
@@ -74,9 +76,9 @@ public class Parser {
             break;
         case SOURCE:
             if (topic >= 0) { //find source of news using index based on the current topic list shown to user
-                NewsOnTheGo.sourceNews(line, topics.get(topic).getRelatedNewsArticles());
+                GetNewsSourceCommand.getNewsSource(line, topics.get(topic).getRelatedNewsArticles());
             } else {
-                NewsOnTheGo.sourceNews(line, list);
+                GetNewsSourceCommand.getNewsSource(line, list);
             }
             break;
         case INFO:
@@ -97,30 +99,27 @@ public class Parser {
             }
             break;
         case BYE:
-            printMessage("Bye. Hope to see you again soon!");
+            UI.printBye();
             break;
         case VOID:
             // fall through
         default:
-            printMessage("I'm sorry, but I don't know what that means :-(");
+            UI.printConfused();
             break;
         }
     }
 
     public static String parseToText (NewsArticle article) {
         String headline = article.getHeadline();
+        String url = article.getUrl();
         String author = article.getAuthor();
         String date = article.getDate();
         String source = article.getSource();
-        int importance = article.getImportance();
-        int reliability = article.getReliability();
-        int bias = article.getBias();
-        String content = article.getContent();
+
         return (headline + "\n" +
+                INDENT + "URL: "+ url + "\n" +
                 INDENT + "By: " + author + INDENT + "On: " + date + "\n" +
-                INDENT + source + "\n" +
-                INDENT + "| IMPORTANCE: " + importance + " | BIAS: " + bias +
-                " | RELIABILITY: " + reliability + " | \n" +
-                content + "\n");
+                INDENT + source + "\n");
+
     }
 }
