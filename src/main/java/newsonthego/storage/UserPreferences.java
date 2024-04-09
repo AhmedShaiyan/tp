@@ -7,6 +7,7 @@ import java.nio.file.Paths;
 import java.util.List;
 import java.util.Random;
 import java.util.stream.Collectors;
+import java.util.concurrent.atomic.AtomicInteger;
 
 import static newsonthego.commands.URLCommand.parseArticleURL;
 
@@ -17,18 +18,19 @@ public class UserPreferences {
     private static final Path SAMPLE_NEWS_FILE = Paths.get("data", "sampleNews.txt");
     private static final Path SAVED_TOPICS_PATH = Paths.get("data", "saved_topics.txt");
 
-
     /**
-     * Generates a list of suggested articles from the user's favorite topics.
+     * Generates a list of suggested articles with numbered listing from the user's favorite topics.
      * It reads the favorite topics from a saved file and then suggests random articles from those topics.
      * If no favorite topics are saved, it suggests the user to star a topic first.
      * If no articles are found for a topic, it notes that no articles were found.
      *
-     * @return A string containing the suggestions or error message.
+     * @return A string containing the numbered suggestions or error message.
      */
     public static String getSuggestedArticlesFromFavoriteTopics() {
         StringBuilder suggestions = new StringBuilder();
         Random random = new Random();
+        AtomicInteger articleNumber = new AtomicInteger(1);
+
         try {
             List<String> favoriteTopics = Files.readAllLines(SAVED_TOPICS_PATH);
             if (favoriteTopics.isEmpty()) {
@@ -39,17 +41,19 @@ public class UserPreferences {
 
             for (String topic : favoriteTopics) {
                 List<String> articlesForTopic = allArticles.stream()
-                        .filter(article -> article.matches(".*;" + topic.trim() + "$"))
+                        .filter(article -> article.endsWith(";" + topic.trim()))
                         .collect(Collectors.toList());
 
                 if (!articlesForTopic.isEmpty()) {
                     String randomArticle = articlesForTopic.get(random.nextInt(articlesForTopic.size()));
-                    suggestions.append("Suggesting an article from your favorite topic: ")
+                    suggestions.append(articleNumber.getAndIncrement())
+                            .append(". ")
+                            .append("Suggesting an article from your favorite topic: ")
                             .append(topic.trim())
                             .append("\n")
-                            .append(parseArticleTitle(randomArticle))
+                            .append("    Title: ").append(parseArticleTitle(randomArticle))
                             .append("\n")
-                            .append("URL: ").append(parseArticleURL(randomArticle))
+                            .append("    URL: ").append(parseArticleURL(randomArticle))
                             .append("\n\n");
                 } else {
                     suggestions.append("No articles found for the topic: ").append(topic.trim()).append("\n");
@@ -71,6 +75,4 @@ public class UserPreferences {
     private static String parseArticleTitle(String articleLine) {
         return articleLine.split(";")[0];
     }
-
-
 }

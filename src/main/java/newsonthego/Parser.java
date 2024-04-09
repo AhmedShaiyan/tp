@@ -1,16 +1,16 @@
 package newsonthego;
 
-import java.util.List;
-
 import newsonthego.commands.DailyNewsCommand;
-import newsonthego.commands.InfoNewsCommand;
 import newsonthego.commands.GetNewsSourceCommand;
+import newsonthego.commands.InfoNewsCommand;
+import newsonthego.commands.ShowHeadlines;
 import newsonthego.commands.URLCommand;
 import newsonthego.newstopic.NewsTopic;
 import newsonthego.utilities.UI;
 
-import static newsonthego.NewsOnTheGo.suggestArticle;
+import java.util.List;
 
+import static newsonthego.NewsOnTheGo.suggestArticle;
 
 public class Parser {
     public static final String INDENT = "    ";
@@ -41,6 +41,9 @@ public class Parser {
             break;
         case TOPICS:
             UI.printAllTopics(topics);
+            break;
+        case HEADLINES:
+            ShowHeadlines.showHeadlines(line);
             break;
         case STAR:
             NewsOnTheGo.starTopic(line, topics, favouriteTopics);

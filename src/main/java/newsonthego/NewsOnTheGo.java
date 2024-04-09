@@ -10,6 +10,8 @@ import newsonthego.storage.TopicsFile;
 import newsonthego.storage.ArticleScraper;
 import newsonthego.utilities.UI;
 
+
+
 import java.io.IOException;
 import java.nio.file.Path;
 import java.util.ArrayList;
@@ -31,13 +33,16 @@ public class NewsOnTheGo {
     private static final Logger logger = Logger.getLogger("NewsOnTheGo");
     private static final ArrayList<NewsTopic> newsTopics = new ArrayList<>();
     private static final ArrayList<NewsTopic> favouriteTopics = new ArrayList<>();
+
+
+
     private static NewsFile savedNews;
     private static TopicsFile savedTopics;
 
     public enum Command {
 
         HELP, DAILY, GET, TOPICS, FILTER, SAVE, SOURCE, INFO, CLEAR, LOAD, STAR,
-        STARRED, SUGGEST, REMOVE, BACK, BYE, VOID, URL
+        STARRED, HEADLINES, SUGGEST, REMOVE, BACK, BYE, VOID, URL
     }
 
     private static boolean processCommand(String command, String line, List<NewsArticle> list) {
@@ -212,7 +217,7 @@ public class NewsOnTheGo {
      * If an error occurs while saving the article, an error message is displayed.
      *
      * @param line The input line containing the command and index of the news article.
-     * @param list The list of NewsArticle objects from which to retrieve the news article.
+     * @param list The list of NewsArticle object from which to retrieve the news article.
      */
     static void saveNewsFromList(String line, List<NewsArticle> list) {
         String[] split = line.split(" ");

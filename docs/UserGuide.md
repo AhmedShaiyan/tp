@@ -30,7 +30,7 @@ This guide will help you get started with using NewsOnTheGo and understand its f
 Shows all the commands available and their brief description.
 
 #### Format: `help`
-![img.png](images/helpImg.png)
+![img_1.png](img_1.png)
 
 
 ### Find articles on a particular day: `daily`
@@ -85,7 +85,6 @@ Stars a topic to add it to your list of favorite topics.
 - `star Science`  
 - `star Sports`
 
-![img.png](images/starImg1.png)
 
 
 ### Remove a topic: `remove`

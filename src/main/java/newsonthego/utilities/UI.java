@@ -42,7 +42,9 @@ public class UI {
             i++;
         }
     }
-
+    public static void printUnknownCommand() {
+        System.out.println("I'm sorry, but I don't recognize that command. Please try again.");
+    }
     public static void printInvalidDateFormatMessage() {
         System.out.println("Date format is invalid! \n" +
                 "The date format is: \n" +
@@ -113,7 +115,7 @@ public class UI {
     }
 
     public static void printHelpMessage() {
-        System.out.println(
+        System.out.println( "Here is a list of commands and functions for your reference:\n" +
                 "+------------+----------------------------------------------------------+" +
                         "---------------------------------+\n" +
                         "| Command    | Description                                                " +
@@ -134,6 +136,8 @@ public class UI {
                         "        | `remove business`    |\n" +
                         "| `URL`      | Gives the URL of the article.                               " +
                         "        | `url 2`              |\n" +
+                        "| `HEADLINES`| Returns article headlines directly from the list            " +
+                        "        | `headlines 10`       |\n" +
                         "| `GET`      | Details of a specific article.                              " +
                         "        | `get 3`              |\n" +
                         "| `INFO`     | Information on article's importance, reliability, bias.     " +
