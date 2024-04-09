@@ -62,7 +62,9 @@ public class DailyNewsCommandTest {
     @Test
     public void noArticlesFoundTest() {
         String input = "daily 10 03 2022";
-        String expected = "Nothing is found on this day: October 03, 2022" + System.lineSeparator();
+        String expected = "____________________________________________________________\n" + System.lineSeparator()+
+                "Nothing is found on this day: October 03, 2022" +  System.lineSeparator() +
+                "____________________________________________________________\n" + System.lineSeparator();
 
         DailyNewsCommand command = new DailyNewsCommand(input, newsArticles);
         List<NewsArticle> outputHeadlines = command.getArticlesOfTheDay();
