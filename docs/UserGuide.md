@@ -72,7 +72,7 @@ Removes a topic from your list of favorite topics.
 Format: `remove TOPIC`
 
 Example:
-`remove  Technology`
+`remove Technology`
 
 ### Suggesting articles: `suggest`
 
@@ -93,6 +93,13 @@ Example:
 Displays all saved news articles from the saved articles text file.
 
 Format: `load`
+
+### Filtering the list of news: `filter`
+Filters the list of news articles based on the user's input.
+
+Format: `filter {topic index}`
+Example:
+`filter 1`
 
 ### Returning to the previous menu or list: `back`
 Returns from a filtered list of news or the saved news window to the main list of articles.
