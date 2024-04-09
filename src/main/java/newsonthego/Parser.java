@@ -10,115 +10,122 @@ import newsonthego.utilities.UI;
 
 import java.util.List;
 
+import static newsonthego.NewsOnTheGo.suggestArticle;
+
 public class Parser {
-    private static final String INDENT = "    ";
-    private static int topic = -1;
+    public static final String INDENT = "    ";
+    public static int topic = -1;
 
     public static void handleCommand(String command, String line,
                                      List<NewsArticle> list, List<NewsTopic> topics, List<NewsTopic> favouriteTopics) {
+        NewsOnTheGo.Command commandEnum = null;
+
         try {
-            NewsOnTheGo.Command commandEnum = NewsOnTheGo.Command.valueOf(command.toUpperCase());
-            switch (commandEnum) {
-                case HELP:
-                    UI.printHelpMessage();
-                    break;
-                case DAILY:
-                    new DailyNewsCommand(line, list);
-                    break;
-                case GET:
-                    // If there's a current topic, use its article list; otherwise, use the main list
-                    if (topic >= 0) {
-                        NewsOnTheGo.getNews(line, topics.get(topic).getRelatedNewsArticles());
-                    } else {
-                        NewsOnTheGo.getNews(line, list);
-                    }
-                    break;
-                case TOPICS:
-                    UI.printAllTopics(topics);
-                    break;
-                case HEADLINES:
-                    ShowHeadlines.showHeadlines(line);
-                    break;
-                case STAR:
-                    NewsOnTheGo.starTopic(line, topics, favouriteTopics);
-                    break;
-                case STARRED:
-                    UI.printFavouriteTopics(favouriteTopics);
-                    break;
-                case SUGGEST:
-                    try {
-                        NewsOnTheGo.suggestArticle(line);
-                    } catch (NewsOnTheGoExceptions e) {
-                        System.out.println(e.getMessage());
-                    }
-                    break;
-                case REMOVE:
-                    NewsOnTheGo.removeStarredTopic(line, favouriteTopics);
-                    break;
-                case FILTER:
-                    topic = NewsOnTheGo.filterNews(line);
-                    break;
-                case SAVE:
-                    if (topic >= 0) {
-                        NewsOnTheGo.saveNewsFromList(line, topics.get(topic).getRelatedNewsArticles());
-                    } else {
-                        NewsOnTheGo.saveNewsFromList(line, list);
-                    }
-                    break;
-                case LOAD:
-                    NewsOnTheGo.loadAndDisplaySavedNews();
-                    break;
-                case CLEAR:
-                    NewsOnTheGo.clearSavedNews();
-                    break;
-                case URL:
-                    URLCommand.printArticleURL(line, list);
-                    break;
-                case SOURCE:
-                    if (topic >= 0) {
-                        GetNewsSourceCommand.getNewsSource(line, topics.get(topic).getRelatedNewsArticles());
-                    } else {
-                        GetNewsSourceCommand.getNewsSource(line, list);
-                    }
-                    break;
-                case INFO:
-                    if (topic >= 0) {
-                        InfoNewsCommand.printNewsInfo(line, topics.get(topic).getRelatedNewsArticles());
-                    } else {
-                        InfoNewsCommand.printNewsInfo(line, list);
-                    }
-                    break;
-                case BACK:
-                    if (topic >= 0) {
-                        System.out.println("You have exited the list of articles in " + topics.get(topic).getTopicName() + "\n" +
-                                "Currently in access to the main list of articles");
-                        topic = -1;
-                    } else {
-                        System.out.println("You are already in access to the main list of articles, back command is invalid :(");
-                    }
-                    break;
-                case BYE:
-                    UI.printBye();
-                    break;
-                default:
-                    UI.printConfused();
-                    break;
-            }
+            commandEnum = NewsOnTheGo.Command.valueOf(command.toUpperCase());
         } catch (IllegalArgumentException e) {
-            UI.printUnknownCommand();
+            commandEnum = NewsOnTheGo.Command.VOID;
+        }
+        switch (commandEnum) {
+        case HELP:
+            UI.printHelpMessage();
+            break;
+        case DAILY:
+            new DailyNewsCommand(line, list);
+            break;
+        case GET:
+            if (topic >= 0) { //save using index based on the current topic list shown to user
+                NewsOnTheGo.getNews(line, topics.get(topic).getRelatedNewsArticles());
+            } else {
+                NewsOnTheGo.getNews(line, list);
+            }
+            break;
+        case TOPICS:
+            UI.printAllTopics(topics);
+            break;
+        case HEADLINES:
+            ShowHeadlines.showHeadlines(line);
+            break;
+            case STAR:
+            NewsOnTheGo.starTopic(line, topics, favouriteTopics);
+            break;
+        case STARRED:
+            UI.printFavouriteTopics(favouriteTopics);
+            break;
+        case SUGGEST:
+            try {
+                suggestArticle(line);
+            } catch (NewsOnTheGoExceptions e) {
+                System.out.println(e.getMessage());
+            }
+            break;
+        case REMOVE:
+            NewsOnTheGo.removeStarredTopic(line, favouriteTopics);
+            break;
+        case FILTER:
+            topic = NewsOnTheGo.filterNews(line);
+            break;
+        case SAVE:
+            if (topic >= 0) { //save using index based on the current topic list shown to user
+                NewsOnTheGo.saveNewsFromList(line, topics.get(topic).getRelatedNewsArticles());
+            } else {
+                NewsOnTheGo.saveNewsFromList(line, list);
+            }
+            break;
+        case LOAD:
+            NewsOnTheGo.loadAndDisplaySavedNews();
+            break;
+        case CLEAR:
+            NewsOnTheGo.clearSavedNews();
+            break;
+        case URL:
+            URLCommand.printArticleURL(line, list);
+            break;
+        case SOURCE:
+            if (topic >= 0) { //find source of news using index based on the current topic list shown to user
+                GetNewsSourceCommand.getNewsSource(line, topics.get(topic).getRelatedNewsArticles());
+            } else {
+                GetNewsSourceCommand.getNewsSource(line, list);
+            }
+            break;
+        case INFO:
+            if (topic >= 0) { //display info of news using index based on the current topic list shown to user
+                InfoNewsCommand.printNewsInfo(line, topics.get(topic).getRelatedNewsArticles());
+            } else {
+                InfoNewsCommand.printNewsInfo(line, list);
+            }
+            break;
+        case BACK:
+            if (topic >= 0) {
+                System.out.println("You have exited the list of articles in " +topics.get(topic).getTopicName()+ "\n" +
+                        "Currently in access to the main list of articles");
+                topic = -1;
+            } else {
+                System.out.println("You are already in access to the main list of articles, " +
+                        "back command is invalid :(");
+            }
+            break;
+        case BYE:
+            UI.printBye();
+            break;
+        case VOID:
+            // fall through
+        default:
+            UI.printConfused();
+            break;
         }
     }
 
-    public static String parseToText(NewsArticle article) {
+    public static String parseToText (NewsArticle article) {
         String headline = article.getHeadline();
         String url = article.getUrl();
         String author = article.getAuthor();
         String date = article.getDate();
         String source = article.getSource();
 
-        return headline + "\n" +
-                INDENT + "URL: " + url + "\n" +
+        return (headline + "\n" +
+                INDENT + "URL: "+ url + "\n" +
                 INDENT + "By: " + author + INDENT + "On: " + date + "\n" +
-                INDENT + source + "\n";
+                INDENT + source + "\n");
+
     }
 }
