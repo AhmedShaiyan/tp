@@ -90,11 +90,11 @@ public class Parser {
             break;
         case BACK:
             if (topic >= 0) {
-                System.out.println("You have exited the list of articles in " +topics.get(topic).getTopicName()+ "\n" +
+                printMessage("You have exited the list of articles in " +topics.get(topic).getTopicName()+ "\n" +
                         "Currently in access to the main list of articles");
                 topic = -1;
             } else {
-                System.out.println("You are already in access to the main list of articles, " +
+                printMessage("You are already in access to the main list of articles, " +
                         "back command is invalid :(");
             }
             break;
