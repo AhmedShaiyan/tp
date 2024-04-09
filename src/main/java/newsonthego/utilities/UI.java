@@ -12,6 +12,7 @@ import static newsonthego.storage.NewsFile.SAVED_NEWS_PATH;
 
 public class UI {
     public static final String INVALID_ARTICLE_INDEX_MESSAGE = "Please provide a valid article index!!";
+    public static final String INDENT = "    ";
     private static final Logger logger = Logger.getLogger("NewsOnTheGo");
     public static void initializeUI(Scanner in) {
         logger.log(Level.INFO, "Starting NewsOnTheGo");
@@ -104,21 +105,33 @@ public class UI {
     public static void printHelpMessage() {
         System.out.println("Thank you for using News On The Go! \n" +
                 "Refer to below for commands and functions: \n" +
-                "DAILY [date] - gives articles published on a specific date \n" +
-                "e.g. daily 10 March 2024 \n" +
-                "TOPICS - gives a comprehensive list of topics that the articles are classified by \n" +
-                "FILTER [topic index] - gives a list of articles related to the specified topic \n" +
-                "e.g. filter politics \n" +
-                "STAR [topic index] - bookmarks a topic as favourite \n" +
-                "e.g. star business \n" +
-                "STARRED - gives the list of bookmarked topics \n" +
-                "REMOVE [topic index] - removes a topic from the bookmarked list \n" +
-                "GET [article number] - gives all the details relating to a specific article \n" +
-                "INFO [article number] - gives the information on the importance, reliability and bias of an article \n"
-                + "SOURCE [article number] - gives the source of the article \n" +
-                "SAVE [article number] - saves the specified article into a reading list \n" +
-                "LOAD - displays the list of saved articles \n" +
-                "CLEAR - clears the current list of saved articles \n" +
+                "DAILY [date]\n" +
+                INDENT + "- gives articles published on a specific date \n" +
+                INDENT + "e.g. daily 10 March 2024 \n" +
+                "TOPICS\n" +
+                INDENT + "- gives a comprehensive list of topics that the articles are classified by \n" +
+                "FILTER [topic index]\n" +
+                INDENT + "- gives a list of articles related to the specified topic \n" +
+                INDENT + "e.g. filter politics \n" +
+                "STAR [topic index]\n" +
+                INDENT + "- bookmarks a topic as favourite \n" +
+                INDENT + "e.g. star business \n" +
+                "STARRED\n" +
+                INDENT + "- gives the list of bookmarked topics \n" +
+                "REMOVE [topic index]" +
+                INDENT + "- removes a topic from the bookmarked list \n" +
+                "GET [article number]\n" +
+                INDENT + "- gives all the details relating to a specific article \n" +
+                "INFO [article number]\n" +
+                INDENT + "- gives the information on the importance, reliability and bias of an article \n"
+                + "SOURCE [article number]\n" +
+                INDENT + "- gives the source of the article \n" +
+                "SAVE [article number]\n" +
+                INDENT + "- saves the specified article into a reading list \n" +
+                "LOAD\n" +
+                INDENT + "- displays the list of saved articles \n" +
+                "CLEAR\n" +
+                INDENT + "- clears the current list of saved articles \n" +
                 "\n" +
                 "enjoy reading :))");
     }

@@ -9,10 +9,10 @@ import newsonthego.newstopic.NewsTopic;
 import newsonthego.utilities.UI;
 
 import static newsonthego.NewsOnTheGo.suggestArticle;
+import static newsonthego.utilities.UI.INDENT;
 
 
 public class Parser {
-    public static final String INDENT = "    ";
     public static int topic = -1;
 
     public static void handleCommand(String command, String line,
