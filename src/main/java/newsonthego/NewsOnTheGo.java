@@ -37,15 +37,29 @@ public class NewsOnTheGo {
     public enum Command {
 
         HELP, DAILY, GET, TOPICS, FILTER, SAVE, SOURCE, INFO, CLEAR, LOAD, STAR,
-        STARRED, SUGGEST, REMOVE, BACK, BYE, VOID
+        STARRED, SUGGEST, REMOVE, BACK, BYE, VOID, URL
     }
 
     private static boolean processCommand(String command, String line, List<NewsArticle> list) {
-        assert !command.isEmpty();
+        // Check for null or empty command
+        if (command == null || command.trim().isEmpty()) {
+            System.out.println("No command entered. Please try again.");
+            return false;
+        }
 
-        Parser.handleCommand(command, line, list, newsTopics, favouriteTopics);
-        return command.equalsIgnoreCase(Command.BYE.toString());
+        try {
+
+            Parser.handleCommand(command.trim(), line, list, newsTopics, favouriteTopics);
+            return command.trim().equalsIgnoreCase(Command.BYE.toString());
+        } catch (IllegalArgumentException e) {
+            System.out.println("Unknown command: '" + command + "'. Please try again.");
+        } catch (Exception e) {
+            // Catch any other unexpected exceptions
+            System.out.println("An error occurred while processing the command: " + e.getMessage());
+        }
+        return false;
     }
+
 
     /**
      * Retrieves and displays the details of a news article from the provided list based on the index specified in the

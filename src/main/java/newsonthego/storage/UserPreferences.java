@@ -8,6 +8,8 @@ import java.util.List;
 import java.util.Random;
 import java.util.stream.Collectors;
 
+import static newsonthego.commands.URLCommand.parseArticleURL;
+
 /**
  * Handles logic for news article suggestions based on favorite topics.
  */
@@ -46,6 +48,8 @@ public class UserPreferences {
                             .append(topic.trim())
                             .append("\n")
                             .append(parseArticleTitle(randomArticle))
+                            .append("\n")
+                            .append("URL: ").append(parseArticleURL(randomArticle))
                             .append("\n\n");
                 } else {
                     suggestions.append("No articles found for the topic: ").append(topic.trim()).append("\n");
@@ -67,4 +71,6 @@ public class UserPreferences {
     private static String parseArticleTitle(String articleLine) {
         return articleLine.split(";")[0];
     }
+
+
 }

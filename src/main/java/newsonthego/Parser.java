@@ -4,10 +4,12 @@ import java.util.List;
 
 import newsonthego.commands.DailyNewsCommand;
 import newsonthego.commands.InfoNewsCommand;
+import newsonthego.commands.URLCommand;
 import newsonthego.newstopic.NewsTopic;
 import newsonthego.utilities.UI;
 
 import static newsonthego.NewsOnTheGo.suggestArticle;
+
 
 public class Parser {
     public static final String INDENT = "    ";
@@ -67,6 +69,9 @@ public class Parser {
         case CLEAR:
             NewsOnTheGo.clearSavedNews();
             break;
+        case URL:
+            URLCommand.printArticleURL(line, list);
+            break;
         case SOURCE:
             if (topic >= 0) { //find source of news using index based on the current topic list shown to user
                 NewsOnTheGo.sourceNews(line, topics.get(topic).getRelatedNewsArticles());
@@ -104,18 +109,15 @@ public class Parser {
 
     public static String parseToText (NewsArticle article) {
         String headline = article.getHeadline();
+        String url = article.getUrl();
         String author = article.getAuthor();
         String date = article.getDate();
         String source = article.getSource();
-        int importance = article.getImportance();
-        int reliability = article.getReliability();
-        int bias = article.getBias();
-        String content = article.getContent();
+
         return (headline + "\n" +
+                INDENT + "URL: "+ url + "\n" +
                 INDENT + "By: " + author + INDENT + "On: " + date + "\n" +
-                INDENT + source + "\n" +
-                INDENT + "| IMPORTANCE: " + importance + " | BIAS: " + bias +
-                " | RELIABILITY: " + reliability + " | \n" +
-                content + "\n");
+                INDENT + source + "\n");
+
     }
 }

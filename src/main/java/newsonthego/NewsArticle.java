@@ -11,8 +11,10 @@ public class NewsArticle {
     protected String content;
     protected boolean isSaved;
 
+    protected String url;
+
     public NewsArticle(String headline, String author, String date, String source, int importance, int reliability,
-                       int bias) {
+                       int bias, String url) {
         this.headline = headline;
         this.author = author;
         this.date = date;
@@ -22,6 +24,7 @@ public class NewsArticle {
         this.bias = bias;
         this.content = null;
         this.isSaved = false;
+        this.url = url;
     }
 
     public String getHeadline() {
@@ -34,6 +37,14 @@ public class NewsArticle {
 
     public String getAuthor() {
         return author;
+    }
+    public String getUrl() {
+
+        return url;
+    }
+
+    public void setUrl(String url) {
+        this.url = url;
     }
 
     public void setAuthor(String author) {

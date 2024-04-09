@@ -34,7 +34,8 @@ public class NewsImporter {
             int importance = Integer.parseInt(split[5].split(" ")[1]);
             int reliability = Integer.parseInt(split[6].split(" ")[1]);
             int bias = Integer.parseInt(split[7].split(" ")[1]);
-            NewsArticle newsArticle = new NewsArticle(headline, author, date, source, importance, reliability, bias);
+            NewsArticle newsArticle = new NewsArticle(headline, author, date, source, importance, reliability, bias,
+                    url);
             list.add(newsArticle);
             //identify related topic to the article
             String topic = split[8];
