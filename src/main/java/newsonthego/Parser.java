@@ -2,10 +2,7 @@ package newsonthego;
 
 import java.util.List;
 
-import newsonthego.commands.DailyNewsCommand;
-import newsonthego.commands.InfoNewsCommand;
-import newsonthego.commands.GetNewsSourceCommand;
-import newsonthego.commands.URLCommand;
+import newsonthego.commands.*;
 import newsonthego.newstopic.NewsTopic;
 import newsonthego.utilities.UI;
 
@@ -42,7 +39,10 @@ public class Parser {
         case TOPICS:
             UI.printAllTopics(topics);
             break;
-        case STAR:
+        case LIST:
+            ShowListCommand.showList(line);
+            break;
+            case STAR:
             NewsOnTheGo.starTopic(line, topics, favouriteTopics);
             break;
         case STARRED:

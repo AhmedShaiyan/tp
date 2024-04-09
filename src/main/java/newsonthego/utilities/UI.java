@@ -113,7 +113,7 @@ public class UI {
     }
 
     public static void printHelpMessage() {
-        System.out.println(
+        System.out.println( "Here is a list of commands and functions for your reference:\n" +
                 "+------------+----------------------------------------------------------+" +
                         "---------------------------------+\n" +
                         "| Command    | Description                                                " +
@@ -134,6 +134,8 @@ public class UI {
                         "        | `remove business`    |\n" +
                         "| `URL`      | Gives the URL of the article.                               " +
                         "        | `url 2`              |\n" +
+                        "| `LIST`     | Returns article headlines directly from the list            " +
+                        "        | `list 10`            |\n" +
                         "| `GET`      | Details of a specific article.                              " +
                         "        | `get 3`              |\n" +
                         "| `INFO`     | Information on article's importance, reliability, bias.     " +

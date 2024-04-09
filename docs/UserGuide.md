@@ -30,7 +30,7 @@ This guide will help you get started with using NewsOnTheGo and understand its f
 Shows all the commands available and their brief description.
 
 #### Format: `help`
-![img.png](images/helpImg.png)
+![img.png](img.png)
 
 
 ### Find articles on a particular day: `daily`
