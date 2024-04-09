@@ -212,7 +212,7 @@ public class NewsOnTheGo {
      * If an error occurs while saving the article, an error message is displayed.
      *
      * @param line The input line containing the command and index of the news article.
-     * @param list The list of NewsArticle objects from which to retrieve the news article.
+     * @param list The list of NewsArticle object from which to retrieve the news article.
      */
     static void saveNewsFromList(String line, List<NewsArticle> list) {
         String[] split = line.split(" ");
