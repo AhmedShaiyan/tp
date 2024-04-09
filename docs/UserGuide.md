@@ -1,4 +1,6 @@
- # ![img.png](img.png) NewsOnTheGo User Guide
+![img.png](img.png) 
+
+# NewsOnTheGo User Guide
 
 NewsOnTheGo is a command-line application (CLI) that helps users stay up-to-date with the latest news articles by 
 providing users with a list of the current headlines. 
