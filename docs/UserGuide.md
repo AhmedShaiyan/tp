@@ -84,6 +84,11 @@ Displays all saved news articles from the saved articles text file.
 
 Format: `load`
 
+### Get source of article: `source`
+Displays the source of the article.
+
+Format: `source {index of article on displayed list}`
+
 ### Returning to the previous menu or list: `back`
 Returns from a filtered list of news or the saved news window to the main list of articles.
 
