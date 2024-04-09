@@ -265,7 +265,7 @@ public class NewsOnTheGo {
      *
      * @param line The complete input line containing the command, expected to be "suggest".
      * @throws NewsOnTheGoExceptions If the input command is invalid or incorrectly formatted. This exception is thrown
-     * to indicate that the input should strictly be "suggest" without any additional arguments.
+     *     to indicate that the input should strictly be "suggest" without any additional arguments.
      */
     static void suggestArticle(String line) throws NewsOnTheGoExceptions {
         String[] parts = line.trim().split("\\s+");
