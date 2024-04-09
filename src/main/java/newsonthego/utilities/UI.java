@@ -102,44 +102,43 @@ public class UI {
 
     public static void printHelpMessage() {
         System.out.println(
-                "+------------+------------------------------------------------------------" +
-                        "------------------------+--------------------------------+\n" +
-                        "| Command    | Description                                   " +
-                        "                                     | Example                        |\n" +
-                        "+------------+----------------------------------------------------" +
-                        "--------------------------------+--------------------------------+\n" +
-                        "| `DAILY`    | Gives articles published" +
-                        " on a specific date.                                       | `daily 10 March 2024`          |\n" +
-                        "| `TOPICS`   | Gives a comprehensive " +
-                        "list of topics that the articles are classified by.          | `topics`                       |\n" +
-                        "| `FILTER`   | Gives a list of articles " +
-                        "related to the specified topic.                           | `filter politics`              |\n" +
-                        "| `STAR`     | Bookmarks a topic as a " +
-                        "favorite.                                                   | `star business`                |\n" +
-                        "| `STARRED`  | Gives the list of bookmarked" +
-                        " topics.                                               | `starred`                      |\n" +
-                        "| `REMOVE`   | Removes a topic from the bookmarked" +
-                        " list.                                          | `remove business`              |\n" +
-                        "| `URL`      | Gives the url of the article        " +
-                        "                                               | `url 2`                        |\n" +
-                        "| `GET`      | Gives all the details relating to a specific" +
-                        " article.                              | `get 3`                        |\n" +
-                        "| `INFO`     | Gives the information on the importance, reliability" +
-                        ", and bias of an article.      | `info 3`                       |\n" +
-                        "| `SOURCE`   | Gives the source of the article.         " +
-                        "                                          | `source 3`                     |\n" +
-                        "| `SAVE`     | Saves the specified article into a reading list.    " +
-                        "                               | `save 3`                       |\n" +
-                        "| `LOAD`     | Displays the list of saved articles.      " +
-                        "                                         | `load`                         |\n" +
-                        "| `SUGGEST`  | Suggest random articles based on the user's bookmarked topics.  " +
-                        "                   | `suggest`                      |\n" +
-                        "| `CLEAR`    | Clears the current list of saved articles.      " +
-                        "                                   | `clear`                        |\n" +
-                        "+------------+---------------------------------------" +
-                        "---------------------------------------------+--------------------------------+\n" +
-                        "Thank you for using News On The Go! \n" +
-                        "Enjoy reading :))"
+                "+------------+----------------------------------------------------------+" +
+                        "---------------------------------+\n" +
+                        "| Command    | Description                                                " +
+                        "         | Example              |\n" +
+                        "+------------+----------------------------------------------------------+" +
+                        "---------------------------------+\n" +
+                        "| `DAILY`    | Gives articles published on a specific date.               " +
+                        "         | `daily 10 March 2024`|\n" +
+                        "| `TOPICS`   | Lists topics the articles are classified by.               " +
+                        "         | `topics`             |\n" +
+                        "| `FILTER`   | Lists articles related to a specified topic.               " +
+                        "         | `filter politics`    |\n" +
+                        "| `STAR`     | Bookmarks a topic as favorite.                              " +
+                        "        | `star business`      |\n" +
+                        "| `STARRED`  | Shows list of bookmarked topics.                            " +
+                        "        | `starred`            |\n" +
+                        "| `REMOVE`   | Removes a topic from bookmarked list.                       " +
+                        "        | `remove business`    |\n" +
+                        "| `URL`      | Gives the URL of the article.                               " +
+                        "        | `url 2`              |\n" +
+                        "| `GET`      | Details of a specific article.                              " +
+                        "        | `get 3`              |\n" +
+                        "| `INFO`     | Information on article's importance, reliability, bias.     " +
+                        "        | `info 3`             |\n" +
+                        "| `SOURCE`   | Gives the source of the article.                            " +
+                        "        | `source 3`           |\n" +
+                        "| `SAVE`     | Saves article into a reading list.                          " +
+                        "        | `save 3`             |\n" +
+                        "| `LOAD`     | Displays list of saved articles.                            " +
+                        "        | `load`               |\n" +
+                        "| `SUGGEST`  | Suggests articles based on bookmarked topics.               " +
+                        "        | `suggest`            |\n" +
+                        "| `CLEAR`    | Clears the saved articles list.                             " +
+                        "        | `clear`              |\n" +
+                        "+------------+---------------------------------------------------------+" +
+                        "----------------------------------+\n" +
+                        "Thank you for using News On The Go! Enjoy reading :))"
         );
 
     }
