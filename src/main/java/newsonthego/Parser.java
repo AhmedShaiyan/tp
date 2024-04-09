@@ -4,6 +4,7 @@ import java.util.List;
 
 import newsonthego.commands.DailyNewsCommand;
 import newsonthego.commands.InfoNewsCommand;
+import newsonthego.commands.GetNewsSourceCommand;
 import newsonthego.commands.URLCommand;
 import newsonthego.newstopic.NewsTopic;
 import newsonthego.utilities.UI;
@@ -48,7 +49,11 @@ public class Parser {
             UI.printFavouriteTopics(favouriteTopics);
             break;
         case SUGGEST:
-            suggestArticle();
+            try {
+                suggestArticle(line);
+            } catch (NewsOnTheGoExceptions e) {
+                System.out.println(e.getMessage());
+            }
             break;
         case REMOVE:
             NewsOnTheGo.removeStarredTopic(line, favouriteTopics);
@@ -74,9 +79,9 @@ public class Parser {
             break;
         case SOURCE:
             if (topic >= 0) { //find source of news using index based on the current topic list shown to user
-                NewsOnTheGo.sourceNews(line, topics.get(topic).getRelatedNewsArticles());
+                GetNewsSourceCommand.getNewsSource(line, topics.get(topic).getRelatedNewsArticles());
             } else {
-                NewsOnTheGo.sourceNews(line, list);
+                GetNewsSourceCommand.getNewsSource(line, list);
             }
             break;
         case INFO:
@@ -97,12 +102,12 @@ public class Parser {
             }
             break;
         case BYE:
-            System.out.println("Bye. Hope to see you again soon!");
+            UI.printBye();
             break;
         case VOID:
             // fall through
         default:
-            System.out.println("I'm sorry, but I don't know what that means :-(");
+            UI.printConfused();
             break;
         }
     }
