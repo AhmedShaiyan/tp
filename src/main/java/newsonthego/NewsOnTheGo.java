@@ -81,7 +81,6 @@ public class NewsOnTheGo {
         }
     }
 
-
     public static void saveFavoriteTopics() {
         try {
             List<String> topicNames = favouriteTopics.stream()
@@ -158,23 +157,23 @@ public class NewsOnTheGo {
     public static void starTopic(String line, List<NewsTopic> newsTopics, List<NewsTopic> favouriteTopics) {
         String topicNameToStar = line.substring(4).trim();
         if (topicNameToStar.isEmpty()) {
-            System.out.println("Please provide a topic to add to your favourites.");
+            printMessage("Please provide a topic to add to your favourites.");
             return;
         }
         long count = favouriteTopics.stream()
                 .filter(topic -> topic.getTopicName().equalsIgnoreCase(topicNameToStar))
                 .count();
         if (count > 0) {
-            System.out.println(topicNameToStar + " is already in your list of favourite topics.");
+            printMessage(topicNameToStar + " is already in your list of favourite topics.");
             return;
         }
         int topicIndex = findTopicIndex(topicNameToStar, newsTopics);
         if (topicIndex < 0) {
-            System.out.println("Sorry, this topic is not available right now :(");
+            printMessage("Sorry, this topic is not available right now :(");
         } else {
             favouriteTopics.add(newsTopics.get(topicIndex));
             saveFavoriteTopics();
-            System.out.println(topicNameToStar + " has been added to your list of favourite topics.");
+            printMessage(topicNameToStar + " has been added to your list of favourite topics.");
         }
     }
 
@@ -191,17 +190,17 @@ public class NewsOnTheGo {
     public static void removeStarredTopic(String line, List<NewsTopic> favouriteTopics) {
         String topicToRemove = line.substring(6).trim();
         if (topicToRemove.isEmpty()) {
-            System.out.println("Please provide a topic to remove from your favourites.");
+            printMessage("Please provide a topic to remove from your favourites.");
             return;
         }
 
         boolean removed = favouriteTopics.removeIf(topic -> topic.getTopicName().equalsIgnoreCase(topicToRemove));
 
         if (removed) {
-            System.out.println(topicToRemove + " has been removed from your list of favourite topics");
+            printMessage(topicToRemove + " has been removed from your list of favourite topics");
             saveFavoriteTopics(); // Save the updated favorite topics list to file
         } else {
-            System.out.println("Topic is not found in favourites");
+            printMessage("Topic is not found in favourites");
         }
     }
 
@@ -241,29 +240,31 @@ public class NewsOnTheGo {
         try {
             lines = Files.readAllLines(Paths.get(savedNews.getPathName()));
         } catch (IOException e) {
-            System.out.println("An error occurred while reading the save file: " + e.getMessage());
+            printMessage("An error occurred while reading the save file: " + e.getMessage());
             return;
         }
 
         if (lines.isEmpty()) {
-            System.out.println("No saved news articles to display.");
+            printMessage("No saved news articles to display.");
             return;
         }
 
+        printLine();
         System.out.println("Displaying saved news articles:");
+        printEmptyLine();;
         for (String line : lines) {
-
-            System.out.println(line);
+            System.out.println(INDENT + line);
         }
+        printLine();
     }
 
 
     static void suggestArticle() {
         String suggestions = UserPreferences.getSuggestedArticlesFromFavoriteTopics();
         if (suggestions == null || suggestions.isEmpty()) {
-            System.out.println("No suggestions available at the moment.");
+            printMessage("No suggestions available at the moment.");
         } else {
-            System.out.println(suggestions);
+            printMessage(suggestions);
         }
     }
 

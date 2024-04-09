@@ -59,9 +59,9 @@ public class NewsFile {
         try {
             FileWriter fw = new FileWriter(pathName);
             fw.close();
-            System.out.println("File cleared successfully!");
+            printMessage("File cleared successfully!");
         } catch (IOException e) {
-            System.out.println("Error occurred while clearing the file: " + e.getMessage());
+            printMessage("Error occurred while clearing the file: " + e.getMessage());
         }
     }
 }

@@ -50,7 +50,7 @@ public class UserPreferences {
                             .append(parseArticleTitle(randomArticle))
                             .append("\n")
                             .append("URL: ").append(parseArticleURL(randomArticle))
-                            .append("\n\n");
+                            .append("\n");
                 } else {
                     suggestions.append("No articles found for the topic: ").append(topic.trim()).append("\n");
                 }

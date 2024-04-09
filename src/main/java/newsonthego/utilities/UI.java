@@ -128,11 +128,14 @@ public class UI {
 
     public static void printFavouriteTopics(List<NewsTopic> favouriteTopics) {
         if (favouriteTopics.size() <= 0) {
-            System.out.println("You do not have any favourite topics. \n" +
+            printMessage("You do not have any favourite topics. \n" +
                     "Use the command 'star [topic name]' to add a topic to your favourites.");
+        } else {
+            printLine();
+            System.out.println("Here is the list of your favourite topics: ");
+            printTopics(favouriteTopics);
+            printLine();
         }
-        System.out.println("Here is the list of your favourite topics: ");
-        printTopics(favouriteTopics);
     }
 
     public static void printBye() {
