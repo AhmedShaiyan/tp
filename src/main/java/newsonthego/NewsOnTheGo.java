@@ -257,9 +257,10 @@ public class NewsOnTheGo {
 
 
     /**
-     * Processes the "suggest" command to provide news article suggestions based on the user's favorite topics.
-     * This method parses the input line to ensure it strictly contains the "suggest" command without any additional arguments.
-     * It then retrieves suggestions from the user's favorite topics. If suggestions are found, they are printed to the console;
+     * This method parses the input line to ensure it strictly contains the "suggest" command
+     * without any additional arguments.
+     * It then retrieves suggestions from the article list based on the  user's favorite topics.
+     * If suggestions are found, they are printed to the console;
      * otherwise, a message indicating no suggestions are available is displayed.
      *
      * @param line The complete input line containing the command, expected to be "suggest".
