@@ -221,18 +221,18 @@ public class NewsOnTheGo {
         try {
             int index = Integer.parseInt(split[1]) - 1;
             if (list.get(index).isSaved()) {
-                System.out.println(list.get(index).getHeadline() + " has already been saved! \n" +
+                printMessage(list.get(index).getHeadline() + " has already been saved! \n" +
                         "find your saved articles at " + savedNews.getPathName());
             } else {
                 try {
                     NewsFile.saveNews(list.get(index));
                     list.get(index).setSaved(true);
                 } catch (IOException e) {
-                    System.out.println("An error occurred while appending text to the file: " + e.getMessage());
+                    printMessage("An error occurred while appending text to the file: " + e.getMessage());
                 }
             }
         } catch (IndexOutOfBoundsException | NumberFormatException e) {
-            System.out.println(UI.INVALID_ARTICLE_INDEX_MESSAGE);
+            printMessage(UI.INVALID_ARTICLE_INDEX_MESSAGE);
         }
     }
 
