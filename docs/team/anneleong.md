@@ -5,11 +5,12 @@ Refer to code contributed [here](https://nus-cs2113-ay2324s2.github.io/tp-dashbo
 
 ### Contributions to Documentation
 
+- About Us
+  - Added in hyperlinks to teammates' github accounts and Project Portfolio Page
 - User Guide
 - Developers' Guide
   - Added Implementation Details for Topic and Filter Feature
   - Added sequence Diagrams to supplement explanations under Topic and Filter Feature
-
 
 ### Contributions to Team-Based Tasks
 

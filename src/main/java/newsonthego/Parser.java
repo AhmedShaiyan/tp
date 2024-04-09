@@ -50,7 +50,11 @@ public class Parser {
             UI.printFavouriteTopics(favouriteTopics);
             break;
         case SUGGEST:
-            suggestArticle();
+            try {
+                suggestArticle(line);
+            } catch (NewsOnTheGoExceptions e) {
+                System.out.println(e.getMessage());
+            }
             break;
         case REMOVE:
             NewsOnTheGo.removeStarredTopic(line, favouriteTopics);

@@ -259,9 +259,25 @@ public class NewsOnTheGo {
     }
 
 
-    static void suggestArticle() {
+    /**
+     * This method parses the input line to ensure it strictly contains the "suggest" command
+     * without any additional arguments.
+     * It then retrieves suggestions from the article list based on the  user's favorite topics.
+     * If suggestions are found, they are printed to the console;
+     * otherwise, a message indicating no suggestions are available is displayed.
+     *
+     * @param line The complete input line containing the command, expected to be "suggest".
+     * @throws NewsOnTheGoExceptions If the input command is invalid or incorrectly formatted. This exception is thrown
+     *     to indicate that the input should strictly be "suggest" without any additional arguments.
+     */
+    static void suggestArticle(String line) throws NewsOnTheGoExceptions {
+        String[] parts = line.trim().split("\\s+");
+        if (parts.length != 1 || !parts[0].equalsIgnoreCase("suggest")) {
+            throw new NewsOnTheGoExceptions("Invalid command. To get suggestions, simply type 'suggest'.");
+        }
+
         String suggestions = UserPreferences.getSuggestedArticlesFromFavoriteTopics();
-        if (suggestions == null || suggestions.isEmpty()) {
+        if (suggestions.isEmpty()) {
             printMessage("No suggestions available at the moment.");
         } else {
             printMessage(suggestions);
