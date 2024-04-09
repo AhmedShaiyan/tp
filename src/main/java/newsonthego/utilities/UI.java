@@ -100,6 +100,18 @@ public class UI {
         printTopics(favouriteTopics);
     }
 
+    public static void printBye() {
+        System.out.println("Bye! Hope to see you again soon!");
+    }
+
+    public static void printConfused() {
+        System.out.println("I'm sorry, I don't understand what you mean :(");
+    }
+
+    public static void printInitialPrompt() {
+        System.out.println("What do you want from me?");
+    }
+
     public static void printHelpMessage() {
         System.out.println("Thank you for using News On The Go! \n" +
                 "Refer to below for commands and functions: \n" +
