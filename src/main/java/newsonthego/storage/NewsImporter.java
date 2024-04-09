@@ -31,14 +31,11 @@ public class NewsImporter {
             String date = split[2];
             String source = split[3];
             String url = split[4];
-            int importance = Integer.parseInt(split[5].split(" ")[1]);
-            int reliability = Integer.parseInt(split[6].split(" ")[1]);
-            int bias = Integer.parseInt(split[7].split(" ")[1]);
-            NewsArticle newsArticle = new NewsArticle(headline, author, date, source, importance, reliability, bias,
-                    url);
+            String content = split[5];
+            NewsArticle newsArticle = new NewsArticle(headline, author, date, source, url, content);
             list.add(newsArticle);
             //identify related topic to the article
-            String topic = split[8];
+            String topic = split[6];
             boolean topicFound = false;
             //checks against current list of topics
             //if topic is recurring, adds article to the current topic list

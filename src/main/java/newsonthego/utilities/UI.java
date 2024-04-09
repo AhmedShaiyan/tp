@@ -52,9 +52,9 @@ public class UI {
         System.out.println(LINE);
     }
 
-    public static void printMessage(String Message) {
+    public static void printMessage(String message) {
         printLine();
-        System.out.println(Message);
+        System.out.println(message);
         printLine();
     }
 
