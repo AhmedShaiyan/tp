@@ -10,3 +10,13 @@ null
     By: Sarah Davis    On: March 14, 2024
     TechCrunch
 
+"Scientists Discover New Species of Butterfly in the Amazon"
+    URL: https://www.example.com/science/butterfly-discovery
+    By: John Smith    On: March 10, 2024
+    Nature News
+
+"Political Tensions Rise in Region X Following Border Dispute"
+    URL: https://www.example.com/politics/border-dispute
+    By: Samantha Lee    On: March 12, 2024
+    The Guardian
+
