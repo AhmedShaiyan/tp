@@ -47,6 +47,11 @@ public class DailyNewsCommand {
         }
         String date = splitInput[dateindex];
 
+        if (date.split(" ").length != 3) {
+            printInvalidDateFormatMessage();
+            return;
+        }
+
         String formattedDate = formatFromUser(date);
 
         if (formattedDate == null) {
