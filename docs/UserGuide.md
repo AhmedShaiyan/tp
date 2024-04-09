@@ -106,6 +106,11 @@ Exits the application.
 
 Format: `bye`
 
+## Known Issues
+1. When keying in floating point values to `daily` function, the parser is unable to parse in the daily function. Take 
+note by keying in integers only. Make sure the integer do not exceed the size of an integer too.
+
+
 ## Command Summary
 
 | Commands    | Format, Examples                       |

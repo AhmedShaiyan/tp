@@ -48,7 +48,6 @@ public class NewsOnTheGo {
         }
 
         try {
-
             Parser.handleCommand(command.trim(), line, list, newsTopics, favouriteTopics);
             return command.trim().equalsIgnoreCase(Command.BYE.toString());
         } catch (IllegalArgumentException e) {
