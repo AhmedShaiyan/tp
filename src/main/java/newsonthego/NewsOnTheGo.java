@@ -23,6 +23,7 @@ import java.util.stream.Collectors;
 
 
 import static newsonthego.Parser.parseToText;
+import static newsonthego.utilities.UI.printMessage;
 
 
 public class NewsOnTheGo {
@@ -35,13 +36,12 @@ public class NewsOnTheGo {
     private static TopicsFile savedTopics;
 
     public enum Command {
-
         HELP, DAILY, GET, TOPICS, FILTER, SAVE, SOURCE, INFO, CLEAR, LOAD, STAR,
         STARRED, SUGGEST, REMOVE, BACK, BYE, VOID, URL
     }
 
     private static boolean processCommand(String command, String line, List<NewsArticle> list) {
-        assert !command.isEmpty();
+        //assert !command.isEmpty();
 
         Parser.handleCommand(command, line, list, newsTopics, favouriteTopics);
         return command.equalsIgnoreCase(Command.BYE.toString());
@@ -61,7 +61,7 @@ public class NewsOnTheGo {
         String[] split = line.split(" ");
         try {
             int index = Integer.parseInt(split[1]) - 1;
-            System.out.println(parseToText(list.get(index)));
+            printMessage(parseToText(list.get(index)));
         } catch (IndexOutOfBoundsException | NumberFormatException e) {
             System.out.println(UI.INVALID_ARTICLE_INDEX_MESSAGE);
         }
@@ -297,6 +297,7 @@ public class NewsOnTheGo {
 
         Path outputFilePath = Paths.get(outputDirectoryPath, outputFileName);
 
+        //execute news scrapper to obtain updated news
         try {
             if (Files.exists(outputFilePath)) {
                 // File exists, proceed with your logic

@@ -2,6 +2,10 @@ package newsonthego.commands;
 
 import newsonthego.NewsArticle;
 import java.util.List;
+
+import static newsonthego.utilities.UI.INDENT;
+import static newsonthego.utilities.UI.printMessage;
+
 /**
  * This class provides the command to print the URL of a news article.
  */
@@ -26,9 +30,9 @@ public class URLCommand {
             int index = Integer.parseInt(split[1]) - 1;
             NewsArticle article = list.get(index);
             String url = article.getUrl();
-            System.out.println("URL of the article: " + "[Click here](" + url + ")");
+            printMessage("URL of the article: " + "[Click here](" + url + ")");
         } catch (IndexOutOfBoundsException | NumberFormatException e) {
-            System.out.println("Invalid index. Please provide a valid article index.");
+            printMessage("Invalid index. Please provide a valid article index.");
         }
     }
 
@@ -40,7 +44,7 @@ public class URLCommand {
      */
     public static void printArticleURLsForDay(List<NewsArticle> articles) {
         for (NewsArticle article : articles) {
-            System.out.println("URL: " + article.getUrl());
+            System.out.println(INDENT + "URL: " + article.getUrl());
         }
     }
 

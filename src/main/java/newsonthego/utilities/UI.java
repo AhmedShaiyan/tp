@@ -13,6 +13,8 @@ import static newsonthego.storage.NewsFile.SAVED_NEWS_PATH;
 public class UI {
     public static final String INVALID_ARTICLE_INDEX_MESSAGE = "Please provide a valid article index!!";
     public static final String INDENT = "    ";
+    public static final String LINE = "____________________________________________________________\n";
+
     private static final Logger logger = Logger.getLogger("NewsOnTheGo");
     public static void initializeUI(Scanner in) {
         logger.log(Level.INFO, "Starting NewsOnTheGo");
@@ -24,8 +26,29 @@ public class UI {
                 "                                                ,-.|      \n" +
                 "                                                `-+'      \n";
         System.out.println("Hello from\n" + logo);
+        printLine();
+        askForName(in);
+    }
+
+    private static void askForName(Scanner in) {
         System.out.println("What is your name?");
-        System.out.println("Hello " + in.nextLine());
+        String name = in.nextLine();
+        while (name.isEmpty()) {
+            printLine();
+            System.out.println("Please input your name!");
+            name = in.nextLine();
+        }
+        printMessage("Hello " + name);
+    }
+
+    public static void printLine() {
+        System.out.println(LINE);
+    }
+
+    public static void printMessage(String Message) {
+        printLine();
+        System.out.println(Message);
+        printLine();
     }
 
     public static void printError(String message) {
@@ -39,18 +62,18 @@ public class UI {
     public static void printArticlesInList(List<NewsArticle> articles) {
         int i = 1; // index for user starts from 1
         for (NewsArticle article : articles) {
-            printHeadline(i + ": " + article.getHeadline());
+            printHeadline(INDENT + i + ": " + article.getHeadline());
             i++;
         }
     }
 
     public static void printInvalidDateFormatMessage() {
-        System.out.println("Date format is invalid! \n" +
-                "The date format is: \n" +
-                "\"MM dd yyyy\" (01 02 2024), \n" +
-                "\"MMMM dd yyyy\" (January 02 2024), \n" +
-                "\"dd MMMM yyyy\" (02 January 2024)");
-        printEmptyLine();
+        printMessage("Date format is invalid! \n" +
+                INDENT+ "The date format is: \n" +
+                INDENT+ "\"MM dd yyyy\" (01 02 2024), \n" +
+                INDENT+ "\"MMMM dd yyyy\" (January 02 2024), \n" +
+                INDENT+ "\"dd MMMM yyyy\" (02 January 2024)" +
+                "\n");
     }
 
     public static void printHeadlinesFound(String date) {
@@ -58,15 +81,16 @@ public class UI {
     }
 
     public static void printHeadlinesNotFound(String date) {
-        System.out.println("Nothing is found on this day: " + date);
+        printMessage("Nothing is found on this day: " + date);
     }
 
     public static void printSaveDailyDefaultMessage() {
+        printLine();
         System.out.println("Do you want to return? Type in: \"back\" ");
     }
 
     public static void printArticleIsSaved(NewsArticle article) {
-        System.out.println(article.getHeadline() + " has already been saved! \n" +
+        printMessage(article.getHeadline() + " has already been saved! \n" +
                 "find your saved articles at " + SAVED_NEWS_PATH);
     }
 
@@ -103,7 +127,7 @@ public class UI {
     }
 
     public static void printHelpMessage() {
-        System.out.println("Thank you for using News On The Go! \n" +
+        printMessage("Thank you for using News On The Go! \n" +
                 "Refer to below for commands and functions: \n" +
                 "DAILY [date]\n" +
                 INDENT + "- gives articles published on a specific date \n" +

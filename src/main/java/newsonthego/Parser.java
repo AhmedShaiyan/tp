@@ -10,6 +10,7 @@ import newsonthego.utilities.UI;
 
 import static newsonthego.NewsOnTheGo.suggestArticle;
 import static newsonthego.utilities.UI.INDENT;
+import static newsonthego.utilities.UI.printMessage;
 
 
 public class Parser {
@@ -96,12 +97,12 @@ public class Parser {
             }
             break;
         case BYE:
-            System.out.println("Bye. Hope to see you again soon!");
+            printMessage("Bye. Hope to see you again soon!");
             break;
         case VOID:
             // fall through
         default:
-            System.out.println("I'm sorry, but I don't know what that means :-(");
+            printMessage("I'm sorry, but I don't know what that means :-(");
             break;
         }
     }

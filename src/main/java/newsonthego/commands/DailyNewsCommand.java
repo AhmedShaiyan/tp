@@ -10,14 +10,7 @@ import java.util.stream.Collectors;
 
 import static newsonthego.utilities.FormatDate.formatFromUser;
 import static newsonthego.storage.NewsFile.saveNews;
-import static newsonthego.utilities.UI.printArticleIsSaved;
-import static newsonthego.utilities.UI.printIndexError;
-import static newsonthego.utilities.UI.printHeadlinesFound;
-import static newsonthego.utilities.UI.printHeadlinesNotFound;
-import static newsonthego.utilities.UI.printEmptyLine;
-import static newsonthego.utilities.UI.printArticlesInList;
-import static newsonthego.utilities.UI.printSaveDailyDefaultMessage;
-import static newsonthego.utilities.UI.printInvalidDateFormatMessage;
+import static newsonthego.utilities.UI.*;
 
 import java.util.logging.Logger;
 
@@ -58,6 +51,7 @@ public class DailyNewsCommand {
         if (articlesOfTheDay.isEmpty()) {
             printHeadlinesNotFound(formattedDate);
         } else {
+            printLine();
             printHeadlinesFound(formattedDate);
             printEmptyLine();
             printArticlesInList(articlesOfTheDay);
@@ -71,6 +65,9 @@ public class DailyNewsCommand {
      * Allows user to save daily news articles shown to their reading list
      */
     private static void saveDailyArticlesParser() {
+        printLine();
+        System.out.println("What do you want from me?\n" +
+                INDENT + "To return to main, type in: back ");
         boolean isPolling = true;
         Scanner dailyIn = new Scanner(System.in);
         while (isPolling) {
@@ -79,9 +76,12 @@ public class DailyNewsCommand {
             switch (command) {
             case "save":
                 save(dailyLine);
+                System.out.println("What do you want from me?\n" +
+                        INDENT + "To return to main, type in: back ");
                 break;
             case "back":
                 isPolling = false;
+                printLine();
                 break;
             default:
                 printSaveDailyDefaultMessage();
@@ -114,6 +114,7 @@ public class DailyNewsCommand {
         } catch (IOException ignored) {
             // Exception handled in function
         }
+
     }
 
     public static List<NewsArticle> getArticlesOfTheDay() {
