@@ -94,6 +94,11 @@ Displays all saved news articles from the saved articles text file.
 
 Format: `load`
 
+### Get source of article: `source`
+Displays the source of the article.
+
+Format: `source {index of article on displayed list}`
+
 ### Filtering the list of news: `filter`
 Filters the list of news articles based on the user's input.
 
