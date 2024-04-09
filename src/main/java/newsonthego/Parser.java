@@ -108,6 +108,7 @@ public class Parser {
 
     public static String parseToText (NewsArticle article) {
         String headline = article.getHeadline();
+        String url = article.getUrl();
         String author = article.getAuthor();
         String date = article.getDate();
         String source = article.getSource();
@@ -116,6 +117,7 @@ public class Parser {
         int bias = article.getBias();
         String content = article.getContent();
         return (headline + "\n" +
+                INDENT + "URL: "+ url + "\n" +
                 INDENT + "By: " + author + INDENT + "On: " + date + "\n" +
                 INDENT + source + "\n" +
                 INDENT + "| IMPORTANCE: " + importance + " | BIAS: " + bias +
