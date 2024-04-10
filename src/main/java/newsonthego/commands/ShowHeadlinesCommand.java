@@ -11,7 +11,7 @@ import java.util.stream.Collectors;
  * This class is responsible for handling the "headlines" command, which displays
  * a specified number of article headlines from the beginning of the news articles list.
  */
-public class ShowHeadlines {
+public class ShowHeadlinesCommand {
     private static final Path NEWS_FILE_PATH = Path.of("data", "sampleNews.txt");
 
     /**

@@ -1,14 +1,14 @@
 package newsonthego;
 
 import newsonthego.commands.DailyNewsCommand;
+import newsonthego.commands.FilterNewsCommand;
 import newsonthego.commands.GetNewsSourceCommand;
-import newsonthego.commands.ShowHeadlines;
+import newsonthego.commands.ShowHeadlinesCommand;
 import newsonthego.commands.URLCommand;
 import newsonthego.newstopic.NewsTopic;
 import newsonthego.utilities.UI;
 
 import static newsonthego.NewsOnTheGo.suggestArticle;
-import static newsonthego.utilities.UI.INDENT;
 import static newsonthego.utilities.UI.printMessage;
 import java.util.List;
 
@@ -42,7 +42,7 @@ public class Parser {
             UI.printAllTopics(topics);
             break;
         case HEADLINES:
-            ShowHeadlines.showHeadlines(line);
+            ShowHeadlinesCommand.showHeadlines(line);
             break;
         case STAR:
             NewsOnTheGo.starTopic(line, topics, favouriteTopics);
@@ -61,7 +61,7 @@ public class Parser {
             NewsOnTheGo.removeStarredTopic(line, favouriteTopics);
             break;
         case FILTER:
-            topic = NewsOnTheGo.filterNews(line);
+            topic = FilterNewsCommand.filterNews(line);
             break;
         case SAVE:
             if (topic >= 0) { //save using index based on the current topic list shown to user
@@ -105,19 +105,5 @@ public class Parser {
             UI.printConfused();
             break;
         }
-    }
-
-    public static String parseToText (NewsArticle article) {
-        String headline = article.getHeadline();
-        String url = article.getUrl();
-        String author = article.getAuthor();
-        String date = article.getDate();
-        String source = article.getSource();
-
-        return (headline + "\n" +
-                INDENT + "URL: "+ url + "\n" +
-                INDENT + "By: " + author + INDENT + "On: " + date + "\n" +
-                INDENT + source + "\n");
-
     }
 }
