@@ -2,7 +2,6 @@ package newsonthego;
 
 import newsonthego.commands.DailyNewsCommand;
 import newsonthego.commands.GetNewsSourceCommand;
-import newsonthego.commands.InfoNewsCommand;
 import newsonthego.commands.ShowHeadlines;
 import newsonthego.commands.URLCommand;
 import newsonthego.newstopic.NewsTopic;
