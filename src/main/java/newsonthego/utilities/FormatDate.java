@@ -9,6 +9,9 @@ import java.util.Locale;
 import java.util.Objects;
 
 public class FormatDate {
+
+    public static final SimpleDateFormat FILE_FORMAT = new SimpleDateFormat("MMMM dd, yyyy", Locale.ENGLISH);
+
     // Formats of the dates that the user can pass in
     private static final String[] inputDateFormats = {
         "MM dd yyyy", // 01 02 2024 -> January 2, 2024
@@ -16,14 +19,12 @@ public class FormatDate {
         "dd MMMM yyyy" // 02 January 2024 -> January 2, 2024
     };
 
-    private static final SimpleDateFormat FILE_FORMAT = new SimpleDateFormat("MMMM dd, yyyy", Locale.ENGLISH);
-
     /**
      * Takes in the date input from the user and formats it to be the same as the date format of our articles
      * Returns null if the date format received does not match the ones specified
      *
      * @param date the input from the user
-     * @return formmated date input from the user
+     * @return formated date input from the user
      */
     public static String formatFromUser(String date) {
         String result = null;

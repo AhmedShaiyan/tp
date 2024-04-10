@@ -49,7 +49,7 @@ class NewsOnTheGoTest {
     @Test
     public void testFindTopicIndex() {
         ArrayList<NewsTopic> topics = new ArrayList<>();
-        int index = NewsOnTheGo.findTopicIndex("abcdefg", topics);
+        int index = NewsTopic.findTopicIndex("abcdefg", topics);
         assertEquals(-1,index);
     }
 

@@ -24,7 +24,7 @@ import java.nio.file.Paths;
 import java.util.stream.Collectors;
 
 
-import static newsonthego.Parser.parseToText;
+import static newsonthego.NewsArticle.parseToText;
 import static newsonthego.utilities.UI.INDENT;
 import static newsonthego.utilities.UI.printLine;
 import static newsonthego.utilities.UI.printEmptyLine;
@@ -34,14 +34,13 @@ import static newsonthego.utilities.UI.printMessage;
 public class NewsOnTheGo {
 
     public static final String FILENAME = "data/sampleNews.txt";
+    public static final ArrayList<NewsTopic> NEWS_TOPICS = new ArrayList<>();
     private static final Logger logger = Logger.getLogger("NewsOnTheGo");
-    private static final ArrayList<NewsTopic> newsTopics = new ArrayList<>();
     private static final ArrayList<NewsTopic> favouriteTopics = new ArrayList<>();
 
 
 
     private static NewsFile savedNews;
-    private static TopicsFile savedTopics;
 
     public enum Command {
         HELP, DAILY, GET, TOPICS, FILTER, SAVE, SOURCE, INFO, CLEAR, LOAD, STAR,
@@ -57,7 +56,7 @@ public class NewsOnTheGo {
         }
 
         try {
-            Parser.handleCommand(command.trim(), line, list, newsTopics, favouriteTopics);
+            Parser.handleCommand(command.trim(), line, list, NEWS_TOPICS, favouriteTopics);
             return command.trim().equalsIgnoreCase(Command.BYE.toString());
         } catch (IllegalArgumentException e) {
             System.out.println("Unknown command: '" + command + "'. Please try again.");
@@ -100,57 +99,6 @@ public class NewsOnTheGo {
         }
     }
 
-    /**
-     * Finds the index of a news topic in the list of topics.
-     * This method performs a binary search to find the index of the specified topic.
-     *
-     * @param topic the name of the topic to search for
-     * @return the index of the topic if found, or -1 if the topic is not found
-     */
-    static int findTopicIndex(String topic, List<NewsTopic> topics) {
-        int left = 0;
-        int right = topics.size() - 1;
-        String topicToFind = topic.trim();
-        while (left <= right) {
-            int mid = left + (right - left) / 2;
-            String midTopic = topics.get(mid).getTopicName().trim();
-            int comparisonResult = (topicToFind).compareToIgnoreCase(midTopic);
-            if (comparisonResult == 0) {
-                return mid;
-            } else if (comparisonResult < 0) {
-                right = mid - 1;
-            } else {
-                left = mid + 1;
-            }
-        }
-        return -1;
-    }
-
-    /**
-     * Filters news articles based on a specified topic.
-     * This method finds the index of the specified topic and prints news articles related to that topic.
-     *
-     * @param line the input string containing the topic to filter
-     */
-    static int filterNews(String line) {
-        if (line.substring(6).trim().isEmpty()) {
-            printMessage("Please provide a topic.");
-            return -1;
-        }
-        int topicIndex = findTopicIndex(line.substring(6).trim(), newsTopics);
-        if (topicIndex < 0) {
-            printMessage("Sorry, this topic is not available right now :(");
-        } else {
-            printLine();
-            System.out.println("Here are the news articles related to "
-                    + newsTopics.get(topicIndex).getTopicName() + ": ");
-            newsTopics.get(topicIndex).printNewsArticles();
-            printMessage("You are currently in access to the list of articles in "
-                    + newsTopics.get(topicIndex).getTopicName() + ", \n" +
-                    INDENT + "use command 'BACK' to return to main list of articles.");
-        }
-        return topicIndex;
-    }
 
     /**
      * Adds a specified news topic to the user's list of favorite topics.
@@ -175,7 +123,7 @@ public class NewsOnTheGo {
             printMessage(topicNameToStar + " is already in your list of favourite topics.");
             return;
         }
-        int topicIndex = findTopicIndex(topicNameToStar, newsTopics);
+        int topicIndex = NewsTopic.findTopicIndex(topicNameToStar, newsTopics);
         if (topicIndex < 0) {
             printMessage("Sorry, this topic is not available right now :(");
         } else {
@@ -211,7 +159,6 @@ public class NewsOnTheGo {
             printMessage("Topic is not found in favourites");
         }
     }
-
 
     /**
      * Saves a news article from the list to a user's reading list based on the index specified in the input line.
@@ -259,7 +206,7 @@ public class NewsOnTheGo {
 
         printLine();
         System.out.println("Displaying saved news articles:");
-        printEmptyLine();;
+        printEmptyLine();
         for (String line : lines) {
             System.out.println(INDENT + line);
         }
@@ -351,7 +298,7 @@ public class NewsOnTheGo {
         UI.initializeUI(in);
         savedNews = new NewsFile();
 
-        List<NewsArticle> newsArticles = NewsImporter.importNewsFromText(FILENAME, newsTopics);
+        List<NewsArticle> newsArticles = NewsImporter.importNewsFromText(FILENAME, NEWS_TOPICS);
         TopicsFile.loadTopics(favouriteTopics);
 
         while (true) {
