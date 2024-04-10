@@ -163,7 +163,7 @@ Format: `filter {TOPIC}`
 
 ### Saving articles from the filter command: `save`
 
-Saves the article title from the `filter` command into a text file.  
+Saves the article title from the `filter` command into a text file.
 
 > [NOTE!] 
 > Do not be confused with the other `save` function in `daily`.
@@ -179,6 +179,22 @@ Format: `save {INDEX OF ARTICLE}`
 
 Assuming we have the used `filter technology` from before.  
 ![img_2.png](images/saveImg1.png)
+
+
+### Returning to the previous menu or list: `back`
+Returns from a filtered list of news or the saved news window to the main list of articles.
+
+#### Format: `back`
+
+* Only applicable if you have filtered the list of news using the `filter` command or used the `save` command to
+  save an article.
+
+<p style="color:red">
+<strong>
+Note: Do not be confused with the other <code>save</code> | <code>back</code> functions in <code>daily</code>.
+</strong>
+</p>
+
 ### Loading saved news: `load`
 Displays all saved news articles from the saved articles text file.
 
@@ -191,13 +207,9 @@ Displays the source of the article.
 
 Format: `source {index of article on displayed list}`
 
+
 ### Returning to the previous menu or list: `back`
 Returns from a filtered list of news or the saved news window to the main list of articles.
-
-Format: `back`
-
-* Only applicable if you have filtered the list of news using the `filter` command or used the `save` command to save an article.
-
 
 ### Exiting the program: `bye`
 

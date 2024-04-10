@@ -32,6 +32,7 @@ public class UI {
                 " ,' `-' `-' ' '   `-' `---' ' '  `-'   ' ' `-' `---|  `-' \n" +
                 "                                                ,-.|      \n" +
                 "                                                `-+'      \n";
+
         System.out.println("Hello from\n" + logo1);
         askForName(in);
     }
