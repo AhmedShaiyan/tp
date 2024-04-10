@@ -3,7 +3,7 @@
 # NewsOnTheGo User Guide
 
 NewsOnTheGo is a command-line application (CLI) that helps users stay up-to-date with the latest news articles by 
-providing users with a list of the current headlines. 
+providing users with a list of up-to-date articles. 
 
 Users are able to personalise this application by saving their
 preferred topics and articles.
@@ -23,13 +23,13 @@ This guide will help you get started with using NewsOnTheGo and understand its f
 The following interface should appear in a few seconds:
 ```
 Hello from
+__________________________________________________________________________________________
+    _     _                           __             ______                     __
+    /|   /                          /    )             /      /               /    )
+---/-| -/-----__----------__-------/----/----__-------/------/__----__-------/---------__-
+  /  | /    /___)| /| /  (_ `     /    /   /   )     /      /   ) /___)     /  --,   /   )
+_/___|/____(___ _|/_|/__(__)_____(____/___/___/_____/______/___/_(___ _____(____/___(___/_
 
-,-,-.                 ,---.     ,--,--'.       ,---.      
-` | |   ,-. . , , ,-. |   | ,-. `- |   |-. ,-. |  -'  ,-. 
-  | |-. |-' |/|/  `-. |   | | |  , |   | | |-' |  ,-' | | 
- ,' `-' `-' ' '   `-' `---' ' '  `-'   ' ' `-' `---|  `-' 
-                                                ,-.|      
-                                                `-+'      
 
 What is your name?
 ```
@@ -44,20 +44,38 @@ What do you want from me?
 
 
 ## Features
+> [!NOTE]
+> Regarding the command format:
+> 
+> - Words in `{Curly Braces}` are parameters to be supplied by the user.
+> 
+>   e.g. in `filter {TOPIC}`, `TOPIC` is a parameter which can be used as `filter sports`.
+>   - more information on the format of input parameters can be found under each specific command
+> - Extraneous parameters for commands that do not take in parameters (such as `help`, `topics`, `bye`) will be ignored.
+>   
+>   e.g. if the command specifies `help 123`, it will be intepreted as `help`.
 
 ### Getting Help: `help`
 Shows all the commands available and their brief description.
 
-#### Format: `help`
+Format: `help`
+
 ![img_1.png](img_1.png)
 
 
 ### Find articles on a particular day: `daily`
 Gets the list of articles from our text file and outputs it to the user.
 
-#### Format: `daily {DATE}`
+Format: `daily {DATE}`
 
-* The `DATE` format: `MM dd yyyy`/`MMMM dd yyyy`/`dd MMMM yyyy`
+> [!IMPORTANT]
+> `DATE` format should be as follow:
+> - `MM dd yyyy`
+> - `MMMM dd yyyy`
+> - `dd MMMM yyyy`
+> 
+> The specified month is not case sensitive, e.g. `March` and `march` will both be read the same given the input date is 
+> valid.
 
 #### Example of usage:
 
@@ -73,7 +91,7 @@ After using the `daily` command, you can use `save` or `back` or `quit`.
 
 ### Save articles from the daily function: `save`
 
-#### Format: `save {INDEX OF ARTICLE}`  
+Format: `save {INDEX OF ARTICLE}`  
 This allows the user to save the news articles displayed by the `daily` function.  
 
 #### Example of usage:
@@ -84,7 +102,7 @@ This allows the user to save the news articles displayed by the `daily` function
 
 ### Command to quit the daily function parser: `back` | `quit`
 
-#### Format: `back` | `quit`
+Format: `back` | `quit`
 Use either command to exit the daily function after done saving their desired articles.  
 
 #### Example of usage: `back`  
@@ -96,7 +114,7 @@ Use either command to exit the daily function after done saving their desired ar
 
 Stars a topic to add it to your list of favorite topics.
 
-#### Format: `star {TOPIC}`
+Format: `star {TOPIC}`
 
 - Star a topic to receive suggestions based on it.
 
@@ -110,7 +128,7 @@ Stars a topic to add it to your list of favorite topics.
 
 Removes a topic from your list of favorite topics.
 
-#### Format: `remove {TOPIC}`
+Format: `remove {TOPIC}`
 
 #### Example of usage:
 - `remove Science`
@@ -123,7 +141,7 @@ Removes a topic from your list of favorite topics.
 
 Suggests articles from your favorite topics.
 
-#### Format: `suggest`  
+Format: `suggest`  
 
 #### Example of usage:  
  Assuming we have Science and Technology as our favourite topics.
@@ -134,7 +152,7 @@ Suggests articles from your favorite topics.
 ### Searching for articles on a particular topic: `filter`
 Find articles based on the topic input from the user.
 
-#### Format: `filter {TOPIC}`
+Format: `filter {TOPIC}`
 
 #### Example of usage:
 - `filter Science`
@@ -151,7 +169,7 @@ Saves the article title from the `filter` command into a text file.
 > Do not be confused with the other `save` function in `daily`.
 
 
-#### Format: `save {INDEX OF ARTICLE}`
+Format: `save {INDEX OF ARTICLE}`
 
 #### Example of usage: 
 - `save 1`
@@ -164,7 +182,7 @@ Assuming we have the used `filter technology` from before.
 ### Loading saved news: `load`
 Displays all saved news articles from the saved articles text file.
 
-#### Format: `load`
+Format: `load`
 ![img.png](images/loadImg1.png)
 
 
@@ -176,7 +194,7 @@ Format: `source {index of article on displayed list}`
 ### Returning to the previous menu or list: `back`
 Returns from a filtered list of news or the saved news window to the main list of articles.
 
-#### Format: `back`
+Format: `back`
 
 * Only applicable if you have filtered the list of news using the `filter` command or used the `save` command to save an article.
 
@@ -185,7 +203,7 @@ Returns from a filtered list of news or the saved news window to the main list o
 
 Exits the application.
 
-#### Format: `bye`
+Format: `bye`
 
 ![img_1.png](images/bye.png)
 
