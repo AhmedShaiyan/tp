@@ -50,7 +50,7 @@ read input URLs from a text file and write scraped data to an output text file.
 
 #### Dependency:
 
-Relies on the Jsoup library (`org.jsoup.Jsoup`) for web scraping functionalities, specifically for parsing HTML and 
+Relies on the [Jsoup](https://jsoup.org/) library (`org.jsoup.Jsoup`) for web scraping functionalities, specifically for parsing HTML and 
 extracting data elements.
 
 
@@ -62,29 +62,6 @@ the user and the current list of articles to display the news on published on a 
 This feature also implements the following operations:  
 - `DailyNewsCommand#save()` — Saves a news article from the list given to their reading list
 - `DailyNewsCommand#back()` — Exits the daily feature loop.
-
-Below is a snippit of the parser function that handles both of the operations above:
-```java
-private static void saveDailyArticlesParser() {
-        boolean isPolling = true;
-        Scanner dailyIn = new Scanner(System.in);
-        while (isPolling) {
-            String[] dailyLine = dailyIn.nextLine().split(" ");
-            String command = dailyLine[commandidx].toLowerCase();
-            switch (command) {
-            case "save":
-                save(dailyLine);
-                break;
-            case "back":
-                isPolling = false;
-                break;
-            default:
-                printSaveDailyDefaultMessage();
-                break;
-            }
-        }
-    }
-```
 
 Given below is an example usage of the daily mechanism behaves at each step.
 
@@ -101,7 +78,7 @@ by using the `save(1)` command, which saves the first news article on the list.
 Step 4: When the user is done saving the desired news articles, he is able to go back to the main function by using the
 `back()` command.
 
-The flow can be seen from the sequence diagram below.
+The flow can be seen from the sequence diagram below.  
 <img src="UML Diagrams/dailyFunctionSequence.png">
 
 ### Source Function
@@ -245,32 +222,6 @@ The `SUGGEST` feature provides users with article recommendations based on their
 #### Code Snippet:
 The following code snippet describes the `getSuggestedArticlesFromFavoriteTopics()` method, highlighting how it processes user's favorite topics to suggest random articles. It also includes the parseArticleTitle helper method to extract article titles from the data lines.
 
-```java
-
- List<String> favoriteTopics = Files.readAllLines(SAVED_TOPICS_PATH);
- List<String> allArticles = Files.readAllLines(SAMPLE_NEWS_FILE);
-
-    favoriteTopics.forEach(topic -> {
-    List<String> articlesForTopic = allArticles.stream()
-            .filter(article -> article.endsWith(";" + topic))
-            .collect(Collectors.toList());
-
-    if (!articlesForTopic.isEmpty()) {
-        String suggestedArticle = articlesForTopic.get(random.nextInt(articlesForTopic.size()));
-        suggestions.append(parseArticleTitle(suggestedArticle)).append("\n");
-    } else {
-        suggestions.append("No articles found for topic: ").append(topic).append("\n");
-    }
-    });
-
-    return suggestions.toString();
-```
-```java
-private static String parseArticleTitle(String articleLine) {
-        return articleLine.split(";")[0];
-    }
-```
-
 #### Design Considerations
 The decision to use a random selection approach was to provide a dynamic user experience. This encourages users to discover a variety of articles within their favourite topics.
 
@@ -297,10 +248,10 @@ Alternative 2: Implement a more sophisticated algorithm that keeps track of prev
 
 ## User Stories
 
-|Version| As a ... | I want to ... | So that I can ...|
-|--------|----------|---------------|------------------|
-|v1.0|new user|see usage instructions|refer to them when I forget how to use the application|
-|v2.0|user|find a to-do item by name|locate a to-do without having to go through the entire list|
+| Version | As a ... | I want to ...             | So that I can ...                                           |
+|---------|----------|---------------------------|-------------------------------------------------------------|
+| v1.0    | new user | see usage instructions    | refer to them when I forget how to use the application      |
+| v2.0    | user     | find a to-do item by name | locate a to-do without having to go through the entire list |
 
 ## Non-Functional Requirements
 
