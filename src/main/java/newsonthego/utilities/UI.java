@@ -168,30 +168,30 @@ public class UI {
                         "         | `daily 10 March 2024`|\n" +
                         "| `TOPICS`   | Lists topics the articles are classified by.               " +
                         "         | `topics`             |\n" +
-                        "| `FILTER`   | Lists articles related to a specified topic.               " +
-                        "         | `filter politics`    |\n" +
                         "| `STAR`     | Bookmarks a topic as favorite.                              " +
                         "        | `star business`      |\n" +
                         "| `STARRED`  | Shows list of bookmarked topics.                            " +
                         "        | `starred`            |\n" +
                         "| `REMOVE`   | Removes a topic from bookmarked list.                       " +
                         "        | `remove business`    |\n" +
+                        "| `SUGGEST`  | Suggests articles based on bookmarked topics.               " +
+                        "        | `suggest`            |\n" +
+                        "| `FILTER`   | Lists articles related to a specified topic.               " +
+                        "         | `filter politics`    |\n" +
+                        "| `SAVE`     | Saves article into a reading list.                          " +
+                        "        | `save 3`             |\n" +
+                        "| `SOURCE`   | Gives the source of the article.                            " +
+                        "        | `source 3`           |\n" +
+                        "| `BACK`     | Returns from daily or filter parser.                        " +
+                        "        | `back`               |\n" +
                         "| `URL`      | Gives the URL of the article.                               " +
                         "        | `url 2`              |\n" +
-                        "| `HEADLINES`| Returns article headlines directly from the list            " +
+                        "| `HEADLINES`| Returns article headlines from the list up til the index    " +
                         "        | `headlines 10`       |\n" +
                         "| `GET`      | Details of a specific article.                              " +
                         "        | `get 3`              |\n" +
-                        "| `INFO`     | Information on article's importance, reliability, bias.     " +
-                        "        | `info 3`             |\n" +
-                        "| `SOURCE`   | Gives the source of the article.                            " +
-                        "        | `source 3`           |\n" +
-                        "| `SAVE`     | Saves article into a reading list.                          " +
-                        "        | `save 3`             |\n" +
                         "| `LOAD`     | Displays list of saved articles.                            " +
                         "        | `load`               |\n" +
-                        "| `SUGGEST`  | Suggests articles based on bookmarked topics.               " +
-                        "        | `suggest`            |\n" +
                         "| `CLEAR`    | Clears the saved articles list.                             " +
                         "        | `clear`              |\n" +
                         "+------------+---------------------------------------------------------+" +

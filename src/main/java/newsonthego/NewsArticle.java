@@ -99,6 +99,7 @@ public class NewsArticle {
     public static String apaCitation(NewsArticle article) {
         String headline = article.getHeadline();
         String[] authorSplit = article.getAuthor().split(" ");
+        char[] authorChars = authorSplit[0].toCharArray();
         String date = article.getDate();
         String source = article.getSource();
         String url = article.getUrl();
@@ -117,7 +118,7 @@ public class NewsArticle {
         }
 
         // APA Format: Author. (Date). Headline. Source. URL
-        return "APA Citation: " + authorSplit[1] + ", " + authorSplit[0] + ". (" + dateCitation + "). "
+        return "APA Citation: " + authorSplit[1] + ", " + authorChars[0] + ". (" + dateCitation + "). "
                 + headline + ". " + source + ". " + url;
     }
 
