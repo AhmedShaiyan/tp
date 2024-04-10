@@ -20,7 +20,6 @@ import static newsonthego.utilities.UI.printArticlesInList;
 import static newsonthego.utilities.UI.printSaveDailyDefaultMessage;
 import static newsonthego.utilities.UI.printArticleIsSaved;
 import static newsonthego.utilities.UI.printIndexError;
-import static newsonthego.utilities.UI.printMessage;
 import java.util.logging.Logger;
 
 public class DailyNewsCommand {
