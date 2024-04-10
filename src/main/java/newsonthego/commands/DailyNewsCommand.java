@@ -20,6 +20,7 @@ import static newsonthego.utilities.UI.printArticlesInList;
 import static newsonthego.utilities.UI.printSaveDailyDefaultMessage;
 import static newsonthego.utilities.UI.printArticleIsSaved;
 import static newsonthego.utilities.UI.printIndexError;
+import static newsonthego.utilities.UI.printMessage;
 import java.util.logging.Logger;
 
 public class DailyNewsCommand {
@@ -99,8 +100,10 @@ public class DailyNewsCommand {
                         INDENT + "To return to main, type in: back ");
                 break;
             case "back":
+                // Fallthrough
+            case "quit":
                 isPolling = false;
-                printLine();
+                printMessage("You are back to the main function!");
                 break;
             default:
                 printSaveDailyDefaultMessage();

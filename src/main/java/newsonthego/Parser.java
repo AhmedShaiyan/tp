@@ -1,9 +1,8 @@
 package newsonthego;
 
-import java.util.List;
-
 import newsonthego.commands.DailyNewsCommand;
 import newsonthego.commands.GetNewsSourceCommand;
+import newsonthego.commands.ShowHeadlines;
 import newsonthego.commands.URLCommand;
 import newsonthego.newstopic.NewsTopic;
 import newsonthego.utilities.UI;
@@ -11,7 +10,7 @@ import newsonthego.utilities.UI;
 import static newsonthego.NewsOnTheGo.suggestArticle;
 import static newsonthego.utilities.UI.INDENT;
 import static newsonthego.utilities.UI.printMessage;
-
+import java.util.List;
 
 public class Parser {
     public static int topic = -1;
@@ -41,6 +40,9 @@ public class Parser {
             break;
         case TOPICS:
             UI.printAllTopics(topics);
+            break;
+        case HEADLINES:
+            ShowHeadlines.showHeadlines(line);
             break;
         case STAR:
             NewsOnTheGo.starTopic(line, topics, favouriteTopics);

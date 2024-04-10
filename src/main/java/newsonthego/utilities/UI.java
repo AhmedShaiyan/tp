@@ -74,7 +74,9 @@ public class UI {
             i++;
         }
     }
-
+    public static void printUnknownCommand() {
+        System.out.println("I'm sorry, but I don't recognize that command. Please try again.");
+    }
     public static void printInvalidDateFormatMessage() {
         printMessage("Date format is invalid! \n" +
                 INDENT+ "The date format is: \n" +
@@ -175,6 +177,8 @@ public class UI {
                         "        | `remove business`    |\n" +
                         "| `URL`      | Gives the URL of the article.                               " +
                         "        | `url 2`              |\n" +
+                        "| `HEADLINES`| Returns article headlines directly from the list            " +
+                        "        | `headlines 10`       |\n" +
                         "| `GET`      | Details of a specific article.                              " +
                         "        | `get 3`              |\n" +
                         "| `INFO`     | Information on article's importance, reliability, bias.     " +
