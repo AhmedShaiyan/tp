@@ -103,12 +103,9 @@ public class DailyNewsCommand {
                 // Fallthrough
             case "quit":
                 isPolling = false;
-<<<<<<< HEAD
-                printMessage("You are back to the main function!");
-=======
                 System.out.println("You are back to the main function!");
                 printLine();
->>>>>>> 548b29ddfdc4838cf65099347d82e289ae186ceb
+
                 break;
             default:
                 printSaveDailyDefaultMessage();

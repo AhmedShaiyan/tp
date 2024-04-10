@@ -53,18 +53,8 @@ public class UserPreferences {
                             .append("\n")
                             .append("    Title: ").append(parseArticleTitle(randomArticle))
                             .append("\n")
-<<<<<<< HEAD
-<<<<<<< HEAD
                             .append("URL: ").append(parseArticleURL(randomArticle))
                             .append("\n");
-=======
-                            .append("    URL: ").append(parseArticleURL(randomArticle))
-                            .append("\n\n");
->>>>>>> cf578c7349bd88ac990ca3ecf377cab20706e2a9
-=======
-                            .append("URL: ").append(parseArticleURL(randomArticle))
-                            .append("\n");
->>>>>>> 548b29ddfdc4838cf65099347d82e289ae186ceb
                 } else {
                     suggestions.append("No articles found for the topic: ").append(topic.trim()).append("\n");
                 }

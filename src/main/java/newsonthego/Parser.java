@@ -120,6 +120,5 @@ public class Parser {
                 INDENT + "By: " + author + INDENT + "On: " + date + "\n" +
                 INDENT + article.getContent() +
                 INDENT + source + "\n");
-
     }
 }
