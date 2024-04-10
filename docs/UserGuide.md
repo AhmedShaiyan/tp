@@ -16,12 +16,31 @@ This guide will help you get started with using NewsOnTheGo and understand its f
 ## Quick Start
 
 1. Ensure you have Java `11` or above installed in your Computer.
-2. Download the latest version of `NewsOnTheGo.jar` from the releases page.
-3. Copy the file to the folder you want to use as the home folder for your NewsOnTheGo.
-4. Open your command-line interface and navigate to the folder where you placed the jar file.
-5. Run the command `java -jar NewsOnTheGo.jar` to start the application.
+2. Download the latest version of `newsonthego.jar` from [the release page](https://github.com/AY2324S2-CS2113-T12-1/tp/releases/tag/v2.0).
+3. Copy the file to the folder you want to use as the home folder for NewsOnTheGo.
+4. Open a command terminal, `cd` into the folder where you put the jar file in.
+5. Run the command `java -jar newsonthego.jar` to start the application.
+The following interface should appear in a few seconds:
+```
+Hello from
+
+,-,-.                 ,---.     ,--,--'.       ,---.      
+` | |   ,-. . , , ,-. |   | ,-. `- |   |-. ,-. |  -'  ,-. 
+  | |-. |-' |/|/  `-. |   | | |  , |   | | |-' |  ,-' | | 
+ ,' `-' `-' ' '   `-' `---' ' '  `-'   ' ' `-' `---|  `-' 
+                                                ,-.|      
+                                                `-+'      
+
+What is your name?
+```
+6. Type in your name to initialise the system.
+The following interface should appear:
+```
+Hello [name]
+What do you want from me?
+```
 6. Type the command in the command box and press Enter to execute it.
-7. Refer to the Features section below for details of each command.
+7. Refer to the [Features](#Features) section below for details of each command.
 
 
 ## Features
@@ -127,17 +146,18 @@ Find articles based on the topic input from the user.
 ### Saving articles from the filter command: `save`
 
 Saves the article title from the `filter` command into a text file.  
-<p style="color:red">
-<strong>
-Note: Do not be confused with the other <code>save</code> function in <code>daily</code>.
-</strong>
-</p>
+
+> [NOTE!] 
+> Do not be confused with the other `save` function in `daily`.
+
 
 #### Format: `save {INDEX OF ARTICLE}`
 
 #### Example of usage: 
 - `save 1`
+  - saves the first item in the current article list
 - `save 5`  
+  - saves the fifth item in the current article list
 
 Assuming we have the used `filter technology` from before.  
 ![img_2.png](images/saveImg1.png)
