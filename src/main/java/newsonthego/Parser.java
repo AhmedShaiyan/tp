@@ -12,8 +12,6 @@ import static newsonthego.utilities.UI.INDENT;
 import static newsonthego.utilities.UI.printMessage;
 import java.util.List;
 
-import static newsonthego.NewsOnTheGo.suggestArticle;
-
 public class Parser {
     public static int topic = -1;
 
