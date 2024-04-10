@@ -110,11 +110,13 @@ public class Parser {
         String url = article.getUrl();
         String author = article.getAuthor();
         String date = article.getDate();
+        String content = article.getContent();
         String source = article.getSource();
 
         return (headline + "\n" +
                 INDENT + "URL: "+ url + "\n" +
                 INDENT + "By: " + author + INDENT + "On: " + date + "\n" +
+                INDENT + article.getContent() +
                 INDENT + source + "\n");
 
     }

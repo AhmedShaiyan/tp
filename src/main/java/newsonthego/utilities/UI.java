@@ -33,7 +33,7 @@ public class UI {
                 " ,' `-' `-' ' '   `-' `---' ' '  `-'   ' ' `-' `---|  `-' \n" +
                 "                                                ,-.|      \n" +
                 "                                                `-+'      \n";
-        System.out.println("Hello from\n" + logo1);
+        System.out.println("Hello from\n" + logo);
         askForName(in);
     }
 
@@ -41,11 +41,12 @@ public class UI {
         System.out.println("What is your name?");
         String name = in.nextLine();
         while (name.isEmpty()) {
-            printLine();
+            //printLine();
             System.out.println("Please input your name!");
             name = in.nextLine();
         }
-        printMessage("Hello " + name);
+        //printMessage("Hello " + name);
+        System.out.println("Hello " + name);
     }
 
     public static void printLine() {
@@ -139,7 +140,8 @@ public class UI {
     }
 
     public static void printBye() {
-        printMessage("Bye. Hope to see you again soon!");
+        System.out.println("Bye. Hope to see you again soon!");
+        //printMessage("Bye. Hope to see you again soon!");
     }
 
     public static void printConfused() {
