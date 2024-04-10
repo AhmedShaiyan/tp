@@ -39,12 +39,11 @@ public class NewsOnTheGo {
     private static final ArrayList<NewsTopic> favouriteTopics = new ArrayList<>();
 
 
-
     private static NewsFile savedNews;
 
     public enum Command {
-        HELP, DAILY, GET, TOPICS, FILTER, SAVE, SOURCE, INFO, CLEAR, LOAD, STAR,
-        STARRED, HEADLINES, SUGGEST, REMOVE, BACK, BYE, VOID, URL
+        HELP, DAILY, TOPICS, FILTER, STAR, STARRED, REMOVE, URL, HEADLINES, GET, SOURCE, SAVE, LOAD, SUGGEST,
+        CLEAR, BACK, BYE, VOID,
     }
 
     private static boolean processCommand(String command, String line, List<NewsArticle> list) {

@@ -99,8 +99,6 @@ public class DailyNewsCommand {
                         INDENT + "To return to main, type in: back ");
                 break;
             case "back":
-                // Fallthrough
-            case "quit":
                 isPolling = false;
                 System.out.println("You are back to the main function!");
                 printLine();
