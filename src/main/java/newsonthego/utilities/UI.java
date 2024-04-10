@@ -46,6 +46,7 @@ public class UI {
             name = in.nextLine();
         }
         printMessage("Hello " + name);
+        //System.out.println("Hello " + name);
     }
 
     public static void printLine() {
@@ -141,7 +142,8 @@ public class UI {
     }
 
     public static void printBye() {
-        printMessage("Bye. Hope to see you again soon!");
+        System.out.println("Bye. Hope to see you again soon!");
+        printLine();
     }
 
     public static void printConfused() {
@@ -150,6 +152,7 @@ public class UI {
 
     public static void printInitialPrompt() {
         System.out.println("What do you want from me?");
+        printLine();
     }
 
     public static void printHelpMessage() {

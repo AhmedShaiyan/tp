@@ -104,6 +104,7 @@ public class DailyNewsCommand {
                 isPolling = false;
                 System.out.println("You are back to the main function!");
                 printLine();
+
                 break;
             default:
                 printSaveDailyDefaultMessage();
