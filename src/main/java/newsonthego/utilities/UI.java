@@ -12,9 +12,19 @@ import static newsonthego.storage.NewsFile.SAVED_NEWS_PATH;
 
 public class UI {
     public static final String INVALID_ARTICLE_INDEX_MESSAGE = "Please provide a valid article index!!";
+    public static final String INDENT = "    ";
+    public static final String LINE = "____________________________________________________________\n";
+
     private static final Logger logger = Logger.getLogger("NewsOnTheGo");
     public static void initializeUI(Scanner in) {
         logger.log(Level.INFO, "Starting NewsOnTheGo");
+        String logo1 = "__________________________________________________________________________________________\n" +
+                "    _     _                           __             ______                     __\n" +
+                "    /|   /                          /    )             /      /               /    )\n" +
+                "---/-| -/-----__----------__-------/----/----__-------/------/__----__-------/---------__-\n" +
+                "  /  | /    /___)| /| /  (_ `     /    /   /   )     /      /   ) /___)     /  --,   /   )\n" +
+                "_/___|/____(___ _|/_|/__(__)_____(____/___/___/_____/______/___/_(___ _____(____/___(___/_\n\n";
+      
         String logo = "\n" +
                 ",-,-.                 ,---.     ,--,--'.       ,---.      \n" +
                 "` | |   ,-. . , , ,-. |   | ,-. `- |   |-. ,-. |  -'  ,-. \n" +
@@ -22,9 +32,29 @@ public class UI {
                 " ,' `-' `-' ' '   `-' `---' ' '  `-'   ' ' `-' `---|  `-' \n" +
                 "                                                ,-.|      \n" +
                 "                                                `-+'      \n";
-        System.out.println("Hello from\n" + logo);
+        System.out.println("Hello from\n" + logo1);
+        askForName(in);
+    }
+
+    private static void askForName(Scanner in) {
         System.out.println("What is your name?");
-        System.out.println("Hello " + in.nextLine());
+        String name = in.nextLine();
+        while (name.isEmpty()) {
+            printLine();
+            System.out.println("Please input your name!");
+            name = in.nextLine();
+        }
+        printMessage("Hello " + name);
+    }
+
+    public static void printLine() {
+        System.out.println(LINE);
+    }
+
+    public static void printMessage(String message) {
+        printLine();
+        System.out.println(message);
+        printLine();
     }
 
     public static void printError(String message) {
@@ -38,7 +68,7 @@ public class UI {
     public static void printArticlesInList(List<NewsArticle> articles) {
         int i = 1; // index for user starts from 1
         for (NewsArticle article : articles) {
-            printHeadline(i + ": " + article.getHeadline());
+            printHeadline(INDENT + i + ": " + article.getHeadline());
             i++;
         }
     }
@@ -46,11 +76,12 @@ public class UI {
         System.out.println("I'm sorry, but I don't recognize that command. Please try again.");
     }
     public static void printInvalidDateFormatMessage() {
-        System.out.println("Date format is invalid! \n" +
-                "The date format is: \n" +
-                "\"MM dd yyyy\" (01 02 2024), \n" +
-                "\"MMMM dd yyyy\" (January 02 2024), \n");
-        printEmptyLine();
+        printMessage("Date format is invalid! \n" +
+                INDENT+ "The date format is: \n" +
+                INDENT+ "\"MM dd yyyy\" (01 02 2024), \n" +
+                INDENT+ "\"MMMM dd yyyy\" (January 02 2024), \n" +
+                INDENT+ "\"dd MMMM yyyy\" (02 January 2024)" +
+                "\n");
     }
 
     public static void printHeadlinesFound(String date) {
@@ -58,15 +89,16 @@ public class UI {
     }
 
     public static void printHeadlinesNotFound(String date) {
-        System.out.println("Nothing is found on this day: " + date);
+        printMessage("Nothing is found on this day: " + date);
     }
 
     public static void printSaveDailyDefaultMessage() {
+        printLine();
         System.out.println("Do you want to return? Type in: \"back\" ");
     }
 
     public static void printArticleIsSaved(NewsArticle article) {
-        System.out.println(article.getHeadline() + " has already been saved! \n" +
+        printMessage(article.getHeadline() + " has already been saved! \n" +
                 "find your saved articles at " + SAVED_NEWS_PATH);
     }
 
@@ -84,30 +116,35 @@ public class UI {
      */
     public static void printTopics(List<NewsTopic> newsTopics) {
         for (NewsTopic topic : newsTopics) {
-            System.out.println(" - " + topic.getTopicName());
+            System.out.println(INDENT + " - " + topic.getTopicName());
         }
     }
 
     public static void printAllTopics(List<NewsTopic> newsTopics) {
+        printLine();
         System.out.println("Here are the list of topics for your viewing:");
         printTopics(newsTopics);
+        printLine();
     }
 
     public static void printFavouriteTopics(List<NewsTopic> favouriteTopics) {
         if (favouriteTopics.size() <= 0) {
-            System.out.println("You do not have any favourite topics. \n" +
+            printMessage("You do not have any favourite topics. \n" +
                     "Use the command 'star [topic name]' to add a topic to your favourites.");
+        } else {
+            printLine();
+            System.out.println("Here is the list of your favourite topics: ");
+            printTopics(favouriteTopics);
+            printLine();
         }
-        System.out.println("Here is the list of your favourite topics: ");
-        printTopics(favouriteTopics);
     }
 
     public static void printBye() {
-        System.out.println("Bye. Hope to see you again soon!");
+        printMessage("Bye. Hope to see you again soon!");
     }
 
     public static void printConfused() {
-        System.out.println("I'm sorry, I don't understand what you mean :(");
+        printMessage("I'm sorry, I don't understand what you mean :(");
     }
 
     public static void printInitialPrompt() {
@@ -115,7 +152,8 @@ public class UI {
     }
 
     public static void printHelpMessage() {
-        System.out.println( "Here is a list of commands and functions for your reference:\n" +
+        printMessage(
+                "Here is a list of commands and functions for your reference:\n" +
                 "+------------+----------------------------------------------------------+" +
                         "---------------------------------+\n" +
                         "| Command    | Description                                                " +
@@ -156,7 +194,6 @@ public class UI {
                         "----------------------------------+\n" +
                         "Thank you for using News On The Go! Enjoy reading :))"
         );
-
     }
 
 }

@@ -2,18 +2,17 @@ package newsonthego;
 
 import newsonthego.commands.DailyNewsCommand;
 import newsonthego.commands.GetNewsSourceCommand;
-import newsonthego.commands.InfoNewsCommand;
 import newsonthego.commands.ShowHeadlines;
 import newsonthego.commands.URLCommand;
 import newsonthego.newstopic.NewsTopic;
 import newsonthego.utilities.UI;
 
+import static newsonthego.NewsOnTheGo.suggestArticle;
+import static newsonthego.utilities.UI.INDENT;
+import static newsonthego.utilities.UI.printMessage;
 import java.util.List;
 
-import static newsonthego.NewsOnTheGo.suggestArticle;
-
 public class Parser {
-    public static final String INDENT = "    ";
     public static int topic = -1;
 
     public static void handleCommand(String command, String line,
@@ -87,20 +86,13 @@ public class Parser {
                 GetNewsSourceCommand.getNewsSource(line, list);
             }
             break;
-        case INFO:
-            if (topic >= 0) { //display info of news using index based on the current topic list shown to user
-                InfoNewsCommand.printNewsInfo(line, topics.get(topic).getRelatedNewsArticles());
-            } else {
-                InfoNewsCommand.printNewsInfo(line, list);
-            }
-            break;
         case BACK:
             if (topic >= 0) {
-                System.out.println("You have exited the list of articles in " +topics.get(topic).getTopicName()+ "\n" +
+                printMessage("You have exited the list of articles in " +topics.get(topic).getTopicName()+ "\n" +
                         "Currently in access to the main list of articles");
                 topic = -1;
             } else {
-                System.out.println("You are already in access to the main list of articles, " +
+                printMessage("You are already in access to the main list of articles, " +
                         "back command is invalid :(");
             }
             break;

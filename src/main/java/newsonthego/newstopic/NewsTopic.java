@@ -4,6 +4,8 @@ import newsonthego.NewsArticle;
 
 import java.util.ArrayList;
 
+import static newsonthego.utilities.UI.INDENT;
+
 public class NewsTopic {
     protected String topicName;
     protected ArrayList<NewsArticle> relatedNewsArticles;
@@ -27,7 +29,7 @@ public class NewsTopic {
     public void printNewsArticles() {
         int i = 1;
         for (NewsArticle newsArticle : this.relatedNewsArticles) {
-            System.out.println(i+ ". " +newsArticle.getHeadline());
+            System.out.println(INDENT+ i+ ". " +newsArticle.getHeadline());
             i ++;
         }
     }

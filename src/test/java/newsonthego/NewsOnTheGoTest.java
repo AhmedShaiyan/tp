@@ -53,17 +53,6 @@ class NewsOnTheGoTest {
         assertEquals(-1,index);
     }
 
-    @Test
-    public void testInfoNewsValidIndex() {
-        List<NewsArticle> newsArticles = NewsImporter.importNewsFromText("data/sampleNews.txt", new ArrayList<>());
-        String expectedOutput = "Importance: 9\nReliability: 9\nBias: 3";
-        assertEquals(expectedOutput, "Importance: " + newsArticles.get(1).getImportance() +
-                "\nReliability: " + newsArticles.get(1).getReliability() +
-                "\nBias: " + newsArticles.get(1).getBias());
-    }
-
-    // UserPreferences Tests
-
     @BeforeEach
     void setUp() throws IOException {
         Path dataDirectory = Paths.get("data");
@@ -133,6 +122,4 @@ class NewsOnTheGoTest {
             }
         }
     }
-
-
 }

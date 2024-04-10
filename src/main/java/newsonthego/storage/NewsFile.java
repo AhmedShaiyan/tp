@@ -9,6 +9,8 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 
 import static newsonthego.Parser.parseToText;
+import static newsonthego.utilities.UI.INDENT;
+import static newsonthego.utilities.UI.printMessage;
 
 public class NewsFile {
     public static final String SAVED_NEWS_PATH = java.nio.file.Paths.get("user_data","saved_news.txt")
@@ -42,10 +44,10 @@ public class NewsFile {
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(pathName, true))) {
             writer.write(parseToText(article));
             writer.newLine();
-            System.out.println("Successfully saved " + article.getHeadline() + "\n" +
-                    "find your saved articles at " + pathName);
+            printMessage("Successfully saved " + article.getHeadline() + "\n" +
+                    INDENT + "find your saved articles at " + pathName);
         } catch (IOException e) {
-            System.out.println("An error occurred while appending text to the file: " + e.getMessage());
+            printMessage("An error occurred while appending text to the file: " + e.getMessage());
         }
     }
 
@@ -57,9 +59,9 @@ public class NewsFile {
         try {
             FileWriter fw = new FileWriter(pathName);
             fw.close();
-            System.out.println("File cleared successfully!");
+            printMessage("File cleared successfully!");
         } catch (IOException e) {
-            System.out.println("Error occurred while clearing the file: " + e.getMessage());
+            printMessage("Error occurred while clearing the file: " + e.getMessage());
         }
     }
 }

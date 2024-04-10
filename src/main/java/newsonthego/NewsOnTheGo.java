@@ -25,6 +25,10 @@ import java.util.stream.Collectors;
 
 
 import static newsonthego.Parser.parseToText;
+import static newsonthego.utilities.UI.INDENT;
+import static newsonthego.utilities.UI.printLine;
+import static newsonthego.utilities.UI.printEmptyLine;
+import static newsonthego.utilities.UI.printMessage;
 
 
 public class NewsOnTheGo {
@@ -40,12 +44,12 @@ public class NewsOnTheGo {
     private static TopicsFile savedTopics;
 
     public enum Command {
-
         HELP, DAILY, GET, TOPICS, FILTER, SAVE, SOURCE, INFO, CLEAR, LOAD, STAR,
         STARRED, HEADLINES, SUGGEST, REMOVE, BACK, BYE, VOID, URL
     }
 
     private static boolean processCommand(String command, String line, List<NewsArticle> list) {
+
         // Check for null or empty command
         if (command == null || command.trim().isEmpty()) {
             System.out.println("No command entered. Please try again.");
@@ -79,12 +83,11 @@ public class NewsOnTheGo {
         String[] split = line.split(" ");
         try {
             int index = Integer.parseInt(split[1]) - 1;
-            System.out.println(parseToText(list.get(index)));
+            printMessage(parseToText(list.get(index)));
         } catch (IndexOutOfBoundsException | NumberFormatException e) {
-            System.out.println(UI.INVALID_ARTICLE_INDEX_MESSAGE);
+            printMessage(UI.INVALID_ARTICLE_INDEX_MESSAGE);
         }
     }
-
 
     public static void saveFavoriteTopics() {
         try {
@@ -131,19 +134,20 @@ public class NewsOnTheGo {
      */
     static int filterNews(String line) {
         if (line.substring(6).trim().isEmpty()) {
-            System.out.println("Please provide a topic.");
+            printMessage("Please provide a topic.");
             return -1;
         }
         int topicIndex = findTopicIndex(line.substring(6).trim(), newsTopics);
         if (topicIndex < 0) {
-            System.out.println("Sorry, this topic is not available right now :(");
+            printMessage("Sorry, this topic is not available right now :(");
         } else {
+            printLine();
             System.out.println("Here are the news articles related to "
                     + newsTopics.get(topicIndex).getTopicName() + ": ");
             newsTopics.get(topicIndex).printNewsArticles();
-            System.out.println("You are currently in access to the list of articles in "
-                    + newsTopics.get(topicIndex).getTopicName() +
-                    ", use command 'BACK' to return to main list of articles.");
+            printMessage("You are currently in access to the list of articles in "
+                    + newsTopics.get(topicIndex).getTopicName() + ", \n" +
+                    INDENT + "use command 'BACK' to return to main list of articles.");
         }
         return topicIndex;
     }
@@ -161,23 +165,23 @@ public class NewsOnTheGo {
     public static void starTopic(String line, List<NewsTopic> newsTopics, List<NewsTopic> favouriteTopics) {
         String topicNameToStar = line.substring(4).trim();
         if (topicNameToStar.isEmpty()) {
-            System.out.println("Please provide a topic to add to your favourites.");
+            printMessage("Please provide a topic to add to your favourites.");
             return;
         }
         long count = favouriteTopics.stream()
                 .filter(topic -> topic.getTopicName().equalsIgnoreCase(topicNameToStar))
                 .count();
         if (count > 0) {
-            System.out.println(topicNameToStar + " is already in your list of favourite topics.");
+            printMessage(topicNameToStar + " is already in your list of favourite topics.");
             return;
         }
         int topicIndex = findTopicIndex(topicNameToStar, newsTopics);
         if (topicIndex < 0) {
-            System.out.println("Sorry, this topic is not available right now :(");
+            printMessage("Sorry, this topic is not available right now :(");
         } else {
             favouriteTopics.add(newsTopics.get(topicIndex));
             saveFavoriteTopics();
-            System.out.println(topicNameToStar + " has been added to your list of favourite topics.");
+            printMessage(topicNameToStar + " has been added to your list of favourite topics.");
         }
     }
 
@@ -194,17 +198,17 @@ public class NewsOnTheGo {
     public static void removeStarredTopic(String line, List<NewsTopic> favouriteTopics) {
         String topicToRemove = line.substring(6).trim();
         if (topicToRemove.isEmpty()) {
-            System.out.println("Please provide a topic to remove from your favourites.");
+            printMessage("Please provide a topic to remove from your favourites.");
             return;
         }
 
         boolean removed = favouriteTopics.removeIf(topic -> topic.getTopicName().equalsIgnoreCase(topicToRemove));
 
         if (removed) {
-            System.out.println(topicToRemove + " has been removed from your list of favourite topics");
+            printMessage(topicToRemove + " has been removed from your list of favourite topics");
             saveFavoriteTopics(); // Save the updated favorite topics list to file
         } else {
-            System.out.println("Topic is not found in favourites");
+            printMessage("Topic is not found in favourites");
         }
     }
 
@@ -224,18 +228,18 @@ public class NewsOnTheGo {
         try {
             int index = Integer.parseInt(split[1]) - 1;
             if (list.get(index).isSaved()) {
-                System.out.println(list.get(index).getHeadline() + " has already been saved! \n" +
+                printMessage(list.get(index).getHeadline() + " has already been saved! \n" +
                         "find your saved articles at " + savedNews.getPathName());
             } else {
                 try {
                     NewsFile.saveNews(list.get(index));
                     list.get(index).setSaved(true);
                 } catch (IOException e) {
-                    System.out.println("An error occurred while appending text to the file: " + e.getMessage());
+                    printMessage("An error occurred while appending text to the file: " + e.getMessage());
                 }
             }
         } catch (IndexOutOfBoundsException | NumberFormatException e) {
-            System.out.println(UI.INVALID_ARTICLE_INDEX_MESSAGE);
+            printMessage(UI.INVALID_ARTICLE_INDEX_MESSAGE);
         }
     }
 
@@ -244,20 +248,22 @@ public class NewsOnTheGo {
         try {
             lines = Files.readAllLines(Paths.get(savedNews.getPathName()));
         } catch (IOException e) {
-            System.out.println("An error occurred while reading the save file: " + e.getMessage());
+            printMessage("An error occurred while reading the save file: " + e.getMessage());
             return;
         }
 
         if (lines.isEmpty()) {
-            System.out.println("No saved news articles to display.");
+            printMessage("No saved news articles to display.");
             return;
         }
 
+        printLine();
         System.out.println("Displaying saved news articles:");
+        printEmptyLine();;
         for (String line : lines) {
-
-            System.out.println(line);
+            System.out.println(INDENT + line);
         }
+        printLine();
     }
 
 
@@ -280,9 +286,9 @@ public class NewsOnTheGo {
 
         String suggestions = UserPreferences.getSuggestedArticlesFromFavoriteTopics();
         if (suggestions.isEmpty()) {
-            System.out.println("No suggestions available at the moment.");
+            printMessage("No suggestions available at the moment.");
         } else {
-            System.out.println(suggestions);
+            printMessage(suggestions);
         }
     }
 
@@ -312,6 +318,7 @@ public class NewsOnTheGo {
 
         Path outputFilePath = Paths.get(outputDirectoryPath, outputFileName);
 
+        //execute news scrapper to obtain updated news
         try {
             if (Files.exists(outputFilePath)) {
                 // File exists, proceed with your logic

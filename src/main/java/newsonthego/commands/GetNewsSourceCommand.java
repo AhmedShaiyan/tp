@@ -6,6 +6,7 @@ import newsonthego.utilities.UI;
 import java.util.List;
 
 import static newsonthego.Parser.parseToText;
+import static newsonthego.utilities.UI.printMessage;
 
 public class GetNewsSourceCommand {
 
@@ -19,9 +20,9 @@ public class GetNewsSourceCommand {
         String[] split = line.split(" ");
         try {
             int index = Integer.parseInt(split[1]) - 1;
-            System.out.println(parseToText(list.get(index)));
+            printMessage(parseToText(list.get(index)));
         } catch (IndexOutOfBoundsException | NumberFormatException e) {
-            System.out.println(UI.INVALID_ARTICLE_INDEX_MESSAGE);
+            printMessage(UI.INVALID_ARTICLE_INDEX_MESSAGE);
         }
     }
 }
