@@ -39,8 +39,8 @@ The following interface should appear:
 Hello [name]
 What do you want from me?
 ```
-6. Type the command in the command box and press Enter to execute it.
-7. Refer to the [Features](#Features) section below for details of each command.
+7. Type the command in the command box and press Enter to execute it.
+8. Refer to the [Features](#Features) section below for details of each command.
 
 
 ## Features
