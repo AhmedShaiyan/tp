@@ -11,11 +11,6 @@ import static newsonthego.NewsOnTheGo.suggestArticle;
 import static newsonthego.utilities.UI.INDENT;
 import static newsonthego.utilities.UI.printMessage;
 import java.util.List;
-<<<<<<< HEAD
-=======
-
-import static newsonthego.NewsOnTheGo.suggestArticle;
->>>>>>> 548b29ddfdc4838cf65099347d82e289ae186ceb
 
 public class Parser {
     public static int topic = -1;
