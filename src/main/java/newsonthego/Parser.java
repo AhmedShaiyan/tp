@@ -7,6 +7,7 @@ import newsonthego.commands.ShowHeadlinesCommand;
 import newsonthego.commands.URLCommand;
 import newsonthego.newstopic.NewsTopic;
 import newsonthego.utilities.UI;
+import newsonthego.commands.QuoteGenerator;
 
 import static newsonthego.NewsOnTheGo.suggestArticle;
 import static newsonthego.utilities.UI.printMessage;
@@ -24,6 +25,9 @@ public class Parser {
         } catch (IllegalArgumentException e) {
             commandEnum = NewsOnTheGo.Command.VOID;
         }
+
+        QuoteGenerator quoteGenerator = new QuoteGenerator();
+
         switch (commandEnum) {
         case HELP:
             UI.printHelpMessage();
@@ -95,6 +99,11 @@ public class Parser {
                 printMessage("You are already in access to the main list of articles, " +
                         "back command is invalid :(");
             }
+            break;
+
+        case QUOTE:
+            // Print a random quote
+            printMessage("Some words of inpiration today: " +  "\n" + quoteGenerator.getRandomQuote());
             break;
         case BYE:
             UI.printBye();
