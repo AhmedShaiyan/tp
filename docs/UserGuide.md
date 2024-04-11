@@ -637,22 +637,22 @@ function. Take note by keying in integers only. Make sure the integer do not exc
 
 <h2 id="command-summary"> Command Summary </h2>
 
-| Commands      | Format, Examples      |
-|---------------|-----------------------|
-| **HELP**      | `help`                |
-| **DAILY**     | `daily March 10 2024` |
-| **TOPICS**    | `topics`              |
-| **STAR**      | `star Technology`     |
-| **STARRED**   | `starred`             |
-| **REMOVE**    | `remove Technology`   |
-| **SUGGEST**   | `suggest`             |
-| **FILTER**    | `filter health`       |
-| **SAVE**      | `save 1`              |
-| **SOURCE**    | `source 1`            |
-| **BACK**      | `back`                |
-| **URL**       | `url 2`               |
-| **HEADLINES** | `headlines 10`        |
-| **GET**       | `get 3`               |
-| **LOAD**      | `load`                |
-| **CLEAR**     | `clear`               |
-| **BYE**       | `bye`                 |
+| Commands      | Format, Examples                             |
+|---------------|----------------------------------------------|
+| **HELP**      | `help`                                       |
+| **DAILY**     | `daily {DATE}`<br/>eg.`daily March 10 2024`  |
+| **TOPICS**    | `topics`                                     |
+| **STAR**      | `star {TOPIC}`<br/>eg.`star Technology`      |
+| **STARRED**   | `starred`                                    |
+| **REMOVE**    | `remove {TOPIC}`<br/>eg.`remove Technology`  |
+| **SUGGEST**   | `suggest`                                    |
+| **FILTER**    | `filter {TOPIC}`<br/>eg.`filter health`      |
+| **SAVE**      | `save {INDEX}`<br/>eg.`save 1`               |
+| **SOURCE**    | `source {INDEX}`<br/>eg.`source 1`           |
+| **BACK**      | `back`                                       |
+| **URL**       | `url {INDEX}`<br/>eg.`url 2`                 |
+| **HEADLINES** | `headlines {INDEX}`<br/>eg.`headlines 10`    |
+| **GET**       | `get {INDEX}`<br/>eg.`get 3`                 |
+| **LOAD**      | `load`                                       |
+| **CLEAR**     | `clear`                                      |
+| **BYE**       | `bye`                                        |
