@@ -22,7 +22,7 @@ class URLCommandTest {
     }
 
     @Test
-    void printArticleURL_ValidIndex_PrintsURL() {
+    void printArticleURLValidIndexURL() {
 
         List<NewsArticle> list = List.of(new NewsArticle("Title1", "Author1", "Date1", "Source1",
                 "https://example.com/article1", "Content1"));
@@ -36,7 +36,7 @@ class URLCommandTest {
 
 
     @Test
-    void printArticleURLsForDay_PrintsURLs() {
+    void printArticleURLsForDay() {
         List<NewsArticle> articles = new ArrayList<>();
         articles.add(new NewsArticle("Title1", "Author1", "Date1", "Source1",
                 "https://example.com/article1", "Content1"));
@@ -50,7 +50,7 @@ class URLCommandTest {
     }
 
     @Test
-    void parseArticleURL_ValidLine_ReturnsURL() {
+    void parseArticleURLReturnsURL() {
         String articleLine = "Title;Author;Date;Source;https://example.com/article;Content";
         String result = URLCommand.parseArticleURL(articleLine);
 
@@ -59,7 +59,7 @@ class URLCommandTest {
     }
 
     @Test
-    void parseArticleURL_InvalidLine_ReturnsErrorMessage() {
+    void parseArticleURLReturnsErrorMessage() {
         String articleLine = "Title;Author;Date;Source"; // Missing URL part
         String result = URLCommand.parseArticleURL(articleLine);
 

@@ -14,7 +14,12 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 
-import java.io.*;
+import java.io.IOException;
+import java.io.PrintStream;
+import java.io.ByteArrayOutputStream;
+import java.io.File;
+import java.io.BufferedReader;
+import java.io.FileReader;
 import java.nio.file.Files;
 
 import java.nio.file.Path;
@@ -30,7 +35,7 @@ class NewsOnTheGoTest {
 
 
     private static final Path SAVED_TOPICS_PATH = Paths.get("data", "saved_topics.txt");
-    
+
 
     private final PrintStream standardOut = System.out;
     private final ByteArrayOutputStream outputStreamCaptor = new ByteArrayOutputStream();
@@ -76,7 +81,7 @@ class NewsOnTheGoTest {
 
 /* Tests for Load articles feature */
     @Test
-    void loadAndDisplaySavedNews_WithSavedArticles_PrintsArticles() throws IOException {
+    void loadAndDisplayPrintsArticles() throws IOException {
         String testArticle = "Test Article; Author; Date; Source; URL; Content\n";
         Files.writeString(SAVED_NEWS_PATH, testArticle);
         // Act
@@ -89,7 +94,7 @@ class NewsOnTheGoTest {
     }
 
     @Test
-    void loadAndDisplaySavedNews_NoSavedArticles_PrintsNoArticlesMessage() throws IOException {
+    void loadAndDisplayPrintsNoArticlesMessage() throws IOException {
         // Clear the contents of the file to simulate no saved articles
         Files.writeString(SAVED_NEWS_PATH, "", StandardOpenOption.TRUNCATE_EXISTING);
 
@@ -103,7 +108,7 @@ class NewsOnTheGoTest {
 
 
     @Test
-    void loadAndDisplaySavedNews_FileDoesNotExist_PrintsErrorMessage() throws IOException {
+    void loadAndDisplayPrintsErrorMessage() throws IOException {
         // Arrange
         Files.deleteIfExists(SAVED_NEWS_PATH);
 
