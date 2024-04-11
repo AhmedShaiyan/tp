@@ -30,7 +30,7 @@ public class ShowHeadlinesCommandTest {
     }
 
     @Test
-    void PrintsCorrectHeadlines() {
+    void printsCorrectHeadlines() {
         ShowHeadlinesCommand.showHeadlines("headlines 3");
         String output = outputStreamCaptor.toString();
         String[] lines = output.split(System.lineSeparator());
@@ -49,14 +49,14 @@ public class ShowHeadlinesCommandTest {
 
 
     @Test
-    void PrintsTooHighMessage() {
+    void printsTooHighMessage() {
         ShowHeadlinesCommand.showHeadlines("headlines 7000");
         String output = outputStreamCaptor.toString().trim();
         assertTrue(output.contains("Invalid index, too high."), "Should indicate the index is too high");
     }
 
     @Test
-    void PrintsFormatErrorMessage() {
+    void printsFormatErrorMessage() {
         ShowHeadlinesCommand.showHeadlines("headlines quoacamole");
         String output = outputStreamCaptor.toString().trim();
         assertEquals("Please provide a valid number for the number of articles.", output);

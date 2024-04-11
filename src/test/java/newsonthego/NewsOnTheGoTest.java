@@ -35,12 +35,11 @@ class NewsOnTheGoTest {
 
 
     private static final Path SAVED_TOPICS_PATH = Paths.get("data", "saved_topics.txt");
-
+    private static final Path USER_DATA_DIRECTORY = Paths.get("user_data");
+    private static final Path SAVED_NEWS_PATH = USER_DATA_DIRECTORY.resolve("saved_news.txt");
 
     private final PrintStream standardOut = System.out;
     private final ByteArrayOutputStream outputStreamCaptor = new ByteArrayOutputStream();
-    private static final Path USER_DATA_DIRECTORY = Paths.get("user_data");
-    private static final Path SAVED_NEWS_PATH = USER_DATA_DIRECTORY.resolve("saved_news.txt");
 
     @BeforeEach
     void loadSetUp() throws IOException {
@@ -79,7 +78,7 @@ class NewsOnTheGoTest {
     }
 
 
-/* Tests for Load articles feature */
+    /* Tests for Load articles feature */
     @Test
     void loadAndDisplayPrintsArticles() throws IOException {
         String testArticle = "Test Article; Author; Date; Source; URL; Content\n";
@@ -103,7 +102,8 @@ class NewsOnTheGoTest {
 
         // Assert
         String output = outputStreamCaptor.toString().trim();
-        assertTrue(output.contains("No saved news articles to display."), "Output should contain the no articles message.");
+        assertTrue(output.contains("No saved news articles to display."),
+                "Output should contain the no articles message.");
     }
 
 
