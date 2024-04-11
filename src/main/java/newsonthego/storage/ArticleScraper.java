@@ -30,6 +30,9 @@ public class ArticleScraper {
             // Extract theme from navigation menu (assuming it's in a specific element)
             String theme = extractTheme(doc);
 
+            // Extract source of the article
+            String source = extractSource(doc);
+
             // Extract published date in multiple formats
             String publishedDate = extractPublishedDate(doc);
 
@@ -49,13 +52,36 @@ public class ArticleScraper {
             // Write the extracted information to the output file in append mode
             try (BufferedWriter writer = new BufferedWriter(new FileWriter(outputFilePath, true))) {
                 writer.write("\"" + headline + "\";" + author + ";" + publishedDate + ";"
-                        + url + ";" + abstractText + ";" + theme + "\n");
+                        + source + ";" + url + ";" + abstractText + ";" + theme + "\n");
             } catch (IOException e) {
                 e.printStackTrace();
             }
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    /**
+     * Extracts the source of the article.
+     *
+     * @param doc The document object representing the HTML content of the article.
+     * @return The source of the article.
+     */
+    private static String extractSource(Document doc) {
+        // Try to extract source from the og:site_name property
+        Element sourceElement = doc.selectFirst("meta[property=og:site_name]");
+        if (sourceElement != null) {
+            return sourceElement.attr("content");
+        }
+
+        // If og:site_name is not found, try to extract source from al:android:app_name property
+        Element fallbackSourceElement = doc.selectFirst("meta[property=al:android:app_name]");
+        if (fallbackSourceElement != null) {
+            return fallbackSourceElement.attr("content");
+        }
+
+        // If both properties are not found, return "Unknown"
+        return "Unknown";
     }
 
     /**
@@ -170,15 +196,15 @@ public class ArticleScraper {
      */
     private static String normalizeDate(String dateString) {
         String[] formats = {
-            "yyyy-MM-dd'T'HH:mm:ss'Z'", // Example: 2024-03-10T12:30:45Z
-            "yyyy-MM-dd'T'HH:mm:ss",    // Example: 2024-03-10T12:30:45
-            "yyyy-MM-dd",               // Example: 2024-03-10
-            "yyyy/MM/dd",               // Example: 2024/03/10
-            "MM/dd/yyyy",               // Example: 03/10/2024
-            "dd-MM-yyyy",               // Example: 10-03-2024
-            "dd/MM/yyyy",               // Example: 10/03/2024
-            "MMM dd, yyyy",             // Example: Mar 10, 2024
-            "MMMM dd, yyyy"             // Example: March 10, 2024
+                "yyyy-MM-dd'T'HH:mm:ss'Z'", // Example: 2024-03-10T12:30:45Z
+                "yyyy-MM-dd'T'HH:mm:ss",    // Example: 2024-03-10T12:30:45
+                "yyyy-MM-dd",               // Example: 2024-03-10
+                "yyyy/MM/dd",               // Example: 2024/03/10
+                "MM/dd/yyyy",               // Example: 03/10/2024
+                "dd-MM-yyyy",               // Example: 10-03-2024
+                "dd/MM/yyyy",               // Example: 10/03/2024
+                "MMM dd, yyyy",             // Example: Mar 10, 2024
+                "MMMM dd, yyyy"             // Example: March 10, 2024
         };
 
         for (String format : formats) {
