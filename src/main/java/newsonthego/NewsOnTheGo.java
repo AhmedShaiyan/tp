@@ -33,7 +33,7 @@ import static newsonthego.utilities.UI.printMessage;
 
 public class NewsOnTheGo {
 
-    public static final String FILENAME = "data/testArticleScraper.txt";
+    public static final String FILENAME = "data/sampleNews.txt";
     public static final ArrayList<NewsTopic> NEWS_TOPICS = new ArrayList<>();
     private static final Logger logger = Logger.getLogger("NewsOnTheGo");
     private static final ArrayList<NewsTopic> favouriteTopics = new ArrayList<>();
