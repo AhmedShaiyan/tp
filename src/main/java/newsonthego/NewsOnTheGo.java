@@ -39,7 +39,7 @@ public class NewsOnTheGo {
     private static final ArrayList<NewsTopic> favouriteTopics = new ArrayList<>();
 
 
-    private static NewsFile savedNews;
+    public static NewsFile savedNews;
 
     public enum Command {
         HELP, DAILY, TOPICS, FILTER, STAR, STARRED, REMOVE, URL, HEADLINES, GET, SOURCE, SAVE, LOAD, SUGGEST,
