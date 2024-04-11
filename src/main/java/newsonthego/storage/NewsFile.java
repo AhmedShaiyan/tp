@@ -30,6 +30,10 @@ public class NewsFile {
         return pathName;
     }
 
+    public void setPathName(String pathName) {
+        NewsFile.pathName = pathName;
+    }
+
 
 
     /**
