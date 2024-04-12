@@ -15,7 +15,7 @@ import static newsonthego.commands.URLCommand.parseArticleURL;
  * Handles logic for news article suggestions based on favorite topics.
  */
 public class UserPreferences {
-    private static final Path SAMPLE_NEWS_FILE = Paths.get("data", "testArticleScraper.txt");
+    private static final Path SAMPLE_NEWS_FILE = Paths.get("data", "sampleNews.txt");
     private static final Path SAVED_TOPICS_PATH = Paths.get("data", "saved_topics.txt");
 
     /**
