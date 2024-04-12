@@ -3,13 +3,13 @@
 
 <ul style="font-size: large">
     <li><strong><a href="#acknowledgements">Acknowledgements</a></strong></li>
-    <li><strong><a href="#setting-up">Setting Up, </a><a href="#getting-started">Getting Started</a></strong></li>
+    <li><strong><a href="#setting-up">Setting Up, Getting Started</a></strong></li>
     <li><strong><a href="#design-implementation">Design and Implementation</a></strong></li>
         <ul>
             <li><a href="#architecture">Architecture</a></li>
         </ul>
         <ul>
-            <li><a href="#article-scrapper">Aritcle Scrapper</a></li>
+            <li><a href="#article-scrapper">Article Scrapper</a></li>
             <ul>
                 <li><a href="#scrapper-implementation">Implementation</a></li>
                 <li><a href="#scrapper-design">Design Consideration</a></li>
@@ -117,13 +117,69 @@
 </ul>
 
 <h2 id="acknowledgements"> Acknowledgements </h2>
+<ul>
+    <li>
+        <p>
+            Referenced to 
+            <a href="https://se-education.org/addressbook-level3/DeveloperGuide.html">
+                AB-3 Developer Guide
+            </a>
+        </p>
+    </li>
+    <li>
+        <p>
+            Use of 
+            <a href="https://jsoup.org/">
+                jsoup library
+            </a>
+            to scrap articles
+        </p>
+    </li>
+</ul>
 
 <p>{list here sources of all reused/adapted ideas, code, documentation, and third-party libraries -- 
 include links to the original source as well}</p>
 
-<h2 id="architecture">Architecture<h2>
+<h2 id="setting-up">Setting up, Getting Started</h2>
+First, fork this repo, and clone the fork into your computer.
 
-<h2 id="design-implementation">Design and Implementation<h2>
+If you plan to use Intellij IDEA (highly recommended):
+
+<ol>
+    <li>
+        Configure the JDK: Follow the guide 
+        <a href="https://se-education.org/guides/tutorials/intellijImportGradleProject.html">
+            [se-edu/guides] IDEA: Configuring the JDK 
+        </a>
+        to to ensure Intellij is configured to use JDK 11.</li>
+    <li>
+        Import the project as a Gradle project: Follow the guide
+        <a href="https://se-education.org/guides/tutorials/intellijImportGradleProject.html">
+            [se-edu/guides] IDEA: Importing a Gradle project 
+        </a>
+        to import the project into IDEA.
+    </li>
+<span style="color: red"> &#33; </span> Note: Importing a Gradle project is slightly different from importing a normal Java project.
+    <li>
+    Verify the setup:
+    <ol>
+        <li>
+            Run NewsOnTheGo and try a few commands from our 
+            <a href="UserGuide.md">User Guide.</a>
+        </li>
+    </ol>
+</ol>
+
+
+
+Alternatively, refer to our [User Guide](UserGuide.md) for quick start details.
+
+<h2 id="architecture">Architecture</h2>
+
+The Architecture Design given above gives a visualisation of the higher level design of our application.
+
+
+<h2 id="design-implementation">Design and Implementation</h2>
 
 {Describe the design and implementation of the product. Use UML diagrams and short code snippets where applicable.}
 
@@ -372,12 +428,15 @@ been suggested.
 
 {Describe the value proposition: what problem does it solve?}
 
-## User Stories
+<h2 id="user-stories"> User Stories </h2>
 
-| Version | As a ... | I want to ...             | So that I can ...                                           |
-|---------|----------|---------------------------|-------------------------------------------------------------|
-| v1.0    | new user | see usage instructions    | refer to them when I forget how to use the application      |
-| v2.0    | user     | find a to-do item by name | locate a to-do without having to go through the entire list |
+| Version | As a ... | I want to ...                                                          | So that I can ...                                                                                                 |
+|-|-|------------------------------------------------------------------------|-------------------------------------------------------------------------------------------------------------------|
+| v1.0 | busy student | to know about the news of the day quickly                              | easily find out what is going on a particular day.                                                                |
+| v1.0    | non-tech-savvy person | to save the source of the news                                         | go back to them next time.                                                                                  |
+| v1.0    | busy student | search based on topics easily                                          | not look through news that I am not concerned with.                                                               |
+| v1.0    | student who cares about credibility | be provided information on the reliability and bias of the news sources | judge the trustworthiness of the information and input the correct citations and references in my research paper  |
+| v1.0    | busy news consumer | have the system to keep track of the topics I am interested in when the program is first launched  | don't input them every time I am searching for an article of news.                                                |
 
 ## Non-Functional Requirements
 
