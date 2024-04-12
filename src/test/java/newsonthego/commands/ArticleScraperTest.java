@@ -34,15 +34,19 @@ public class ArticleScraperTest {
     @Test
     public void testScrapeArticleCNN() throws IOException {
         // Define the test URL
-        String testUrl = "https://edition.cnn.com/2024/04/07/entertainment/kristen-wiig-ryan-gosling-matt-damon-snl/index.html";
+        String testUrl = "https://edition.cnn.com/2024/04/07/entertainment/" +
+                "kristen-wiig-ryan-gosling-matt-damon-snl/index.html";
 
         // Define the expected outcome
         String expectedData = "\"Kristen Wiig initiated into ‘SNL’ five-timers club by Ryan Gosling, " +
                 "Matt Damon and… Lorne Michaels | CNN\";Alli Rosenbloom;" +
                 "April 07, 2024;CNN;" +
-                "https://edition.cnn.com/2024/04/07/entertainment/kristen-wiig-ryan-gosling-matt-damon-snl/index.html;" +
-                "Kristen Wiig got inducted into the coveted “Saturday Night Live” five-timers club in style this weekend " +
-                "when she hosted the long-running NBC sketch show for the fifth time, and she had a little bit of help from some huge stars.;Entertainment\n";
+                "https://edition.cnn.com/2024/04/07/entertainment/kristen-" +
+                "wiig-ryan-gosling-matt-damon-snl/index.html;" +
+                "Kristen Wiig got inducted into the coveted “Saturday " +
+                "Night Live” five-timers club in style this weekend " +
+                "when she hosted the long-running NBC sketch show for " +
+                "the fifth time, and she had a little bit of help from some huge stars.;Entertainment\n";
 
         // Call the scrapeArticle method
         ArticleScraper.scrapeArticle(testUrl, outputFolderPath);
