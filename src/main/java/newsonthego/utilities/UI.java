@@ -46,7 +46,6 @@ public class UI {
             name = in.nextLine();
         }
         printMessage("Hello " + name);
-        //System.out.println("Hello " + name);
     }
 
     public static void printLine() {
@@ -71,6 +70,7 @@ public class UI {
         int i = 1; // index for user starts from 1
         for (NewsArticle article : articles) {
             printHeadline(INDENT + i + ": " + article.getHeadline());
+            System.out.println(INDENT + "URL: " + article.getUrl());
             i++;
         }
     }
