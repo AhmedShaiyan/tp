@@ -33,23 +33,24 @@ public class ArticleScraperTest {
 
     @Test
     public void testScrapeArticleCNN() throws IOException {
-        // Define the test URL
-        String testUrl = "https://edition.cnn.com/2024/04/07/entertainment/" +
-                "kristen-wiig-ryan-gosling-matt-damon-snl/index.html";
+        // Define the test URL and output folder path
+        String testUrl = "https://edition.cnn.com/2024/04/03/entertainment/matrix-fifth-movie/index.html";
+        String outputFolderPath = "./test-output";
+
+        // Create the output folder if it doesn't exist
+        Files.createDirectories(Paths.get(outputFolderPath));
 
         // Define the expected outcome
-        String expectedData = "\"Kristen Wiig initiated into ‘SNL’ five-timers club by Ryan Gosling, " +
-                "Matt Damon and… Lorne Michaels | CNN\";Alli Rosenbloom;" +
-                "April 07, 2024;CNN;" +
-                "https://edition.cnn.com/2024/04/07/entertainment/kristen-" +
-                "wiig-ryan-gosling-matt-damon-snl/index.html;" +
-                "Kristen Wiig got inducted into the coveted “Saturday " +
-                "Night Live” five-timers club in style this weekend " +
-                "when she hosted the long-running NBC sketch show for " +
-                "the fifth time, and she had a little bit of help from some huge stars.;Entertainment\n";
+        String expectedData = "\"‘The Matrix’ has a fifth film in the works and, no, this is not a simulation | CNN\";" +
+                "Alli Rosenbloom;April 03, 2024;CNN;" +
+                "https://edition.cnn.com/2024/04/03/entertainment/matrix-fifth-movie/index.html;" +
+                "Red pill or blue pill, anyone? A fifth installment of the beloved sci-fi film franchise “The Matrix” is in the works.;Entertainment\n";
 
         // Call the scrapeArticle method
         ArticleScraper.scrapeArticle(testUrl, outputFolderPath);
+
+        // Define the output file path
+        String outputFilePath = outputFolderPath + File.separator + "testArticleScraper.txt";
 
         // Check that the output file exists
         File outputFile = new File(outputFilePath);
@@ -61,6 +62,7 @@ public class ArticleScraperTest {
         // Compare the expected data with the actual data in the output file
         assertEquals(expectedData, fileContent, "The content of the output file should match the expected data.");
     }
+
 }
 
 
