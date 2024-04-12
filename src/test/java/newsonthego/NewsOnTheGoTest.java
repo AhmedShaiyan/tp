@@ -1,11 +1,9 @@
 package newsonthego;
 
 import static newsonthego.storage.TopicsFile.saveTopics;
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertTrue;
-import static org.junit.jupiter.api.Assertions.fail;
+import static org.junit.jupiter.api.Assertions.*;
 
+import newsonthego.commands.QuoteGenerator;
 import newsonthego.newstopic.NewsTopic;
 import newsonthego.storage.NewsFile;
 import newsonthego.storage.NewsImporter;
@@ -28,7 +26,9 @@ import java.nio.file.StandardOpenOption;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
+import java.util.Set;
 import java.util.stream.Stream;
+import java.util.HashSet;
 
 
 class NewsOnTheGoTest {
@@ -207,4 +207,47 @@ class NewsOnTheGoTest {
 
         }
     }
+
+    @Test
+    public void testGetRandomQuoteNotNull() {
+
+        QuoteGenerator generator = new QuoteGenerator();
+
+        // Call getRandomQuote() and verify that the returned quote is not null
+        String quote = generator.getRandomQuote();
+        assertNotNull(quote, "Random quote should not be null");
+    }
+
+    @Test
+    public void testGetRandomQuoteFromList() {
+
+        QuoteGenerator generator = new QuoteGenerator();
+        // Get all the quotes from the generator
+        List<String> quotes = generator.quotes;
+
+        // Call getRandomQuote() multiple times and verify that each quote is from the list
+        for (int i = 0; i < 100; i++) {
+            String randomQuote = generator.getRandomQuote();
+            assertTrue(quotes.contains(randomQuote), "Random quote should be from the list of quotes");
+        }
+    }
+    @Test
+    public void testGetRandomQuoteIsRandom() {
+
+        QuoteGenerator generator = new QuoteGenerator();
+
+        // Call getRandomQuote() multiple times and collect the results in a set
+        Set<String> uniqueQuotes = new HashSet<>();
+        for (int i = 0; i < 1000; i++) {
+            String randomQuote = generator.getRandomQuote();
+            uniqueQuotes.add(randomQuote);
+        }
+        // Verify that there are multiple unique quotes in the set
+        assertTrue(uniqueQuotes.size() > 1, "Should have more than one unique quote from " +
+                "multiple calls to getRandomQuote()");
+    }
+
+
+
+
 }
