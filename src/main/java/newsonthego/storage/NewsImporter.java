@@ -25,7 +25,7 @@ public class NewsImporter {
 
         List<NewsArticle> list = new ArrayList<>();
         for (String s : stringList) {
-            String[] split = s.split(";");
+            String[] split = s.split("\\s*;\\s*");
             String headline = split[0];
             String author = split[1];
             String date = split[2];

@@ -20,7 +20,7 @@ This guide will help you get started with using NewsOnTheGo and understand its f
 <ol type="1" style="font-size: large">
     <li><a href="#quick-start" >Quick Start</a></li>
     <li><a href="#features">Features</a>
-        <ol style="list-style-type:decimal" style="font-size: medium">
+        <ol type="1" style="font-size: medium">
             <li><code><a href="#help">help</a></code></li>
             <li>
                 <code><a href="#daily">daily</a></code>

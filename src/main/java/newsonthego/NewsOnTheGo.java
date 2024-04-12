@@ -35,15 +35,15 @@ public class NewsOnTheGo {
 
     public static final String FILENAME = "data/sampleNews.txt";
     public static final ArrayList<NewsTopic> NEWS_TOPICS = new ArrayList<>();
+    public static NewsFile savedNews;
     private static final Logger logger = Logger.getLogger("NewsOnTheGo");
     private static final ArrayList<NewsTopic> favouriteTopics = new ArrayList<>();
 
 
-    private static NewsFile savedNews;
 
     public enum Command {
         HELP, DAILY, TOPICS, FILTER, STAR, STARRED, REMOVE, URL, HEADLINES, GET, SOURCE, SAVE, LOAD, SUGGEST,
-        CLEAR, BACK, BYE, VOID,
+        CLEAR, BACK, QUOTE, BYE, VOID
     }
 
     private static boolean processCommand(String command, String line, List<NewsArticle> list) {
