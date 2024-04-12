@@ -219,7 +219,7 @@ public class ArticleScraper {
             }
 
             if (parseSuccess && date != null) {
-                SimpleDateFormat outputFormat = new SimpleDateFormat("MMMM dd,yyyy", Locale.ENGLISH);
+                SimpleDateFormat outputFormat = new SimpleDateFormat("MMMM dd, yyyy", Locale.ENGLISH);
                 return outputFormat.format(date);
             }
         }

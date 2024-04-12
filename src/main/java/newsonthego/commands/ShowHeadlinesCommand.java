@@ -12,7 +12,7 @@ import java.util.stream.Collectors;
  * a specified number of article headlines from the beginning of the news articles list.
  */
 public class ShowHeadlinesCommand {
-    private static final Path NEWS_FILE_PATH = Path.of("data", "sampleNews.txt");
+    private static final Path NEWS_FILE_PATH = Path.of("data", "testArticleScraper.txt");
 
     /**
      * Displays the headlines of the first few articles specified by the index from the news articles text file.

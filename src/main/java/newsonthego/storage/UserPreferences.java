@@ -16,6 +16,7 @@ import static newsonthego.commands.URLCommand.parseArticleURL;
  */
 public class UserPreferences {
     private static final Path SAMPLE_NEWS_FILE = Paths.get("data", "sampleNews.txt");
+    private static final Path SCRAPPER_NEWS_FILE = Paths.get("data", "testArticleScraper.txt");
     private static final Path SAVED_TOPICS_PATH = Paths.get("data", "saved_topics.txt");
 
     /**
@@ -37,7 +38,7 @@ public class UserPreferences {
                 return "You do not have any favorite topics. Please star a topic first.\n";
             }
 
-            List<String> allArticles = Files.readAllLines(SAMPLE_NEWS_FILE);
+            List<String> allArticles = Files.readAllLines(SCRAPPER_NEWS_FILE);
 
             for (String topic : favoriteTopics) {
                 List<String> articlesForTopic = allArticles.stream()

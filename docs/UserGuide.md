@@ -428,7 +428,7 @@ ____________________________________________________________
 
 <br>
 
-<h3 id="source"> Get source of article: `source` </h3>
+<h3 id="source"> Get source of article: <code>source</code> </h3>
 Displays the source of the article and its APA citation.
 
 #### Format: `source {INDEX OF ARTICLE ON DISPLAYED LIST}`
