@@ -34,17 +34,22 @@ public class ArticleScraperTest {
     @Test
     public void testScrapeArticleCNN() throws IOException {
         // Define the test URL and output folder path
-        String testUrl = "https://edition.cnn.com/2024/04/03/entertainment/matrix-fifth-movie/index.html";
+        String testUrl = "https://edition.cnn.com/2024/03/28/india/india-" +
+                "state-department-kejriwal-objection-intl-hnk/index.html";
         String outputFolderPath = "./test-output";
 
         // Create the output folder if it doesn't exist
         Files.createDirectories(Paths.get(outputFolderPath));
 
         // Define the expected outcome
-        String expectedData = "\"‘The Matrix’ has a fifth film in the works and, no, this is not a simulation | CNN\";" +
-                "Alli Rosenbloom;April 03, 2024;CNN;" +
-                "https://edition.cnn.com/2024/04/03/entertainment/matrix-fifth-movie/index.html;" +
-                "Red pill or blue pill, anyone? A fifth installment of the beloved sci-fi film franchise “The Matrix” is in the works.;Entertainment\n";
+        String expectedData = "\"India summons US State Department official over call for " +
+                "fair legal treatment of arrested opposition leader | CNN\";" +
+                "Rhea Mogul;March 28, 2024;CNN;" +
+                "https://edition.cnn.com/2024/03/28/india/india-state-department-kejriwal-" +
+                "objection-intl-hnk/index.html;" +
+                "India’s Ministry of External Affairs has made a “strong objection” to " +
+                "State Department comments calling for a fair and transparent legal process after the arrest " +
+                "of opposition leader and Delhi chief minister Arvind Kejriwal.;World\n";
 
         // Call the scrapeArticle method
         ArticleScraper.scrapeArticle(testUrl, outputFolderPath);
