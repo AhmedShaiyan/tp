@@ -1,6 +1,5 @@
 <p style="font-size: xxx-large">Developer Guide</p>
 
-
 <ul style="font-size: large">
     <li><strong><a href="#acknowledgements">Acknowledgements</a></strong></li>
     <li><strong><a href="#setting-up">Setting Up, Getting Started</a></strong></li>
@@ -430,13 +429,25 @@ been suggested.
 
 <h2 id="user-stories"> User Stories </h2>
 
-| Version | As a ... | I want to ...                                                          | So that I can ...                                                                                                 |
-|-|-|------------------------------------------------------------------------|-------------------------------------------------------------------------------------------------------------------|
-| v1.0 | busy student | to know about the news of the day quickly                              | easily find out what is going on a particular day.                                                                |
-| v1.0    | non-tech-savvy person | to save the source of the news                                         | go back to them next time.                                                                                  |
-| v1.0    | busy student | search based on topics easily                                          | not look through news that I am not concerned with.                                                               |
-| v1.0    | student who cares about credibility | be provided information on the reliability and bias of the news sources | judge the trustworthiness of the information and input the correct citations and references in my research paper  |
-| v1.0    | busy news consumer | have the system to keep track of the topics I am interested in when the program is first launched  | don't input them every time I am searching for an article of news.                                                |
+| Version | As a ...                            | I want to ...                                                                                     | So that I can ...                                                                                                |
+|---------|-------------------------------------|---------------------------------------------------------------------------------------------------|------------------------------------------------------------------------------------------------------------------|
+| v1.0    | busy student                        | to know about the news of the day quickly                                                         | easily find out what is going on a particular day.                                                               |
+| v1.0    | non-tech-savvy person               | to save the source of the news                                                                    | go back to them next time.                                                                                       |
+| v1.0    | busy student                        | search based on topics easily                                                                     | not look through news that I am not concerned with.                                                              |
+| v1.0    | student who cares about credibility | be provided information on the reliability and bias of the news sources                           | judge the trustworthiness of the information and input the correct citations and references in my research paper |
+| v1.0    | busy news consumer                  | have the system to keep track of the topics I am interested in when the program is first launched | don't input them every time I am searching for an article of news.                                               |
+| v2.0    | non-tech-savvy person               | have more ways to key in the date for the daily function                                          | not have to key in the specific date to use the daily command.                                                   |
+| v2.0    | avid reader                         | save the articles that I come across                                                              | read them after saving them to the list.                                                                         |
+| v2.0    | non-tech-savvy person               | save articles in the daily function                                                               | save articles that are filtered by date.                                                                         |
+| v2.0    | non-tech-savvy person               | have more ways to key in the date for the daily function                                          | not have to key in the specific date to use the daily command.                                                   |
+| v2.0    | news reader                         | be able to have access to more news articles                                                      | read about more articles to read from.                                                                           |
+| v2.0    | reader                              | save the different types of topics                                                                | be suggested about my favourite topics.                                                                          |
+| v2.1    | student                             | get the url of the articles                                                                       | read more about the articles on the website.                                                                     |
+| v2.1    | student                             | get the citation of the articles                                                                  | use it when citing my sources.                                                                                   |
+| v2.1    | avid reader                         | be recommended more articles                                                                      | read about topics that I do not usually read about.                                                              |
+| v2.1    | avid reader of news websites        | read the quote of the day                                                                         | get a daily dose of inspiration                                                                                  |
+
+
 
 ## Non-Functional Requirements
 
