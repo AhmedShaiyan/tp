@@ -6,7 +6,7 @@ import java.util.Random;
 
 public class QuoteGenerator {
 
-    private final List<String> quotes;
+    public final List<String> quotes;
     private final Random random;
 
     public QuoteGenerator() {
