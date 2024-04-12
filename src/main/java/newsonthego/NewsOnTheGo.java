@@ -40,7 +40,8 @@ public class NewsOnTheGo {
     private static final ArrayList<NewsTopic> favouriteTopics = new ArrayList<>();
 
     public enum Command {
-        HELP, DAILY, TOPICS, FILTER, STAR, STARRED, REMOVE, URL, HEADLINES, GET, SOURCE, SAVE, LOAD, SUGGEST, CLEAR, BACK, QUOTE, BYE, VOID
+        HELP, DAILY, TOPICS, FILTER, STAR, STARRED, REMOVE, URL, HEADLINES,
+        GET, SOURCE, SAVE, LOAD, SUGGEST, CLEAR, BACK, QUOTE, BYE, VOID
     }
 
     private static boolean processCommand(String command, String line, List<NewsArticle> list) {
