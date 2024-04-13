@@ -6,15 +6,13 @@ import java.util.Random;
 
 public class QuoteGenerator {
 
-    private final List<String> quotes;
+    public final List<String> quotes;
     private final Random random;
 
     public QuoteGenerator() {
-        // Initialize the list of quotes
         quotes = new ArrayList<>();
         random = new Random();
 
-        // Add famous quotes to the list
         quotes.add("The only way to do great work is to love what you do. - Steve Jobs");
         quotes.add("In the end, we will remember not the words of our enemies, " +
                 "but the silence of our friends. - Martin Luther King Jr.");
