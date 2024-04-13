@@ -1,5 +1,3 @@
-# ![img.png](images/title.png)
-
 # NewsOnTheGo User Guide
 
 NewsOnTheGo is a command-line application (CLI) that helps users stay up-to-date with the latest news articles by 
@@ -58,6 +56,10 @@ This guide will help you get started with using NewsOnTheGo and understand its f
 3. Copy the file to the folder you want to use as the home folder for NewsOnTheGo.
 4. Open a command terminal, `cd` into the folder where you put the jar file in.
 5. Run the command `java -jar newsonthego.jar` to start the application.
+6. If you are running the application for the first time, please wait for some time as 
+our Article Scraper is hard at work.
+
+
 The following interface should appear in a few seconds:
 ```
 Hello from
@@ -127,6 +129,7 @@ Here is a list of commands and functions for your reference:
 | `GET`      | Details of a specific article.                                      | `get 3`              |
 | `LOAD`     | Displays list of saved articles.                                    | `load`               |
 | `CLEAR`    | Clears the saved articles list.                                     | `clear`              |
+| `QUOTE`    | Prints a different inspirational quote each time.                   | `quote`              |
 +------------+---------------------------------------------------------+----------------------------------+
 Thank you for using News On The Go! Enjoy reading :))
 ____________________________________________________________
@@ -589,7 +592,7 @@ ____________________________________________________________
 
 <br>
 
-<h3 id="clear"> Exiting the program: <code>clear</code> </h3>
+<h3 id="clear"> Clear articles: <code>clear</code> </h3>
 
 Clears the list of articles saved.
 
@@ -606,6 +609,31 @@ ____________________________________________________________
 
 File cleared successfully!
 ____________________________________________________________
+```
+
+<br>
+
+<h3 id="clear"> Print a quote: <code>quote</code> </h3>
+
+Prints a random inspirational quote each time the command is called
+
+Format: `quote`
+
+#### Example of usage:
+
+```
+What do you want from me?
+______________________________________________________________________
+
+quote
+_______________________________________________________________________
+
+Some words of inpiration today: 
+
+         (-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~)
+         | Be yourself; everyone else is already taken. - Oscar Wilde |
+         (-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~)
+________________________________________________________________________
 ```
 
 <br>
@@ -637,22 +665,23 @@ function. Take note by keying in integers only. Make sure the integer do not exc
 
 <h2 id="command-summary"> Command Summary </h2>
 
-| Commands      | Format, Examples                             |
-|---------------|----------------------------------------------|
-| **HELP**      | `help`                                       |
-| **DAILY**     | `daily {DATE}`<br/>eg.`daily March 10 2024`  |
-| **TOPICS**    | `topics`                                     |
-| **STAR**      | `star {TOPIC}`<br/>eg.`star Technology`      |
-| **STARRED**   | `starred`                                    |
-| **REMOVE**    | `remove {TOPIC}`<br/>eg.`remove Technology`  |
-| **SUGGEST**   | `suggest`                                    |
-| **FILTER**    | `filter {TOPIC}`<br/>eg.`filter health`      |
-| **SAVE**      | `save {INDEX}`<br/>eg.`save 1`               |
-| **SOURCE**    | `source {INDEX}`<br/>eg.`source 1`           |
-| **BACK**      | `back`                                       |
-| **URL**       | `url {INDEX}`<br/>eg.`url 2`                 |
-| **HEADLINES** | `headlines {INDEX}`<br/>eg.`headlines 10`    |
-| **GET**       | `get {INDEX}`<br/>eg.`get 3`                 |
-| **LOAD**      | `load`                                       |
-| **CLEAR**     | `clear`                                      |
-| **BYE**       | `bye`                                        |
+| Commands      | Format, Examples                            |
+|---------------|---------------------------------------------|
+| **HELP**      | `help`                                      |
+| **DAILY**     | `daily {DATE}`<br/>eg.`daily March 10 2024` |
+| **TOPICS**    | `topics`                                    |
+| **STAR**      | `star {TOPIC}`<br/>eg.`star Technology`     |
+| **STARRED**   | `starred`                                   |
+| **REMOVE**    | `remove {TOPIC}`<br/>eg.`remove Technology` |
+| **SUGGEST**   | `suggest`                                   |
+| **FILTER**    | `filter {TOPIC}`<br/>eg.`filter health`     |
+| **SAVE**      | `save {INDEX}`<br/>eg.`save 1`              |
+| **SOURCE**    | `source {INDEX}`<br/>eg.`source 1`          |
+| **BACK**      | `back`                                      |
+| **URL**       | `url {INDEX}`<br/>eg.`url 2`                |
+| **HEADLINES** | `headlines {INDEX}`<br/>eg.`headlines 10`   |
+| **GET**       | `get {INDEX}`<br/>eg.`get 3`                |
+| **LOAD**      | `load`                                      |
+| **CLEAR**     | `clear`                                     |
+| **QUOTE**     | `quote`                                     |
+| **BYE**       | `bye`                                       |
