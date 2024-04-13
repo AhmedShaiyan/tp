@@ -1,0 +1,21 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+
+
+participant "NewsOnTheGo" as NOG
+participant "UserPreferences" as UP
+participant "UI" as UI
+
+NOG -> UP : getSuggestedArticlesFromFavoriteTopics()
+activate UP
+
+alt suggestions are found
+    UP -> UI : printMessage(suggestions)
+else
+    UP -> UI : printMessage("No suggestions available")
+end
+
+deactivate UP
+deactivate NOG
+
+@enduml
