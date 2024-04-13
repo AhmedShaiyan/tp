@@ -89,6 +89,7 @@ public class ArticleScraperTest {
 
 
         // Compare the expected data with the cleaned actual data
-        assertEquals(expectedData, cleanedFileContent, "The content of the output file should match the expected data.");
+        assertEquals(expectedData, cleanedFileContent, "The content of the " +
+                "output file should match the expected data.");
     }
 }
