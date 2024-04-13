@@ -1,0 +1,25 @@
+@startuml
+
+Create ":NewsOnTheGo"
+activate ":NewsOnTheGo"
+
+alt Files.exists(outputFilePath) || isFileEmpty(String.valueOf(outputFilePath))
+
+    Create ":StorageURL"
+    activate ":StorageURL"
+
+    ":NewsOnTheGo" -> ":StorageURL" : getURLs()
+    ":StorageURL" --> ":NewsOnTheGo" : List<String> URLs
+    deactivate ":StorageURL"
+
+    Create ":ArticleScraper"
+    loop for each URL
+        ":NewsOnTheGo" -> ":ArticleScraper" : scrapeArticle(url, outputDirectoryPath)
+        ":ArticleScraper" --> ":NewsOnTheGo" : void
+    end
+    deactivate ":ArticleScraper"
+
+else skip scraping
+end
+deactivate ":NewsOnTheGo"
+@enduml

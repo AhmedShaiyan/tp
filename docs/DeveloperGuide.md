@@ -182,9 +182,9 @@ The Architecture Design given above gives a visualisation of the higher level de
 
 {Describe the design and implementation of the product. Use UML diagrams and short code snippets where applicable.}
 
-<h3 id="article-scrapper"> Article Scrapper</h3>
+<h3 id="article-scrapper"> Article Scraper</h3>
 
-The `ArticleScrapper` class is designed to scrape information from web articles given their URLs. It utilizes the Jsoup
+The `ArticleScraper` class is designed to scrape information from web articles given their URLs. It utilizes the Jsoup
 library for web scraping. 
 
 Here's a breakdown of its key functionalities:
@@ -226,6 +226,19 @@ read input URLs from a text file and write scraped data to an output text file.
 
 Relies on the [Jsoup](https://jsoup.org/) library (`org.jsoup.Jsoup`) for web scraping functionalities, 
 specifically for parsing HTML and extracting data elements.
+
+<h4> Implementation </h4>
+
+The `ArticleScraper` is called in the `main()` method in `NewsOnTheGo`. If `testArticleScraper.txt` does not exist ,or it 
+is empty, a list of URLs from `StorageURL` is obtained and looped through `scrapeArticle` method within `ArticleScraper` class.
+
+The flow can be seen from the sequence diagram below: 
+
+<img src="UML_Diagrams/ArticleScraperSequence.png">
+
+Within the `ArticleScraper` class itself, the flow can be seen from this second diagram below:
+
+<img src="UML_Diagrams/ArticleScraperSequence2.png">
 
 
 <h3> Daily function </h3>
@@ -311,7 +324,7 @@ topics of the news articles.
 
 The following sequence diagram shows how the topic operation works. <br>
 
-<img src="UML Diagrams/topicFunctionSequence.png">
+<img src="UML_Diagrams/topicFunctionSequence.png">
 
 Step 2. Suppose the user wants to see news articles related to politics, the user then inputs `filter politics`. 
 The `handleCommand` takes in the command and calls `filterNews` which used a binary search function `findTopicIndex` to 
@@ -430,7 +443,7 @@ The **URL** feature enables users to quickly access the URL of a specific news a
 
 4.  If the index is valid, it retrieves the article from the provided list and prints the URL. If the index is invalid, an error message is displayed. <br>
 
-<img src="UML Diagrams/URLCommandSequence.png">
+<img src="UML_Diagrams/URLCommandSequence.png">
 
 #### Additional Usage
  The URL are also utilized in other functionalities of the application without explicitly using the `url` command:
@@ -546,7 +559,7 @@ This feature allows users to quickly view the headlines of the top articles from
 
 The following sequence diagram shows how the **showHeadlines** method processes the command to fetch and display the headlines. <br>
 
-![](UML Diagrams/ShowHeadlinesSequence.png)
+![](UML_Diagrams/ShowHeadlinesSequence.png)
 
 Given below is an example usage scenario for the Headlines feature:
 
@@ -632,7 +645,7 @@ This feature allows users to access their saved news articles from a persistent 
 
 Below is a sequence diagram that illustrates the process triggered by the `load` command to fetch and display saved articles. <br>
 
-<img src="UML Diagrams/loadFunctionSequence.png">
+<img src="UML_Diagrams/loadFunctionSequence.png">
 
 #### Design Considerations
 
