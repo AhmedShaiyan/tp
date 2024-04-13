@@ -15,7 +15,8 @@ import java.util.stream.Collectors;
  */
 public class ShowHeadlinesCommand {
     private static final Logger LOGGER = Logger.getLogger(ShowHeadlinesCommand.class.getName());
-    private static final Path NEWS_FILE_PATH = Paths.get(System.getProperty("newsFilePath", "data/testArticleScraper.txt"));
+    private static final Path NEWS_FILE_PATH = Paths.get(System.getProperty("newsFilePath",
+            "data/testArticleScraper.txt"));
 
     /**
      * Displays the headlines of the first few articles specified by the index from the news articles text file.
