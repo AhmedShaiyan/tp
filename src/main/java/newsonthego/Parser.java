@@ -1,6 +1,13 @@
 package newsonthego;
 
-import newsonthego.commands.*;
+import newsonthego.commands.DailyNewsCommand;
+import newsonthego.commands.FilterNewsCommand;
+import newsonthego.commands.GetNewsSourceCommand;
+import newsonthego.commands.ShowHeadlinesCommand;
+import newsonthego.commands.URLCommand;
+import newsonthego.commands.QuoteGenerator;
+import newsonthego.commands.ShowExtractCommand;
+
 import newsonthego.newstopic.NewsTopic;
 import newsonthego.utilities.UI;
 
