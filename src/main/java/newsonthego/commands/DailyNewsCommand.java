@@ -74,7 +74,6 @@ public class DailyNewsCommand {
             printHeadlinesFound(formattedDate);
             printEmptyLine();
             printArticlesInList(articlesOfTheDay);
-            URLCommand.printArticleURLsForDay(articlesOfTheDay);
             printEmptyLine();
             saveDailyArticlesParser();
         }
