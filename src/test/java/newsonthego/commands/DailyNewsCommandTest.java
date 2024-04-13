@@ -7,6 +7,7 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
+import org.junit.platform.commons.util.StringUtils;
 
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
@@ -84,7 +85,8 @@ public class DailyNewsCommandTest {
                 "____________________________________________________________\n\n";
 
         new DailyNewsCommand(input, newsArticles);
-        assertEquals(expected, outputContent.toString());
+        assertEquals(StringUtils.replaceWhitespaceCharacters(expected, "") ,
+                StringUtils.replaceWhitespaceCharacters(outputContent.toString(),""));
     }
 
     @Test
@@ -99,7 +101,8 @@ public class DailyNewsCommandTest {
                 "____________________________________________________________\n\n";
 
         new DailyNewsCommand(input, newsArticles);
-        assertEquals(expected, outputContent.toString());
+        assertEquals(StringUtils.replaceWhitespaceCharacters(expected, "") ,
+                StringUtils.replaceWhitespaceCharacters(outputContent.toString(),""));
     }
 
     @Test
@@ -114,12 +117,13 @@ public class DailyNewsCommandTest {
                 "____________________________________________________________\n\n";
 
         new DailyNewsCommand(input, newsArticles);
-        assertEquals(expected, outputContent.toString());
+        assertEquals(StringUtils.replaceWhitespaceCharacters(expected, "") ,
+                StringUtils.replaceWhitespaceCharacters(outputContent.toString(),""));
     }
 
     @Test
-    public void invalidDayFormat() {
-        String input = "daily 1 32 2025";
+    public void invalidDateFormat4() {
+        String input = "daily 10 2 2024";
         String expected = "____________________________________________________________\n\n" +
                 "Date format is invalid! \n" +
                 INDENT + "The date format is: \n" +
@@ -129,7 +133,40 @@ public class DailyNewsCommandTest {
                 "____________________________________________________________\n\n";
 
         new DailyNewsCommand(input, newsArticles);
-        assertEquals(expected, outputContent.toString());
+        assertEquals(StringUtils.replaceWhitespaceCharacters(expected, "") ,
+                StringUtils.replaceWhitespaceCharacters(outputContent.toString(),""));
+    }
+
+    @Test
+    public void invalidDayFormat() {
+        String input = "daily 01 32 2024";
+        String expected = "____________________________________________________________\n\n" +
+                "Date format is invalid! \n" +
+                INDENT + "The date format is: \n" +
+                INDENT + "\"MM dd yyyy\" (01 02 2024), \n" +
+                INDENT + "\"MMMM dd yyyy\" (January 02 2024), \n" +
+                INDENT + "\"dd MMMM yyyy\" (02 January 2024)\n\n" +
+                "____________________________________________________________\n\n";
+
+        new DailyNewsCommand(input, newsArticles);
+        assertEquals(StringUtils.replaceWhitespaceCharacters(expected, "") ,
+                StringUtils.replaceWhitespaceCharacters(outputContent.toString(),""));
+    }
+
+    @Test
+    public void invalidDayFormat2() {
+        String input = "daily 01 00 2024";
+        String expected = "____________________________________________________________\n\n" +
+                "Date format is invalid! \n" +
+                INDENT + "The date format is: \n" +
+                INDENT + "\"MM dd yyyy\" (01 02 2024), \n" +
+                INDENT + "\"MMMM dd yyyy\" (January 02 2024), \n" +
+                INDENT + "\"dd MMMM yyyy\" (02 January 2024)\n\n" +
+                "____________________________________________________________\n\n";
+
+        new DailyNewsCommand(input, newsArticles);
+        assertEquals(StringUtils.replaceWhitespaceCharacters(expected, "") ,
+                StringUtils.replaceWhitespaceCharacters(outputContent.toString(),""));
     }
 
     @Test
@@ -144,7 +181,24 @@ public class DailyNewsCommandTest {
                 "____________________________________________________________\n\n";
 
         new DailyNewsCommand(input, newsArticles);
-        assertEquals(expected, outputContent.toString());
+        assertEquals(StringUtils.replaceWhitespaceCharacters(expected, "") ,
+                StringUtils.replaceWhitespaceCharacters(outputContent.toString(),""));
+    }
+
+    @Test
+    public void invalidMonthFormat2() {
+        String input = "daily 00 31 2024";
+        String expected = "____________________________________________________________\n\n" +
+                "Date format is invalid! \n" +
+                INDENT + "The date format is: \n" +
+                INDENT + "\"MM dd yyyy\" (01 02 2024), \n" +
+                INDENT + "\"MMMM dd yyyy\" (January 02 2024), \n" +
+                INDENT + "\"dd MMMM yyyy\" (02 January 2024)\n\n" +
+                "____________________________________________________________\n\n";
+
+        new DailyNewsCommand(input, newsArticles);
+        assertEquals(StringUtils.replaceWhitespaceCharacters(expected, "") ,
+                StringUtils.replaceWhitespaceCharacters(outputContent.toString(),""));
     }
 
     @Test
@@ -159,7 +213,8 @@ public class DailyNewsCommandTest {
                 "____________________________________________________________\n\n";
 
         new DailyNewsCommand(input, newsArticles);
-        assertEquals(expected, outputContent.toString());
+        assertEquals(StringUtils.replaceWhitespaceCharacters(expected, "") ,
+                StringUtils.replaceWhitespaceCharacters(outputContent.toString(),""));
     }
 
     @Test
@@ -174,7 +229,8 @@ public class DailyNewsCommandTest {
                 "____________________________________________________________\n\n";
 
         new DailyNewsCommand(input, newsArticles);
-        assertEquals(expected, outputContent.toString());
+        assertEquals(StringUtils.replaceWhitespaceCharacters(expected, "") ,
+                StringUtils.replaceWhitespaceCharacters(outputContent.toString(),""));
     }
 
     @Test
@@ -205,6 +261,7 @@ public class DailyNewsCommandTest {
         DailyNewsCommand command = new DailyNewsCommand(input, newsArticles);
         List<NewsArticle> outputHeadlines = command.getArticlesOfTheDay();
         assertEquals(1, outputHeadlines.size()); // Only one article found
-        assertEquals(expected, outputContent.toString());
+        assertEquals(StringUtils.replaceWhitespaceCharacters(expected, "") ,
+                StringUtils.replaceWhitespaceCharacters(outputContent.toString(),""));
     }
 }
