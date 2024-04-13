@@ -96,7 +96,7 @@ public class UI {
 
     public static void printSaveDailyDefaultMessage() {
         printLine();
-        System.out.println("Do you want to return? Type in: \"back\" ");
+        System.out.println("Do you want to return? Type in: \"back\"");
     }
 
     public static void printArticleIsSaved(NewsArticle article) {
