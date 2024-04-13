@@ -1,0 +1,43 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+
+title Load Saved News Articles Sequence
+
+participant "Parser" as Parser
+participant "NewsOnTheGo" as NOG
+participant "NewsFile" as NF
+participant "UI" as UI
+
+activate Parser
+
+Parser -> NOG : handleCommand("LOAD", ...)
+activate NOG
+
+NOG -> NF : loadAndDisplaySavedNews()
+activate NF
+
+NF -> NF : readAllLines(pathName)
+alt file is not empty
+    NF -> UI : print "Displaying saved news articles:"
+    activate UI
+    loop for each line in file
+        UI -> UI : print line
+    end
+    UI --> NF
+    deactivate UI
+else file is empty
+    NF -> UI : print "No saved news articles to display."
+    activate UI
+    UI --> NF
+    deactivate UI
+end
+
+NF --> NOG : return
+deactivate NF
+
+NOG --> Parser
+deactivate NOG
+
+deactivate Parser
+
+@enduml
