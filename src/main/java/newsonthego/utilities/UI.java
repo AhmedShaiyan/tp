@@ -156,66 +156,29 @@ public class UI {
     }
 
     /**
-     * Prints the given quote with a fancy border using dashes and tildes.
-     * The entire output is center-aligned when printed.
+     * Prints the given quote with a simple border using tildes and dashes.
      *
-     * @param quote The quote to be printed with a fancy border.
+     * @param quote The quote to be printed with a simple border.
      */
-    public static void printQuoteWithFancyBorder(String quote) {
+    public static void printQuote(String quote) {
+        int length = quote.length() + 4; // Include padding for border
 
-        int length = quote.length() + 4;
-        int totalWidth = 80;
-        int leftPadding = (totalWidth - length) / 2;
-
-        printFancyBorder(length, leftPadding);
-
-        printCentered("| " + quote + " |", totalWidth);
-
-        printFancyBorder(length, leftPadding);
-    }
-
-    /**
-     * Prints a fancy border using dashes and tildes based on the given length and left padding.
-     *
-     * @param length The length of the border (quote length plus padding).
-     * @param leftPadding The number of spaces to pad to the left for center alignment.
-     */
-    private static void printFancyBorder(int length, int leftPadding) {
-
+        // Create top and bottom border using alternating tildes and dashes
         StringBuilder border = new StringBuilder();
-
-        border.append(" ".repeat(leftPadding));
-
-        // Use alternating pattern of dashes and tildes
-        String pattern = "-~";
-
-        // Append the opening character for the border
-        border.append("(");
-
-        // Append the repeating pattern for the specified length
-        for (int i = 0; i < length - 2; i++) {
-            // Append a character from the pattern alternately
-            border.append(pattern.charAt(i % pattern.length()));
+        for (int i = 0; i < length; i++) {
+            border.append(i % 2 == 0 ? '~' : '-');
         }
 
-        // Append the closing character for the border
-        border.append(")");
+        // Print top border
+        System.out.println(border.toString());
 
-        System.out.println(border);
+        // Print quote with padding
+        System.out.println("| " + quote + " |");
+
+        // Print bottom border
+        System.out.println(border.toString());
     }
 
-    /**
-     * Prints the given text center-aligned in the specified total width.
-     *
-     * @param text The text to be printed center-aligned.
-     * @param totalWidth The total width for center alignment.
-     */
-    private static void printCentered(String text, int totalWidth) {
-
-        int leftPadding = (totalWidth - text.length()) / 2;
-
-        System.out.println(" ".repeat(leftPadding) + text);
-    }
     public static void printHelpMessage() {
         printMessage(
                 "Here is a list of commands and functions for your reference:\n" +

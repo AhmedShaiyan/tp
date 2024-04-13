@@ -11,7 +11,7 @@ import newsonthego.commands.QuoteGenerator;
 
 import static newsonthego.NewsOnTheGo.suggestArticle;
 import static newsonthego.utilities.UI.printMessage;
-import static newsonthego.utilities.UI.printQuoteWithFancyBorder;
+import static newsonthego.utilities.UI.printQuote;
 
 
 import java.util.List;
@@ -28,6 +28,8 @@ public class Parser {
         } catch (IllegalArgumentException e) {
             commandEnum = NewsOnTheGo.Command.VOID;
         }
+
+        QuoteGenerator quoteGenerator = new QuoteGenerator();
 
         switch (commandEnum) {
         case HELP:
@@ -103,13 +105,13 @@ public class Parser {
             break;
 
         case QUOTE:
-
-            QuoteGenerator quoteGenerator = new QuoteGenerator();
             String quote = quoteGenerator.getRandomQuote();
-            System.out.println("Some words of inpiration today: " +  "\n");
-            printQuoteWithFancyBorder(quote);
-
+            System.out.println("\n");
+            System.out.println("Some words of inspiration today: ");
+            printQuote(quote);
+            System.out.println("\n");
             break;
+
         case BYE:
             UI.printBye();
             break;
