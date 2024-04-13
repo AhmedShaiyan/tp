@@ -10,8 +10,7 @@ import newsonthego.utilities.UI;
 import newsonthego.commands.QuoteGenerator;
 
 import static newsonthego.NewsOnTheGo.suggestArticle;
-import static newsonthego.utilities.UI.printMessage;
-import static newsonthego.utilities.UI.printQuoteWithFancyBorder;
+import static newsonthego.utilities.UI.*;
 
 
 import java.util.List;
@@ -106,8 +105,11 @@ public class Parser {
 
             QuoteGenerator quoteGenerator = new QuoteGenerator();
             String quote = quoteGenerator.getRandomQuote();
+            printLine();
             System.out.println("Some words of inpiration today: " +  "\n");
             printQuoteWithFancyBorder(quote);
+            printEmptyLine();
+            printLine();
 
             break;
         case BYE:
