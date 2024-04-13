@@ -37,7 +37,8 @@ public class ShowExtractCommandTest {
         );
 
         ShowExtractCommand.showExtract("extract two", articles);
-        assertTrue(outputStreamCaptor.toString().trim().contains("Invalid index format. Please provide a numeric article index."));
+        assertTrue(outputStreamCaptor.toString().trim().contains("Invalid index format. " +
+                "Please provide a numeric article index."));
     }
 
     @Test
@@ -49,19 +50,23 @@ public class ShowExtractCommandTest {
         );
 
         ShowExtractCommand.showExtract("extract 3", articles);
-        assertTrue(outputStreamCaptor.toString().trim().contains("Invalid article index. Please provide an index within the valid range."));
+        assertTrue(outputStreamCaptor.toString().trim().contains("Invalid article index. " +
+                "Please provide an index within the valid range."));
     }
 
     @Test
     @DisplayName("Test invalid command usage")
     public void testInvalidCommandUsage() {
         List<NewsArticle> articles = Arrays.asList(
-                new NewsArticle("Headline1", "Author1", "Date1", "Source1", "URL1", "Content1"),
-                new NewsArticle("Headline2", "Author2", "Date2", "Source2", "URL2", "Content2")
+                new NewsArticle("Headline1", "Author1", "Date1",
+                        "Source1", "URL1", "Content1"),
+                new NewsArticle("Headline2", "Author2", "Date2",
+                        "Source2", "URL2", "Content2")
         );
 
         ShowExtractCommand.showExtract("invalid 1", articles);
-        assertTrue(outputStreamCaptor.toString().trim().contains("Invalid command format. Usage: extract <article index>"));
+        assertTrue(outputStreamCaptor.toString().trim().contains("Invalid command format. " +
+                "Usage: extract <article index>"));
     }
 
     @Test
