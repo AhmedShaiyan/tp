@@ -108,13 +108,13 @@ public class NewsOnTheGo {
      * @param newsTopics      The list of available NewsTopic objects.
      * @param favouriteTopics The list of favorite NewsTopic objects to which the specified topic will be added.
      */
-
     public static void starTopic(String line, List<NewsTopic> newsTopics, List<NewsTopic> favouriteTopics) {
         String topicNameToStar = line.substring(4).trim();
         if (topicNameToStar.isEmpty()) {
             printMessage("Please provide a topic to add to your favourites.");
             return;
         }
+        //Check against current list of favourite topics to see if topic to star already exists
         long count = favouriteTopics.stream()
                 .filter(topic -> topic.getTopicName().equalsIgnoreCase(topicNameToStar))
                 .count();
@@ -124,7 +124,7 @@ public class NewsOnTheGo {
         }
         int topicIndex = NewsTopic.findTopicIndex(topicNameToStar, newsTopics);
         if (topicIndex < 0) {
-            printMessage("Sorry, this topic is not available right now :(");
+            printMessage("Sorry, this topic name is not available right now :(");
         } else {
             favouriteTopics.add(newsTopics.get(topicIndex));
             saveFavoriteTopics();
