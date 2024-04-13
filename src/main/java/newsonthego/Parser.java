@@ -1,13 +1,8 @@
 package newsonthego;
 
-import newsonthego.commands.DailyNewsCommand;
-import newsonthego.commands.FilterNewsCommand;
-import newsonthego.commands.GetNewsSourceCommand;
-import newsonthego.commands.ShowHeadlinesCommand;
-import newsonthego.commands.URLCommand;
+import newsonthego.commands.*;
 import newsonthego.newstopic.NewsTopic;
 import newsonthego.utilities.UI;
-import newsonthego.commands.QuoteGenerator;
 
 import static newsonthego.NewsOnTheGo.suggestArticle;
 import static newsonthego.utilities.UI.printMessage;
@@ -111,7 +106,9 @@ public class Parser {
             printQuote(quote);
             System.out.println("\n");
             break;
-
+        case EXTRACT:
+            ShowExtractCommand.showExtract(line, list);
+            break;
         case BYE:
             UI.printBye();
             break;
