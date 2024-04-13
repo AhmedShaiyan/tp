@@ -255,7 +255,7 @@ Step 4: When the user is done saving the desired news articles, he is able to go
 The flow can be seen from the sequence diagram below.  
 <img src="UML Diagrams/dailyFunctionSequence.png">
 
-<h3> Source Function </h3>
+<h3> Source Feature </h3>
 
 
 The `sourceNews` function in the `NewsOnTheGo` class is used to retrieve the source of a news article. The function 
@@ -358,7 +358,7 @@ Alternative 2: loop in filter command
 - Con: have to come up with handle commands inside the filter command loop
 - Con: initialising another Scanner object may cause unexpected conflicts
 
-<h3> Information Function </h3>
+<h3> Information Feature </h3>
 
 The Information Feature provides users with insights into the importance, reliability, and bias of news articles stored 
 in the application. This feature is implemented through the `InfoNewsCommand` class.
@@ -376,9 +376,8 @@ article they are interested in.
 `info 1`
 
 
-### User Preferences Function
+### User Preferences (SUGGEST) Feature
 
-#### SUGGEST Feature
 
 #### Implementation
 
@@ -386,17 +385,14 @@ The `SUGGEST` feature provides users with article recommendations based on their
 topics are stored and managed by the `UserPreferences` class, which retrieves and suggests news articles 
 related to these topics.
 
-#### How the SUGGEST feature works:
-
 1. When the `SUGGEST` command is invoked, `UserPreferences.getSuggestedArticlesFromFavoriteTopics()` is called.
 2. This method reads the user's favorite topics from the `saved_topics.txt` file.
-3. It then fetches all news articles from `sampleNews.txt`.
+3. It then fetches all news articles from `testArticleScraper.txt`.
 4. For each favorite topic, it filters articles related to that topic and randomly selects one to suggest to the user.
 
-#### Code Snippet:
-The following code snippet describes the `getSuggestedArticlesFromFavoriteTopics()` method, highlighting how it 
-processes user's favorite topics to suggest random articles. It also includes the parseArticleTitle helper method 
-to extract article titles from the data lines.
+The following diagram describes the `getSuggestedArticlesFromFavoriteTopics()` method, highlighting how it 
+processes user's favorite topics to suggest random articles.
+<img src="UML Diagrams/UserPreferenceSequence.png">
 
 #### Design Considerations
 The decision to use a random selection approach was to provide a dynamic user experience. This encourages users to 
@@ -417,6 +413,124 @@ a new selection in each suggestion cycle.
 - Pros: Ensures that users do not receive the same suggestion more than once until all available articles have 
 been suggested.
 - Cons: More complex to implement, and might require additional storage to keep track of suggestion history.
+
+
+### URL Feature
+
+#### Implementation
+
+The **URL** feature enables users to quickly access the URL of a specific news article listed in the application. This feature is handled by the `URLCommand` class which provides the functionality to retrieve and display the URL based on an article index provided by the user.
+
+1.  The user inputs a command in the format: `url` .
+
+2.  `URLCommand.printArticleURL(String line, List list)` is called with the user input and the current list of articles.
+
+3.  The method parses the command to extract the article index.
+
+4.  If the index is valid, it retrieves the article from the provided list and prints the URL. If the index is invalid, an error message is displayed.
+
+<img src="UML Diagrams/URLCommandSequence.png">
+
+#### Additional Usage
+ The URL are also utilized in other functionalities of the application without explicitly using the `url` command:
+
+1. **`Daily` News Feature**: When daily news articles are displayed, their URLs are included alongside other details for easy access.
+2. **`Save` and `Load` Features**: When articles are saved to the reading list, their URLs are stored in the text file automatically and displayed when articles are loaded from this list.
+
+Given is an example usage scenario demonstrating the use of the URL feature through the `url`, `daily`, `save`, and `load` commands.
+
+
+**Step 1: Displaying Article Headlines**The user inputs the command `headlines 5`. The `handleCommand` method will parse the input and invoke the `showHeadlines` method, which will list the first five article headlines from the news articles list.
+
+**Example Output:**
+```
+headlines 5
+
+Displaying the first 5 article headlines:
+1. "Kristen Wiig initiated into SNL five-timers club by Ryan Gosling, Matt Damon and Lorne Michaels | CNN"
+2. "The Matrix has a fifth film in the works and, no, this is not a simulation | CNN"
+3. "Dune: Part Two may be followed by a third film, but Timothee Chalamet and Zendaya dont know how it all ends | CNN"
+4. "Angelina Jolie alleges history of Brad Pitts physical abuse prior to 2016 plane ride in new Miraval filing | CNN"
+5. "Adrian Schiller, star of The Last Kingdom, dead at 60: Sudden and unexpected | CNN"
+
+What do you want from me? 
+```
+
+Step 2: Suppose the user wants to access the URL of the 3rd article, they then input `url 3`. The `handleCommand` method processes this command and calls `URLCommand.printArticleURL`, which retrieves and displays the URL of the third article.
+
+**Example Output:**
+```
+url 3
+___________________________________________________________
+
+Article URL: https://edition.cnn.com/2024/03/04/entertainment/dune-part-two-sequel/index.html
+____________________________________________________________
+
+What do you want from me?
+____________________________
+```
+
+Step 3: On another occasion, lets say the user decides to view articles from a specific date and potentially save one for later reading. The `handleCommand` executes the `DailyNewsCommand`, displaying the articles from that specific day. The url is of the article is also output for easy access
+
+**Example Output :**
+```
+daily april 07 2024
+
+____________________________________________________________
+
+Sure! Here are the headlines for today (April 07, 2024) :
+
+    1: "Kristen Wiig initiated into �SNL� five-timers club by Ryan Gosling, Matt Damon and� Lorne Michaels | CNN"
+    URL: https://edition.cnn.com/2024/04/07/entertainment/kristen-wiig-ryan-gosling-matt-damon-snl/index.html
+```
+
+**Step 4: If the user wants to save an article, which triggers the saving of the second article displayed. The `handleCommand` recognizes whether it is a filtered list or is it the original list (use for the headline feature) and saves the specified article. The save feature will also store the url of the article and display it when the `load` command is used to view the stores articles
+
+**Example Output :**
+``` 
+save 1
+
+____________________________________________________________
+
+Successfully saved "Kristen Wiig initiated into SNL five-timers club by Ryan Gosling, Matt Damon and Lorne Michaels | CNN"
+    find your saved articles at user_data\saved_news.txt
+    
+load 
+
+"Kristen Wiig initiated into ‘SNL’ five-timers club by Ryan Gosling, Matt Damon and… Lorne Michaels | CNN"
+    URL: https://edition.cnn.com/2024/04/07/entertainment/kristen-wiig-ryan-gosling-matt-damon-snl/index.html
+    By: Alli Rosenbloom    On: April 07, 2024
+    CNN
+```
+
+
+
+
+
+#### Design Considerations
+
+The implementation of the URL feature is designed to be straightforward and efficient, allowing users to quickly access the web links of news articles with minimal interaction and waiting time.
+
+*   **Direct Access**: The feature allows direct access to URLs without navigating through multiple steps, enhancing the user experience.
+
+*   **Error Handling**: Proper error handling for invalid indices ensures the system is robust and can guide users to correct mistakes.
+
+
+#### Alternatives Considered
+
+Alternative 1 (current choice): Direct retrieval of URLs based on an index input by the user.
+
+*   Pros: Immediate and simple, allowing quick access which is ideal for command-line environments.
+
+*   Cons: User must know the exact index of the article, which might not always be convenient.
+
+
+Alternative 2: Search for an article by keywords and then provide URL options.
+
+*   Pros: More flexible as it allows users to find articles without knowing the exact index.
+
+*   Cons: More complex implementation and potentially slower due to the search process.
+
 
 ## Product scope
 ### Target user profile

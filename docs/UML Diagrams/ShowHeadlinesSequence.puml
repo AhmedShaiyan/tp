@@ -1,0 +1,23 @@
+@startuml
+participant "Parser"
+participant "ShowHeadlinesCommand"
+participant "UI"
+
+[-> Parser : handleCommand("HEADLINES", line)
+activate Parser
+
+alt command is "HEADLINES"
+    Parser -> ShowHeadlinesCommand : showHeadlines(line)
+    activate ShowHeadlinesCommand
+
+    ShowHeadlinesCommand -> UI : displayHeadlines()
+    activate UI
+    UI --> ShowHeadlinesCommand
+    deactivate UI
+
+    ShowHeadlinesCommand --> Parser
+    deactivate ShowHeadlinesCommand
+end
+
+deactivate Parser
+@enduml
