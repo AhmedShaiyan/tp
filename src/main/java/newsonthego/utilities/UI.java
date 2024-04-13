@@ -82,8 +82,7 @@ public class UI {
                 INDENT+ "The date format is: \n" +
                 INDENT+ "\"MM dd yyyy\" (01 02 2024), \n" +
                 INDENT+ "\"MMMM dd yyyy\" (January 02 2024), \n" +
-                INDENT+ "\"dd MMMM yyyy\" (02 January 2024)" +
-                "\n");
+                INDENT+ "\"dd MMMM yyyy\" (02 January 2024)\n");
     }
 
     public static void printHeadlinesFound(String date) {
@@ -96,7 +95,7 @@ public class UI {
 
     public static void printSaveDailyDefaultMessage() {
         printLine();
-        System.out.println("Do you want to return? Type in: \"back\" ");
+        System.out.println("Do you want to return? Type in: \"back\"");
     }
 
     public static void printArticleIsSaved(NewsArticle article) {
