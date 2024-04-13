@@ -181,7 +181,6 @@ class NewsOnTheGoTest {
         String knownTopic = "Science";
         Files.writeString(SAVED_TOPICS_PATH, knownTopic + "\n");
 
-
         String suggestions = UserPreferences.getSuggestedArticlesFromFavoriteTopics();
 
         assertFalse(suggestions.trim().isEmpty());
@@ -209,8 +208,6 @@ class NewsOnTheGoTest {
             // Clean up: Delete the test file after the test
             File fileToDelete = new File(Paths.get("data","saved_topics.txt")
                     .normalize().toString());
-
-
         }
     }
 
