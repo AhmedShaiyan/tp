@@ -2,7 +2,6 @@ package newsonthego.commands;
 
 import newsonthego.NewsArticle;
 import newsonthego.storage.NewsImporter;
-import newsonthego.NewsOnTheGo;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
@@ -31,7 +30,7 @@ public class DailyNewsCommandTest {
 
     @BeforeAll
     public static void setupAll() {
-        newsArticles = NewsImporter.importNewsFromText(NewsOnTheGo.FILENAME, new ArrayList<>());
+        newsArticles = NewsImporter.importNewsFromText("data/sampleNews.txt", new ArrayList<>());
     }
 
     @BeforeEach

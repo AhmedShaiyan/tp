@@ -6,6 +6,8 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.List;
 import java.util.Random;
+import java.util.logging.Logger;
+import java.util.logging.Level;
 import java.util.stream.Collectors;
 import java.util.concurrent.atomic.AtomicInteger;
 
@@ -15,7 +17,8 @@ import static newsonthego.commands.URLCommand.parseArticleURL;
  * Handles logic for news article suggestions based on favorite topics.
  */
 public class UserPreferences {
-    private static final Path SAMPLE_NEWS_FILE = Paths.get("data", "sampleNews.txt");
+    private static final Logger LOGGER = Logger.getLogger(UserPreferences.class.getName());
+    private static final Path SCRAPPER_NEWS_FILE = Paths.get("data", "testArticleScraper.txt");
     private static final Path SAVED_TOPICS_PATH = Paths.get("data", "saved_topics.txt");
 
     /**
@@ -27,6 +30,7 @@ public class UserPreferences {
      * @return A string containing the numbered suggestions or error message.
      */
     public static String getSuggestedArticlesFromFavoriteTopics() {
+        LOGGER.info("Generating suggested articles from favorite topics.");
         StringBuilder suggestions = new StringBuilder();
         Random random = new Random();
         AtomicInteger articleNumber = new AtomicInteger(1);
@@ -34,10 +38,12 @@ public class UserPreferences {
         try {
             List<String> favoriteTopics = Files.readAllLines(SAVED_TOPICS_PATH);
             if (favoriteTopics.isEmpty()) {
+                LOGGER.warning("No favorite topics found.");
                 return "You do not have any favorite topics. Please star a topic first.\n";
             }
 
-            List<String> allArticles = Files.readAllLines(SAMPLE_NEWS_FILE);
+            List<String> allArticles = Files.readAllLines(SCRAPPER_NEWS_FILE);
+            LOGGER.fine("Favorite topics and articles loaded successfully.");
 
             for (String topic : favoriteTopics) {
                 List<String> articlesForTopic = allArticles.stream()
@@ -56,10 +62,12 @@ public class UserPreferences {
                             .append("URL: ").append(parseArticleURL(randomArticle))
                             .append("\n");
                 } else {
+                    LOGGER.warning("No articles found for the topic: " + topic.trim());
                     suggestions.append("No articles found for the topic: ").append(topic.trim()).append("\n");
                 }
             }
         } catch (IOException e) {
+            LOGGER.log(Level.SEVERE, "An error occurred while suggesting an article", e);
             return "An error occurred while suggesting an article: " + e.getMessage() + "\n";
         }
         return suggestions.toString();

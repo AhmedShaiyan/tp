@@ -15,9 +15,23 @@ public class NewsArticle {
     protected String content;
     protected boolean isSaved;
     protected String url;
+    protected String formattedHeadline;
 
     public NewsArticle(String headline, String author, String date, String source, String url, String content) {
         this.headline = headline;
+        this.formattedHeadline = null;
+        this.author = author;
+        this.date = date;
+        this.source = source;
+        this.content = content;
+        this.isSaved = false;
+        this.url = url;
+    }
+
+    public NewsArticle(String headline, String formattedHeadline, String author, String date, String source,
+                       String url, String content) {
+        this.headline = headline;
+        this.formattedHeadline = formattedHeadline;
         this.author = author;
         this.date = date;
         this.source = source;

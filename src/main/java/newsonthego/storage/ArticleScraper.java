@@ -30,6 +30,9 @@ public class ArticleScraper {
             // Extract theme from navigation menu (assuming it's in a specific element)
             String theme = extractTheme(doc);
 
+            // Extract source of the article
+            String source = extractSource(doc);
+
             // Extract published date in multiple formats
             String publishedDate = extractPublishedDate(doc);
 
@@ -49,13 +52,36 @@ public class ArticleScraper {
             // Write the extracted information to the output file in append mode
             try (BufferedWriter writer = new BufferedWriter(new FileWriter(outputFilePath, true))) {
                 writer.write("\"" + headline + "\";" + author + ";" + publishedDate + ";"
-                        + url + ";" + abstractText + ";" + theme + "\n");
+                        + source + ";" + url + ";" + abstractText + ";" + theme + "\n");
             } catch (IOException e) {
                 e.printStackTrace();
             }
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    /**
+     * Extracts the source of the article.
+     *
+     * @param doc The document object representing the HTML content of the article.
+     * @return The source of the article.
+     */
+    private static String extractSource(Document doc) {
+        // Try to extract source from the og:site_name property
+        Element sourceElement = doc.selectFirst("meta[property=og:site_name]");
+        if (sourceElement != null) {
+            return sourceElement.attr("content");
+        }
+
+        // If og:site_name is not found, try to extract source from al:android:app_name property
+        Element fallbackSourceElement = doc.selectFirst("meta[property=al:android:app_name]");
+        if (fallbackSourceElement != null) {
+            return fallbackSourceElement.attr("content");
+        }
+
+        // If both properties are not found, return "Unknown"
+        return "Unknown";
     }
 
     /**
@@ -193,7 +219,7 @@ public class ArticleScraper {
             }
 
             if (parseSuccess && date != null) {
-                SimpleDateFormat outputFormat = new SimpleDateFormat("MMMM dd,yyyy", Locale.ENGLISH);
+                SimpleDateFormat outputFormat = new SimpleDateFormat("MMMM dd, yyyy", Locale.ENGLISH);
                 return outputFormat.format(date);
             }
         }

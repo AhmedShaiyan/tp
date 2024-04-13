@@ -20,7 +20,7 @@ This guide will help you get started with using NewsOnTheGo and understand its f
 <ol type="1" style="font-size: large">
     <li><a href="#quick-start" >Quick Start</a></li>
     <li><a href="#features">Features</a>
-        <ol style="list-style-type:decimal" style="font-size: medium">
+        <ol type="1" style="font-size: medium">
             <li><code><a href="#help">help</a></code></li>
             <li>
                 <code><a href="#daily">daily</a></code>
@@ -428,7 +428,7 @@ ____________________________________________________________
 
 <br>
 
-<h3 id="source"> Get source of article: `source` </h3>
+<h3 id="source"> Get source of article: <code>source</code> </h3>
 Displays the source of the article and its APA citation.
 
 #### Format: `source {INDEX OF ARTICLE ON DISPLAYED LIST}`
@@ -637,22 +637,22 @@ function. Take note by keying in integers only. Make sure the integer do not exc
 
 <h2 id="command-summary"> Command Summary </h2>
 
-| Commands      | Format, Examples      |
-|---------------|-----------------------|
-| **HELP**      | `help`                |
-| **DAILY**     | `daily March 10 2024` |
-| **TOPICS**    | `topics`              |
-| **STAR**      | `star Technology`     |
-| **STARRED**   | `starred`             |
-| **REMOVE**    | `remove Technology`   |
-| **SUGGEST**   | `suggest`             |
-| **FILTER**    | `filter health`       |
-| **SAVE**      | `save 1`              |
-| **SOURCE**    | `source 1`            |
-| **BACK**      | `back`                |
-| **URL**       | `url 2`               |
-| **HEADLINES** | `headlines 10`        |
-| **GET**       | `get 3`               |
-| **LOAD**      | `load`                |
-| **CLEAR**     | `clear`               |
-| **BYE**       | `bye`                 |
+| Commands      | Format, Examples                             |
+|---------------|----------------------------------------------|
+| **HELP**      | `help`                                       |
+| **DAILY**     | `daily {DATE}`<br/>eg.`daily March 10 2024`  |
+| **TOPICS**    | `topics`                                     |
+| **STAR**      | `star {TOPIC}`<br/>eg.`star Technology`      |
+| **STARRED**   | `starred`                                    |
+| **REMOVE**    | `remove {TOPIC}`<br/>eg.`remove Technology`  |
+| **SUGGEST**   | `suggest`                                    |
+| **FILTER**    | `filter {TOPIC}`<br/>eg.`filter health`      |
+| **SAVE**      | `save {INDEX}`<br/>eg.`save 1`               |
+| **SOURCE**    | `source {INDEX}`<br/>eg.`source 1`           |
+| **BACK**      | `back`                                       |
+| **URL**       | `url {INDEX}`<br/>eg.`url 2`                 |
+| **HEADLINES** | `headlines {INDEX}`<br/>eg.`headlines 10`    |
+| **GET**       | `get {INDEX}`<br/>eg.`get 3`                 |
+| **LOAD**      | `load`                                       |
+| **CLEAR**     | `clear`                                      |
+| **BYE**       | `bye`                                        |
