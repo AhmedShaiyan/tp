@@ -1,4 +1,5 @@
 @startuml
+hide circle
 
 class DailyNewsCommand {
 - {static}articlesOfTheDay : List<NewsArticle>
