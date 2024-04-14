@@ -1,0 +1,28 @@
+@startuml
+
+
+activate ":DailyNewsCommand"
+
+loop back == true
+    alt save
+    alt isValid(index)
+    ":DailyNewsCommand" -> ":NewsFile": saveNews(index)
+    activate ":DailyNewsCommand"
+    activate ":NewsFile"
+    ":NewsFile" --> ":DailyNewsCommand":
+    deactivate ":NewsFile"
+    deactivate ":DailyNewsCommand"
+    end
+    end
+    alt extract
+    alt isValid(index)
+    ":DailyNewsCommand" -> ":ShowExtractCommand": extract(index)
+    activate ":ShowExtractCommand"
+    ":ShowExtractCommand" --> ":DailyNewsCommand"
+    end
+    destroy ":ShowExtractCommand"
+    end
+end
+
+destroy ":DailyNewsCommand"
+@enduml

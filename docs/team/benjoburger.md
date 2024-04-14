@@ -22,15 +22,23 @@ RepoSense Link
   Also, integration of the `save` function into the daily function so that users can save the news articles that is 
   displayed from the `daily` function into their reading list.
   - Credits: Made use of my group mates `save` function to add the news articles into the users' reading list. 
+- Added citation feature to `source` function
+  - Followed the APA citation format from [Purdue University](https://owl.purdue.edu/owl/research_and_citation/apa_style/apa_formatting_and_style_guide/general_format.html)
 ### Contributions to the UG:
 - Added documentation for the `daily` command and its functions
+- Formatted the UG to meet requirements: [#131](https://github.com/AY2324S2-CS2113-T12-1/tp/pull/131), 
+[#132](https://github.com/AY2324S2-CS2113-T12-1/tp/pull/132)
 ### Contributions to the DG:
 - Added documentation for the `daily` function
+- Formatted the DG to meet requirements: [#139](https://github.com/AY2324S2-CS2113-T12-1/tp/pull/139), 
+[#165](https://github.com/AY2324S2-CS2113-T12-1/tp/pull/165)
 ### Contributions to team-based tasks:
 - Helped to refactor code for the project to their respective packages: 
 [#111](https://github.com/AY2324S2-CS2113-T12-1/tp/pull/111)
 ### Review/mentoring contributions:
-- PR Review: [#24](https://github.com/AY2324S2-CS2113-T12-1/tp/pull/24#discussion_r1533488819)
+- PR Review: [#24](https://github.com/AY2324S2-CS2113-T12-1/tp/pull/24#discussion_r1533488819), 
+[#123](https://github.com/AY2324S2-CS2113-T12-1/tp/pull/123),
+[#125](https://github.com/AY2324S2-CS2113-T12-1/tp/pull/125)
 ### Contributions beyond the project team:
 - Contributed to forum discussions: [1](https://github.com/nus-cs2113-AY2324S2/forum/issues/20#issuecomment-1956318082)
 - Reported bugs and suggestions for other teams: [1](https://github.com/BenjoBurger/ped/issues/1),

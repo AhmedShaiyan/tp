@@ -1,115 +1,79 @@
 <p style="font-size: xxx-large">Developer Guide</p>
 
 <ul>
-    <li><a href="#acknowledgements">Acknowledgements</a></li>
-    <li><a href="#setting-up-getting-started">Setting Up, Getting Started</a></li>
-    <li><a href="#design">Design</a>
+    <li><strong><a href="#acknowledgements">Acknowledgements</a></strong></li>
+    <li><strong><a href="#setting-up">Setting Up, Getting Started</a></strong></li>
+    <li><strong><a href="#design">Design</a></strong>
         <ul>
-            <li><a href="#architecture">Architecture</a></li>
             <li><a href="#parser-component">Parser Component</a></li>
-            <li><a href="#NewsArticle-component">NewsArticle and Topic Model</a></li>
+            <li><a href="#newsArticle-model">NewsArticle and Topic Model</a></li>
             <li><a href="#ui-component">UI Component</a></li>
             <li><a href="#command-classes">Command Classes</a></li>
-            <li><a href="#Newsimporter-and-ArticleScraper">NewsImporter and ArticleScraper</a></li>
+            <li><a href="#newsimporter-and-articlescraper">NewsImporter and ArticleScraper</a></li>
         </ul>
     </li>
-    <li><a href="#implementation">Implementation</a>
+    <li><strong><a href="#implementation">Implementation</a></strong></li>
+        <ul>
+            <li><a href="#daily">Daily Feature</a></li>
+            <ul>
+                <li><a href="#daily-implementation">Implementation</a></li>
                 <li><a href="#daily-design">Design Consideration</a></li>
             </ul>
         </ul>
+        <li><a href="#filter-news-by-topic"> Filter News by Topic Feature</a></li>
         <ul>
-            <li><a href="#topics">Topics feature</a></li>
+            <li><a href="#topics">Topics Feature</a></li>
             <ul>
-                <li><a href="#topics-implementation">Implementation</a></li>
-                <li><a href="#topics-design">Design Consideration</a></li>
+                <li><a href="#topics-implementation"> Implementation </a></li>
+                <li><a href="#topics-filter-design">Design Consideration</a></li>
             </ul>
         </ul>
         <ul>
-            <li><a href="#star">Star feature</a></li>
+            <li><a href="#filter">Filter Feature</a></li>
             <ul>
-                <li><a href="#star-implementation">Implementation</a></li>
-                <li><a href="#star-design">Design Consideration</a></li>
+                <li><a href="#filter-implementation">Implementation</a></li>
+                <li><a href="#topics-filter-design">Design Consideration</a></li>
             </ul>
         </ul>
         <ul>
-            <li><a href="#starred">Starred feature</a></li>
-            <ul>
-                <li><a href="#starred-implementation">Implementation</a></li>
-                <li><a href="#starred-design">Design Consideration</a></li>
-            </ul>
-        </ul>
-        <ul>
-            <li><a href="#remove">Remove feature</a></li>
-            <ul>
-                <li><a href="#remove-implementation">Implementation</a></li>
-                <li><a href="#remove-design">Design Consideration</a></li>
-            </ul>
-        </ul>
-        <ul>
-            <li><a href="#suggest">Suggest feature</a></li>
+            <li><a href="#suggest">Suggest Feature</a></li>
             <ul>
                 <li><a href="#suggest-implementation">Implementation</a></li>
                 <li><a href="#suggest-design">Design Consideration</a></li>
             </ul>
         </ul>
         <ul>
-            <li><a href="#filter">Filter feature</a></li>
-            <ul>
-                <li><a href="#filter-implementation">Implementation</a></li>
-                <li><a href="#filter-design">Design Consideration</a></li>
-            </ul>
-        </ul>
-        <ul>
-            <li><a href="#save">Save feature</a></li>
-            <ul>
-                <li><a href="#save-implementation">Implementation</a></li>
-                <li><a href="#save-design">Design Consideration</a></li>
-            </ul>
-        </ul>
-        <ul>
-            <li><a href="#source">Source feature</a></li>
-            <ul>
-                <li><a href="#source-implementation">Implementation</a></li>
-                <li><a href="#source-design">Design Consideration</a></li>
-            </ul>
-        </ul>
-        <ul>
-            <li><a href="#url">URL feature</a></li>
+            <li><a href="#url">URL Feature</a></li>
             <ul>
                 <li><a href="#url-implementation">Implementation</a></li>
                 <li><a href="#url-design">Design Consideration</a></li>
             </ul>
         </ul>
         <ul>
-            <li><a href="#headlines">Headlines feature</a></li>
+            <li><a href="#headlines">Headlines Feature</a></li>
             <ul>
                 <li><a href="#headlines-implementation">Implementation</a></li>
                 <li><a href="#headlines-design">Design Consideration</a></li>
             </ul>
         </ul>
         <ul>
-            <li><a href="#get">Get feature</a></li>
-            <ul>
-                <li><a href="#get-implementation">Implementation</a></li>
-                <li><a href="#get-design">Design Consideration</a></li>
-            </ul>
-        </ul>
-        <ul>
-            <li><a href="#load">Load feature</a></li>
+            <li><a href="#load">Load Feature</a></li>
             <ul>
                 <li><a href="#load-implementation">Implementation</a></li>
                 <li><a href="#load-design">Design Consideration</a></li>
             </ul>
         </ul>
     <li><strong><a href="#requirements">Appendix: Requirements</a></strong></li>
-        <ul style="font-size: medium">
-            <li><a href="#Product scope">Product scope</a></li>
-            <li><a href="#User stories">User stories</a></li>
-            <li><a href="#Use cases">Use cases</a></li>
-            <li><a href="#Non-Functional Requirements">Non-Functional Requirements</a></li>
-            <li><a href="#Glossary">Glossary</a></li>
+        <ul>
+            <li><a href="#product-scope">Product Scope</a></li>
+            <li><a href="#user-stories">User Stories</a></li>
+            <li><a href="#use-cases">Use Cases</a></li>
+            <li><a href="#non-functional-requirements">Non-Functional Requirements</a></li>
+            <li><a href="#glossary">Glossary</a></li>
         </ul>
+    <li><a href="#manual-testing"> Appendix: Instructions for manual testing </a></li>
 </ul>
+
 <h2 id="acknowledgements"> Acknowledgements </h2>
 <ul>
     <li>
@@ -134,7 +98,7 @@
 <p>{list here sources of all reused/adapted ideas, code, documentation, and third-party libraries -- 
 include links to the original source as well}</p>
 
-<h2 id="setting-up">Setting up, Getting Started</h2>
+<h2 id="setting-up"> Setting up, Getting Started</h2>
 First, fork this repo, and clone the fork into your computer.
 
 If you plan to use Intellij IDEA (highly recommended):
@@ -168,16 +132,10 @@ If you plan to use Intellij IDEA (highly recommended):
 
 Alternatively, refer to our [User Guide](UserGuide.md) for quick start details.
 
-<h2 id="architecture">Architecture</h2>
 
-The Architecture Design given above gives a visualisation of the higher level design of our application.
+<h2 id="design"> Design </h2>
 
-
-## Design
-### Architecture
-_Diagrams and explanations about the high-level design of the application._
-
-### Parser Component
+<h3 id="parser-component"> Parser Component </h3>
 The parser component is responsible for interpreting user commands and invoking the correct command methods in the logic component. I
 - **Parsing Commands**: The method `handleCommand` starts by attempting to convert the user input string into a `Command` enumeration. If the command does not match any predefined commands, it defaults to `VOID`.
 
@@ -187,26 +145,26 @@ The parser component is responsible for interpreting user commands and invoking 
 
 - **Quote Generation**: In the case of the `QUOTE` command, it creates an instance of `QuoteGenerator` and retrieves a random quote.
 
-### News Article and Topic Models
+<h3 id="newsArticle-model"> News Article and Topic Models </h3>
 Details the structure of the `NewsArticle` and `NewsTopic` classes, which represent the data model for news articles and topics within the application.
 
-### UI Component
+<h3 id="ui-component"> UI Component </h3>
 The UI class in is responsible for all command line interactions, displaying welcome and goodbye messages, providing structured command formats, and handling the output of news content and errors. It uses methods like `printMessage` and `printConfused` to ensure clear and correct text output.
-### Command Classes
+
+<h3 id="command-classes"> Command Classes</h3>
 Each command in the system has a corresponding class in this component. This section covers how these classes implement the functionality for different features like `DailyNewsCommand`, `ShowHeadlinesCommand`, etc.
 
-### NewsImporter and ArticleScraper
+<h3 id="newsimporter-and-articlescraper"> NewsImporter and ArticleScraper </h3>
 Explains how the application scrapes news articles from the web and imports them into the system using `NewsImporter` and `ArticleScraper` classes.
 
-### NewsFile and StorageURL
+<h3> NewsFile and StorageURL </h3>
 Covers how the application saves user data and article details to files and retrieves them using `NewsFile` and `StorageURL` classes.
 
-### Common Classes
+<h3> Common Classes </h3>
 Common classes that are used throughout the application, such as `UI`, which handles all user interactions, and utility classes, will be discussed here.
 
-<h2 id="design-implementation">Implementation</h2>
+<h2 id="implementation"> Implementation</h2>
 
-{Describe the design and implementation of the product. Use UML diagrams and short code snippets where applicable.}
 
 <h3 id="article-scrapper"> Article Scraper</h3>
 
@@ -267,9 +225,11 @@ Within the `ArticleScraper` class itself, the flow can be seen from this second 
 <img src="UML_Diagrams/ArticleScraperSequence2.png">
 
 
-<h3> Daily function </h3>
+<h3 id="daily"> Daily Feature </h3>
 
-#### Implementation
+![DailyNewsCommandClass.png](UML_Diagrams/DailyNewsCommandClass.png)
+
+<h4 id="daily-implementation"> Implementation </h4>
 This daily mechanism is facilitated by a constructor from the `DailyNewsCommand` class. It takes in an input from 
 the user and the current list of articles to display the news on published on a particular day to the user.  
 This feature also implements the following operations:  
@@ -292,36 +252,28 @@ Step 4: When the user is done saving the desired news articles, he is able to go
 `back()` command.
 
 The flow can be seen from the sequence diagram below.  
-<img src="UML Diagrams/dailyFunctionSequence.png">
 
-<h3> Source Feature </h3>
+![dailyFunctionSequence.png](UML_Diagrams/dailyFunctionSequence.png)
 
-#### Implementation
-The `sourceNews` function in the `NewsOnTheGo` class is used to retrieve the source of a news article. The function 
-takes in a string and a list of `NewsArticle` objects. The string is split into an array and the second 
-element (index 1) is parsed as an integer. This integer is used as an index to retrieve a `NewsArticle` from the list, 
-and the source of the news article is then printed.
+<h4 id="daily-design"> Design Considerations </h4>
+Whether to put additional features in the daily class or parser function.
 
-Here is the code snippet for the `sourceNews` 
-function:
+- **Alternative 1:** Implement in the main parser.
+  - Pros: Allows other classes to use the save features.
+  - Cons: Need to ensure these features do not create additional bugs.
 
-```java
-/**
- * Enter the news article number as stored in the array, and it will return the source of the news article.
- */
-static void sourceNews(String line, List<NewsArticle> list) {
-    String[] split = line.split(" ");
-    int index = Integer.parseInt(split[1]) + 1;
-    System.out.println(list.get(index).getSource());
-}
-```
+- **Alternative 2 (current choice):** Implement in the daily class.
+  - Pros: Create the function base on the needs of the daily class only, making it easier to debug too.
+  - Cons: Not able to use outside the daily class.
 
-<h3> Filter News by Topic Feature </h3>
 
-#### Implementation
-<h4> Topic Function </h4>
+<h3 id="filter-news-by-topic"> Filter News by Topic Feature </h3>
 
-The `showTopics` function in  `NewsOnTheGo` class is used to show the list of topics linked to the current list of news 
+<h4 id="topics"> Topic Feature </h4>
+
+<h4 id="topics-implementation"> Implementation </h4>
+
+The `topics` function in  `NewsOnTheGo` class is used to show the list of topics linked to the current list of news 
 articles. 
 
 This mechanism makes use of the `NewsTopic` class to store each distinct News Topic as `NewsTopic` object, stored as a 
@@ -330,7 +282,8 @@ This mechanism makes use of the `NewsTopic` class to store each distinct News To
 The `Topic` function is complemented by the `Filter` Function which displays the list of articles related to the 
 specified topic.
 
-<h4> Filter Function </h4>
+<h4 id="filter"> Filter Feature </h4>
+<h4 id="filter-implementation"> Implementation </h4>
 The `filterNews` function in `NewsOnTheGo` class is used to show the list of articles linked to a specific topic.
 
 This mechanism makes use of the ArrayList of `relatedNewsArticles` in a `NewsTopic` object. 
@@ -339,8 +292,10 @@ This feature also implements the following operations:
 - `FilterNewsCommand#save()` — Saves the list of news articles in the topic to their reading list
 - `FilterNewsCommand#get()` — gets the details of the article and displays it to the user.
 - `FilterNewsCommand#source()` — displays the source of the article to the user.
-- `FilterNewsCommand#info()` — displays the importance, reliability and bias measure of the article to the user.
 - `FilterNewsCommand#back()` — Exits the filter topic feature.
+
+> add uml for save and source
+
 
 Given Below is an example usage scenario and how the filter and topic mechanism behaves at each step.
 
@@ -358,7 +313,7 @@ search for the index of the topic in the ArrayList of `NewsTopic`, returning -1 
 index of the topic in the list will be returned. the `filterNews` function will then print out the list of articles for 
 the user. 
 
-output may look like this:
+Output may look like this:
 ```
 What do you want from me?
 filter politics
@@ -377,7 +332,7 @@ specified article from. If `topicIndex` is -1, the article will be taken from th
 The `saveNews` in the `NewsFile` class will save the specified article into the text file `saved_news.txt` in 
 `user_data`. 
 
-output may look like this:
+Output may look like this:
 ```
 What do you want from me?
 save 3
@@ -385,11 +340,17 @@ Successfully saved "Humanitarian Crisis Deepens in Conflict-Stricken Region"
 find your saved articles at user_data\saved_news.txt
 ```
 
-The following sequence diagram shows how the topics and filter mechanism may work in conjunction with other commands.
-<br>
-<img src="UML Diagrams/filterFunctionSequence.png">
+Step 4. Other than the save function, users are able to get source of the function and its APA citation 
+by using `source`. If the user wants the source of the 4th article, they would write `source 4`. The app will output
+to the user something like this:
 
-<h4> Design Considerations </h4>
+>add source output
+
+The following sequence diagram shows how the topics, filter and source mechanism may work in conjunction with other commands.
+<br>
+<img src="UML_Diagrams/filterFunctionSequence.png"/>
+
+<h4 id="topics-filter-design"> Design Considerations </h4>
 Alternative 1 (current choice): check for topicIndex in handleCommand
 - Pros: easy to implement
 - Con: duplicate checking of topicIndex for article commands
@@ -398,28 +359,11 @@ Alternative 2: loop in filter command
 - Con: have to come up with handle commands inside the filter command loop
 - Con: initialising another Scanner object may cause unexpected conflicts
 
-<h3> Information Feature </h3>
 
-The Information Feature provides users with insights into the importance, reliability, and bias of news articles stored 
-in the application. This feature is implemented through the `InfoNewsCommand` class.
-
-Implementation:
-
-The `InfoNewsCommand` class contains a method `printNewsInfo` that prints the importance, reliability, and bias 
-of a news article based on its index in the list of news articles.
-
-Example Usage:
-
-To retrieve information about a specific news article, the user can input this command specifying the index of the 
-article they are interested in. 
-
-`info 1`
+<h3 id="suggest"> User Preferences (SUGGEST) Feature </h3>
 
 
-### User Preferences (SUGGEST) Feature
-
-
-#### Implementation
+<h4 id="suggest-implementation"> Implementation </h4>
 
 The `SUGGEST` feature provides users with article recommendations based on their favorite topics. The user's favorite
 topics are stored and managed by the `UserPreferences` class, which retrieves and suggests news articles 
@@ -431,10 +375,10 @@ related to these topics.
 4. For each favorite topic, it filters articles related to that topic and randomly selects one to suggest to the user.
 
 The following diagram describes the `getSuggestedArticlesFromFavoriteTopics()` method, highlighting how it 
-processes user's favorite topics to suggest random articles.
-<img src="UML Diagrams/UserPreferenceSequence.png">
+processes user's favorite topics to suggest random articles.  
+<img src="UML_Diagrams/UserPreferenceSequence.png">
 
-#### Design Considerations
+<h4 id="suggest-design"> Design Considerations </h4>
 The decision to use a random selection approach was to provide a dynamic user experience. This encourages users to 
 discover a variety of articles within their favourite topics.
 
@@ -455,9 +399,9 @@ been suggested.
 - **Cons:** More complex to implement, and might require additional storage to keep track of suggestion history.
 
 
-### URL Feature
+<h3 id="url"> URL Feature </h3>
 
-#### Implementation
+<h4 id="url-implementation"> Implementation </h4>
 
 The **URL** feature enables users to quickly access the URL of a specific news article listed in the application. This feature is handled by the `URLCommand` class which provides the functionality to retrieve and display the URL based on an article index provided by the user.
 
@@ -543,7 +487,7 @@ load
     CNN
 ```
 
-#### Design Considerations
+<h4 id="url-design"> Design Considerations </h4>
 
 The implementation of the URL feature is designed to be straightforward and efficient, allowing users to quickly access the web links of news articles with minimal interaction and waiting time.
 
@@ -568,9 +512,9 @@ Alternative 2: Search for an article by keywords and then provide URL options.
 *   **Cons:** More complex implementation and potentially slower due to the search process.
 
 
-### Headlines Feature
+<h3 id="headlines"> Headlines Feature </h3>
 
-#### Implementation
+<h4 id="headlines-implementation"> Implementation </h4>
 
 This feature allows users to quickly view the headlines of the top articles from the original scraped list. This feature is managed by the `ShowHeadlinesCommand` class, which handles displaying a specified number of article headlines based on user input.
 
@@ -634,7 +578,8 @@ ____________________________________________________________
 
 What do you want from me?
 ```
-#### Design Considerations
+
+<h4 id="headlines-design"> Design Considerations </h4>
 
 Choosing to implement a command that fetches a specific number of headlines from the top of the list was driven by the need for quick access to the latest news without overwhelming the user with too much information at once.
 
@@ -654,9 +599,9 @@ Choosing to implement a command that fetches a specific number of headlines from
 *   **Cons:** Increases complexity of implementation and may require more input from the user to navigate through pages.
 
 
-### Load Feature
+<h3 id="load"> Load Feature </h3>
 
-#### Implementation
+<h4 id="load-implementation"> Implementation </h4>
 
 This feature allows users to access their saved news articles from a persistent storage. Managed by the **NewsFil** class, this feature reads the news articles stored in the **saved_news.txt** file.
 
@@ -673,7 +618,7 @@ Below is a sequence diagram that illustrates the process triggered by the `load`
 
 <img src="UML_Diagrams/loadFunctionSequence.png">
 
-#### Design Considerations
+<h4 id="load-design"> Design Considerations </h4>
 
 The design focuses on providing easy access to saved articles, enhancing user experience by allowing them to revisit their saved news without needing to search through past data manually.
 
@@ -692,7 +637,9 @@ The design focuses on providing easy access to saved articles, enhancing user ex
 
 *   **Cons:** Increases complexity of implementation and may require more resources to maintain.
 
-## Product scope
+<h2 id="requirements"> Appendix: Requirements </h2>
+
+<h3 id="product-scope"> Product scope </h3>
 ### Target user profile
 
 {Describe the target user profile}
@@ -701,7 +648,8 @@ The design focuses on providing easy access to saved articles, enhancing user ex
 
 {Describe the value proposition: what problem does it solve?}
 
-<h2 id="user-stories"> User Stories </h2>
+<h3 id="user-stories"> User Stories </h3>
+
 
 | Version | As a ...                            | I want to ...                                                                                     | So that I can ...                                                                                                |
 |---------|-------------------------------------|---------------------------------------------------------------------------------------------------|------------------------------------------------------------------------------------------------------------------|
@@ -723,15 +671,18 @@ The design focuses on providing easy access to saved articles, enhancing user ex
 | v2.1    | busy student                        | access the summary of an article                                                                  | read up on the latest news quickly.                                                                              |
 
 
+<h3 id="use-cases"> Use Cases </h3>
 
-## Non-Functional Requirements
+<h3 id="non-functional-requirements"> Non-Functional Requirements </h3>
 
-{Give non-functional requirements}
+1. Should work on any mainstream OS as long as it has Java 11 or above installed.
+2. Currently, parsing 80+ articles which takes around 1 minute, which should be an optimal amount of time for the user
+before it becomes an annoyance.
 
-## Glossary
+<h3 id="glossary"> Glossary </h3>
 
-* *glossary item* - Definition
+* **Mainstream OS**: Windows, Linux, Unix, macOS
 
-## Instructions for manual testing
+<h3 id="manual-testing"> Appendix: Instructions for manual testing </h3>
 
 {Give instructions on how to do a manual product testing e.g., how to load sample data to be used for testing}
