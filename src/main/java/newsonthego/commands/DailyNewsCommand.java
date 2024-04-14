@@ -96,7 +96,7 @@ public class DailyNewsCommand {
             case "save":
                 save(dailyLine);
                 System.out.println("What do you want from me?\n" +
-                        INDENT + "To return to main, type in: back ");
+                        INDENT + "gTo return to main, type in: back ");
                 break;
             case "extract":
                 showExtract(dailyLine, articlesOfTheDay);
