@@ -5,12 +5,17 @@ import newsonthego.newstopic.NewsTopic;
 
 import java.util.List;
 import java.util.Scanner;
+
+import java.util.logging.Handler;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+
 
 import static newsonthego.storage.NewsFile.SAVED_NEWS_PATH;
 
 public class UI {
+
+
     public static final String INVALID_ARTICLE_INDEX_MESSAGE = "Please provide a valid article index!!";
     public static final String INDENT = "    ";
     public static final String LINE = "____________________________________________________________\n";

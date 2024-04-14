@@ -38,6 +38,7 @@ This guide will help you get started with using NewsOnTheGo and understand its f
             <li><code><a href="#back">back</a></code></li>
             <li><code><a href="#url">url</a></code></li>
             <li><code><a href="#headlines">headlines</a></code></li>
+            <li><code><a href="#extract">extract</a></code></li>
             <li><code><a href="#get">get</a></code></li>
             <li><code><a href="#load">load</a></code></li>
             <li><code><a href="#clear">clear</a></code></li>
@@ -243,25 +244,13 @@ topics
 ____________________________________________________________
 
 Here are the list of topics for your viewing:
-- Art
-- Business
-- Community
-- Culture
-- Economy
-- Education
-- Entertainment
-- Environment
-- Fashion
-- Finance
-- Food & Drink
-- Health
-- History
-- Politics
-- Science
-- Space
-- Space Exploration
-- Sports
-- Technology
+     - Business
+     - Entertainment
+     - Others
+     - Politics
+     - Sports
+     - Technology
+     - World
 ____________________________________________________________
 ```
 
@@ -505,7 +494,7 @@ ____________________________________________________________
 
 <br>
 
-<h3 id="headlines"> Star a topic: <code>headlines</code> </h3>
+<h3 id="headlines"> View article titles: <code>headlines</code> </h3>
 
 Retrieves the headlines of articles from the list of articles until the index specified by the user.
 
@@ -537,7 +526,30 @@ ____________________________________________________________
 
 <br>
 
-<h3 id="get"> Star a topic: <code>get</code> </h3>
+
+
+<h3 id="extract"> Access article summary: <code>extract</code> </h3>
+
+Retrieves and displays the summary or extract of a specific article from the list of articles.
+
+Format: `extract {INDEX OF ARTICLE}`
+
+#### Example of usage:
+- `extract 3`
+- `extract 5`
+
+```
+extract 3
+____________________________________________________________
+
+Article Extract: "Dune: Part Two? spiced up the box office with a $81.5 million
+opening weekend, becoming the biggest film, so far, of 2024.
+____________________________________________________________
+```
+
+<br>
+
+<h3 id="get"> Access article details: <code>get</code> </h3>
 
 Retrieves the details of a specific article.
 
@@ -680,6 +692,7 @@ function. Take note by keying in integers only. Make sure the integer do not exc
 | **BACK**      | `back`                                      |
 | **URL**       | `url {INDEX}`<br/>eg.`url 2`                |
 | **HEADLINES** | `headlines {INDEX}`<br/>eg.`headlines 10`   |
+| **EXTRACT**   | `Extract {INDEX}`<br/>eg.`extract 10`       |
 | **GET**       | `get {INDEX}`<br/>eg.`get 3`                |
 | **LOAD**      | `load`                                      |
 | **CLEAR**     | `clear`                                     |
