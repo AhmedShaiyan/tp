@@ -237,6 +237,8 @@ public class UI {
                         "        | `get 3`              |\n" +
                         "| `LOAD`     | Displays list of saved articles.                            " +
                         "        | `load`               |\n" +
+                        "| `EXTRACT`  | Displays a summary of the articles.                         " +
+                        "        | `extract 3`          |\n" +
                         "| `CLEAR`    | Clears the saved articles list.                             " +
                         "        | `clear`              |\n" +
                         "+------------+---------------------------------------------------------+" +

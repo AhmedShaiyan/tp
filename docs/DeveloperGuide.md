@@ -1,120 +1,58 @@
-<p style="font-size: xxx-large">Developer Guide</p>
+# Developer Guide
 
-<ul style="font-size: large">
-    <li><strong><a href="#acknowledgements">Acknowledgements</a></strong></li>
-    <li><strong><a href="#setting-up">Setting Up, Getting Started</a></strong></li>
-    <li><strong><a href="#design-implementation">Design and Implementation</a></strong></li>
-        <ul>
-            <li><a href="#architecture">Architecture</a></li>
-        </ul>
-        <ul>
-            <li><a href="#article-scrapper">Article Scrapper</a></li>
-            <ul>
-                <li><a href="#scrapper-implementation">Implementation</a></li>
-                <li><a href="#scrapper-design">Design Consideration</a></li>
-            </ul>
-        </ul>
-        <ul>
-            <li><a href="#daily">Daily feature</a></li>
-            <ul>
-                <li><a href="#daily-implementation">Implementation</a></li>
-                <li><a href="#daily-design">Design Consideration</a></li>
-            </ul>
-        </ul>
-        <ul>
-            <li><a href="#topics">Topics feature</a></li>
-            <ul>
-                <li><a href="#topics-implementation">Implementation</a></li>
-                <li><a href="#topics-design">Design Consideration</a></li>
-            </ul>
-        </ul>
-        <ul>
-            <li><a href="#star">Star feature</a></li>
-            <ul>
-                <li><a href="#star-implementation">Implementation</a></li>
-                <li><a href="#star-design">Design Consideration</a></li>
-            </ul>
-        </ul>
-        <ul>
-            <li><a href="#starred">Starred feature</a></li>
-            <ul>
-                <li><a href="#starred-implementation">Implementation</a></li>
-                <li><a href="#starred-design">Design Consideration</a></li>
-            </ul>
-        </ul>
-        <ul>
-            <li><a href="#remove">Remove feature</a></li>
-            <ul>
-                <li><a href="#remove-implementation">Implementation</a></li>
-                <li><a href="#remove-design">Design Consideration</a></li>
-            </ul>
-        </ul>
-        <ul>
-            <li><a href="#suggest">Suggest feature</a></li>
-            <ul>
-                <li><a href="#suggest-implementation">Implementation</a></li>
-                <li><a href="#suggest-design">Design Consideration</a></li>
-            </ul>
-        </ul>
-        <ul>
-            <li><a href="#filter">Filter feature</a></li>
-            <ul>
-                <li><a href="#filter-implementation">Implementation</a></li>
-                <li><a href="#filter-design">Design Consideration</a></li>
-            </ul>
-        </ul>
-        <ul>
-            <li><a href="#save">Save feature</a></li>
-            <ul>
-                <li><a href="#save-implementation">Implementation</a></li>
-                <li><a href="#save-design">Design Consideration</a></li>
-            </ul>
-        </ul>
-        <ul>
-            <li><a href="#source">Source feature</a></li>
-            <ul>
-                <li><a href="#source-implementation">Implementation</a></li>
-                <li><a href="#source-design">Design Consideration</a></li>
-            </ul>
-        </ul>
-        <ul>
-            <li><a href="#url">URL feature</a></li>
-            <ul>
-                <li><a href="#url-implementation">Implementation</a></li>
-                <li><a href="#url-design">Design Consideration</a></li>
-            </ul>
-        </ul>
-        <ul>
-            <li><a href="#headlines">Headlines feature</a></li>
-            <ul>
-                <li><a href="#headlines-implementation">Implementation</a></li>
-                <li><a href="#headlines-design">Design Consideration</a></li>
-            </ul>
-        </ul>
-        <ul>
-            <li><a href="#get">Get feature</a></li>
-            <ul>
-                <li><a href="#get-implementation">Implementation</a></li>
-                <li><a href="#get-design">Design Consideration</a></li>
-            </ul>
-        </ul>
-        <ul>
-            <li><a href="#load">Load feature</a></li>
-            <ul>
-                <li><a href="#load-implementation">Implementation</a></li>
-                <li><a href="#load-design">Design Consideration</a></li>
-            </ul>
-        </ul>
-    <li><strong><a href="#requirements">Appendix: Requirements</a></strong></li>
-        <ul style="font-size: medium">
-            <li><a href="#Product scope">Product scope</a></li>
-            <li><a href="#User stories">User stories</a></li>
-            <li><a href="#Use cases">Use cases</a></li>
-            <li><a href="#Non-Functional Requirements">Non-Functional Requirements</a></li>
-            <li><a href="#Glossary">Glossary</a></li>
-        </ul>
-</ul>
-
+## Table of Contents
+- [Acknowledgements](#acknowledgements)
+- [Setting Up, Getting Started](#setting-up-getting-started)
+- [Design](#design)
+    - [Architecture](#architecture)
+    - [Parser Component](#parser-component)
+    - [NewsArticle and Topic Model](#NewsArticle-component)
+    - [UI Component](#ui-component)
+    - [Command Classes](#command-classes)
+    - [NewsImporter and ArticleScraper](#Newsimporter-and-ArticleScraper)
+- [Implementation](#implementation)
+    - [Article Scrapper](#article-scrapper)
+        - [Implementation](#scrapper-implementation)
+        - [Design Consideration](#scrapper-design)
+    - [Daily Feature](#daily)
+        - [Implementation](#daily-implementation)
+        - [Design Consideration](#daily-design)
+    - [Topics Feature](#topics)
+        - [Implementation](#topics-implementation)
+        - [Design Consideration](#topics-design)
+    - [Star Feature](#star)
+        - [Implementation](#star-implementation)
+        - [Design Consideration](#star-design)
+    - [Starred Feature](#starred)
+        - [Implementation](#starred-implementation)
+        - [Design Consideration](#starred-design)
+    - [Remove Feature](#remove)
+        - [Implementation](#remove-implementation)
+        - [Design Consideration](#remove-design)
+    - [Suggest Feature](#suggest)
+        - [Implementation](#suggest-implementation)
+        - [Design Consideration](#suggest-design)
+    - [Filter Feature](#filter)
+        - [Implementation](#filter-implementation)
+        - [Design Consideration](#filter-design)
+    - [Save Feature](#save)
+        - [Implementation](#save-implementation)
+        - [Design Consideration](#save-design)
+    - [Source Feature](#source)
+        - [Implementation](#source-implementation)
+        - [Design Consideration](#source-design)
+    - [URL Feature](#url)
+        - [Implementation](#url-implementation)
+        - [Design Consideration](#url-design)
+    - [Headlines Feature](#headlines)
+        - [Implementation](#headlines-implementation)
+        - [Design Consideration](#headlines-design)
+    - [Get Feature](#get)
+        - [Implementation](#get-implementation)
+        - [Design Consideration](#get-design)
+    - [Load Feature](#load)
+        - [Implementation](#load-implementation)
+        - [Design Consideration](#load-design)
 <h2 id="acknowledgements"> Acknowledgements </h2>
 <ul>
     <li>
@@ -178,7 +116,38 @@ Alternatively, refer to our [User Guide](UserGuide.md) for quick start details.
 The Architecture Design given above gives a visualisation of the higher level design of our application.
 
 
-<h2 id="design-implementation">Design and Implementation</h2>
+## Design
+### Architecture
+_Diagrams and explanations about the high-level design of the application._
+
+### Parser Component
+The parser component is responsible for interpreting user commands and invoking the correct command methods in the logic component. I
+- **Parsing Commands**: The method `handleCommand` starts by attempting to convert the user input string into a `Command` enumeration. If the command does not match any predefined commands, it defaults to `VOID`.
+
+- **Command Handling**: Depending on the recognized command, `handleCommand` uses a switch-case structure to handle each possible command. Each case block calls the corresponding method or class that implements the command's functionality.
+
+- **Contextual Command Execution**: Some commands, like `GET`, `SAVE`, or `EXTRACT` require checking if a filtering context is set (i.e., `topic` variable). If a topic is currently selected (not **\-1**), the command is applied within the context of that topic.
+
+- **Quote Generation**: In the case of the `QUOTE` command, it creates an instance of `QuoteGenerator` and retrieves a random quote.
+
+### News Article and Topic Models
+Details the structure of the `NewsArticle` and `NewsTopic` classes, which represent the data model for news articles and topics within the application.
+
+### UI Component
+The UI class in is responsible for all command line interactions, displaying welcome and goodbye messages, providing structured command formats, and handling the output of news content and errors. It uses methods like `printMessage` and `printConfused` to ensure clear and correct text output.
+### Command Classes
+Each command in the system has a corresponding class in this component. This section covers how these classes implement the functionality for different features like `DailyNewsCommand`, `ShowHeadlinesCommand`, etc.
+
+### NewsImporter and ArticleScraper
+Explains how the application scrapes news articles from the web and imports them into the system using `NewsImporter` and `ArticleScraper` classes.
+
+### NewsFile and StorageURL
+Covers how the application saves user data and article details to files and retrieves them using `NewsFile` and `StorageURL` classes.
+
+### Common Classes
+Common classes that are used throughout the application, such as `UI`, which handles all user interactions, and utility classes, will be discussed here.
+
+<h2 id="design-implementation">Implementation</h2>
 
 {Describe the design and implementation of the product. Use UML diagrams and short code snippets where applicable.}
 
@@ -694,6 +663,7 @@ The design focuses on providing easy access to saved articles, enhancing user ex
 | v2.1    | student                             | get the citation of the articles                                                                  | use it when citing my sources.                                                                                   |
 | v2.1    | avid reader                         | be recommended more articles                                                                      | read about topics that I do not usually read about.                                                              |
 | v2.1    | avid reader of news websites        | read the quote of the day                                                                         | get a daily dose of inspiration                                                                                  |
+| v2.1    | busy student                        | access the summary of an article                                                                  | read up on the latest news quickly.                                                                              |
 
 
 
