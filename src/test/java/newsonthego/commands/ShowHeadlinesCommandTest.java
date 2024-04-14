@@ -38,11 +38,14 @@ public class ShowHeadlinesCommandTest {
 //
 //            assertTrue(output.contains("Displaying the first 3 article headlines:"),
 //                    "Should indicate it's displaying 3 headlines");
-//            assertTrue(output.contains("Kristen Wiig initiated into "SNL" five-timers club by Ryan Gosling, Matt Damon and? Lorne Michaels | CNN"),
+//            assertTrue(output.contains("Kristen Wiig initiated into "SNL" five-timers
+//            club by Ryan Gosling, Matt Damon and? Lorne Michaels | CNN"),
 //                    "Should display the first headline");
-//            assertTrue(output.contains("?The Matrix? has a fifth film in the works and, no, this is not a simulation | CNN"),
+//            assertTrue(output.contains("?The Matrix? has a fifth film in the works and, no,
+//            this is not a simulation | CNN"),
 //                    "Should display the second headline");
-//            assertTrue(output.contains("?Dune: Part Two? may be followed by a third film, but Timoth?e Chalamet and Zendaya don?t know how it all ends | CNN"),
+//            assertTrue(output.contains("?Dune: Part Two? may be followed by a third
+//            film, but Timoth?e Chalamet and Zendaya don?t know how it all ends | CNN"),
 //                    "Should display the third headline");
 //        }
 
