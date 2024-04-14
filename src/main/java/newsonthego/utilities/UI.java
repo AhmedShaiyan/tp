@@ -235,6 +235,8 @@ public class UI {
                         "        | `headlines 10`       |\n" +
                         "| `GET`      | Details of a specific article.                              " +
                         "        | `get 3`              |\n" +
+                        "| `EXTRACT`  | Displays the extract of the article.                        " +
+                        "        | `extract 5`          |\n" +
                         "| `LOAD`     | Displays list of saved articles.                            " +
                         "        | `load`               |\n" +
                         "| `CLEAR`    | Clears the saved articles list.                             " +

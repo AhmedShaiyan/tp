@@ -12,13 +12,9 @@ import newsonthego.newstopic.NewsTopic;
 import newsonthego.utilities.UI;
 
 import static newsonthego.NewsOnTheGo.suggestArticle;
-<<<<<<< HEAD
-import static newsonthego.utilities.UI.*;
-=======
+import static newsonthego.utilities.UI.printLine;
 import static newsonthego.utilities.UI.printMessage;
 import static newsonthego.utilities.UI.printQuote;
->>>>>>> 43b930093f160975b809c7497d6d61236f1dda22
-
 
 import java.util.List;
 
@@ -112,10 +108,10 @@ public class Parser {
 
         case QUOTE:
             String quote = quoteGenerator.getRandomQuote();
-            System.out.println("\n");
+            printLine();
             System.out.println("Some words of inspiration today: ");
             printQuote(quote);
-            System.out.println("\n");
+            printLine();
             break;
         case EXTRACT:
             ShowExtractCommand.showExtract(line, list);
