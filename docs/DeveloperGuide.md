@@ -1,58 +1,115 @@
-# Developer Guide
+<p style="font-size: xxx-large">Developer Guide</p>
 
-## Table of Contents
-- [Acknowledgements](#acknowledgements)
-- [Setting Up, Getting Started](#setting-up-getting-started)
-- [Design](#design)
-    - [Architecture](#architecture)
-    - [Parser Component](#parser-component)
-    - [NewsArticle and Topic Model](#NewsArticle-component)
-    - [UI Component](#ui-component)
-    - [Command Classes](#command-classes)
-    - [NewsImporter and ArticleScraper](#Newsimporter-and-ArticleScraper)
-- [Implementation](#implementation)
-    - [Article Scrapper](#article-scrapper)
-        - [Implementation](#scrapper-implementation)
-        - [Design Consideration](#scrapper-design)
-    - [Daily Feature](#daily)
-        - [Implementation](#daily-implementation)
-        - [Design Consideration](#daily-design)
-    - [Topics Feature](#topics)
-        - [Implementation](#topics-implementation)
-        - [Design Consideration](#topics-design)
-    - [Star Feature](#star)
-        - [Implementation](#star-implementation)
-        - [Design Consideration](#star-design)
-    - [Starred Feature](#starred)
-        - [Implementation](#starred-implementation)
-        - [Design Consideration](#starred-design)
-    - [Remove Feature](#remove)
-        - [Implementation](#remove-implementation)
-        - [Design Consideration](#remove-design)
-    - [Suggest Feature](#suggest)
-        - [Implementation](#suggest-implementation)
-        - [Design Consideration](#suggest-design)
-    - [Filter Feature](#filter)
-        - [Implementation](#filter-implementation)
-        - [Design Consideration](#filter-design)
-    - [Save Feature](#save)
-        - [Implementation](#save-implementation)
-        - [Design Consideration](#save-design)
-    - [Source Feature](#source)
-        - [Implementation](#source-implementation)
-        - [Design Consideration](#source-design)
-    - [URL Feature](#url)
-        - [Implementation](#url-implementation)
-        - [Design Consideration](#url-design)
-    - [Headlines Feature](#headlines)
-        - [Implementation](#headlines-implementation)
-        - [Design Consideration](#headlines-design)
-    - [Get Feature](#get)
-        - [Implementation](#get-implementation)
-        - [Design Consideration](#get-design)
-    - [Load Feature](#load)
-        - [Implementation](#load-implementation)
-        - [Design Consideration](#load-design)
+<ul>
+    <li><a href="#acknowledgements">Acknowledgements</a></li>
+    <li><a href="#setting-up-getting-started">Setting Up, Getting Started</a></li>
+    <li><a href="#design">Design</a>
+        <ul>
+            <li><a href="#architecture">Architecture</a></li>
+            <li><a href="#parser-component">Parser Component</a></li>
+            <li><a href="#NewsArticle-component">NewsArticle and Topic Model</a></li>
+            <li><a href="#ui-component">UI Component</a></li>
+            <li><a href="#command-classes">Command Classes</a></li>
+            <li><a href="#Newsimporter-and-ArticleScraper">NewsImporter and ArticleScraper</a></li>
+        </ul>
+    </li>
+    <li><a href="#implementation">Implementation</a>
+                <li><a href="#daily-design">Design Consideration</a></li>
+            </ul>
+        </ul>
+        <ul>
+            <li><a href="#topics">Topics feature</a></li>
+            <ul>
+                <li><a href="#topics-implementation">Implementation</a></li>
+                <li><a href="#topics-design">Design Consideration</a></li>
+            </ul>
+        </ul>
+        <ul>
+            <li><a href="#star">Star feature</a></li>
+            <ul>
+                <li><a href="#star-implementation">Implementation</a></li>
+                <li><a href="#star-design">Design Consideration</a></li>
+            </ul>
+        </ul>
+        <ul>
+            <li><a href="#starred">Starred feature</a></li>
+            <ul>
+                <li><a href="#starred-implementation">Implementation</a></li>
+                <li><a href="#starred-design">Design Consideration</a></li>
+            </ul>
+        </ul>
+        <ul>
+            <li><a href="#remove">Remove feature</a></li>
+            <ul>
+                <li><a href="#remove-implementation">Implementation</a></li>
+                <li><a href="#remove-design">Design Consideration</a></li>
+            </ul>
+        </ul>
+        <ul>
+            <li><a href="#suggest">Suggest feature</a></li>
+            <ul>
+                <li><a href="#suggest-implementation">Implementation</a></li>
+                <li><a href="#suggest-design">Design Consideration</a></li>
+            </ul>
+        </ul>
+        <ul>
+            <li><a href="#filter">Filter feature</a></li>
+            <ul>
+                <li><a href="#filter-implementation">Implementation</a></li>
+                <li><a href="#filter-design">Design Consideration</a></li>
+            </ul>
+        </ul>
+        <ul>
+            <li><a href="#save">Save feature</a></li>
+            <ul>
+                <li><a href="#save-implementation">Implementation</a></li>
+                <li><a href="#save-design">Design Consideration</a></li>
+            </ul>
+        </ul>
+        <ul>
+            <li><a href="#source">Source feature</a></li>
+            <ul>
+                <li><a href="#source-implementation">Implementation</a></li>
+                <li><a href="#source-design">Design Consideration</a></li>
+            </ul>
+        </ul>
+        <ul>
+            <li><a href="#url">URL feature</a></li>
+            <ul>
+                <li><a href="#url-implementation">Implementation</a></li>
+                <li><a href="#url-design">Design Consideration</a></li>
+            </ul>
+        </ul>
+        <ul>
+            <li><a href="#headlines">Headlines feature</a></li>
+            <ul>
+                <li><a href="#headlines-implementation">Implementation</a></li>
+                <li><a href="#headlines-design">Design Consideration</a></li>
+            </ul>
+        </ul>
+        <ul>
+            <li><a href="#get">Get feature</a></li>
+            <ul>
+                <li><a href="#get-implementation">Implementation</a></li>
+                <li><a href="#get-design">Design Consideration</a></li>
+            </ul>
+        </ul>
+        <ul>
+            <li><a href="#load">Load feature</a></li>
+            <ul>
+                <li><a href="#load-implementation">Implementation</a></li>
+                <li><a href="#load-design">Design Consideration</a></li>
+            </ul>
+        </ul>
+    <li><strong><a href="#requirements">Appendix: Requirements</a></strong></li>
+        <ul style="font-size: medium">
+            <li><a href="#Product scope">Product scope</a></li>
+            <li><a href="#User stories">User stories</a></li>
+            <li><a href="#Use cases">Use cases</a></li>
+            <li><a href="#Non-Functional Requirements">Non-Functional Requirements</a></li>
+            <li><a href="#Glossary">Glossary</a></li>
+        </ul>
+</ul>
 <h2 id="acknowledgements"> Acknowledgements </h2>
 <ul>
     <li>
