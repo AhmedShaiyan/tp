@@ -255,8 +255,26 @@ specifically for parsing HTML and extracting data elements.
 
 <h4> Implementation </h4>
 
-The `ArticleScraper` is called in the `main()` method in `NewsOnTheGo`. If `testArticleScraper.txt` does not exist ,or it 
-is empty, a list of URLs from `StorageURL` is obtained and looped through `scrapeArticle` method within `ArticleScraper` class.
+1. NewsOnTheGo: Initiates the process by checking the existence and content of the `testArticleScraper.txt` file.
+
+2. NewsOnTheGo: If the file does not exist or is empty, an instance of the `StorageURL` class is created.
+
+3. NewsOnTheGo: Calls the `getURLs()` method on the `StorageURL` instance to obtain a list of URLs.
+
+4. NewsOnTheGo: Creates an instance of the `ArticleScraper` class.
+
+5. NewsOnTheGo: Loops through each URL in the list obtained from `StorageURL`.
+
+6. NewsOnTheGo: For each URL, it calls the `scrapeArticle()` method on the `ArticleScraper` instance.
+
+7. ArticleScraper: Scrapes the article from the provided URL.
+
+8. NewsOnTheGo: Handles the scraped data by saving to `testArticleScraper.txt`.
+
+9. NewsOnTheGo: Continues the loop for each URL, calling the `scrapeArticle()` method until all URLs have been processed.
+
+10. NewsOnTheGo: Once all URLs have been processed, closes the `testArticleScraper.txt` file.
+
 
 The flow can be seen from the sequence diagram below: 
 
@@ -691,6 +709,35 @@ The design focuses on providing easy access to saved articles, enhancing user ex
 *   **Pros:** Allows for more complex queries, such as sorting by date, filtering by topic, or even full-text search.
 
 *   **Cons:** Increases complexity of implementation and may require more resources to maintain.
+
+
+### Random Quote Function
+
+The `QuoteGenerator` class is responsible for generating random quotes from a predefined list. 
+The class uses a `Random` instance to select a quote at random from the list of quotes.
+
+#### Implementation
+
+1. User: Initiates the `QUOTE` command by providing input.
+
+2. Parser: Creates an instance of QuoteGenerator.
+
+3. Parser: Executes the switch statement for the command, and it encounters the QUOTE case.
+
+4. Parser: Calls the `getRandomQuote()` method on the `QuoteGenerator` instance to get a random quote.
+
+5. QuoteGenerator: Returns a random quote from the quotes list using the generated index.
+
+6. Parser: Receives the random quote from the `QuoteGenerator`.
+
+7. Parser: Uses `UI.printQuote()` to print the received random quote.
+
+8. UI: Prints the quote to the console.
+
+The flow can be seen from the sequence diagram below:
+
+<img src="UML_Diagrams/QuoteGeneratorSequence.png">
+
 
 ## Product scope
 ### Target user profile
