@@ -12,9 +12,9 @@ import newsonthego.newstopic.NewsTopic;
 import newsonthego.utilities.UI;
 
 import static newsonthego.NewsOnTheGo.suggestArticle;
+import static newsonthego.utilities.UI.printLine;
 import static newsonthego.utilities.UI.printMessage;
 import static newsonthego.utilities.UI.printQuote;
-
 
 import java.util.List;
 
@@ -108,10 +108,10 @@ public class Parser {
 
         case QUOTE:
             String quote = quoteGenerator.getRandomQuote();
-            System.out.println("\n");
+            printLine();
             System.out.println("Some words of inspiration today: ");
             printQuote(quote);
-            System.out.println("\n");
+            printLine();
             break;
         case EXTRACT:
             ShowExtractCommand.showExtract(line, list);
