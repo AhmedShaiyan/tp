@@ -14,6 +14,7 @@ public class UI {
     public static final String INVALID_ARTICLE_INDEX_MESSAGE = "Please provide a valid article index!!";
     public static final String INDENT = "    ";
     public static final String LINE = "____________________________________________________________\n";
+    private static final int MAX_LINE_WIDTH = 80;
 
     private static final Logger logger = Logger.getLogger("NewsOnTheGo");
     public static void initializeUI(Scanner in) {
@@ -55,6 +56,27 @@ public class UI {
     public static void printMessage(String message) {
         printLine();
         System.out.println(message);
+        printLine();
+    }
+
+    /**
+     * Prints a message with text wrapping to avoid horizontal scrolling in terminal.
+     * @param message The message to be printed.
+     */
+    public static void printWrappedMessage(String message) {
+        printLine();
+        String[] words = message.split(" ");
+        StringBuilder line = new StringBuilder();
+        for (String word : words) {
+            if (line.length() + word.length() + 1 > MAX_LINE_WIDTH) {
+                System.out.println(line.toString());
+                line = new StringBuilder();
+            }
+            line.append(word).append(" ");
+        }
+        if (line.length() > 0) {
+            System.out.println(line.toString()); // print any remaining text
+        }
         printLine();
     }
 
