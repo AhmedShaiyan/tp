@@ -97,7 +97,6 @@ public class NewsOnTheGo {
         }
     }
 
-
     /**
      * Adds a specified news topic to the user's list of favorite topics.
      * If the provided line contains a valid topic name, it is added to the list of favorite topics.

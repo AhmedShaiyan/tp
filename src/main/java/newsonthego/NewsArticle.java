@@ -44,10 +44,6 @@ public class NewsArticle {
         return headline;
     }
 
-    public void setHeadline(String headline) {
-        this.headline = headline;
-    }
-
     public String getAuthor() {
         return author;
     }
@@ -60,32 +56,16 @@ public class NewsArticle {
         this.url = url;
     }
 
-    public void setAuthor(String author) {
-        this.author = author;
-    }
-
     public String getDate() {
         return date;
-    }
-
-    public void setDate(String date) {
-        this.date = date;
     }
 
     public String getSource() {
         return source;
     }
 
-    public void setSource(String source) {
-        this.source = source;
-    }
-
     public String getContent() {
         return content;
-    }
-
-    public void setContent(String content) {
-        this.content = content;
     }
 
     public boolean isSaved() {

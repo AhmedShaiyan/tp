@@ -1,0 +1,62 @@
+@startuml
+'https://plantuml.com/class-diagram
+skinparam classAttributeIconSize 0
+
+abstract class AbstractList
+abstract AbstractCollection
+interface List
+interface Collection
+
+List <|-- AbstractList
+Collection <|-- AbstractCollection
+
+Collection <|- List
+AbstractCollection <|- AbstractList
+AbstractList <|-- ArrayList
+
+class NewsOnTheGo {
+    + {static} FILENAME: String = "data/testArticleScraper.txt"
+
+}
+
+NewsOnTheGo --> "0...*" NewsTopic : NEWS_TOPIC
+
+class NewsTopic {
+    # topicName: String
+    + NewsTopic(String topicName)
+    + getTopicName(): String
+    + getRelatedNewsArticles(): ArrayList<NewsArticle>
+    + addNewsArticle(NewsArticle newsArticle)
+    + printNewsArticles()
+    + {static} findTopicIndex(String topic, List<NewsTopic> topics)
+}
+
+NewsTopic --> "0...*" NewsArticle : relatedNewsArticles
+
+class NewsArticle {
+}
+
+enum Command {
+HELP
+DAILY
+TOPICS
+FILTER
+STAR
+STARRED
+REMOVE
+URL
+HEADLINES
+GET
+SOURCE
+SAVE
+LOAD
+SUGGEST
+CLEAR
+BACK
+QUOTE
+EXTRACT
+BYE
+VOID
+}
+
+@enduml
