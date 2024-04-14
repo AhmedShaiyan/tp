@@ -76,7 +76,7 @@ public class NewsOnTheGo {
      * @param line The input line containing the command and index of the news article.
      * @param list The list of NewsArticle objects from which to retrieve the news article.
      */
-    static void getNews(String line, List<NewsArticle> list) {
+    public static void getNews(String line, List<NewsArticle> list) {
         String[] split = line.split(" ");
         try {
             int index = Integer.parseInt(split[1]) - 1;

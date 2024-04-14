@@ -43,35 +43,24 @@ public class NewsArticle {
     public String getHeadline() {
         return headline;
     }
-
     public String getAuthor() {
         return author;
     }
-
     public String getUrl() {
         return url;
     }
-
-    public void setUrl(String url) {
-        this.url = url;
-    }
-
     public String getDate() {
         return date;
     }
-
     public String getSource() {
         return source;
     }
-
     public String getContent() {
         return content;
     }
-
     public boolean isSaved() {
         return isSaved;
     }
-
     public void setSaved(boolean saved) {
         isSaved = saved;
     }
