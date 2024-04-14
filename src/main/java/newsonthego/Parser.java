@@ -5,12 +5,19 @@ import newsonthego.commands.FilterNewsCommand;
 import newsonthego.commands.GetNewsSourceCommand;
 import newsonthego.commands.ShowHeadlinesCommand;
 import newsonthego.commands.URLCommand;
+import newsonthego.commands.QuoteGenerator;
+import newsonthego.commands.ShowExtractCommand;
+
 import newsonthego.newstopic.NewsTopic;
 import newsonthego.utilities.UI;
-import newsonthego.commands.QuoteGenerator;
 
 import static newsonthego.NewsOnTheGo.suggestArticle;
+<<<<<<< HEAD
 import static newsonthego.utilities.UI.*;
+=======
+import static newsonthego.utilities.UI.printMessage;
+import static newsonthego.utilities.UI.printQuote;
+>>>>>>> 43b930093f160975b809c7497d6d61236f1dda22
 
 
 import java.util.List;
@@ -27,6 +34,8 @@ public class Parser {
         } catch (IllegalArgumentException e) {
             commandEnum = NewsOnTheGo.Command.VOID;
         }
+
+        QuoteGenerator quoteGenerator = new QuoteGenerator();
 
         switch (commandEnum) {
         case HELP:
@@ -102,15 +111,14 @@ public class Parser {
             break;
 
         case QUOTE:
-
-            QuoteGenerator quoteGenerator = new QuoteGenerator();
             String quote = quoteGenerator.getRandomQuote();
-            printLine();
-            System.out.println("Some words of inpiration today: " +  "\n");
-            printQuoteWithFancyBorder(quote);
-            printEmptyLine();
-            printLine();
-
+            System.out.println("\n");
+            System.out.println("Some words of inspiration today: ");
+            printQuote(quote);
+            System.out.println("\n");
+            break;
+        case EXTRACT:
+            ShowExtractCommand.showExtract(line, list);
             break;
         case BYE:
             UI.printBye();

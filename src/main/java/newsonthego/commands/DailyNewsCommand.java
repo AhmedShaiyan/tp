@@ -8,6 +8,7 @@ import java.util.Scanner;
 import java.util.logging.Level;
 import java.util.stream.Collectors;
 
+import static newsonthego.commands.ShowExtractCommand.showExtract;
 import static newsonthego.utilities.FormatDate.formatFromUser;
 import static newsonthego.storage.NewsFile.saveNews;
 import static newsonthego.utilities.UI.INDENT;
@@ -74,7 +75,6 @@ public class DailyNewsCommand {
             printHeadlinesFound(formattedDate);
             printEmptyLine();
             printArticlesInList(articlesOfTheDay);
-            URLCommand.printArticleURLsForDay(articlesOfTheDay);
             printEmptyLine();
             saveDailyArticlesParser();
         }
@@ -98,11 +98,15 @@ public class DailyNewsCommand {
                 System.out.println("What do you want from me?\n" +
                         INDENT + "To return to main, type in: back ");
                 break;
+            case "extract":
+                showExtract(dailyLine, articlesOfTheDay);
+                System.out.println("What do you want from me?\n" +
+                        INDENT + "To return to main, type in: back ");
+                break;
             case "back":
                 isPolling = false;
                 System.out.println("You are back to the main function!");
                 printLine();
-
                 break;
             default:
                 printSaveDailyDefaultMessage();

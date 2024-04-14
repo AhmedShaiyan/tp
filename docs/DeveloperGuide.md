@@ -182,9 +182,9 @@ The Architecture Design given above gives a visualisation of the higher level de
 
 {Describe the design and implementation of the product. Use UML diagrams and short code snippets where applicable.}
 
-<h3 id="article-scrapper"> Article Scrapper</h3>
+<h3 id="article-scrapper"> Article Scraper</h3>
 
-The `ArticleScrapper` class is designed to scrape information from web articles given their URLs. It utilizes the Jsoup
+The `ArticleScraper` class is designed to scrape information from web articles given their URLs. It utilizes the Jsoup
 library for web scraping. 
 
 Here's a breakdown of its key functionalities:
@@ -227,10 +227,23 @@ read input URLs from a text file and write scraped data to an output text file.
 Relies on the [Jsoup](https://jsoup.org/) library (`org.jsoup.Jsoup`) for web scraping functionalities, 
 specifically for parsing HTML and extracting data elements.
 
+<h4> Implementation </h4>
+
+The `ArticleScraper` is called in the `main()` method in `NewsOnTheGo`. If `testArticleScraper.txt` does not exist ,or it 
+is empty, a list of URLs from `StorageURL` is obtained and looped through `scrapeArticle` method within `ArticleScraper` class.
+
+The flow can be seen from the sequence diagram below: 
+
+<img src="UML_Diagrams/ArticleScraperSequence.png">
+
+Within the `ArticleScraper` class itself, the flow can be seen from this second diagram below:
+
+<img src="UML_Diagrams/ArticleScraperSequence2.png">
+
 
 <h3> Daily function </h3>
 
-
+#### Implementation
 This daily mechanism is facilitated by a constructor from the `DailyNewsCommand` class. It takes in an input from 
 the user and the current list of articles to display the news on published on a particular day to the user.  
 This feature also implements the following operations:  
@@ -255,9 +268,9 @@ Step 4: When the user is done saving the desired news articles, he is able to go
 The flow can be seen from the sequence diagram below.  
 <img src="UML Diagrams/dailyFunctionSequence.png">
 
-<h3> Source Function </h3>
+<h3> Source Feature </h3>
 
-
+#### Implementation
 The `sourceNews` function in the `NewsOnTheGo` class is used to retrieve the source of a news article. The function 
 takes in a string and a list of `NewsArticle` objects. The string is split into an array and the second 
 element (index 1) is parsed as an integer. This integer is used as an index to retrieve a `NewsArticle` from the list, 
@@ -279,6 +292,7 @@ static void sourceNews(String line, List<NewsArticle> list) {
 
 <h3> Filter News by Topic Feature </h3>
 
+#### Implementation
 <h4> Topic Function </h4>
 
 The `showTopics` function in  `NewsOnTheGo` class is used to show the list of topics linked to the current list of news 
@@ -310,7 +324,7 @@ topics of the news articles.
 
 The following sequence diagram shows how the topic operation works. <br>
 
-<img src="UML Diagrams/topicFunctionSequence.png">
+<img src="UML_Diagrams/topicFunctionSequence.png">
 
 Step 2. Suppose the user wants to see news articles related to politics, the user then inputs `filter politics`. 
 The `handleCommand` takes in the command and calls `filterNews` which used a binary search function `findTopicIndex` to 
@@ -358,7 +372,7 @@ Alternative 2: loop in filter command
 - Con: have to come up with handle commands inside the filter command loop
 - Con: initialising another Scanner object may cause unexpected conflicts
 
-<h3> Information Function </h3>
+<h3> Information Feature </h3>
 
 The Information Feature provides users with insights into the importance, reliability, and bias of news articles stored 
 in the application. This feature is implemented through the `InfoNewsCommand` class.
@@ -376,9 +390,8 @@ article they are interested in.
 `info 1`
 
 
-### User Preferences Function
+### User Preferences (SUGGEST) Feature
 
-#### SUGGEST Feature
 
 #### Implementation
 
@@ -386,17 +399,14 @@ The `SUGGEST` feature provides users with article recommendations based on their
 topics are stored and managed by the `UserPreferences` class, which retrieves and suggests news articles 
 related to these topics.
 
-#### How the SUGGEST feature works:
-
 1. When the `SUGGEST` command is invoked, `UserPreferences.getSuggestedArticlesFromFavoriteTopics()` is called.
 2. This method reads the user's favorite topics from the `saved_topics.txt` file.
-3. It then fetches all news articles from `sampleNews.txt`.
+3. It then fetches all news articles from `testArticleScraper.txt`.
 4. For each favorite topic, it filters articles related to that topic and randomly selects one to suggest to the user.
 
-#### Code Snippet:
-The following code snippet describes the `getSuggestedArticlesFromFavoriteTopics()` method, highlighting how it 
-processes user's favorite topics to suggest random articles. It also includes the parseArticleTitle helper method 
-to extract article titles from the data lines.
+The following diagram describes the `getSuggestedArticlesFromFavoriteTopics()` method, highlighting how it 
+processes user's favorite topics to suggest random articles.
+<img src="UML Diagrams/UserPreferenceSequence.png">
 
 #### Design Considerations
 The decision to use a random selection approach was to provide a dynamic user experience. This encourages users to 
@@ -406,17 +416,255 @@ discover a variety of articles within their favourite topics.
 Alternative 1 (current choice): Randomly select an article from the list of articles corresponding to 
 each favorite topic.
 
-- Pros: Simple to implement and ensures a variety of articles are suggested to the user.
-- Cons: A user might see the same article suggested multiple times, especially if the topic has a small set of 
+- **Pros:** Simple to implement and ensures a variety of articles are suggested to the user.
+- **Cons:** A user might see the same article suggested multiple times, especially if the topic has a small set of 
 related articles.
 
 
 Alternative 2: Implement a more sophisticated algorithm that keeps track of previously suggested articles and ensures 
 a new selection in each suggestion cycle.
 
-- Pros: Ensures that users do not receive the same suggestion more than once until all available articles have 
+- **Pros:** Ensures that users do not receive the same suggestion more than once until all available articles have 
 been suggested.
-- Cons: More complex to implement, and might require additional storage to keep track of suggestion history.
+- **Cons:** More complex to implement, and might require additional storage to keep track of suggestion history.
+
+
+### URL Feature
+
+#### Implementation
+
+The **URL** feature enables users to quickly access the URL of a specific news article listed in the application. This feature is handled by the `URLCommand` class which provides the functionality to retrieve and display the URL based on an article index provided by the user.
+
+1.  The user inputs a command in the format: `url` .
+
+2.  `URLCommand.printArticleURL(String line, List list)` is called with the user input and the current list of articles.
+
+3.  The method parses the command to extract the article index.
+
+4.  If the index is valid, it retrieves the article from the provided list and prints the URL. If the index is invalid, an error message is displayed. <br>
+
+<img src="UML_Diagrams/URLCommandSequence.png">
+
+#### Additional Usage
+ The URL are also utilized in other functionalities of the application without explicitly using the `url` command:
+
+1. **`Daily` News Feature**: When daily news articles are displayed, their URLs are included alongside other details for easy access.
+2. **`Save` and `Load` Features**: When articles are saved to the reading list, their URLs are stored in the text file automatically and displayed when articles are loaded from this list.
+
+Given below is an example usage scenario demonstrating the use of the URL feature through the `url`, `daily`, `save`, and `load` commands.
+
+
+Step 1: The user can display headlines through by using the `headlines` command. The `handleCommand` method will parse the input and invoke the `showHeadlines` method, which will list the first five article headlines from the news articles list.
+
+**Example Output:**
+```
+headlines 5
+
+Displaying the first 5 article headlines:
+1. "Kristen Wiig initiated into SNL five-timers club by Ryan Gosling, Matt Damon and Lorne Michaels | CNN"
+2. "The Matrix has a fifth film in the works and, no, this is not a simulation | CNN"
+3. "Dune: Part Two may be followed by a third film, but Timothee Chalamet and Zendaya dont know how it all ends | CNN"
+4. "Angelina Jolie alleges history of Brad Pitts physical abuse prior to 2016 plane ride in new Miraval filing | CNN"
+5. "Adrian Schiller, star of The Last Kingdom, dead at 60: Sudden and unexpected | CNN"
+
+What do you want from me? 
+```
+
+Step 2: Suppose the user wants to access the URL of the 3rd article, they then input `url 3`. The `handleCommand` method processes this command and calls `URLCommand.printArticleURL`, which retrieves and displays the URL of the third article.
+
+**Example Output:**
+```
+url 3
+___________________________________________________________
+
+Article URL: https://edition.cnn.com/2024/03/04/entertainment/dune-part-two-sequel/index.html
+____________________________________________________________
+
+What do you want from me?
+____________________________
+```
+
+Step 3: On another occasion, lets say the user decides to view articles from a specific date and potentially save one for later reading. The `handleCommand` executes the `DailyNewsCommand`, displaying the articles from that specific day. The url is of the article is also output for easy access
+
+**Example Output :**
+```
+daily april 07 2024
+
+____________________________________________________________
+
+Sure! Here are the headlines for today (April 07, 2024) :
+
+    1: "Kristen Wiig initiated into �SNL� five-timers club by Ryan Gosling, Matt Damon and� Lorne Michaels | CNN"
+    URL: https://edition.cnn.com/2024/04/07/entertainment/kristen-wiig-ryan-gosling-matt-damon-snl/index.html
+```
+
+Step 4: If the user wants to save an article, which triggers the saving of the second article displayed. The `handleCommand` recognizes whether it is a filtered list or is it the original list (use for the headline feature) and saves the specified article. The save feature will also store the url of the article and display it when the `load` command is used to view the stores articles
+
+**Example Output :**
+``` 
+save 1
+
+____________________________________________________________
+
+Successfully saved "Kristen Wiig initiated into SNL five-timers club by Ryan Gosling, Matt Damon and Lorne Michaels | CNN"
+    find your saved articles at user_data\saved_news.txt
+    
+load 
+
+"Kristen Wiig initiated into ‘SNL’ five-timers club by Ryan Gosling, Matt Damon and… Lorne Michaels | CNN"
+    URL: https://edition.cnn.com/2024/04/07/entertainment/kristen-wiig-ryan-gosling-matt-damon-snl/index.html
+    By: Alli Rosenbloom    On: April 07, 2024
+    CNN
+```
+
+#### Design Considerations
+
+The implementation of the URL feature is designed to be straightforward and efficient, allowing users to quickly access the web links of news articles with minimal interaction and waiting time.
+
+*   **Direct Access**: The feature allows direct access to URLs without navigating through multiple steps, enhancing the user experience.
+
+*   **Error Handling**: Proper error handling for invalid indices ensures the system is robust and can guide users to correct mistakes.
+
+
+#### Alternatives Considered
+
+Alternative 1 (current choice): Direct retrieval of URLs based on an index input by the user.
+
+*   **Pros:** Immediate and simple, allowing quick access which is ideal for command-line environments.
+
+*   **Cons:** User must know the exact index of the article, which might not always be convenient.
+
+
+Alternative 2: Search for an article by keywords and then provide URL options.
+
+*   **Pros:** More flexible as it allows users to find articles without knowing the exact index.
+
+*   **Cons:** More complex implementation and potentially slower due to the search process.
+
+
+### Headlines Feature
+
+#### Implementation
+
+This feature allows users to quickly view the headlines of the top articles from the original scraped list. This feature is managed by the `ShowHeadlinesCommand` class, which handles displaying a specified number of article headlines based on user input.
+
+1.  When the `headlines` command is invoked, `ShowHeadlinesCommand.showHeadlines(String line)` is called with the user's input.
+
+2.  The method validates the command format and checks if the number of articles specified is a positive integer.
+
+3.  It then reads the news article headlines from the **testArticleScraper.txt** file, which contains all the latest scraped news articles.
+
+4.  The method will display the specified number of headlines, starting from the top of the list.
+
+
+The following sequence diagram shows how the **showHeadlines** method processes the command to fetch and display the headlines. <br>
+
+![](UML_Diagrams/ShowHeadlinesSequence.png)
+
+Given below is an example usage scenario for the Headlines feature:
+
+Step 1: To view the top five headlines from the news list, the user inputs `headlines 5` . The command processes this input and displays the first five headlines from the **testArticleScraper.txt** file.
+
+**Example Output:**
+
+```   
+What do you want from me?
+
+headlines 5  
+
+Displaying the first 5 article headlines:  
+1. "Scientists Discover New Species of Butterfly in the Amazon"  
+2. "Stock Market Surges to Record Highs Amid Economic Recovery" 
+3. "Political Tensions Rise in Region X Following Border Dispute"  
+4. "Breakthrough in Cancer Research Offers Hope for New Treatment"  
+5. "Tech Giants Announce Partnership to Combat Online Misinformation" 
+ ```
+
+Step 2: After the headlines, if a user wants to read more about a specific article, they could use the `get` command or request the URL using the `url` command to directly access the news list, further integrating with other features of the system.
+
+**Example Output:**
+```
+
+What do you want from me?
+____________________________________________________________
+
+get 1
+___________________________________________________________
+
+"Kristen Wiig initiated into SNL five-timers club by Ryan Gosling, Matt Damon and� Lorne Michaels | CNN"
+    URL: https://edition.cnn.com/2024/04/07/entertainment/kristen-wiig-ryan-gosling-matt-damon-snl/index.html
+    By: Alli Rosenbloom    On: April 07, 2024
+    CNN
+____________________________________________________________
+
+What do you want from me?
+____________________________________________________________
+
+url 1
+____________________________________________________________
+
+Article URL: https://edition.cnn.com/2024/04/07/entertainment/kristen-wiig-ryan-gosling-matt-damon-snl/index.html
+____________________________________________________________
+
+What do you want from me?
+```
+#### Design Considerations
+
+Choosing to implement a command that fetches a specific number of headlines from the top of the list was driven by the need for quick access to the latest news without overwhelming the user with too much information at once.
+
+#### Alternatives Considered
+
+**Alternative 1 (current choice):** Displaying a specified number of headlines starting from the most recent.
+
+*   **Pros:** Users get immediate access to the latest headlines, which is often the most sought-after information.
+
+*   **Cons:** May not provide a comprehensive view if the number specified is too small.
+
+
+**Alternative 2:** Implement a paging system where users can navigate through headlines in a paginated manner.
+
+*   **Pros:** Offers a more organized way to browse through headlines, especially when the list is long.
+
+*   **Cons:** Increases complexity of implementation and may require more input from the user to navigate through pages.
+
+
+### Load Feature
+
+#### Implementation
+
+This feature allows users to access their saved news articles from a persistent storage. Managed by the **NewsFil** class, this feature reads the news articles stored in the **saved_news.txt** file.
+
+1.  When the user inputs the `load` command, `NewsOnTheGo.loadAndDisplaySavedNews()` is called.
+
+2.  This method checks for the existence of the **saved\_news.txt** file and reads its contents.
+
+3.  Each line in the file represents a saved news article, which includes the article's URL as part of the saved data.
+
+4.  The method then prints each saved article's details to the console, allowing the user to review their saved articles.
+
+
+Below is a sequence diagram that illustrates the process triggered by the `load` command to fetch and display saved articles. <br>
+
+<img src="UML_Diagrams/loadFunctionSequence.png">
+
+#### Design Considerations
+
+The design focuses on providing easy access to saved articles, enhancing user experience by allowing them to revisit their saved news without needing to search through past data manually.
+
+#### Alternatives Considered
+
+**Alternative 1 (current choice):** Directly reading from a text file where each line corresponds to an article.
+
+*   **Pros:** Simple to implement and straightforward for users to understand.
+
+*   **Cons:** Limited functionality in terms of sorting or filtering saved articles.
+
+
+**Alternative 2:** Using a database to store user saved articles, providing enhanced management capabilities.
+
+*   **Pros:** Allows for more complex queries, such as sorting by date, filtering by topic, or even full-text search.
+
+*   **Cons:** Increases complexity of implementation and may require more resources to maintain.
 
 ## Product scope
 ### Target user profile

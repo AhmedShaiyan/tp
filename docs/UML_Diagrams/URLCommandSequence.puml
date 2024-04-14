@@ -1,0 +1,19 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+
+
+participant "NewsOnTheGo" as NOG
+participant "URLCommand" as URLC
+participant "UI" as UI
+
+NOG -> URLC : printArticleURL(line, list)
+activate URLC
+
+alt index is valid
+    URLC -> UI : printMessage("Article URL: " + url)
+else index is invalid
+    URLC -> UI : printMessage("Invalid index. Please provide a valid article index.")
+end
+
+deactivate URLC
+@enduml
