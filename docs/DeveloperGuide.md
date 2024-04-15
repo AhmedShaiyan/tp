@@ -217,10 +217,9 @@ The _Sequence Diagram_ below shows how the components interact with each other f
 
 <h3 id = "main-object-classes"> Main Object Classes </h3>
 
-There are two main object-oriented classes that are used in the application:
-
-- <code>NewsArticle</code>: Each instance stores a News Article and their related information.
-- <code>NewsTopic</code>: Each instance stores a News Topic and their relevant articles.
+_There are two main object-oriented classes that are used in the application:_
+- `NewsArticle`: Each instance stores a News Article and their related information.
+- `NewsTopic`: Each instance stores a News Topic and their relevant articles.
 
 The diagram below shows how these classes are associated to the main class `NewsOnTheGo`:
 
@@ -465,6 +464,8 @@ APA Citation: Raju, M. (2024, March 31). "Embittered Republicans plot to knock o
 ```
 
 The following sequence diagram shows how the topics, filter and source mechanism may work in conjunction with other commands.
+
+<br>
 
 <img src="UML_Diagrams/filterFunctionSequence.png"/ alt="filterFunctionSequence">
 
