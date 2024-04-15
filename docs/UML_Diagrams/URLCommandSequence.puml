@@ -2,9 +2,9 @@
 'https://plantuml.com/sequence-diagram
 
 
-participant "NewsOnTheGo" as NOG
-participant "URLCommand" as URLC
-participant "UI" as UI
+participant ":NewsOnTheGo" as NOG
+participant ":URLCommand" as URLC
+participant ":UI" as UI
 
 NOG -> URLC : printArticleURL(line, list)
 activate URLC
@@ -15,5 +15,5 @@ else index is invalid
     URLC -> UI : printMessage("Invalid index. Please provide a valid article index.")
 end
 
-deactivate URLC
+destroy URLC
 @enduml

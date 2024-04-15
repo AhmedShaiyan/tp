@@ -1,0 +1,12 @@
+@startuml
+hide circle
+
+class UserPreferences {
+- LOGGER : Logger
+- SCRAPPER_NEWS_FILE : Path
+- SAVED_TOPICS_PATH : Path
+
++ getSuggestedArticlesFromFavoriteTopics() : String
+- parseArticleTitle(articleLine : String) : String
+}
+@enduml
