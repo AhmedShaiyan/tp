@@ -1,4 +1,4 @@
-# Ahmed Shaiyan - Project Portfolio Page
+# Alam Ahmed Shaiyan - Project Portfolio Page
 
 ## Overview
 
@@ -47,10 +47,18 @@ RepoSense Link
 
 **Developer guide:** [#48](https://github.com/AY2324S2-CS2113-T12-1/tp/pull/48) [#53](https://github.com/AY2324S2-CS2113-T12-1/tp/pull/53) [#65](https://github.com/AY2324S2-CS2113-T12-1/tp/pull/65) [#155](https://github.com/AY2324S2-CS2113-T12-1/tp/pull/155) [#157](https://github.com/AY2324S2-CS2113-T12-1/tp/pull/157) [#163](https://github.com/AY2324S2-CS2113-T12-1/tp/pull/163)
 <br> Added documentation and diagrams for the implementation and details about the design considerations for the `Suggest`, `Load`,`URL`, `Headline`,`Extract` features
-<br> Added Design documentation for `Parser` and `UI` classes
+<br> Added Design documentation for all components
 <br> Added user stories for my features
 
 ### Enhancements to existing features
+1. Added extract feature to `DailyNewsCommand` [#162](https://github.com/AY2324S2-CS2113-T12-1/tp/pull/162)
+2. Formatted the help method for better visualisation [#123](https://github.com/AY2324S2-CS2113-T12-1/tp/pull/123)
+3. Added logging to all method in the `NewsOnTheGo` class [#148](https://github.com/AY2324S2-CS2113-T12-1/tp/pull/148)
+4. Wrote Junit tests for `Suggest` , `headlines`, `url`, `load` and `extract` features [#138](https://github.com/AY2324S2-CS2113-T12-1/tp/pull/138), [#162](https://github.com/AY2324S2-CS2113-T12-1/tp/pull/162)
 
 ### Community 
+1. PRs reviewed: [24](https://github.com/AY2324S2-CS2113-T12-1/tp/pulls?q=is%3Apr+is%3Aclosed+reviewed-by%3A%40me)
+2. Provided support to other teammates for ideation of features and bug-fixing
+3. Reported 12 bugs for another team during PE-D [CS2113-W12-2](https://github.com/AY2324S2-CS2113-W12-2/tp/releases)
 
+![img_1.png](img_1.png)
