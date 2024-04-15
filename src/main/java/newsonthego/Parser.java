@@ -90,9 +90,9 @@ public class Parser {
             break;
         case SOURCE:
             if (topic >= 0) { //find source of news using index based on the current topic list shown to user
-                GetNewsSourceCommand.getNewsSource(line, topics.get(topic).getRelatedNewsArticles());
+                GetNewsSourceCommand.getNewsSource(line, topic, topics.get(topic).getRelatedNewsArticles());
             } else {
-                GetNewsSourceCommand.getNewsSource(line, list);
+                GetNewsSourceCommand.getNewsSource(line, topic, list);
             }
             break;
         case BACK:

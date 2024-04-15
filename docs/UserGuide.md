@@ -99,7 +99,7 @@ What do you want from me?
 
 <br>
 
-<h3 id="help"> Getting Help: `help` </h3>
+<h3 id="help"> Getting Help: <code>help</code> </h3>
 Shows all the commands available and their brief description.
 
 Format: `help`
