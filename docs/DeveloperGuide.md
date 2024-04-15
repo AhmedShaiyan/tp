@@ -7,7 +7,7 @@
     <ul>
         <li><a href="#architecture">Architecture</a></li>
         <li><a href ="#main components">Main Components</a></li>
-    <ul>
+        <ul>
             <li><a href="#parser-component">Parser Component</a></li>
             <li><a href="#newsArticle-model">NewsArticle and Topic Model</a></li>
             <li><a href="#ui-component">UI Component</a></li>
@@ -21,13 +21,10 @@
 <li><strong><a href = "#main-object-classes">Main Object Classes</a></strong></li>
 <li><strong><a href="#implementation">Implementation</a></strong></li>
     <ul>
-    </li>
-        <ul>
-<li><a href="#daily">Daily Feature</a></li>
+        <li><a href="#daily">Daily Feature</a></li>
         <ul>
             <li><a href="#daily-implementation">Implementation</a></li>
             <li><a href="#daily-design">Design Consideration</a></li>
-        </ul>
         </ul>
     </ul>
     <ul>
@@ -68,13 +65,11 @@
           <li><a href="#load-implementation">Implementation</a></li>
           <li><a href="#load-design">Design Consideration</a></li>
       </ul>
-     <li><a href="#Extract">Extract Feature</a></li>
+      <li><a href="#extract">Extract Feature</a></li>
       <ul>
           <li><a href="#load-implementation">Implementation</a></li>
           <li><a href="#load-design">Design Consideration</a></li>
-      </ul>
-    <ul>
-    </ul>    
+      </ul> 
     <li><a href="#product-scope">Appendix A: Product Scope</a></li>
         <ul>
             <li><a href = "#target-user-profile">Target User Profile</a></li>
@@ -84,6 +79,7 @@
     <li><a href="#non-functional-requirements">Appendix C: Non-Functional Requirements</a></li>
     <li><a href="#glossary">Appendix D: Glossary</a></li>
     <li><a href="#manual-testing"> Appendix E: Instructions for manual testing </a></li>
+</ul>
 
 <br>
 
@@ -849,7 +845,7 @@ The design focuses on providing a user-friendly way to quickly access the summar
 
 **Alternative 2:** Separate methods for each context without sharing implementation.
 
-*   **Pros:** Can tailor the extract functionality more closely to each feature's specific needs and it's easier to understand separate methods for separate features.
+*   **Pros:** Can tailor the extract functionality more closely to each feature's specific needs, and it's easier to understand separate methods for separate features.
 
 *   **Cons:** Leads to code duplication, higher maintenance if changes to extract functionality are needed across different features.
 ### Random Quote Function
