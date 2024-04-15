@@ -40,7 +40,7 @@ PR [#132](https://github.com/AY2324S2-CS2113-T12-1/tp/pull/132)
 
 - Bugs caught
   - I tried to test the [product assigned to me](https://github.com/AY2324S2-CS2113-F15-2/tp) as thoroughly as possible 
-  and was able to catch a significant number of bugs. Yay! 
+  and was able to catch a significant number of bugs. Yay!
   ![img.png](anneleong_PPP_contribution.png)
   - Issues opened: [#116](https://github.com/AY2324S2-CS2113-F15-2/tp/issues/116), 
   [#118](https://github.com/AY2324S2-CS2113-F15-2/tp/issues/118), 
