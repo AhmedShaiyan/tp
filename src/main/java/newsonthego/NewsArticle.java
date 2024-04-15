@@ -132,8 +132,14 @@ public class NewsArticle {
         }
 
         // APA Format: Author. (Date). Headline. Source. URL
-        return "APA Citation: " + authorSplit[1] + ", " + authorChars[0] + ". (" + dateCitation + "). "
-                + headline + ". " + source + ". " + url;
+        if (authorSplit.length == 2) {
+            return "APA Citation: " + authorSplit[1] + ", " + authorChars[0] + ". (" + dateCitation + "). "
+                    + headline + ". " + source + ". " + url;
+        } else {
+            return "APA Citation: " + article.getAuthor() + ". (" + dateCitation + "). "
+                    + headline + ". " + source + ". " + url;
+        }
+
     }
 
     private static String monthToWord(int month) {
