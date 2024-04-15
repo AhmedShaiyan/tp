@@ -12,7 +12,9 @@ UI --> UI
 deactivate UI
 UI --> Parser
 deactivate UI
+destroy UI
 end
 deactivate Parser
+destroy Parser
 
 @enduml

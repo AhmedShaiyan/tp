@@ -6,7 +6,7 @@
     <li><a href="#design">Design</a>
         <ul>
             <li><a href="#architecture">Architecture</a></li>
-            <li><a href="#parser-component">Parser Component</a></li>
+            <li></li>
             <li><a href="#NewsArticle-component">NewsArticle and Topic Model</a></li>
             <li><a href="#ui-component">UI Component</a></li>
             <li><a href="#command-classes">Command Classes</a></li>
@@ -175,7 +175,26 @@ The Architecture Design given above gives a visualisation of the higher level de
 
 ## Design
 ### Architecture
-_Diagrams and explanations about the high-level design of the application._
+_News On The Go implements a modular architecture approach with the main system broken down into smaller, 
+object-oriented components. Each module encapsulated different functions that are key for the product to work smoothly._
+#### Main Components 
+The `main()` function is run in our main class, `NewsOnTheGo`:
+  - At app launch: Initialises the components in the correct sequence, connects them up with each other.
+  - At shut down: shut down components and ensure relevant data is stored for future usage.
+
+The following components make up the application:
+- <a href="#UI-component">**UI**</a>: Located in the `newsonthego.utilities` package, handles communication with the user, focuses 
+on retrieving input to initialise the system as well as to print out various messages to the user. 
+- <a href="#Parser-component">**Parser**</a>: In charge of making sense of the user input, parsing user inputs into commands to be
+executed.
+- <a href="#Command-Classes">**Commands**</a>: `commands` represent a collection of classes that are invoked based on various user 
+commands. 
+- **Storage**: Can be segmented into various parts based on their function:
+  - <a href="#NewsImporter-and-ArticleScraper">Article Scraper and News Importer</a>: Gets relevant information from the web based 
+  on urls provided on initialisation to generate a list of articles for the user. 
+  - [News Storage](#NewsFile and StorageURL): For storage of articles that the user chooses to save when the application
+  is running.
+  - Topics Storage: Stores the list of topics that the user has starred for future usage.
 
 ### Parser Component
 The parser component is responsible for interpreting user commands and invoking the correct command methods in the logic component. I
@@ -192,8 +211,9 @@ Details the structure of the `NewsArticle` and `NewsTopic` classes, which repres
 
 ### UI Component
 The UI class in is responsible for all command line interactions, displaying welcome and goodbye messages, providing structured command formats, and handling the output of news content and errors. It uses methods like `printMessage` and `printConfused` to ensure clear and correct text output.
+
 ### Command Classes
-Each command in the system has a corresponding class in this component. This section covers how these classes implement the functionality for different features like `DailyNewsCommand`, `ShowHeadlinesCommand`, etc.
+Classes that are used to execute and implement commands are located in the `newsonthego.commands` package.
 
 ### NewsImporter and ArticleScraper
 Explains how the application scrapes news articles from the web and imports them into the system using `NewsImporter` and `ArticleScraper` classes.
@@ -201,12 +221,18 @@ Explains how the application scrapes news articles from the web and imports them
 ### NewsFile and StorageURL
 Covers how the application saves user data and article details to files and retrieves them using `NewsFile` and `StorageURL` classes.
 
-### Common Classes
-Common classes that are used throughout the application, such as `UI`, which handles all user interactions, and utility classes, will be discussed here.
+## Main Object Classes
+_There are two main object-oriented classes that are used in the application:_
+- `NewsArticle`: Each instance stores a News Article and their related information.
+- `NewsTopic`: Each instance stores a News Topic and their relevant articles.
+
+The diagram below shows how these classes are associated to the main class `NewsOnTheGo`:
+
+![png](images/NewsOnTheGo.png)
 
 <h2 id="design-implementation">Implementation</h2>
 
-{Describe the design and implementation of the product. Use UML diagrams and short code snippets where applicable.}
+This section describes noteworthy details regarding the design and implementation of the product.
 
 <h3 id="article-scrapper"> Article Scraper</h3>
 
@@ -694,44 +720,60 @@ The design focuses on providing easy access to saved articles, enhancing user ex
 
 ## Product scope
 ### Target user profile
+A typical user ...
+- wants to be able to explore a range of articles quickly.
+- wants to be able to save news articles that they want to read later on.
+- wants personalised suggestions on news articles to read.
+- prefers typing over mouse input.
+- is reasonably comfortable using CLI apps.
 
-{Describe the target user profile}
 
 ### Value proposition
 
-{Describe the value proposition: what problem does it solve?}
+Allows the exploration of a range of articles from a variety of sources faster than browsing the internet and various 
+news sources for articles.
 
 <h2 id="user-stories"> User Stories </h2>
+Priorities: High (must have) - <code>***</code>, Medium (nice to have) - <code>**</code>, Low (not necessary to have) - 
+<code>*</code>
 
-| Version | As a ...                            | I want to ...                                                                                     | So that I can ...                                                                                                |
-|---------|-------------------------------------|---------------------------------------------------------------------------------------------------|------------------------------------------------------------------------------------------------------------------|
-| v1.0    | busy student                        | to know about the news of the day quickly                                                         | easily find out what is going on a particular day.                                                               |
-| v1.0    | non-tech-savvy person               | to save the source of the news                                                                    | go back to them next time.                                                                                       |
-| v1.0    | busy student                        | search based on topics easily                                                                     | not look through news that I am not concerned with.                                                              |
-| v1.0    | student who cares about credibility | be provided information on the reliability and bias of the news sources                           | judge the trustworthiness of the information and input the correct citations and references in my research paper |
-| v1.0    | busy news consumer                  | have the system to keep track of the topics I am interested in when the program is first launched | don't input them every time I am searching for an article of news.                                               |
-| v2.0    | non-tech-savvy person               | have more ways to key in the date for the daily function                                          | not have to key in the specific date to use the daily command.                                                   |
-| v2.0    | avid reader                         | save the articles that I come across                                                              | read them after saving them to the list.                                                                         |
-| v2.0    | non-tech-savvy person               | save articles in the daily function                                                               | save articles that are filtered by date.                                                                         |
-| v2.0    | non-tech-savvy person               | have more ways to key in the date for the daily function                                          | not have to key in the specific date to use the daily command.                                                   |
-| v2.0    | news reader                         | be able to have access to more news articles                                                      | read about more articles to read from.                                                                           |
-| v2.0    | reader                              | save the different types of topics                                                                | be suggested about my favourite topics.                                                                          |
-| v2.1    | student                             | get the url of the articles                                                                       | read more about the articles on the website.                                                                     |
-| v2.1    | student                             | get the citation of the articles                                                                  | use it when citing my sources.                                                                                   |
-| v2.1    | avid reader                         | be recommended more articles                                                                      | read about topics that I do not usually read about.                                                              |
-| v2.1    | avid reader of news websites        | read the quote of the day                                                                         | get a daily dose of inspiration                                                                                  |
-| v2.1    | busy student                        | access the summary of an article                                                                  | read up on the latest news quickly.                                                                              |
+| Version | As a ...                            | I want to ...                                                                                     | So that I can ...                                                                                                | Priority          |
+|---------|-------------------------------------|---------------------------------------------------------------------------------------------------|------------------------------------------------------------------------------------------------------------------|-------------------|
+| v1.0    | busy student                        | to know about the news of the day quickly                                                         | easily find out what is going on a particular day.                                                               | <code>***</code>  |            
+| v1.0    | busy student                        | search based on topics easily                                                                     | not look through news that I am not concerned with.                                                              | <code>**</code>   |
+| v1.0    | student who cares about credibility | be provided information on the reliability and bias of the news sources                           | judge the trustworthiness of the information and input the correct citations and references in my research paper | <code>*</code>    |
+| v1.0    | busy news consumer                  | have the system to keep track of the topics I am interested in when the program is first launched | don't input them every time I am searching for an article of news.                                               | <code>**</code>   |
+| v2.0    | non-tech-savvy person               | have more ways to key in the date for the daily function                                          | not have to key in the specific date to use the daily command.                                                   | <code>*</code>    |
+| v2.0    | avid reader                         | save the articles that I come across                                                              | read them after saving them to the list.                                                                         | <code>***</code>  |
+| v2.0    | non-tech-savvy person               | save articles in the daily function                                                               | save articles that are filtered by date.                                                                         | <code>**</code>   |
+| v2.0    | news reader                         | be able to have access to more news articles                                                      | read about more articles to read from.                                                                           | <code>**</code>   |
+| v2.0    | reader                              | save the different types of topics                                                                | be suggested about my favourite topics.                                                                          | <code>*</code>    |
+| v2.0    | new user                            | see usage instructions                                                                            | refer to instructions when I forget how to use the application.                                                  | <code>***</code>  |
+| v2.1    | student                             | get the url of the articles                                                                       | read more about the articles on the website.                                                                     | <code>***</code>  |
+| v2.1    | student                             | get the citation of the articles                                                                  | use it when citing my sources.                                                                                   | <code>*</code>    |
+| v2.1    | avid reader                         | be recommended more articles                                                                      | read about topics that I do not usually read about.                                                              | <code>**</code>   |
+| v2.1    | avid reader of news websites        | read the quote of the day                                                                         | get a daily dose of inspiration                                                                                  | <code>*</code>    |
+| v2.1    | busy student                        | access the summary of an article                                                                  | read up on the latest news quickly.                                                                              | <code>**</code>   |
 
 
 
 ## Non-Functional Requirements
 
-{Give non-functional requirements}
+1. Should work on any mainstream OS as long as it has Java 11 or above installed.
+2. After initialisation, the application should be able to run without significant sluggishness in performance for 
+typical usage.
 
 ## Glossary
 
-* *glossary item* - Definition
+* *Mainstream OS* - Windows, Linus, Unix, OS-X
+* *Article Scraper* - Scraps relevant information of the news article needed for the application based on the url 
+provided and stores them into a text file. 
+* *News Importer* - Imports news from a text file based on the specified format. 
 
 ## Instructions for manual testing
+Do refer to our [User Guide](UserGuide.md) for quick start details.
 
-{Give instructions on how to do a manual product testing e.g., how to load sample data to be used for testing}
+When running an app, you can key in the command `help` for a list of executable commands and their usage on the 
+application. 
+> [!NOTE] These instructions only provide a starting point for testers to work on; testers are expected to do more 
+> _exploratory_ testing.

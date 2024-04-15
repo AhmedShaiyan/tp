@@ -2,24 +2,27 @@
 'https://plantuml.com/class-diagram
 skinparam classAttributeIconSize 0
 
-abstract class AbstractList
-abstract AbstractCollection
-interface List
-interface Collection
-
-List <|-- AbstractList
-Collection <|-- AbstractCollection
-
-Collection <|- List
-AbstractCollection <|- AbstractList
-AbstractList <|-- ArrayList
-
 class NewsOnTheGo {
+    + enum Command
     + {static} FILENAME: String = "data/testArticleScraper.txt"
+    + {static} savedNews: NewsFile
+    - {static} logger: Logger
+    - {static} processCommand(String command, String line, List<NewsArticle> list): boolean
+    + {static} getNews(String line, List<NewsArticle> list)
+    + {static} saveFavouriteTopics()
+    + {static} starTopic(String line, List<NewsTopic> newsTopics, List<NewsTopic> favouriteTopics)
+    + {static} removeStarredTopic(String line, List<NewsTopic> favouriteTopics)
+    {static} saveNewsFromList(String line, List<NewsArticle> list)
+    {static} loadAndDisplaySavedNews()
+    {static} suggestArticle(String line)
+    {static} clearSavedNews
+    - {static} isFileEmpty(String filePath): boolean
 
+    + {static} main(String[] args)
 }
 
 NewsOnTheGo --> "0...*" NewsTopic : NEWS_TOPIC
+NewsOnTheGo --> "0...*" NewsTopic : favouriteTopics
 
 class NewsTopic {
     # topicName: String
@@ -31,32 +34,34 @@ class NewsTopic {
     + {static} findTopicIndex(String topic, List<NewsTopic> topics)
 }
 
-NewsTopic --> "0...*" NewsArticle : relatedNewsArticles
+
 
 class NewsArticle {
+    # headline: String
+    # author: String
+    # date: String
+    # source: String
+    # content: String
+    # isSaved: boolean
+    # url: String
+    # formattedHeadline: String
+
+    + NewsArticle(String headline, String author,
+    String date, String source, String url, String content)
+    + NewsArticle(String headline, String formattedHeadline, String author,
+    String date, String source, String url, String content)
+    + getHeadline(): String
+    + getAuthor(): String
+    + getURL(): String
+    + getDate(): String
+    + getSource(): String
+    + getContent(): String
+    + isSaved(): boolean
+    + setSaved(boolean saved)
+    + {static} parseToText(NewsArticle article)
+    + {static} apaCitation(NewsArticle article)
+    + {static} monthToWord(int month)
 }
 
-enum Command {
-HELP
-DAILY
-TOPICS
-FILTER
-STAR
-STARRED
-REMOVE
-URL
-HEADLINES
-GET
-SOURCE
-SAVE
-LOAD
-SUGGEST
-CLEAR
-BACK
-QUOTE
-EXTRACT
-BYE
-VOID
-}
-
+NewsTopic -right-> "0...*" NewsArticle : relatedNewsArticles
 @enduml

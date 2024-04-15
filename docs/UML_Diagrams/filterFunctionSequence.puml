@@ -11,6 +11,8 @@ activate NewsOnTheGo
 NewsOnTheGo-->NewsOnTheGo: topicIndex
 deactivate NewsOnTheGo
 NewsOnTheGo-->Parser: topicIndex
+deactivate NewsOnTheGo
+destroy NewsOnTheGo
 end
 
 alt Command == SAVE
@@ -19,11 +21,14 @@ Parser->NewsFile: saveNews(filteredList)
 activate NewsFile
 NewsFile-->Parser
 deactivate NewsFile
+destroy NewsFile
 else topicIndex = -1
 Parser->NewsFile: saveNews(mainList)
 activate NewsFile
 NewsFile-->Parser
 deactivate NewsFile
+destroy NewsFile
 end
 end
+destroy Parser
 @enduml
