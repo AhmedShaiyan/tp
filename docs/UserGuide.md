@@ -19,20 +19,20 @@ This guide will help you get started with using NewsOnTheGo and understand its f
     <li><a href="#quick-start" >Quick Start</a></li>
     <li><a href="#features">Features</a>
         <ol type="1" style="font-size: medium">
-            <li><code><a href="#help">help</a></code></li>
+            <li><a href="#help">Getting Help: <code>help</code></a></li>
             <li>
-                <code><a href="#daily">daily</a></code>
+                <a href="#daily">Finding Articles on a Particular Day: <code>daily</code></a>
                 <ol style="font-size: small">
                     <li><code><a href="#daily-save">save</a></code></li>
                     <li><code><a href="#daily-back">back</a></code></li>
                 </ol>
             </li>
-            <li><code><a href="#topics">topics</a></code></li>
-            <li><code><a href="#star">star</a></code></li>
-            <li><code><a href="#starred">starred</a></code></li>
-            <li><code><a href="#remove">remove</a></code></li>
-            <li><code><a href="#suggest">suggest</a></code></li>
-            <li><code><a href="#filter">filter</a></code></li>
+            <li><a href="#topics">List out Article Topics: <code>topics</code></a></li>
+            <li><a href="#star">Starring a Topic: <code>star</code></a></li>
+            <li><a href="#starred">Checking Starred Topics: <code>starred</code></a></li>
+            <li><a href="#remove">Removing a Starred Topic: <code>remove</code></a></li>
+            <li><a href="#suggest">Getting News Suggestions: <code>suggest</code></a></li>
+            <li><a href="#filter">Filtering Articles by Topic: <code>filter</code></a></li>
             <li><code><a href="#save">save</a></code></li>
             <li><code><a href="#source">source</a></code></li>
             <li><code><a href="#back">back</a></code></li>
@@ -183,7 +183,7 @@ To return to main, type in: back
 
 <br>
 
-<h3>After using the <code>daily</code> command, you can use <code>save</code> and <code>back</code> commands.</h3>
+> [!NOTE] After using the `daily` command, you can use `save` and `back` commands.
 
 <br>
 
@@ -228,7 +228,7 @@ ____________________________________________________________
 
 <br>
 
-<h3 id="topics"> Star a topic: <code>topics</code> </h3>
+<h3 id="topics"> Listing Out Article Topics: <code>topics</code> </h3>
 
 List the different topics our articles are classified into.
 
@@ -256,9 +256,9 @@ ____________________________________________________________
 
 <br>
 
-<h3 id="star"> Star a topic: <code>star</code> </h3>
+<h3 id="star"> Starring a Topic: <code>star</code> </h3>
 
-Stars a topic to add it to your list of favorite topics.
+Adds a topic to your list of favorite topics.
 
 Format: `star {TOPIC}`
 
@@ -279,7 +279,7 @@ ____________________________________________________________
 
 <br>
 
-<h3 id="starred"> Star a topic: <code>starred</code> </h3>
+<h3 id="starred"> Checking Starred Topics: <code>starred</code> </h3>
 
 List the different topics our articles are classified into.
 
@@ -302,7 +302,7 @@ ____________________________________________________________
 
 <br>
 
-<h3 id="remove"> Remove a topic: <code>remove</code> </h3>
+<h3 id="remove"> Removing a Starred Topic: <code>remove</code> </h3>
 
 Removes a topic from your list of favorite topics.
 
@@ -325,7 +325,7 @@ ____________________________________________________________
 
 <br>
 
-<h3 id="suggest"> Suggesting articles: <code>suggest</code> </h3>
+<h3 id="suggest"> Getting Article Suggestions: <code>suggest</code> </h3>
 
 Suggests articles from your favorite topics.
 
@@ -354,7 +354,7 @@ ____________________________________________________________
 
 <br>
 
-<h3 id="filter"> Searching for articles on a particular topic: <code>filter</code> </h3>
+<h3 id="filter"> Filtering Articles by Topic: <code>filter</code> </h3>
 Find articles based on the topic input from the user.
 
 Format: `filter {TOPIC}`
@@ -385,7 +385,7 @@ ____________________________________________________________
 
 <br>
 
-### After using the `filter` command, you are able to use the `save`, `source` and `back` commands.
+>[!NOTE] After using the `filter` command, you are able to use the `save`, `source` and `back` commands.
 
 <br>
 
@@ -420,7 +420,7 @@ ____________________________________________________________
 
 <br>
 
-<h3 id="source"> Get source of article: <code>source</code> </h3>
+<h3 id="source"> Getting Article Source: <code>source</code> </h3>
 Displays the source of the article and its APA citation.
 
 #### Format: `source {INDEX OF ARTICLE ON DISPLAYED LIST}`
@@ -447,7 +447,7 @@ ____________________________________________________________
 
 <br>
 
-<h3 id="back"> Returning to the previous menu or list: <code>back</code> </h3>
+<h3 id="back"> Returning to Main: <code>back</code> </h3>
 Returns from a filtered list of news or the saved news window to the main list of articles.
 
 #### Format: `back`
@@ -494,7 +494,7 @@ ____________________________________________________________
 
 <br>
 
-<h3 id="headlines"> View article titles: <code>headlines</code> </h3>
+<h3 id="headlines"> Viewing Article Headline: <code>headlines</code> </h3>
 
 Retrieves the headlines of articles from the list of articles until the index specified by the user.
 
@@ -528,7 +528,7 @@ ____________________________________________________________
 
 
 
-<h3 id="extract"> Access article summary: <code>extract</code> </h3>
+<h3 id="extract"> Viewing Article Extract: <code>extract</code> </h3>
 
 Retrieves and displays the summary or extract of a specific article from the list of articles.
 

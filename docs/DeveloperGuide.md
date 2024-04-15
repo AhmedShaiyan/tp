@@ -185,6 +185,7 @@ Covers how the application saves user data and article details to files and retr
 
 <h3 id = "interaction-between-components"> Interaction between Components </h3>
 The _Sequence Diagram_ below shows how the components interact with each other for the scenario where the user issues the command `clear`.
+
 ![png](UML_Diagrams/example_scenario.png)
 
 <h3 id = "main-object-classes"> Main Object Classes </h3>

@@ -4,8 +4,8 @@ actor User
 
 -> NewsOnTheGo: main()
 activate NewsOnTheGo
-NewsOnTheGo-> NewsFile: savedNews
-activate NewsFile
+NewsOnTheGo-> "NewsFile:savedNews": NewsFile()
+activate "NewsFile:savedNews"
 
 User->NewsOnTheGo : "clear"
 
@@ -19,10 +19,9 @@ Parser->NewsOnTheGo: clearSavedNews()
 deactivate Parser
 destroy Parser
 activate NewsOnTheGo
-NewsOnTheGo->NewsFile: clearFile()
-activate NewsFile
-NewsFile-->NewsOnTheGo
-deactivate NewsFile
+NewsOnTheGo->"NewsFile:savedNews": clearFile()
+
+"NewsFile:savedNews"-->NewsOnTheGo
 
 
 
