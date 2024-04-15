@@ -403,13 +403,12 @@ The `filterNews` function in `NewsOnTheGo` class is used to show the list of art
 This mechanism makes use of the ArrayList of `relatedNewsArticles` in a `NewsTopic` object. 
 
 This feature also implements the following operations:
-- `FilterNewsCommand#save()` — Saves the list of news articles in the topic to their reading list
+- `FilterNewsCommand#save()` — Saves the list of news articles in the topic to their reading list.
 - `FilterNewsCommand#get()` — gets the details of the article and displays it to the user.
 - `FilterNewsCommand#source()` — displays the source of the article to the user.
-- `FilterNewsCommand#back()` — Exits the filter topic feature.
-
-> add uml for save and source
-
+- `FilterNewsCommand#extract()` — displays the extract of the article.
+- `FilterNewsCommand#url()` — displays the url link of the article.
+- `FilterNewsCommand#back()` — Exits the filter topic feature and returns to main article list.
 
 Given below is an example usage scenario and how the filter and topic mechanism behaves at each step.
 
@@ -493,6 +492,17 @@ The following sequence diagram shows how the topics, filter and source mechanism
 <br>
 
 <img src="UML_Diagrams/filterFunctionSequence.png" alt="filterFunctionSequence">
+
+<br>
+In this feature, topicIndex acts as both a flag and a source of information — it sends a flag to the parser function to 
+use the filtered article list if topicIndex >= 0, and if this is the case it tells the command the index of the topic 
+list to execute the command from.
+
+> [!NOTE] The above sequence diagram will be similar for other functions that can run in conjuction with filter, such as
+> `get`, `url` and `extract`. 
+
+
+
 
 <h4 id="topics-filter-design"> Design Considerations </h4>
 

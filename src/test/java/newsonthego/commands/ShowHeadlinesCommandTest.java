@@ -52,7 +52,8 @@ public class ShowHeadlinesCommandTest {
     void printsTooHighMessage() {
         ShowHeadlinesCommand.showHeadlines("headlines 7000");
         String output = outputStreamCaptor.toString().trim();
-        assertTrue(output.contains("Invalid index, too high. There are only 82 articles."), "Should indicate the index is too high");
+        assertTrue(output.contains("Invalid index, too high. There are only 82 articles."),
+                "Should indicate the index is too high");
     }
 
     @Test
