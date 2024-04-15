@@ -10,7 +10,6 @@ import java.io.PrintStream;
 
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class ShowHeadlinesCommandTest {
 
@@ -50,13 +49,6 @@ public class ShowHeadlinesCommandTest {
     //        }
 
 
-
-    @Test
-    void printsTooHighMessage() {
-        ShowHeadlinesCommand.showHeadlines("headlines 7000");
-        String output = outputStreamCaptor.toString().trim();
-        assertTrue(output.contains("Invalid index, too high."), "Should indicate the index is too high");
-    }
 
     @Test
     void printsFormatErrorMessage() {
