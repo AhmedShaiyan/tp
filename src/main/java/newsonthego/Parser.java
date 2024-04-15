@@ -86,7 +86,12 @@ public class Parser {
             NewsOnTheGo.clearSavedNews();
             break;
         case URL:
-            URLCommand.printArticleURL(line, list);
+            if (topic >= 0) { //save using index based on the current topic list shown to user
+                URLCommand.printArticleURL(line, topics.get(topic).getRelatedNewsArticles());
+            } else {
+                URLCommand.printArticleURL(line, list);
+            }
+
             break;
         case SOURCE:
             if (topic >= 0) { //find source of news using index based on the current topic list shown to user

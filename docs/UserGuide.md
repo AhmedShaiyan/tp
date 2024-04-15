@@ -549,7 +549,7 @@ ____________________________________________________________
 
 <br>
 
-<h3 id="get"> Access article details: <code>get</code> </h3>
+<h3 id="get"> Getting Article Details: <code>get</code> </h3>
 
 Retrieves the details of a specific article.
 
