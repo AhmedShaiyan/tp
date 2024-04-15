@@ -54,7 +54,10 @@ public class ShowHeadlinesCommandTest {
     void printsFormatErrorMessage() {
         ShowHeadlinesCommand.showHeadlines("headlines quoacamole");
         String output = outputStreamCaptor.toString().trim();
-        assertEquals("Please provide a valid number for the number of articles.", output);
+        assertEquals("____________________________________________________________\n" + System.lineSeparator()+
+                "Please provide a valid number for the number of articles." + System.lineSeparator()+
+                "____________________________________________________________"
+                , output);
     }
 
 
