@@ -21,7 +21,6 @@ public class GetNewsSourceCommand {
      */
     public static void getNewsSource(String line, int topicIndex, List<NewsArticle> list) {
         String[] split = line.split(" ");
-//        int topicIndex = NewsTopic.findTopicIndex(line.substring(6).trim(), NEWS_TOPICS);
         try {
             int index = Integer.parseInt(split[1]) - 1;
             String outputMessage = parseToText(list.get(index)) + System.lineSeparator()
