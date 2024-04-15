@@ -247,7 +247,7 @@ public class UI {
                         "| `QUOTE`    | Prints a random, inspirational quote.                       " +
                         "        | `quote`              |\n" +
                         "| `BYE`      | Gracefully exits the application.                           " +
-                        "        | `quote`              |\n" +
+                        "        | `bye`                |\n" +
                         "+------------+---------------------------------------------------------+" +
                         "----------------------------------+\n" +
                         "Thank you for using News On The Go! Enjoy reading :))"
