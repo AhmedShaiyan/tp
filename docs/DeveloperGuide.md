@@ -6,25 +6,31 @@
     <li><strong><a href="#design">Design</a></strong>
     <ul>
         <li><a href="#architecture">Architecture</a></li>
-        <li><a href = "#main components">Main Components</a></li>
-        <li><a href="#parser-component">Parser Component</a></li>
-        <li><a href="#newsArticle-model">NewsArticle and Topic Model</a></li>
-        <li><a href="#ui-component">UI Component</a></li>
-        <li><a href="#command-classes">Command Classes</a></li>
-        <li><a href="#newsimporter-and-articlescraper">NewsImporter and ArticleScraper</a></li>
-        <li><a href="#newsfile-and-storage">NewsFile and Storage</a></li>
+        <li><a href ="#main components">Main Components</a></li>
+    <ul>
+            <li><a href="#parser-component">Parser Component</a></li>
+            <li><a href="#newsArticle-model">NewsArticle and Topic Model</a></li>
+            <li><a href="#ui-component">UI Component</a></li>
+            <li><a href="#command-classes">Command Classes</a></li>
+            <li><a href="#news-importer">NewsImporter</a></li>
+            <li><a href="#storage-classes">Storage Classes</a></li>
+        </ul>
     </ul>
 </ul> 
-<li><a href="#interaction-between-components">Interaction between Components</a></li>
-<li><a href = "#main-object-classes">Main Object Classes</a></li>
-    <li><strong><a href="#implementation">Implementation</a></strong></li>
+<li><strong><a href="#interaction-between-components">Interaction between Components</a></strong></li>
+<li><strong><a href = "#main-object-classes">Main Object Classes</a></strong></li>
+<li><strong><a href="#implementation">Implementation</a></strong></li>
+    <ul>
+    </li>
         <ul>
-            <li><a href="#daily">Daily Feature</a></li>
-            <ul>
-                <li><a href="#daily-implementation">Implementation</a></li>
-                <li><a href="#daily-design">Design Consideration</a></li>
-            </ul>
+<li><a href="#daily">Daily Feature</a></li>
+        <ul>
+            <li><a href="#daily-implementation">Implementation</a></li>
+            <li><a href="#daily-design">Design Consideration</a></li>
         </ul>
+        </ul>
+    </ul>
+    <ul>
         <li><a href="#filter-news-by-topic"> Filter News by Topic Feature</a></li>
         <ul>
             <li><a href="#topics">Topics Feature</a></li>
@@ -62,16 +68,24 @@
           <li><a href="#load-implementation">Implementation</a></li>
           <li><a href="#load-design">Design Consideration</a></li>
       </ul>
-    <li><a href="#product-scope">Appendix A: Product Scope</a></li>
+     <li><a href="#Extract">Extract Feature</a></li>
+      <ul>
+          <li><a href="#load-implementation">Implementation</a></li>
+          <li><a href="#load-design">Design Consideration</a></li>
+      </ul>
     <ul>
-      <li><a href = "#target-user-profile">Target User Profile</a></li>
-      <li><a href = "#value-proposition">Value Proposition</a></li>
-</ul>
+    </ul>    
+    <li><a href="#product-scope">Appendix A: Product Scope</a></li>
+        <ul>
+            <li><a href = "#target-user-profile">Target User Profile</a></li>
+            <li><a href = "#value-proposition">Value Proposition</a></li>
+        </ul>
     <li><a href="#user-stories">Appendix B: User Stories</a></li>
     <li><a href="#non-functional-requirements">Appendix C: Non-Functional Requirements</a></li>
     <li><a href="#glossary">Appendix D: Glossary</a></li>
     <li><a href="#manual-testing"> Appendix E: Instructions for manual testing </a></li>
 
+<br>
 
 <h2 id="acknowledgements"> Acknowledgements </h2>
 <ul>
@@ -94,8 +108,7 @@
     </li>
 </ul>
 
-<p>{list here sources of all reused/adapted ideas, code, documentation, and third-party libraries -- 
-include links to the original source as well}</p>
+<br>
 
 <h2 id="setting-up"> Setting up, Getting Started</h2>
 First, fork this repo, and clone the fork into your computer.
@@ -136,10 +149,16 @@ Alternatively, refer to our <a href="UserGuide.md">User Guide</a> for quick star
 <h2 id="design"> Design </h2>
 
 <h3 id = "architecture"> Architecture </h3>
+
 News On The Go implements a modular architecture approach with the main system broken down into smaller, 
 object-oriented components. Each module encapsulated different functions that are key for the product to work smoothly.
+
+<br>
+
 <h4 id = "main components"> Main Components </h4>
+
 The `main()` function is run in our main class, `NewsOnTheGo`:
+
   - At app launch: Initialises the components in the correct sequence, connects them up with each other.
   - At shut down: shut down components and ensure relevant data is stored for future usage.
 
@@ -158,7 +177,8 @@ commands.
   - Topics Storage: Stores the list of topics that the user has starred for future usage.
 
 <h4 id="parser-component"> Parser Component </h4>
-The parser component is responsible for interpreting user commands and invoking the correct command methods in the logic component. I
+The parser component is responsible for interpreting user commands and invoking the correct command methods in the logic component.
+
 - **Parsing Commands**: The method `handleCommand` starts by attempting to convert the user input string into a `Command` enumeration. If the command does not match any predefined commands, it defaults to `VOID`.
 
 - **Command Handling**: Depending on the recognized command, `handleCommand` uses a switch-case structure to handle each possible command. Each case block calls the corresponding method or class that implements the command's functionality.
@@ -167,28 +187,61 @@ The parser component is responsible for interpreting user commands and invoking 
 
 - **Quote Generation**: In the case of the `QUOTE` command, it creates an instance of `QuoteGenerator` and retrieves a random quote.
 
+
 <h4 id="newsArticle-model"> News Article and Topic Models </h4>
-Details the structure of the `NewsArticle` and `NewsTopic` classes, which represent the data model for news articles and topics within the application.
+
+The `NewsArticle` class encapsulates data for each news article, including attributes such as headline, date, author, and content. The `NewsTopic` class represents categories that articles can be classified under, which enables the user to filter and organize news based on interested topics
+
+<br>
 
 <h4 id="ui-component"> UI Component </h4>
+
 The UI class in is responsible for all command line interactions, displaying welcome and goodbye messages, providing structured command formats, and handling the output of news content and errors. It uses methods like `printMessage` and `printConfused` to ensure clear and correct text output.
 
-<h4 id="command-classes"> Command Classes</h4>
-Each command in the system has a corresponding class in this component. This section covers how these classes implement the functionality for different features like `DailyNewsCommand`, `ShowHeadlinesCommand`, etc.
-Classes that are used to execute and implement commands are located in the `newsonthego.commands` package.
 
-<h4 id="newsimporter-and-articlescraper"> NewsImporter and ArticleScraper </h4>
-Explains how the application scrapes news articles from the web and imports them into the system using `NewsImporter` and `ArticleScraper` classes.
+<h3 id="command-classes"> Command Classes</h3>
 
-<h4 id = "newsfile-and-storage"> NewsFile and StorageURL </h4>
-Covers how the application saves user data and article details to files and retrieves them using `NewsFile` and `StorageURL` classes.
+*   **DailyNewsCommand**: This class deals with fetching and displaying news articles based on a specific date input by the user. It filters the overall list of articles to those that match the given date.
+
+*   **FilterNewsCommand**: Provides the functionality to filter news articles based on a particular topic. When a topic is given, it compiles a list of articles related to that topic for the user.
+
+*   **GetNewsSourceCommand**: The command class responsible for fetching the news source of a particular article. When an article index is provided, it retrieves and displays the source information.
+
+*   **QuoteGenerator**: This class is not directly related to news articles but provides an auxiliary feature that offers a random inspirational quote to the user, possibly to enhance user engagement.
+
+*   **ShowExtractCommand**: Handles the display of a brief summary or extract from a specific news article. It is useful for users who want a quick insight into an article's content.
+
+*   **ShowHeadlinesCommand**: This command class is designed to display the headlines of a list of articles up to a specified index, giving users a quick overview of the news.
+
+*   **URLCommand**: The purpose of this class is to provide the URLs of news articles. It can give the URL for a single article when provided with an index or list the URLs for a set of articles, such as those filtered by the **DailyNewsCommand**.
+
+<h3 id="news-importer"> NewsImporter </h3>
+
+*   The **NewsImporter** class imports news data from a text file into the application. 
+
+*   **Functionality**: The `importNewsFromText()` method takes a filename and a list of news topics as parameters, attempting to read a file line-by-line to extract news article data and convert it into **NewsArticle** objects.
+
+*   **Data Parsing**: Each line from the file is split into components using a semicolon delimiter, extracting various attributes such as headlines, author names, publication dates, sources, URLs, and content for each article.
+
+*   **Topic Association**: As it creates **NewsArticle** objects, the method also checks against existing topics to either append the article to an existing topic or create a new **NewsTopic** if the article's topic doesn't exist in the current list
+
+<h3 id="storage-classes"> Storage Classes</h3>
+
+*   **NewsFile**: Manages the saving and retrieving of news articles to and from persistent storage, typically a text file. It enables users to maintain a list of articles they wish to keep for future reference.
+
+*   **StorageURL**: Contains a list of URLs from which news articles can be fetched. It is a central component for the article scraping feature of the application, maintaining the sources from which the latest news is retrieved.
+
+<br>
+
 
 <h3 id = "interaction-between-components"> Interaction between Components </h3>
+
 The _Sequence Diagram_ below shows how the components interact with each other for the scenario where the user issues the command `clear`.
 
 ![png](UML_Diagrams/example_scenario.png)
 
 <h3 id = "main-object-classes"> Main Object Classes </h3>
+
 _There are two main object-oriented classes that are used in the application:_
 - `NewsArticle`: Each instance stores a News Article and their related information.
 - `NewsTopic`: Each instance stores a News Topic and their relevant articles.
@@ -198,8 +251,8 @@ The diagram below shows how these classes are associated to the main class `News
 ![png](UML_Diagrams/NewsOnTheGo.png)
 
 <h2 id="implementation"> Implementation</h2>
-This section describes noteworthy details regarding the design and implementation of the product.
 
+This section describes noteworthy details regarding the design and implementation of the product.
 
 <h3 id="article-scrapper"> Article Scraper</h3>
 
@@ -277,21 +330,20 @@ Within the `ArticleScraper` class itself, the flow can be seen from this second 
 
 <img src="UML_Diagrams/ArticleScraperSequence2.png" alt="articleScraper2">
 
-
 This is an overall class diagram for better visualisation of how the classes interact:
 
 <img src="UML_Diagrams/ArticleScraperClass.png" alt="articleScraperClass">
-
-
 
 <h3 id="daily"> Daily Feature </h3>
 
 ![DailyNewsCommandClass.png](UML_Diagrams/DailyNewsCommandClass.png)
 
 <h4 id="daily-implementation"> Implementation </h4>
+
 This daily mechanism is facilitated by a constructor from the `DailyNewsCommand` class. It takes in an input from 
 the user and the current list of articles to display the news on published on a particular day to the user.  
 This feature also implements the following operations:  
+
 - `DailyNewsCommand#save()` — Saves a news article from the list given to their reading list
 - `DailyNewsCommand#back()` — Exits the daily feature loop.
 
@@ -315,6 +367,7 @@ The flow can be seen from the sequence diagram below.
 ![dailyFunctionSequence.png](UML_Diagrams/dailyFunctionSequence.png)
 
 <h4 id="daily-design"> Design Considerations </h4>
+
 Whether to put additional features in the daily class or parser function.
 
 - **Alternative 1:** Implement in the main parser.
@@ -342,7 +395,9 @@ The `Topic` function is complemented by the `Filter` Function which displays the
 specified topic.
 
 <h4 id="filter"> Filter Feature </h4>
+
 <h4 id="filter-implementation"> Implementation </h4>
+
 The `filterNews` function in `NewsOnTheGo` class is used to show the list of articles linked to a specific topic.
 
 This mechanism makes use of the ArrayList of `relatedNewsArticles` in a `NewsTopic` object. 
@@ -356,7 +411,7 @@ This feature also implements the following operations:
 > add uml for save and source
 
 
-Given Below is an example usage scenario and how the filter and topic mechanism behaves at each step.
+Given below is an example usage scenario and how the filter and topic mechanism behaves at each step.
 
 Step 1. The user inputs the command `TOPICS`. The `handleCommand` method will parse the input message into the command. 
 The `TOPICS` command will cause `printAllTopics` in the UI class to be called, which will display the current list of 
@@ -434,21 +489,35 @@ APA Citation: Raju, M. (2024, March 31). "Embittered Republicans plot to knock o
 ```
 
 The following sequence diagram shows how the topics, filter and source mechanism may work in conjunction with other commands.
+
 <br>
-<img src="UML_Diagrams/filterFunctionSequence.png"/>
+
+<img src="UML_Diagrams/filterFunctionSequence.png" alt="filterFunctionSequence">
 
 <h4 id="topics-filter-design"> Design Considerations </h4>
+
 Alternative 1 (current choice): check for topicIndex in handleCommand
+
 - Pros: easy to implement
 - Con: duplicate checking of topicIndex for article commands
 
 Alternative 2: loop in filter command
+
 - Con: have to come up with handle commands inside the filter command loop
 - Con: initialising another Scanner object may cause unexpected conflicts
 
+<br>
 
 <h3 id="suggest"> User Preferences (SUGGEST) Feature </h3>
 
+
+Here is the class diagram for better visualisation:
+<br>
+
+<img src="UML_Diagrams/UserPreferencesClass.png">
+
+
+<br>
 
 <h4 id="suggest-implementation"> Implementation </h4>
 
@@ -462,14 +531,19 @@ related to these topics.
 4. For each favorite topic, it filters articles related to that topic and randomly selects one to suggest to the user.
 
 The following diagram describes the `getSuggestedArticlesFromFavoriteTopics()` method, highlighting how it 
-processes user's favorite topics to suggest random articles.  
+processes user's favorite topics to suggest random articles. 
+
 <img src="UML_Diagrams/UserPreferenceSequence.png">
 
 <h4 id="suggest-design"> Design Considerations </h4>
+
 The decision to use a random selection approach was to provide a dynamic user experience. This encourages users to 
 discover a variety of articles within their favourite topics.
 
+<br>
+
 #### Alternatives Considered
+
 Alternative 1 (current choice): Randomly select an article from the list of articles corresponding to 
 each favorite topic.
 
@@ -488,6 +562,10 @@ been suggested.
 
 <h3 id="url"> URL Feature </h3>
 
+Here is the class diagram for better visualisation:
+
+<img src="UML_Diagrams/URLCommandClass.png">
+
 <h4 id="url-implementation"> Implementation </h4>
 
 The **URL** feature enables users to quickly access the URL of a specific news article listed in the application. This feature is handled by the `URLCommand` class which provides the functionality to retrieve and display the URL based on an article index provided by the user.
@@ -502,8 +580,10 @@ The **URL** feature enables users to quickly access the URL of a specific news a
 
 <img src="UML_Diagrams/URLCommandSequence.png" alt="urlCommandSequence">
 
+<br>
+
 #### Additional Usage
- The URL are also utilized in other functionalities of the application without explicitly using the `url` command:
+The URL are also utilized in other functionalities of the application without explicitly using the `url` command:
 
 1. **`Daily` News Feature**: When daily news articles are displayed, their URLs are included alongside other details for easy access.
 2. **`Save` and `Load` Features**: When articles are saved to the reading list, their URLs are stored in the text file automatically and displayed when articles are loaded from this list.
@@ -724,6 +804,44 @@ The design focuses on providing easy access to saved articles, enhancing user ex
 
 *   **Cons:** Increases complexity of implementation and may require more resources to maintain.
 
+<h3 id="extract"> Extract Feature </h3>
+
+Here is the class diagram for better visualisation:
+
+<img src="UML_Diagrams/ShowExtractCommandClass.png">
+
+<h4 id="extract-implementation"> Implementation </h4>
+This feature provides users with the ability to display the extract of a specific news article from a list. Managed by the **ShowExtractCommand** class, this feature can be used independently or in conjunction with the **DailyNewsCommand** to display article extracts based on the context provided by the user.
+
+1.  When the user inputs the **extract** command along with an article index, **ShowExtractCommand.showExtract(line, list)** or **ShowExtractCommand.showExtract(inputParts, articles)** is called depending on the context.
+
+   2.  If the command is called without prior context set by `DailyNewsCommand`, it defaults to the main list of articles to find the extract. Otherwise, it uses a list that has been set by a previous command, such as `DailyNewsCommand`.
+
+3.  The method `showExtractImplementation()` is then called to process the command and retrieve the content of the specified article.
+
+4.  It wraps the extracted content to fit the terminal width for easy reading, and displays the extract to the user.
+
+
+Below is a sequence diagram that shows the interaction process initiated by the **extract** command to display an article extract.
+
+#### Design Considerations
+
+The design focuses on providing a user-friendly way to quickly access the summary or extract of news articles, enhancing the reading experience by allowing users to get the gist of articles with a simple command.
+
+#### Alternatives Considered
+
+**Alternative 1 (current choice):** Using a static method with a shared implementation that is called from different contexts depending on whether prior context has been set.
+
+*   **Pros:** Reduces redundancy by reusing the method. It is efficient and maintains consistency across different features that use the extract functionality.
+
+*   **Cons:** Less intuitive for developers new to the codebase, as they have to understand the context in which the shared method is called.
+
+
+**Alternative 2:** Separate methods for each context without sharing implementation.
+
+*   **Pros:** Can tailor the extract functionality more closely to each feature's specific needs and it's easier to understand separate methods for separate features.
+
+*   **Cons:** Leads to code duplication, higher maintenance if changes to extract functionality are needed across different features.
 ### Random Quote Function
 
 The `QuoteGenerator` class is responsible for generating random quotes from a predefined list. 
@@ -751,10 +869,12 @@ The flow can be seen from the sequence diagram below:
 
 <img src="UML_Diagrams/QuoteGeneratorSequence.png" alt="quoteGeneratorSequence">
 
+<br>
 
 <h2 id="product-scope"> Appendix A: Product Scope </h2>
 
 <h3 id = "target-user-profile"> Target User Profile </h3>
+
 A typical user ...
 - wants to be able to explore a range of articles quickly.
 - wants to be able to save news articles that they want to read later on.
@@ -763,10 +883,14 @@ A typical user ...
 - is reasonably comfortable using CLI apps.
 
 <h3 id = "value-proposition"> Value Proposition</h3>
+
 Allows the exploration of a range of articles from a variety of sources faster than browsing the internet and various 
 news sources for articles.
 
+<br>
+
 <h2 id="user-stories"> Appendix B: User Stories </h2>
+
 Priorities: High (must have) - <code>***</code>, Medium (nice to have) - <code>**</code>, Low (not necessary to have) - 
 <code>*</code>
 
@@ -788,6 +912,7 @@ Priorities: High (must have) - <code>***</code>, Medium (nice to have) - <code>*
 | v2.1    | avid reader of news websites        | read the quote of the day                                                                         | get a daily dose of inspiration                                                                                  | <code>*</code>    |
 | v2.1    | busy student                        | access the summary of an article                                                                  | read up on the latest news quickly.                                                                              | <code>**</code>   |
 
+<br>
 
 <h2 id="non-functional-requirements"> Appendix C: Non-Functional Requirements </h2>
 
@@ -797,6 +922,8 @@ typical usage.
 3. Currently, parsing 80+ articles which takes around 1 minute, which should be an optimal amount of time for the user
 before it becomes an annoyance.
 
+<br>
+
 <h2 id="glossary"> Appendix D: Glossary </h2>
 
 * *Mainstream OS* - Windows, Linus, Unix, OS-X
@@ -804,7 +931,10 @@ before it becomes an annoyance.
 provided and stores them into a text file. 
 * *News Importer* - Imports news from a text file based on the specified format.
 
+<br>
+
 <h2 id="manual-testing"> Appendix E: Instructions for manual testing </h2>
+
 Do refer to our [User Guide](UserGuide.md) for quick start details.
 
 When running an app, you can key in the command `help` for a list of executable commands and their usage on the 

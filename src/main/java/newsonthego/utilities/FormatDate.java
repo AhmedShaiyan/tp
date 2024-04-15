@@ -76,7 +76,7 @@ public class FormatDate {
      * @throws NewsOnTheGoExceptions when the year is less than 0 or more than 2024
      */
     private static void checkYearValidity(String inputSplit) throws NewsOnTheGoExceptions{
-        if (Integer.parseInt(inputSplit) < 0) {
+        if (Integer.parseInt(inputSplit) <= 0) {
             throw new NewsOnTheGoExceptions("Unfortunately, articles did not exist in " + inputSplit);
         }
         if (Integer.parseInt(inputSplit) > 2024) {

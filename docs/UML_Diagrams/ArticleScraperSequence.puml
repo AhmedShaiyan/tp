@@ -4,7 +4,7 @@ title Handling Article Scraping in NewsOnTheGo
 create ":NewsOnTheGo"
 activate ":NewsOnTheGo"
 
- opt Files.exists()
+ alt
 
     ' If the file does not exist or is empty
     create ":StorageURL"
@@ -23,6 +23,8 @@ activate ":NewsOnTheGo"
         ":NewsOnTheGo" -> ":ArticleScraper" : scrapeArticle(url, outputDirectoryPath)
     end
     destroy ":ArticleScraper"
+
+else
 
 end
 

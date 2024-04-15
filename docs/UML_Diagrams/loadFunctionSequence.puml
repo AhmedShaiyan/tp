@@ -3,10 +3,10 @@
 
 title Load Saved News Articles Sequence
 
-participant "Parser" as Parser
-participant "NewsOnTheGo" as NOG
-participant "NewsFile" as NF
-participant "UI" as UI
+participant ":Parser" as Parser
+participant ":NewsOnTheGo" as NOG
+participant ":NewsFile" as NF
+participant ":UI" as UI
 
 activate Parser
 
