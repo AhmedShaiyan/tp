@@ -17,8 +17,11 @@ import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
+import java.util.logging.ConsoleHandler;
+import java.util.logging.Handler;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import java.util.logging.LogManager;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.stream.Collectors;
@@ -36,7 +39,7 @@ public class NewsOnTheGo {
     public static final String FILENAME = "data/testArticleScraper.txt";
     public static final ArrayList<NewsTopic> NEWS_TOPICS = new ArrayList<>();
     public static NewsFile savedNews;
-    private static final Logger logger = Logger.getLogger("NewsOnTheGo");
+    private static final Logger logger = Logger.getLogger(NewsOnTheGo.class.getName());
     private static final ArrayList<NewsTopic> favouriteTopics = new ArrayList<>();
 
     public enum Command {
@@ -257,6 +260,14 @@ public class NewsOnTheGo {
      * Main entry-point for the java.newsonthego.NewsOnTheGo application.
      */
     public static void main(String[] args) throws IOException {
+
+        LogManager.getLogManager().reset();
+        Logger globalLogger = Logger.getLogger(Logger.GLOBAL_LOGGER_NAME);
+        globalLogger.setLevel(Level.SEVERE);
+
+        Handler consoleHandler = new ConsoleHandler();
+        consoleHandler.setLevel(Level.SEVERE);
+        globalLogger.addHandler(consoleHandler);
 
         String outputDirectoryPath = "data";
         String outputFileName = "testArticleScraper.txt";

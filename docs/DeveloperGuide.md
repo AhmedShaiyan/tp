@@ -160,8 +160,6 @@ Explains how the application scrapes news articles from the web and imports them
 <h3> NewsFile and StorageURL </h3>
 Covers how the application saves user data and article details to files and retrieves them using `NewsFile` and `StorageURL` classes.
 
-<h3> Common Classes </h3>
-Common classes that are used throughout the application, such as `UI`, which handles all user interactions, and utility classes, will be discussed here.
 
 <h2 id="implementation"> Implementation</h2>
 
