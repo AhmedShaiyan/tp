@@ -85,6 +85,10 @@ ____________________________________________________________
 <h2 id="features"> Features </h2>
 
 > [!NOTE]
+> 
+> When using the `daily` function, choose a date from late March to early April 2024, as that is when most of the 
+> articles are from.
+> 
 > Regarding the command format:
 > 
 > - Words in `{Curly Braces}` are parameters to be supplied by the user.
@@ -113,7 +117,7 @@ Here is a list of commands and functions for your reference:
 +------------+----------------------------------------------------------+---------------------------------+
 | Command    | Description                                                         | Example              |
 +------------+----------------------------------------------------------+---------------------------------+
-| `DAILY`    | Gives articles published on a specific date.                        | `daily 10 March 2024`|
+| `DAILY`    | Gives articles published on a specific date.                        | `daily 07 April 2024`|
 | `TOPICS`   | Lists topics the articles are classified by.                        | `topics`             |
 | `STAR`     | Bookmarks a topic as favorite.                                      | `star business`      |
 | `STARRED`  | Shows list of bookmarked topics.                                    | `starred`            |
@@ -663,7 +667,7 @@ function. Take note by keying in integers only. Make sure the integer do not exc
 | Commands      | Format, Examples                            |
 |---------------|---------------------------------------------|
 | **HELP**      | `help`                                      |
-| **DAILY**     | `daily {DATE}`<br/>eg.`daily March 10 2024` |
+| **DAILY**     | `daily {DATE}`<br/>eg.`daily April 10 2024` |
 | **TOPICS**    | `topics`                                    |
 | **STAR**      | `star {TOPIC}`<br/>eg.`star Technology`     |
 | **STARRED**   | `starred`                                   |
