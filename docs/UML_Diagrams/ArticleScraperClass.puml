@@ -4,21 +4,21 @@
 hide circle
 
 class ArticleScraper {
-    -String outputDirectoryPath
+    outputDirectoryPath : String
     +scrapeArticle(url: String, outputDirectoryPath: String): void
 }
 
 class NewsOnTheGo {
-    -ArticleScraper articleScraper
-    -StorageURL storageURL
-    +main(): void
+    articleScraper : ArticleScraper
+    storageURL : StorageURL
+    +run(): void
 }
 
 class StorageURL {
     +getURLs(): List<String>
 }
 
-NewsOnTheGo -- ArticleScraper : "uses"
-NewsOnTheGo -- StorageURL : "uses"
+NewsOnTheGo *-- ArticleScraper
+NewsOnTheGo *-- StorageURL
 
 @enduml

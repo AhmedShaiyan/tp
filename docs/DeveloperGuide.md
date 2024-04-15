@@ -235,6 +235,12 @@ Within the `ArticleScraper` class itself, the flow can be seen from this second 
 <img src="UML_Diagrams/ArticleScraperSequence2.png">
 
 
+This is an overall class diagram for better visualisation of how the classes interact:
+
+<img src="UML_Diagrams/ArticleScraperClass.png">
+
+
+
 <h3 id="daily"> Daily Feature </h3>
 
 ![DailyNewsCommandClass.png](UML_Diagrams/DailyNewsCommandClass.png)

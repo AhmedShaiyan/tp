@@ -6,12 +6,9 @@ NewsOnTheGo -> Parser: QUOTE Command
 
 activate Parser
 
-' Parser creates an instance of QuoteGenerator
-Parser -> QuoteGenerator: Create Instance
-activate QuoteGenerator
-
 ' Parser calls getRandomQuote() method on QuoteGenerator
 Parser -> QuoteGenerator: getRandomQuote()
+activate QuoteGenerator
 
 ' QuoteGenerator returns a random quote to Parser
 QuoteGenerator --> Parser: Return Random Quote
