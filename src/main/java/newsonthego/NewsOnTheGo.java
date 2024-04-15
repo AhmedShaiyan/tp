@@ -44,7 +44,7 @@ public class NewsOnTheGo {
 
     public enum Command {
         HELP, DAILY, TOPICS, FILTER, STAR, STARRED, REMOVE, URL, HEADLINES,
-        SOURCE, SAVE, LOAD, SUGGEST, CLEAR, BACK, QUOTE, EXTRACT,  BYE, VOID
+        GET, SOURCE, SAVE, LOAD, SUGGEST, CLEAR, BACK, QUOTE, EXTRACT,  BYE, VOID
     }
 
     private static boolean processCommand(String command, String line, List<NewsArticle> list) {
@@ -68,6 +68,26 @@ public class NewsOnTheGo {
         return false;
     }
 
+
+    /**
+     * Retrieves and displays the details of a news article from the provided list based on the index specified in the
+     * input line.
+     * The input line is expected to contain the command followed by the index of the news article to retrieve.
+     * If the index is valid and the article exists in the list, its details are printed to the console.
+     * If the index is out of bounds or not a valid integer, an error message is displayed.
+     *
+     * @param line The input line containing the command and index of the news article.
+     * @param list The list of NewsArticle objects from which to retrieve the news article.
+     */
+    public static void getNews(String line, List<NewsArticle> list) {
+        String[] split = line.split(" ");
+        try {
+            int index = Integer.parseInt(split[1]) - 1;
+            printMessage(parseToText(list.get(index)) + "\n" + list.get(index).getContent());
+        } catch (IndexOutOfBoundsException | NumberFormatException e) {
+            printMessage(UI.INVALID_ARTICLE_INDEX_MESSAGE);
+        }
+    }
 
     public static void saveFavoriteTopics() {
         try {
