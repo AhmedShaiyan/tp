@@ -17,6 +17,6 @@ end
 ":ArticleScraper" -> ":testArticleScraper.txt" : close file
 
 deactivate ":testArticleScraper.txt"
-deactivate ":ArticleScraper"
+destroy ":ArticleScraper"
 
 @enduml
