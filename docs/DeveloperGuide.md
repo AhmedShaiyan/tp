@@ -760,7 +760,7 @@ A typical user ...
 Allows the exploration of a range of articles from a variety of sources faster than browsing the internet and various 
 news sources for articles.
 
-<h3 id="user-stories"> Appendix B: User Stories </h3>
+<h2 id="user-stories"> Appendix B: User Stories </h2>
 Priorities: High (must have) - <code>***</code>, Medium (nice to have) - <code>**</code>, Low (not necessary to have) - 
 <code>*</code>
 
