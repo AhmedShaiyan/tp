@@ -46,6 +46,7 @@ randomly selects and returns a quote from the list.
 ### Contributions to Team-Based Tasks
 - Organised code into different classes like `NewsImporter`, `UI` and `Parser` 
 - Integrated the Article Scraper to our application : [#113](https://github.com/AY2324S2-CS2113-T12-1/tp/issues/113)
+- Documented and resolved bugs for the team related to integration of the different functions : [#167](https://github.com/AY2324S2-CS2113-T12-1/tp/issues/167)
 
 ### Contributions beyond Project Team
 

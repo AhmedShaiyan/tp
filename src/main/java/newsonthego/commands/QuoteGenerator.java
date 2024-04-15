@@ -46,6 +46,9 @@ public class QuoteGenerator {
      * @return A randomly selected quote.
      */
     public String getRandomQuote() {
+        // Add a harmless assertion to ensure quotes list is not empty
+        assert !quotes.isEmpty() : "Quotes list should not be empty.";
+
         // Generate a random index between 0 and the size of the quotes list
         int randomIndex = random.nextInt(quotes.size());
         // Return the quote at the random index
