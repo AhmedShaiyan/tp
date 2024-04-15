@@ -41,7 +41,9 @@ randomly selects and returns a quote from the list.
 - Added documentation for the `quote` command 
 #### Contributions to the DG:
 - Added documentation for the implementation of the `Article Scraper` 
+- Illustrated how the code works using two sequence diagrams and one class diagram 
 - Added documentation for the `quote` function
+- Illustrated how the code works using one sequence diagram 
 
 ### Contributions to Team-Based Tasks
 - Organised code into different classes like `NewsImporter`, `UI` and `Parser` 
