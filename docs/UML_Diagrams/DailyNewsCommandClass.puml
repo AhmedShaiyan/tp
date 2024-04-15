@@ -9,4 +9,10 @@ class DailyNewsCommand {
  - {static}saveDailyArticlesParser() : void
 }
 
+class ShowExtractCommand {
+    + showExtract();
+}
+
+DailyNewsCommand ..|> ShowExtractCommand
+
 @enduml
