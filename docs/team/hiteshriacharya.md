@@ -49,6 +49,9 @@ randomly selects and returns a quote from the list.
 - Organised code into different classes like `NewsImporter`, `UI` and `Parser` 
 - Integrated the Article Scraper to our application : [#113](https://github.com/AY2324S2-CS2113-T12-1/tp/issues/113)
 - Documented and resolved bugs for the team related to integration of the different functions : [#167](https://github.com/AY2324S2-CS2113-T12-1/tp/issues/167)
+- Conducted testing of the JAR file and surfaced potential bugs: [#182](https://github.com/AY2324S2-CS2113-T12-1/tp/issues/182), 
+[#183](https://github.com/AY2324S2-CS2113-T12-1/tp/issues/183), 
+[#185](https://github.com/AY2324S2-CS2113-T12-1/tp/issues/185)
 
 ### Contributions beyond Project Team
 
