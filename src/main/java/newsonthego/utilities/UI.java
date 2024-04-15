@@ -244,7 +244,7 @@ public class UI {
                         "        | `load`               |\n" +
                         "| `CLEAR`    | Clears the saved articles list.                             " +
                         "        | `clear`              |\n" +
-                        "| `QUOTE`    | Prints a random, inspirational quote.                             " +
+                        "| `QUOTE`    | Prints a random, inspirational quote.                       " +
                         "        | `quote`              |\n" +
                         "+------------+---------------------------------------------------------+" +
                         "----------------------------------+\n" +
