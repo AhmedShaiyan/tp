@@ -167,8 +167,7 @@ public class UI {
     }
 
     public static void printBye() {
-        System.out.println("Bye. Hope to see you again soon!");
-        printLine();
+        printMessage("Bye. Hope to see you again soon!");
     }
 
     public static void printConfused() {

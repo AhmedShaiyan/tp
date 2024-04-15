@@ -573,7 +573,7 @@ ____________________________________________________________
 ```
 <br>
 
-<h3 id="load"> Loading saved news: <code>load</code> </h3>
+<h3 id="load"> Loading Saved news: <code>load</code> </h3>
 Displays all saved news articles from the saved articles text file.
 
 Format: `load`  
@@ -604,7 +604,7 @@ ____________________________________________________________
 
 <br>
 
-<h3 id="clear"> Clear articles: <code>clear</code> </h3>
+<h3 id="clear"> Clear Saved Articles: <code>clear</code> </h3>
 
 Clears the list of articles saved.
 
@@ -625,7 +625,7 @@ ____________________________________________________________
 
 <br>
 
-<h3 id="clear"> Print a quote: <code>quote</code> </h3>
+<h3 id="clear"> Getting Inspirational Quote: <code>quote</code> </h3>
 
 Prints a random inspirational quote each time the command is called
 
@@ -650,7 +650,7 @@ ________________________________________________________________________
 
 <br>
 
-<h3 id="bye"> Exiting the program: <code>bye</code> </h3>
+<h3 id="bye"> Exiting the Program: <code>bye</code> </h3>
 
 Exits the application.
 
@@ -663,6 +663,8 @@ What do you want from me?
 ____________________________________________________________
 
 bye
+____________________________________________________________
+
 Bye. Hope to see you again soon!
 ____________________________________________________________
 ```
