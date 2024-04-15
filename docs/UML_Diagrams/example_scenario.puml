@@ -1,0 +1,37 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+actor User
+
+-> NewsOnTheGo: main()
+activate NewsOnTheGo
+NewsOnTheGo-> NewsFile: savedNews
+activate NewsFile
+
+User->NewsOnTheGo : "clear"
+
+NewsOnTheGo->NewsOnTheGo: ProcessCommand("clear")
+activate NewsOnTheGo
+
+NewsOnTheGo->Parser: handleCommand("clear")
+activate Parser
+
+Parser->NewsOnTheGo: clearSavedNews()
+deactivate Parser
+destroy Parser
+activate NewsOnTheGo
+NewsOnTheGo->NewsFile: clearFile()
+activate NewsFile
+NewsFile-->NewsOnTheGo
+deactivate NewsFile
+
+
+
+NewsOnTheGo->NewsOnTheGo: false
+note left
+false return signals to
+continue to poll for user input
+end note
+deactivate NewsOnTheGo
+
+
+@enduml

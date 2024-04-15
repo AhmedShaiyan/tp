@@ -6,13 +6,18 @@
     <li><strong><a href="#design">Design</a></strong>
         <ul>
             <li><a href="#architecture">Architecture</a></li>
+              <ul>
+                <li><a href = "#main components">Main Components</a></li>
+  </ul>
             <li><a href="#parser-component">Parser Component</a></li>
             <li><a href="#newsArticle-model">NewsArticle and Topic Model</a></li>
             <li><a href="#ui-component">UI Component</a></li>
             <li><a href="#command-classes">Command Classes</a></li>
             <li><a href="#newsimporter-and-articlescraper">NewsImporter and ArticleScraper</a></li>
-        </ul>
-    </li>
+            <li><a href="#newsfile-and-storage">NewsFile and Storage</a></li>
+</ul> 
+<li><a href="#interaction-between-components">Interaction between Components</a></li>
+<li><a href = "#main-object-classes">Main Object Classes</a></li>
     <li><strong><a href="#implementation">Implementation</a></strong></li>
         <ul>
             <li><a href="#daily">Daily Feature</a></li>
@@ -58,16 +63,16 @@
           <li><a href="#load-implementation">Implementation</a></li>
           <li><a href="#load-design">Design Consideration</a></li>
       </ul>
-    <li><strong><a href="#requirements">Appendix: Requirements</a></strong></li>
-        <ul>
-            <li><a href="#product-scope">Product Scope</a></li>
-            <li><a href="#user-stories">User Stories</a></li>
-            <li><a href="#use-cases">Use Cases</a></li>
-            <li><a href="#non-functional-requirements">Non-Functional Requirements</a></li>
-            <li><a href="#glossary">Glossary</a></li>
-        </ul>
-    <li><a href="#manual-testing"> Appendix: Instructions for manual testing </a></li>
+    <li><a href="#product-scope">Appendix A: Product Scope</a></li>
+    <ul>
+      <li><a href = "#target-user-profile">Target User Profile</a></li>
+      <li><a href = "#value-proposition">Value Proposition</a></li>
 </ul>
+    <li><a href="#user-stories">Appendix B: User Stories</a></li>
+    <li><a href="#non-functional-requirements">Appendix C: Non-Functional Requirements</a></li>
+    <li><a href="#glossary">Appendix D: Glossary</a></li>
+    <li><a href="#manual-testing"> Appendix E: Instructions for manual testing </a></li>
+
 
 <h2 id="acknowledgements"> Acknowledgements </h2>
 <ul>
@@ -130,10 +135,10 @@ Alternatively, refer to our [User Guide](UserGuide.md) for quick start details.
 
 <h2 id="design"> Design </h2>
 
-### Architecture
+<h3 id = "architecture"> Architecture </h3>
 _News On The Go implements a modular architecture approach with the main system broken down into smaller, 
 object-oriented components. Each module encapsulated different functions that are key for the product to work smoothly._
-#### Main Components 
+<h4 id = "main components"> Main Components </h4>
 The `main()` function is run in our main class, `NewsOnTheGo`:
   - At app launch: Initialises the components in the correct sequence, connects them up with each other.
   - At shut down: shut down components and ensure relevant data is stored for future usage.
@@ -148,11 +153,11 @@ commands.
 - **Storage**: Can be segmented into various parts based on their function:
   - <a href="#NewsImporter-and-ArticleScraper">Article Scraper and News Importer</a>: Gets relevant information from the web based 
   on urls provided on initialisation to generate a list of articles for the user. 
-  - [News Storage](#NewsFile and StorageURL): For storage of articles that the user chooses to save when the application
+  - <a href = "newsfile-and-storage">News Storage</a>: For storage of articles that the user chooses to save when the application
   is running.
   - Topics Storage: Stores the list of topics that the user has starred for future usage.
 
-<h3 id="parser-component"> Parser Component </h3>
+<h4 id="parser-component"> Parser Component </h4>
 The parser component is responsible for interpreting user commands and invoking the correct command methods in the logic component. I
 - **Parsing Commands**: The method `handleCommand` starts by attempting to convert the user input string into a `Command` enumeration. If the command does not match any predefined commands, it defaults to `VOID`.
 
@@ -162,30 +167,34 @@ The parser component is responsible for interpreting user commands and invoking 
 
 - **Quote Generation**: In the case of the `QUOTE` command, it creates an instance of `QuoteGenerator` and retrieves a random quote.
 
-<h3 id="newsArticle-model"> News Article and Topic Models </h3>
+<h4 id="newsArticle-model"> News Article and Topic Models </h4>
 Details the structure of the `NewsArticle` and `NewsTopic` classes, which represent the data model for news articles and topics within the application.
 
-<h3 id="ui-component"> UI Component </h3>
+<h4 id="ui-component"> UI Component </h4>
 The UI class in is responsible for all command line interactions, displaying welcome and goodbye messages, providing structured command formats, and handling the output of news content and errors. It uses methods like `printMessage` and `printConfused` to ensure clear and correct text output.
 
-<h3 id="command-classes"> Command Classes</h3>
+<h4 id="command-classes"> Command Classes</h4>
 Each command in the system has a corresponding class in this component. This section covers how these classes implement the functionality for different features like `DailyNewsCommand`, `ShowHeadlinesCommand`, etc.
 Classes that are used to execute and implement commands are located in the `newsonthego.commands` package.
 
-<h3 id="newsimporter-and-articlescraper"> NewsImporter and ArticleScraper </h3>
+<h4 id="newsimporter-and-articlescraper"> NewsImporter and ArticleScraper </h4>
 Explains how the application scrapes news articles from the web and imports them into the system using `NewsImporter` and `ArticleScraper` classes.
 
-<h3> NewsFile and StorageURL </h3>
+<h4 id = "newsfile-and-storage"> NewsFile and StorageURL </h4>
 Covers how the application saves user data and article details to files and retrieves them using `NewsFile` and `StorageURL` classes.
 
-## Main Object Classes
+<h3 id = "interaction-between-components"> Interaction between Components </h3>
+The _Sequence Diagram_ below shows how the components interact with each other for the scenario where the user issues the command `clear`.
+![png](UML_Diagrams/example_scenario.png)
+
+<h3 id = "main-object-classes"> Main Object Classes </h3>
 _There are two main object-oriented classes that are used in the application:_
 - `NewsArticle`: Each instance stores a News Article and their related information.
 - `NewsTopic`: Each instance stores a News Topic and their relevant articles.
 
 The diagram below shows how these classes are associated to the main class `NewsOnTheGo`:
 
-![png](images/NewsOnTheGo.png)
+![png](UML_Diagrams/NewsOnTheGo.png)
 
 <h2 id="implementation"> Implementation</h2>
 This section describes noteworthy details regarding the design and implementation of the product.
@@ -736,13 +745,9 @@ The flow can be seen from the sequence diagram below:
 <img src="UML_Diagrams/QuoteGeneratorSequence.png">
 
 
-## Product scope
+<h2 id="product-scope"> Appendix A: Product Scope </h2>
 
-<h2 id="requirements"> Appendix: Requirements </h2>
-
-<h3 id="product-scope"> Product scope </h3>
-
-### Target user profile
+<h3 id = "target-user-profile"> Target User Profile </h3>
 A typical user ...
 - wants to be able to explore a range of articles quickly.
 - wants to be able to save news articles that they want to read later on.
@@ -750,13 +755,11 @@ A typical user ...
 - prefers typing over mouse input.
 - is reasonably comfortable using CLI apps.
 
-
-### Value proposition
-
+<h3 id = "value-proposition"> Value Proposition</h3>
 Allows the exploration of a range of articles from a variety of sources faster than browsing the internet and various 
 news sources for articles.
 
-<h3 id="user-stories"> User Stories </h3>
+<h3 id="user-stories"> Appendix B: User Stories </h3>
 Priorities: High (must have) - <code>***</code>, Medium (nice to have) - <code>**</code>, Low (not necessary to have) - 
 <code>*</code>
 
@@ -779,9 +782,7 @@ Priorities: High (must have) - <code>***</code>, Medium (nice to have) - <code>*
 | v2.1    | busy student                        | access the summary of an article                                                                  | read up on the latest news quickly.                                                                              | <code>**</code>   |
 
 
-<h3 id="use-cases"> Use Cases </h3>
-
-<h3 id="non-functional-requirements"> Non-Functional Requirements </h3>
+<h2 id="non-functional-requirements"> Appendix C: Non-Functional Requirements </h2>
 
 1. Should work on any mainstream OS as long as it has Java 11 or above installed.
 2. After initialisation, the application should be able to run without significant sluggishness in performance for 
@@ -789,14 +790,14 @@ typical usage.
 3. Currently, parsing 80+ articles which takes around 1 minute, which should be an optimal amount of time for the user
 before it becomes an annoyance.
 
-<h3 id="glossary"> Glossary </h3>
+<h2 id="glossary"> Appendix D: Glossary </h2>
 
 * *Mainstream OS* - Windows, Linus, Unix, OS-X
 * *Article Scraper* - Scraps relevant information of the news article needed for the application based on the url 
 provided and stores them into a text file. 
 * *News Importer* - Imports news from a text file based on the specified format.
 
-<h3 id="manual-testing"> Appendix: Instructions for manual testing </h3>
+<h2 id="manual-testing"> Appendix E: Instructions for manual testing </h2>
 Do refer to our [User Guide](UserGuide.md) for quick start details.
 
 When running an app, you can key in the command `help` for a list of executable commands and their usage on the 
