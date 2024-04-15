@@ -42,27 +42,21 @@
                 <li><a href="#suggest-design">Design Consideration</a></li>
             </ul>
         </ul>
-        <ul>
-            <li><a href="#url">URL Feature</a></li>
-            <ul>
-                <li><a href="#url-implementation">Implementation</a></li>
-                <li><a href="#url-design">Design Consideration</a></li>
-            </ul>
-        </ul>
-        <ul>
-            <li><a href="#headlines">Headlines Feature</a></li>
-            <ul>
-                <li><a href="#headlines-implementation">Implementation</a></li>
-                <li><a href="#headlines-design">Design Consideration</a></li>
-            </ul>
-        </ul>
-        <ul>
-            <li><a href="#load">Load Feature</a></li>
-            <ul>
-                <li><a href="#load-implementation">Implementation</a></li>
-                <li><a href="#load-design">Design Consideration</a></li>
-            </ul>
-        </ul>
+      <li><a href="#url">URL Feature</a></li>
+      <ul>
+          <li><a href="#url-implementation">Implementation</a></li>
+          <li><a href="#url-design">Design Consideration</a></li>
+      </ul>
+      <li><a href="#headlines">Headlines Feature</a></li>
+      <ul>
+          <li><a href="#headlines-implementation">Implementation</a></li>
+          <li><a href="#headlines-design">Design Consideration</a></li>
+      </ul>
+      <li><a href="#load">Load Feature</a></li>
+      <ul>
+          <li><a href="#load-implementation">Implementation</a></li>
+          <li><a href="#load-design">Design Consideration</a></li>
+      </ul>
     <li><strong><a href="#requirements">Appendix: Requirements</a></strong></li>
         <ul>
             <li><a href="#product-scope">Product Scope</a></li>
@@ -327,19 +321,27 @@ Step 2. Suppose the user wants to see news articles related to politics, the use
 The `handleCommand` takes in the command and calls `filterNews` which used a binary search function `findTopicIndex` to 
 search for the index of the topic in the ArrayList of `NewsTopic`, returning -1 if the topic is not valid, else the 
 index of the topic in the list will be returned. the `filterNews` function will then print out the list of articles for 
-the user. 
+the user.  
 
 Output may look like this:
 ```
+____________________________________________________________
+
 What do you want from me?
+____________________________________________________________
+
 filter politics
 Here are the news articles related to Politics: 
-1. "Political Tensions Rise in Region X Following Border Dispute"
-2. "Education Reform Bill Passes in Parliament Amid Controversy"
-3. "Humanitarian Crisis Deepens in Conflict-Stricken Region"
-4. "Investigation Reveals Government Officials Involved in Bribery Scandal"
-5. "New Legislation Aims to Address Housing Crisis in Urban Centers"
-You are currently in access to the list of articles in Politics, use command 'BACK' to return to main list of articles.
+    1. "FAFSA: What?s happening with 2024 college financial aid? | CNN Politics"
+    2. "Inside President Biden?s pointed phone call with Benjamin Netanyahu | CNN Politics"
+    3. "Trump?s inflammatory rhetoric has been effective for him so far but poses real danger | CNN Politics"
+    4. "Embittered Republicans plot to knock off House GOP?s hard-right leader in Virginia primary feud | CNN Politics"
+    5. "Exclusive: Hackers stole Russian prisoner database to avenge death of Navalny | CNN Politics"
+____________________________________________________________
+
+You are currently in access to the list of articles in Politics, 
+    use command 'BACK' to return to main list of articles.
+____________________________________________________________
 ```
 
 Step 3. If the user wants to save the 3rd article in the list displayed, they would then input `save 3`. The 
@@ -351,16 +353,36 @@ The `saveNews` in the `NewsFile` class will save the specified article into the 
 Output may look like this:
 ```
 What do you want from me?
+____________________________________________________________
+
 save 3
-Successfully saved "Humanitarian Crisis Deepens in Conflict-Stricken Region"
-find your saved articles at user_data\saved_news.txt
+
+____________________________________________________________
+
+Successfully saved "Trump?s inflammatory rhetoric has been effective for him so far but poses real danger | CNN Politics"
+    find your saved articles at user_data\saved_news.txt
+____________________________________________________________
+
 ```
 
 Step 4. Other than the save function, users are able to get source of the function and its APA citation 
-by using `source`. If the user wants the source of the 4th article, they would write `source 4`. The app will output
-to the user something like this:
+by using `source`. If the user wants the source of the 4th article, they would write `source 4`.  
 
->add source output
+Output may look like this:
+
+```
+What do you want from me?
+____________________________________________________________
+
+source 4
+____________________________________________________________
+"Embittered Republicans plot to knock off House GOP?s hard-right leader in Virginia primary feud | CNN Politics"
+URL: https://edition.cnn.com/2024/03/31/politics/bob-good-primary-fight-virginia/index.html?iid=cnn_buildContentRecirc_end_recirc
+By: Manu Raju    On: March 31, 2024
+CNN
+
+APA Citation: Raju, M. (2024, March 31). "Embittered Republicans plot to knock off House GOP?s hard-right leader in Virginia primary feud | CNN Politics". CNN. https://edition.cnn.com/2024/03/31/politics/bob-good-primary-fight-virginia/index.html?iid=cnn_buildContentRecirc_end_recirc
+```
 
 The following sequence diagram shows how the topics, filter and source mechanism may work in conjunction with other commands.
 <br>

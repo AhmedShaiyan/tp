@@ -26,19 +26,14 @@ public class NewsImporter {
         List<NewsArticle> list = new ArrayList<>();
         for (String s : stringList) {
             String[] split = s.split("\\s*;\\s*");
-            String headline = split[0];
-            String formattedHeadline = formatHeadline(headline);
+            String headline = formatHeadline(split[0]);
             String author = split[1];
             String date = split[2];
             String source = split[3];
             String url = split[4];
             String content = split[5];
             NewsArticle newsArticle = null;
-            if (formattedHeadline.isEmpty()) {
-                newsArticle = new NewsArticle(headline, author, date, source, url, content);
-            } else {
-                newsArticle = new NewsArticle(headline, formattedHeadline, author, date, source, url, content);
-            }
+            newsArticle = new NewsArticle(headline, author, date, source, url, content);
 
             list.add(newsArticle);
             //identify related topic to the article
@@ -64,9 +59,9 @@ public class NewsImporter {
     }
 
     private static String formatHeadline(String headline) {
-        return headline.replaceAll("‘","").replaceAll("’","")
-                .replaceAll(",","")
-                .replaceAll("…","").replaceAll("[|]","");
+        return headline.replaceAll("‘","'").replaceAll("’","'")
+                .replaceAll(",",",")
+                .replaceAll("…","...").replaceAll("[|]","|");
     }
 }
 
