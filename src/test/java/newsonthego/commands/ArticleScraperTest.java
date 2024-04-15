@@ -72,7 +72,7 @@ public class ArticleScraperTest {
                 "March 31, 2024;Forbes;https://www.forbes.com/sites/anafaguy/2024/03/31/king-" +
                 "charles-attends-1st-public-event-amid-cancer-scare/?sh=3b773b35b2d6;Both " +
                 "King Charles and Princess Kate are currently undergoing treatment " +
-                "for cancer. ;Business";
+                "for cancer ;Business";
 
         // Call the scrapeArticle method
         ArticleScraper.scrapeArticle(testUrl, outputFolderPath);
