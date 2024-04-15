@@ -144,13 +144,16 @@ Alternatively, refer to our <a href="UserGuide.md">User Guide</a> for quick star
 <h2 id="design"> Design </h2>
 
 <h3 id = "architecture"> Architecture </h3>
+
 News On The Go implements a modular architecture approach with the main system broken down into smaller, 
 object-oriented components. Each module encapsulated different functions that are key for the product to work smoothly.
 
 <br>
 
 <h4 id = "main components"> Main Components </h4>
+
 The `main()` function is run in our main class, `NewsOnTheGo`:
+
   - At app launch: Initialises the components in the correct sequence, connects them up with each other.
   - At shut down: shut down components and ensure relevant data is stored for future usage.
 
@@ -169,7 +172,8 @@ commands.
   - Topics Storage: Stores the list of topics that the user has starred for future usage.
 
 <h4 id="parser-component"> Parser Component </h4>
-The parser component is responsible for interpreting user commands and invoking the correct command methods in the logic component. I
+The parser component is responsible for interpreting user commands and invoking the correct command methods in the logic component.
+
 - **Parsing Commands**: The method `handleCommand` starts by attempting to convert the user input string into a `Command` enumeration. If the command does not match any predefined commands, it defaults to `VOID`.
 
 - **Command Handling**: Depending on the recognized command, `handleCommand` uses a switch-case structure to handle each possible command. Each case block calls the corresponding method or class that implements the command's functionality.
@@ -179,33 +183,40 @@ The parser component is responsible for interpreting user commands and invoking 
 - **Quote Generation**: In the case of the `QUOTE` command, it creates an instance of `QuoteGenerator` and retrieves a random quote.
 
 <h4 id="newsArticle-model"> News Article and Topic Models </h4>
+
 Details the structure of the `NewsArticle` and `NewsTopic` classes, which represent the data model for news articles and topics within the application.
 
 <br>
 
 <h4 id="ui-component"> UI Component </h4>
+
 The UI class in is responsible for all command line interactions, displaying welcome and goodbye messages, providing structured command formats, and handling the output of news content and errors. It uses methods like `printMessage` and `printConfused` to ensure clear and correct text output.
 
 <br>
 
 <h4 id="command-classes"> Command Classes</h4>
+
 Each command in the system has a corresponding class in this component. This section covers how these classes implement the functionality for different features like `DailyNewsCommand`, `ShowHeadlinesCommand`, etc.
 Classes that are used to execute and implement commands are located in the `newsonthego.commands` package.
 
 <br>
 
 <h4 id="newsimporter-and-articlescraper"> NewsImporter and ArticleScraper </h4>
+
 Explains how the application scrapes news articles from the web and imports them into the system using `NewsImporter` and `ArticleScraper` classes.
 
 <h4 id = "newsfile-and-storage"> NewsFile and StorageURL </h4>
+
 Covers how the application saves user data and article details to files and retrieves them using `NewsFile` and `StorageURL` classes.
 
 <h3 id = "interaction-between-components"> Interaction between Components </h3>
+
 The _Sequence Diagram_ below shows how the components interact with each other for the scenario where the user issues the command `clear`.
 
 ![png](UML_Diagrams/example_scenario.png)
 
 <h3 id = "main-object-classes"> Main Object Classes </h3>
+
 There are two main object-oriented classes that are used in the application:
 
 - <code>NewsArticle</code>: Each instance stores a News Article and their related information.
@@ -216,8 +227,8 @@ The diagram below shows how these classes are associated to the main class `News
 ![png](UML_Diagrams/NewsOnTheGo.png)
 
 <h2 id="implementation"> Implementation</h2>
-This section describes noteworthy details regarding the design and implementation of the product.
 
+This section describes noteworthy details regarding the design and implementation of the product.
 
 <h3 id="article-scrapper"> Article Scraper</h3>
 
@@ -295,18 +306,16 @@ Within the `ArticleScraper` class itself, the flow can be seen from this second 
 
 <img src="UML_Diagrams/ArticleScraperSequence2.png" alt="articleScraper2">
 
-
 This is an overall class diagram for better visualisation of how the classes interact:
 
 <img src="UML_Diagrams/ArticleScraperClass.png" alt="articleScraperClass">
-
-
 
 <h3 id="daily"> Daily Feature </h3>
 
 ![DailyNewsCommandClass.png](UML_Diagrams/DailyNewsCommandClass.png)
 
 <h4 id="daily-implementation"> Implementation </h4>
+
 This daily mechanism is facilitated by a constructor from the `DailyNewsCommand` class. It takes in an input from 
 the user and the current list of articles to display the news on published on a particular day to the user.  
 This feature also implements the following operations:  
@@ -334,6 +343,7 @@ The flow can be seen from the sequence diagram below.
 ![dailyFunctionSequence.png](UML_Diagrams/dailyFunctionSequence.png)
 
 <h4 id="daily-design"> Design Considerations </h4>
+
 Whether to put additional features in the daily class or parser function.
 
 - **Alternative 1:** Implement in the main parser.
@@ -361,7 +371,9 @@ The `Topic` function is complemented by the `Filter` Function which displays the
 specified topic.
 
 <h4 id="filter"> Filter Feature </h4>
+
 <h4 id="filter-implementation"> Implementation </h4>
+
 The `filterNews` function in `NewsOnTheGo` class is used to show the list of articles linked to a specific topic.
 
 This mechanism makes use of the ArrayList of `relatedNewsArticles` in a `NewsTopic` object. 
@@ -375,7 +387,7 @@ This feature also implements the following operations:
 > add uml for save and source
 
 
-Given Below is an example usage scenario and how the filter and topic mechanism behaves at each step.
+Given below is an example usage scenario and how the filter and topic mechanism behaves at each step.
 
 Step 1. The user inputs the command `TOPICS`. The `handleCommand` method will parse the input message into the command. 
 The `TOPICS` command will cause `printAllTopics` in the UI class to be called, which will display the current list of 
@@ -454,11 +466,10 @@ APA Citation: Raju, M. (2024, March 31). "Embittered Republicans plot to knock o
 
 The following sequence diagram shows how the topics, filter and source mechanism may work in conjunction with other commands.
 
-<br>
-
 <img src="UML_Diagrams/filterFunctionSequence.png"/ alt="filterFunctionSequence">
 
 <h4 id="topics-filter-design"> Design Considerations </h4>
+
 Alternative 1 (current choice): check for topicIndex in handleCommand
 
 - Pros: easy to implement
@@ -487,16 +498,19 @@ related to these topics.
 4. For each favorite topic, it filters articles related to that topic and randomly selects one to suggest to the user.
 
 The following diagram describes the `getSuggestedArticlesFromFavoriteTopics()` method, highlighting how it 
-processes user's favorite topics to suggest random articles.  
+processes user's favorite topics to suggest random articles. 
+
 <img src="UML_Diagrams/UserPreferenceSequence.png">
 
 <h4 id="suggest-design"> Design Considerations </h4>
+
 The decision to use a random selection approach was to provide a dynamic user experience. This encourages users to 
 discover a variety of articles within their favourite topics.
 
 <br>
 
 #### Alternatives Considered
+
 Alternative 1 (current choice): Randomly select an article from the list of articles corresponding to 
 each favorite topic.
 
@@ -532,7 +546,7 @@ The **URL** feature enables users to quickly access the URL of a specific news a
 <br>
 
 #### Additional Usage
- The URL are also utilized in other functionalities of the application without explicitly using the `url` command:
+The URL are also utilized in other functionalities of the application without explicitly using the `url` command:
 
 1. **`Daily` News Feature**: When daily news articles are displayed, their URLs are included alongside other details for easy access.
 2. **`Save` and `Load` Features**: When articles are saved to the reading list, their URLs are stored in the text file automatically and displayed when articles are loaded from this list.
@@ -785,6 +799,7 @@ The flow can be seen from the sequence diagram below:
 <h2 id="product-scope"> Appendix A: Product Scope </h2>
 
 <h3 id = "target-user-profile"> Target User Profile </h3>
+
 A typical user ...
 - wants to be able to explore a range of articles quickly.
 - wants to be able to save news articles that they want to read later on.
@@ -793,12 +808,14 @@ A typical user ...
 - is reasonably comfortable using CLI apps.
 
 <h3 id = "value-proposition"> Value Proposition</h3>
+
 Allows the exploration of a range of articles from a variety of sources faster than browsing the internet and various 
 news sources for articles.
 
 <br>
 
 <h2 id="user-stories"> Appendix B: User Stories </h2>
+
 Priorities: High (must have) - <code>***</code>, Medium (nice to have) - <code>**</code>, Low (not necessary to have) - 
 <code>*</code>
 
