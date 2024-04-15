@@ -79,11 +79,11 @@ public class NewsOnTheGo {
      * @param line The input line containing the command and index of the news article.
      * @param list The list of NewsArticle objects from which to retrieve the news article.
      */
-    static void getNews(String line, List<NewsArticle> list) {
+    public static void getNews(String line, List<NewsArticle> list) {
         String[] split = line.split(" ");
         try {
             int index = Integer.parseInt(split[1]) - 1;
-            printMessage(parseToText(list.get(index)));
+            printMessage(parseToText(list.get(index)) + "\n" + list.get(index).getContent());
         } catch (IndexOutOfBoundsException | NumberFormatException e) {
             printMessage(UI.INVALID_ARTICLE_INDEX_MESSAGE);
         }
@@ -99,7 +99,6 @@ public class NewsOnTheGo {
             System.out.println("An error occurred while saving favorite topics: " + e.getMessage());
         }
     }
-
 
     /**
      * Adds a specified news topic to the user's list of favorite topics.
