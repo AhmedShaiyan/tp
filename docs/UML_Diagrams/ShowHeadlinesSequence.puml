@@ -1,7 +1,7 @@
 @startuml
-participant "Parser"
-participant "ShowHeadlinesCommand"
-participant "UI"
+participant ":Parser"
+participant ":ShowHeadlinesCommand"
+participant ":UI"
 
 [-> Parser : handleCommand("HEADLINES", line)
 activate Parser

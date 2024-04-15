@@ -1,0 +1,10 @@
+@startuml
+hide circle
+
+class ShowExtractCommand {
+    + showExtract(line : String, list : List<NewsArticle>)
+    + showExtract(inputParts : String[], articles : List<NewsArticle>) : void
+    - showExtractImplementation(inputParts : String[], articles : List<NewsArticle>) : void
+}
+
+@enduml
