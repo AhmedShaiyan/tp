@@ -1,5 +1,5 @@
 # Anne Leong - Project Portfolio Page
-
+# News On The Go
 ## Overview
 NewsOnTheGo is a command-line application (CLI) that helps users stay up-to-date with the latest news articles by
 providing users with a list of up-to-date articles. It is written in java, and has about 1kLoC.
