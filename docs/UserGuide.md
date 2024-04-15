@@ -54,8 +54,30 @@ This guide will help you get started with using NewsOnTheGo and understand its f
 5. Run the command `java -jar newsonthego.jar` to start the application.
 6. If you are running the application for the first time, please wait for some time as 
 our Article Scraper is hard at work.
+
+
+The following interface should appear in a few seconds:
+
+Hello from
+__________________________________________________________________________________________
+    _     _                           __             ______                     __
+    /|   /                          /    )             /      /               /    )
+---/-| -/-----__----------__-------/----/----__-------/------/__----__-------/---------__-
+  /  | /    /___)| /| /  (_ `     /    /   /   )     /      /   ) /___)     /  --,   /   )
+_/___|/____(___ _|/_|/__(__)_____(____/___/___/_____/______/___/_(___ _____(____/___(___/_
+
+
+What is your name?
+
 6. Type in your name to initialise the system.
 The following interface should appear:
+
+Hello [name]
+____________________________________________________________
+
+What do you want from me?
+____________________________________________________________
+
 7. Type the command in the command box and press Enter to execute it.
 8. Refer to the [Features](#Features) section below for details of each command.
 
@@ -84,6 +106,38 @@ Shows all the commands available and their brief description.
 
 Format: `help`
 
+What do you want from me?
+____________________________________________________________
+
+help
+____________________________________________________________
+
+Here is a list of commands and functions for your reference:
++------------+----------------------------------------------------------+---------------------------------+
+| Command    | Description                                                         | Example              |
++------------+----------------------------------------------------------+---------------------------------+
+| `DAILY`    | Gives articles published on a specific date.                        | `daily 07 April 2024`|
+| `TOPICS`   | Lists topics the articles are classified by.                        | `topics`             |
+| `STAR`     | Bookmarks a topic as favorite.                                      | `star business`      |
+| `STARRED`  | Shows list of bookmarked topics.                                    | `starred`            |
+| `REMOVE`   | Removes a topic from bookmarked list.                               | `remove business`    |
+| `SUGGEST`  | Suggests articles based on bookmarked topics.                       | `suggest`            |
+| `FILTER`   | Lists articles related to a specified topic.                        | `filter politics`    |
+| `SAVE`     | Saves article into a reading list.                                  | `save 3`             |
+| `SOURCE`   | Gives the source of the article.                                    | `source 3`           |
+| `BACK`     | Returns from daily or filter parser.                                | `back`               |
+| `URL`      | Gives the URL of the article.                                       | `url 2`              |
+| `HEADLINES`| Returns article headlines from the list up til the index            | `headlines 10`       |
+| `GET`      | Details of a specific article.                                      | `get 3`              |
+| `LOAD`     | Displays list of saved articles.                                    | `load`               |
+| `CLEAR`    | Clears the saved articles list.                                     | `clear`              |
+| `QUOTE`    | Prints a different inspirational quote each time.                   | `quote`              |
++------------+---------------------------------------------------------+----------------------------------+
+Thank you for using News On The Go! Enjoy reading :))
+____________________________________________________________
+
+
+
 <h3 id="daily"> Find articles on a particular day: <code>daily</code> </h3>
 Gets the list of articles from our text file and outputs it to the user.
 
@@ -111,6 +165,16 @@ Format: `daily {DATE}`
 <br>
 
 > [!NOTE] After using the `daily` command, you can use <a href = "#save">`save`</a> and <a href = "#back">`back`</a> commands.
+>
+> User should receive a message like this:
+> 
+> ____________________________________________________________
+>
+> What do you want from me?
+>     To return to main, type in: back
+>
+> 
+
 
 <br>
 
@@ -119,6 +183,26 @@ Format: `daily {DATE}`
 List the different topics our articles are classified into.
 
 Format: `topics`
+
+#### Example of usage:
+
+
+What do you want from me?
+____________________________________________________________
+
+topics
+____________________________________________________________
+
+Here are the list of topics for your viewing:
+     - Business
+     - Entertainment
+     - Others
+     - Politics
+     - Sports
+     - Technology
+     - World
+____________________________________________________________
+
 
 <br>
 
@@ -132,6 +216,15 @@ Format: `star {TOPIC}`
 - `star Science`  
 - `star Sports`
 
+What do you want from me?
+____________________________________________________________
+
+star technology
+____________________________________________________________
+
+technology has been added to your list of favourite topics.
+____________________________________________________________
+
 <br>
 
 <h3 id="starred"> Checking Starred Topics: <code>starred</code> </h3>
@@ -139,6 +232,19 @@ Format: `star {TOPIC}`
 List the different topics our articles are classified into.
 
 Format: `starred`
+
+#### Example of usage:
+
+What do you want from me?
+____________________________________________________________
+
+starred
+____________________________________________________________
+
+Here is the list of your favourite topics:
+    - Science
+    - Technology
+____________________________________________________________
 
 <br>
 
@@ -152,13 +258,41 @@ Format: `remove {TOPIC}`
 - `remove Science`
 - `remove Sports`
 
+What do you want from me?
+____________________________________________________________
+
+remove technology
+____________________________________________________________
+
+technology has been removed from your list of favourite topics
+____________________________________________________________
+
 <br>
 
 <h3 id="suggest"> Getting Article Suggestions: <code>suggest</code> </h3>
 
 Suggests articles from your favorite topics.
 
-Format: `suggest`
+
+Format: `suggest`  
+
+#### Example of usage:  
+ Assuming we have Science and Technology as our favourite topics.
+
+What do you want from me?
+____________________________________________________________
+
+suggest
+____________________________________________________________
+
+1. Suggesting an article from your favorite topic: Technology
+    Title: Technology Article  Technology News
+URL: www.techarticlesampleurl.com
+2. Suggesting an article from your favorite topic: Sports
+    Title: Sports Article  The Sports News
+URL: www.sportsarticlesampleurl.com
+
+____________________________________________________________
 
 <br>
 
@@ -170,6 +304,26 @@ Format: `filter {TOPIC}`
 #### Example of usage:
 - `filter Science`
 - `filter Sports`
+
+What do you want from me?
+____________________________________________________________
+
+filter technology
+____________________________________________________________
+
+Here are the news articles related to Technology:
+1. "Tech Giants Announce Partnership to Combat Online Misinformation"
+2. "Artificial Intelligence Breakthrough Promises Revolution in Healthcare"
+3. "Technology Expo Showcases Latest Innovations in Robotics"
+4. "Major Tech Company Announces Plans for Sustainable Data Centers"
+5. "Technology Company Faces Backlash Over Data Privacy Concerns"
+____________________________________________________________
+
+You are currently in access to the list of articles in Technology,
+    use command 'BACK' to return to main list of articles.
+____________________________________________________________
+
+<br>
 
 >[!NOTE] 
 > After using the `filter` command, you are able to use the <a href = "#save">`save`</a>, 
@@ -196,6 +350,32 @@ Format: `save {INDEX OF ARTICLE ON DISPLAYED LIST}`
 - `save 5`  
   - saves the fifth item in the current article list
 
+Assuming we have the used `filter technology` from before.  
+
+What do you want from me?
+____________________________________________________________
+
+save 2
+____________________________________________________________
+
+Successfully saved "Artificial Intelligence Breakthrough Promises Revolution in Healthcare"
+    find your saved articles at user_data\saved_news.txt
+____________________________________________________________
+
+OR, Assuming `daily` command is just executed.
+
+What do you want from me?
+To return to main, type in: back
+save 1
+____________________________________________________________
+
+Successfully saved "Scientists Discover New Species of Butterfly in the Amazon"
+    find your saved articles at user_data\saved_news.txt
+____________________________________________________________
+
+What do you want from me?
+    To return to main, type in: back
+
 <br>
 
 <h3 id="source"> Getting Article Source: <code>source</code> </h3>
@@ -207,6 +387,21 @@ Displays the source of the article and its APA citation.
 - `source 1`
 - `source 5`
 
+What do you want from me?
+____________________________________________________________
+
+source 4
+____________________________________________________________
+
+"Major Tech Company Announces Plans for Sustainable Data Centers"
+URL: https://www.example.com/technology/sustainable-data-centers
+By: Jonathan Taylor    On: April 8, 2024
+Tech News Network
+
+APA Citation: Taylor, J. (2024, April 8). "Major Tech Company Announces Plans for Sustainable Data Centers". 
+Tech News Network. https://www.example.com/technology/sustainable-data-centers
+____________________________________________________________
+
 <br>
 
 <h3 id="back"> Returning to Main: <code>back</code> </h3>
@@ -215,6 +410,27 @@ Returns from a filtered list of news or the saved news window to the main list o
 #### Format: `back`
 
 * Only applicable if you have filtered the list of news using the `filter` or `daily` command.
+
+#### Example of usage:
+Assuming we are currently in the list of articles under the topic Technology:
+
+What do you want from me?
+____________________________________________________________
+
+back
+____________________________________________________________
+
+You have exited the list of articles in Technology
+Currently in access to the main list of articles
+____________________________________________________________
+
+Or, assuming we have just executed the `daily` command and is currently in the daily loop.
+
+What do you want from me?
+To return to main, type in: back
+back
+You are back to the main function!
+____________________________________________________________
 
 <br>
 
@@ -228,6 +444,15 @@ Format: `url {INDEX OF ARTICLE}`
 - `url 1`
 - `url 2`
 
+What do you want from me?
+____________________________________________________________
+
+url 2
+____________________________________________________________
+
+Article URL: https://www.example.com/finance/stock-market-record
+____________________________________________________________
+
 <br>
 
 <h3 id="headlines"> Viewing Article Headline: <code>headlines</code> </h3>
@@ -239,6 +464,24 @@ Format: `headlines {INDEX OF ARTICLE}`
 #### Example of usage:
 - `headlines 2`
 - `headlines 10`
+
+What do you want from me?
+____________________________________________________________
+
+headlines 10
+Displaying the first 10 article headlines:
+1. "Scientists Discover New Species of Butterfly in the Amazon"
+2. "Stock Market Surges to Record Highs Amid Economic Recovery"
+3. "Political Tensions Rise in Region X Following Border Dispute"
+4. "Breakthrough in Cancer Research Offers Hope for New Treatment"
+5. "Tech Giants Announce Partnership to Combat Online Misinformation"
+6. "Local Community Comes Together to Support Homeless Shelter"
+7. "Climate Change Summit Ends with Disappointing Agreement"
+8. "New Study Reveals Alarming Decline in Bee Populations"
+9. "Celebrity Couple's Divorce Shocks Fans Worldwide"
+10. "Space Agency Plans Mission to Explore Jupiter's Moons"
+    What do you want from me?
+____________________________________________________________
 
 <br>
 
@@ -252,6 +495,14 @@ Format: `extract {INDEX OF ARTICLE}`
 - `extract 3`
 - `extract 5`
 
+extract 3
+____________________________________________________________
+
+Article Extract: "Dune: Part Two? spiced up the box office with a $81.5 million
+opening weekend, becoming the biggest film, so far, of 2024.
+____________________________________________________________
+
+
 <br>
 
 <h3 id="get"> Getting Article Details: <code>get</code> </h3>
@@ -264,10 +515,48 @@ Format: `get {INDEX OF ARTICLE}`
 - `get 3`
 - `get 5`
 
+What do you want from me?
+____________________________________________________________
+
+get 3
+____________________________________________________________
+
+Four Takeaways on the Race to Amass Data for AI  The New York Times
+    URL: https://www.nytimes.com/2024/04/06/technology/ai-data-tech-takeaways.html
+    By: Unknown    On: April 06, 2024
+    NYTimes
+
+To make artificial intelligence systems more powerful tech companies need online data to feed the technology Heres what to know
+____________________________________________________________
+
 <br>
 
 <h3 id="load"> Loading Saved Articles: <code>load</code> </h3>
 Displays all saved news articles from the saved articles text file.
+
+Format: `load`  
+
+#### Example of usage:
+
+What do you want from me?
+____________________________________________________________
+
+load
+____________________________________________________________
+
+Displaying saved news articles:
+
+    "Scientists Discover New Species of Butterfly in the Amazon"
+        URL: https://www.example.com/science/butterfly-discovery
+        By: John Smith    On: March 10, 2024
+        Nature News
+    
+    "Artificial Intelligence Breakthrough Promises Revolution in Healthcare"
+        URL: https://www.example.com/technology/ai-healthcare-revolution
+        By: Daniel Brown    On: March 21, 2024
+        Technology Today
+
+____________________________________________________________
 
 <br>
 
@@ -277,19 +566,27 @@ Clears the list of articles saved.
 
 Format: `clear`
 
+#### Example of usage:
+
+What do you want from me?
+____________________________________________________________
+
+clear
+____________________________________________________________
+
+File cleared successfully!
+____________________________________________________________
+
 <br>
 
 <h3 id="quote"> Getting Inspirational Quote: <code>quote</code> </h3>
 
 Prints a random inspirational quote each time the command is called
 
-<br>
-
 Format: `quote`
 
 #### Example of usage:
 
-```
 What do you want from me?
 ____________________________________________________________
 
@@ -301,7 +598,6 @@ Some words of inspiration today:
 | I have not failed. I've just found 10,000 ways that won't work. - Thomas Edison |
 ~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~
 ____________________________________________________________
-```
 
 <br>
 
@@ -311,6 +607,16 @@ Exits the application.
 
 Format: `bye`
 
+#### Example of usage:
+
+What do you want from me?
+____________________________________________________________
+
+bye
+____________________________________________________________
+
+Bye. Hope to see you again soon!
+____________________________________________________________
 
 <br>
 
