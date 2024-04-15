@@ -8,10 +8,7 @@ saving their preferred topics and articles.
 
 
 ## Summary of Contributions
-### Code Contributed: 
-<a target="_blank" href="https://nus-cs2113-ay2324s2.github.io/tp-dashboard/?search=ahmedshaiyan&breakdown=true">
-RepoSense Link
-</a>
+### Code Contributed: [RepoSense Link](https://nus-cs2113-ay2324s2.github.io/tp-dashboard/?search=ahmedshaiyan&breakdown=true)
 
 
 
