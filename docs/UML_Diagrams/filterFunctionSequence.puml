@@ -29,6 +29,19 @@ NewsFile-->Parser
 deactivate NewsFile
 destroy NewsFile
 end
+
+alt Command == SOURCE
+alt topicIndex >= 0
+Parser->GetNewsSourceCommand: getNewsSource(filteredList)
+activate GetNewsSourceCommand
+GetNewsSourceCommand-->Parser
+deactivate GetNewsSourceCommand
+else topicIndex = -1
+Parser->GetNewsSourceCommand: getNewsSource(mainList)
+activate GetNewsSourceCommand
+GetNewsSourceCommand-->Parser
+deactivate GetNewsSourceCommand
+end
 end
 destroy Parser
 @enduml

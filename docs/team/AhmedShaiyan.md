@@ -1,49 +1,56 @@
 # Ahmed Shaiyan - Project Portfolio Page
 
-## Project: NewOnTheGo
+## Overview
 
 NewsOnTheGo is a command line interface (CLI) application that helps users stay up-to-date with the latest news
 articles by providing users with a list of the current headlines. Users are able to personalise this application by
 saving their preferred topics and articles.
 
-<h2> Code Contributed: 
+
+## Summary of Contributions
+### Code Contributed: 
 <a target="_blank" href="https://nus-cs2113-ay2324s2.github.io/tp-dashboard/?search=ahmedshaiyan&breakdown=true">
 RepoSense Link
 </a>
-</h2>
 
 
 
 ### Enhancements Implemented:
-#### Developed the Suggest function to recommend news articles based on user-preferred topics.
+1.  **Added the ability to be suggested articles based on favorite topics** [#61](https://github.com/AY2324S2-CS2113-T12-1/tp/pull/61)
+    - **What it does:** Offers article recommendations based on the user's favorite topics.
+    - **Justification:** This feature enhances user engagement by providing personalized article suggestions.
+    - **Highlights:** This feature involved complex logic to filter articles according to user's starred topics display them at random.
 
-**What it does**: The Suggest function reads the user's favorite topics from a saved file and suggests random news articles from those topics. If no favorite topics are saved, it prompts the user to star a topic first.
+2. **Added the ability to quickly view article headlines** [#127](https://github.com/AY2324S2-CS2113-T12-1/tp/pull/127)
+    - **What it does:** Displays a specified number of article headlines from the news list.
+    - **Justification:** Allows users to quickly browse headlines without loading full articles, improving the user experience in terms of speed and convenience.
 
-**Justification:** This feature enhances user engagement by personalizing content suggestions, making the news reading experience more tailored and relevant to individual preferences.
+3. **Added the ability to load and display saved news articles** [#55](https://github.com/AY2324S2-CS2113-T12-1/tp/pull/55) [#115](https://github.com/AY2324S2-CS2113-T12-1/tp/pull/115)
+    - **What it does:** Loads and displays saved articles from a user's reading list.
+    - **Justification:** Enables users to easily access their saved articles, enhancing the application's usability.
+    - **Highlights:** Involved file handling and user interface updates to ensure a seamless reading list management experience.
 
-**Highlights:** Implements randomness to ensure that suggestions are varied on each invocation, maintaining user interest over time. The function gracefully handles scenarios where favorite topics might not correspond to available news articles, providing feedback to guide the user.
+4. **Added the ability to get the URL of articles** [#112](https://github.com/AY2324S2-CS2113-T12-1/tp/pull/112)
+    - **What it does:** Provides direct URLs to full news articles.
+    - **Justification:** This feature is essential for users who wish to read the complete article, thereby extending the functionality of the news application to serve as a starting point for deeper exploration.
+    - **Highlights:** Required integration with the web scraping module to retrieve and manage live URLs.
+5. **Added the ability to access the summary of an article** [#162](https://github.com/AY2324S2-CS2113-T12-1/tp/pull/162)
+    - **What it does:** Displays the summary or content of the selected news article.
+    - **Justification:** This feature enriches user interaction by allowing them to read summaries quickly and decide if they want to explore the full article.
+    - **Highlights:** The challenge was to present the content neatly formatted, which involved designing a responsive text wrapping system in the CLI so that the text prints in a newline after a certain length.
 
-#### Created the Headlines command to quickly access the headlines of the top news articles.
 
-**What it does**: This command allows users to view a specified number of the most recent headlines from the news articles database, making it easy for users to get updates at a glance.
+### Documentation
+**User Guide:**  [#61](https://github.com/AY2324S2-CS2113-T12-1/tp/pull/61) [#66](https://github.com/AY2324S2-CS2113-T12-1/tp/pull/66)
+<br> Added  documentation for the `Suggest`, `Load`,`URL`, `Headline`,`Extract` features 
 
-**Justification:** It provides a concise summary of news, which is useful for users who are short on time but want to stay informed about the latest events.
 
-**Highlights:** Features dynamic input handling that adjusts the number of displayed headlines based on user requests, with robust error handling to manage incorrect inputs or requests beyond the available number of articles.
+**Developer guide:** [#48](https://github.com/AY2324S2-CS2113-T12-1/tp/pull/48) [#53](https://github.com/AY2324S2-CS2113-T12-1/tp/pull/53) [#65](https://github.com/AY2324S2-CS2113-T12-1/tp/pull/65) [#155](https://github.com/AY2324S2-CS2113-T12-1/tp/pull/155) [#157](https://github.com/AY2324S2-CS2113-T12-1/tp/pull/157) [#163](https://github.com/AY2324S2-CS2113-T12-1/tp/pull/163)
+<br> Added documentation and diagrams for the implementation and details about the design considerations for the `Suggest`, `Load`,`URL`, `Headline`,`Extract` features
+<br> Added Design documentation for `Parser` and `UI` classes
+<br> Added user stories for my features
 
-#### Created a Load function to retrieve and display saved news articles.
+### Enhancements to existing features
 
-**What it does:** The Load function reads news articles that the user has previously saved into a reading list, allowing for easy access and review at any time.
+### Community 
 
-**Justification:** Encourages users to save articles of interest for later reading, enhancing the usability of the application by making it a valuable tool for information retention and management.
-
-**Highlights:** Includes comprehensive error handling to manage scenarios where the saved articles file might be inaccessible or corrupted, ensuring the application remains robust and reliable.
-
-###
-#### Implemented the URLs display feature within the daily news command.
-
-**What it does:** This enhancement extracts and displays URLs for all news articles presented by the daily news feature, providing direct links to full articles.
-
-**Justification:** Adds practical value by facilitating easy access to full articles, allowing users to delve deeper into news stories of interest directly from the application.
-
-**Highlights:** Streamlines user interaction by integrating URL display directly within the daily news browsing experience, enhancing functionality without complicating the user interface.

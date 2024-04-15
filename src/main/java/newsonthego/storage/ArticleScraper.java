@@ -17,6 +17,19 @@ import java.util.Locale;
 
 public class ArticleScraper {
 
+
+    /**
+     * Removes special characters from the input text.
+     *
+     * @param text The input text.
+     * @return The text with special characters removed.
+     */
+    private static String removeSpecialCharacters(String text) {
+        // Use a regular expression to remove all special characters except for letters and digits
+        return text.replaceAll("[^a-zA-Z0-9\\s]", "");
+    }
+
+
     /**
      * Scrapes an article from the given URL and saves its details to a file.
      *
@@ -42,16 +55,18 @@ public class ArticleScraper {
             // Extract abstract
             Element abstractElement = doc.selectFirst("meta[name=description]");
             String abstractText = (abstractElement != null) ? abstractElement.attr("content") : "Abstract not found";
+            abstractText = removeSpecialCharacters(abstractText);
 
             // Extract headlines
             String headline = doc.title();
+            headline = removeSpecialCharacters(headline);
 
             // Generate the output file path within the data folder
             String outputFilePath = outputFolderPath + File.separator + "testArticleScraper.txt";
 
             // Write the extracted information to the output file in append mode
             try (BufferedWriter writer = new BufferedWriter(new FileWriter(outputFilePath, true))) {
-                writer.write("\"" + headline + "\";" + author + ";" + publishedDate + ";"
+                writer.write(headline + ";" + author + ";" + publishedDate + ";"
                         + source + ";" + url + ";" + abstractText + ";" + theme + "\n");
             } catch (IOException e) {
                 e.printStackTrace();
@@ -220,17 +235,37 @@ public class ArticleScraper {
     }
 
     /**
+     * Removes entire words with special characters from the input text.
+     *
+     * @param text The input text.
+     * @return The text with entire words containing special characters removed.
+     */
+    private static String removeWordsWithSpecialChars(String text) {
+        // Define a regular expression pattern to match words with special characters
+        // The pattern matches any word that contains a character that is not a letter, digit, or space
+        String pattern = "\\b\\S*[^a-zA-Z0-9\\s]+\\S*\\b";
+
+        // Replace words with special characters with an empty string
+        return text.replaceAll(pattern, "");
+    }
+
+    /**
      * Extracts the author of the article.
      *
      * @param doc The document object representing the HTML content of the article.
      * @return The author of the article.
      */
+
     private static String extractAuthor(Document doc) {
         // Try to extract author name from meta tag with name="author"
         Element authorElement = doc.selectFirst("meta[name=author]");
         if (authorElement != null) {
             String authorName = authorElement.attr("content");
             if (!authorName.isEmpty()) {
+                // Replace commas with "and" if the author has multiple names
+                authorName = authorName.replace(",", " and");
+                // Apply function to remove entire words with special characters
+                authorName = removeWordsWithSpecialChars(authorName);
                 return authorName;
             }
         }
@@ -240,10 +275,16 @@ public class ArticleScraper {
         if (cXenseAuthorElement != null) {
             String authorName = cXenseAuthorElement.attr("content");
             if (!authorName.isEmpty()) {
+                // Replace commas with "and" if the author has multiple names
+                authorName = authorName.replace(",", " and");
+                // Apply function to remove entire words with special characters
+                authorName = removeWordsWithSpecialChars(authorName);
                 return authorName;
             }
         }
+
         // If author not found in both formats, return "Unknown"
         return "Unknown";
     }
+
 }

@@ -1,18 +1,32 @@
 @startuml
 Create ":NewsOnTheGo"
 activate ":NewsOnTheGo"
+
 Create ":UI"
 activate ":UI"
+
 ":NewsOnTheGo" -> ":UI" : initializeUI(in)
 ":UI" --> ":NewsOnTheGo":
 deactivate ":UI"
+
 Create ":DailyNewsCommand"
 ":NewsOnTheGo" -> ":DailyNewsCommand" : ":DailyNewsCommand"(input, newsArticles)
 activate ":DailyNewsCommand"
+
 loop back == true
+    alt save
     ":DailyNewsCommand" -> ":DailyNewsCommand": save(index)
+    activate ":DailyNewsCommand"
+    deactivate ":DailyNewsCommand"
     end
+    alt extract
+    ":DailyNewsCommand" -> ":DailyNewsCommand": extract(index)
+    activate ":DailyNewsCommand"
+    deactivate ":DailyNewsCommand"
+    end
+end
+
 ":DailyNewsCommand" --> ":NewsOnTheGo":
-deactivate ":DailyNewsCommand"
+destroy ":DailyNewsCommand"
 deactivate ":NewsOnTheGo"
 @enduml
