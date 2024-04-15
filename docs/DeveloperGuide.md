@@ -6,7 +6,7 @@
     <li><strong><a href="#design">Design</a></strong>
     <ul>
         <li><a href="#architecture">Architecture</a></li>
-        <li><a href = "#main components">Main Components</a></li>
+        <li><a href ="#main components">Main Components</a></li>
         <li><a href="#parser-component">Parser Component</a></li>
         <li><a href="#newsArticle-model">NewsArticle and Topic Model</a></li>
         <li><a href="#ui-component">UI Component</a></li>
@@ -15,16 +15,17 @@
         <li><a href="#newsfile-and-storage">NewsFile and Storage</a></li>
     </ul>
 </ul> 
-<li><a href="#interaction-between-components">Interaction between Components</a></li>
-<li><a href = "#main-object-classes">Main Object Classes</a></li>
-    <li><strong><a href="#implementation">Implementation</a></strong></li>
+<li><strong><a href="#interaction-between-components">Interaction between Components</a></strong></li>
+<li><strong><a href = "#main-object-classes">Main Object Classes</a></strong></li>
+<li><strong><a href="#implementation">Implementation</a></strong></li>
+    <ul>
+        <li><a href="#daily">Daily Feature</a></li>
         <ul>
-            <li><a href="#daily">Daily Feature</a></li>
-            <ul>
-                <li><a href="#daily-implementation">Implementation</a></li>
-                <li><a href="#daily-design">Design Consideration</a></li>
-            </ul>
+            <li><a href="#daily-implementation">Implementation</a></li>
+            <li><a href="#daily-design">Design Consideration</a></li>
         </ul>
+    </ul>
+    <ul>
         <li><a href="#filter-news-by-topic"> Filter News by Topic Feature</a></li>
         <ul>
             <li><a href="#topics">Topics Feature</a></li>
@@ -47,31 +48,39 @@
                 <li><a href="#suggest-design">Design Consideration</a></li>
             </ul>
         </ul>
-      <li><a href="#url">URL Feature</a></li>
-      <ul>
-          <li><a href="#url-implementation">Implementation</a></li>
-          <li><a href="#url-design">Design Consideration</a></li>
-      </ul>
-      <li><a href="#headlines">Headlines Feature</a></li>
-      <ul>
-          <li><a href="#headlines-implementation">Implementation</a></li>
-          <li><a href="#headlines-design">Design Consideration</a></li>
-      </ul>
-      <li><a href="#load">Load Feature</a></li>
-      <ul>
-          <li><a href="#load-implementation">Implementation</a></li>
-          <li><a href="#load-design">Design Consideration</a></li>
-      </ul>
-    <li><a href="#product-scope">Appendix A: Product Scope</a></li>
+    </ul>
     <ul>
-      <li><a href = "#target-user-profile">Target User Profile</a></li>
-      <li><a href = "#value-proposition">Value Proposition</a></li>
-</ul>
+        <li><a href="#url">URL Feature</a></li>
+        <ul>
+            <li><a href="#url-implementation">Implementation</a></li>
+            <li><a href="#url-design">Design Consideration</a></li>
+        </ul>
+    </ul>
+    <ul>
+        <li><a href="#headlines">Headlines Feature</a></li>
+        <ul>
+            <li><a href="#headlines-implementation">Implementation</a></li>
+            <li><a href="#headlines-design">Design Consideration</a></li>
+        </ul>
+    </ul>
+    <ul>
+        <li><a href="#load">Load Feature</a></li>
+        <ul>
+            <li><a href="#load-implementation">Implementation</a></li>
+            <li><a href="#load-design">Design Consideration</a></li>
+        </ul>
+    </ul>    
+    <li><a href="#product-scope">Appendix A: Product Scope</a></li>
+        <ul>
+            <li><a href = "#target-user-profile">Target User Profile</a></li>
+            <li><a href = "#value-proposition">Value Proposition</a></li>
+        </ul>
     <li><a href="#user-stories">Appendix B: User Stories</a></li>
     <li><a href="#non-functional-requirements">Appendix C: Non-Functional Requirements</a></li>
     <li><a href="#glossary">Appendix D: Glossary</a></li>
     <li><a href="#manual-testing"> Appendix E: Instructions for manual testing </a></li>
 
+<br>
 
 <h2 id="acknowledgements"> Acknowledgements </h2>
 <ul>
@@ -93,6 +102,8 @@
         </p>
     </li>
 </ul>
+
+<br>
 
 <h2 id="setting-up"> Setting up, Getting Started</h2>
 First, fork this repo, and clone the fork into your computer.
@@ -137,6 +148,8 @@ Alternatively, refer to our <a href="UserGuide.md">User Guide</a> for quick star
 News On The Go implements a modular architecture approach with the main system broken down into smaller, 
 object-oriented components. Each module encapsulated different functions that are key for the product to work smoothly.
 
+<br>
+
 <h4 id = "main components"> Main Components </h4>
 
 The `main()` function is run in our main class, `NewsOnTheGo`:
@@ -173,14 +186,20 @@ The parser component is responsible for interpreting user commands and invoking 
 
 Details the structure of the `NewsArticle` and `NewsTopic` classes, which represent the data model for news articles and topics within the application.
 
+<br>
+
 <h4 id="ui-component"> UI Component </h4>
 
 The UI class in is responsible for all command line interactions, displaying welcome and goodbye messages, providing structured command formats, and handling the output of news content and errors. It uses methods like `printMessage` and `printConfused` to ensure clear and correct text output.
+
+<br>
 
 <h4 id="command-classes"> Command Classes</h4>
 
 Each command in the system has a corresponding class in this component. This section covers how these classes implement the functionality for different features like `DailyNewsCommand`, `ShowHeadlinesCommand`, etc.
 Classes that are used to execute and implement commands are located in the `newsonthego.commands` package.
+
+<br>
 
 <h4 id="newsimporter-and-articlescraper"> NewsImporter and ArticleScraper </h4>
 
@@ -198,9 +217,10 @@ The _Sequence Diagram_ below shows how the components interact with each other f
 
 <h3 id = "main-object-classes"> Main Object Classes </h3>
 
-_There are two main object-oriented classes that are used in the application:_
-- `NewsArticle`: Each instance stores a News Article and their related information.
-- `NewsTopic`: Each instance stores a News Topic and their relevant articles.
+There are two main object-oriented classes that are used in the application:
+
+- <code>NewsArticle</code>: Each instance stores a News Article and their related information.
+- <code>NewsTopic</code>: Each instance stores a News Topic and their relevant articles.
 
 The diagram below shows how these classes are associated to the main class `NewsOnTheGo`:
 
@@ -299,6 +319,7 @@ This is an overall class diagram for better visualisation of how the classes int
 This daily mechanism is facilitated by a constructor from the `DailyNewsCommand` class. It takes in an input from 
 the user and the current list of articles to display the news on published on a particular day to the user.  
 This feature also implements the following operations:  
+
 - `DailyNewsCommand#save()` — Saves a news article from the list given to their reading list
 - `DailyNewsCommand#back()` — Exits the daily feature loop.
 
@@ -445,21 +466,25 @@ APA Citation: Raju, M. (2024, March 31). "Embittered Republicans plot to knock o
 
 The following sequence diagram shows how the topics, filter and source mechanism may work in conjunction with other commands.
 
-<img src="UML_Diagrams/filterFunctionSequence.png"/>
+<img src="UML_Diagrams/filterFunctionSequence.png"/ alt="filterFunctionSequence">
 
 <h4 id="topics-filter-design"> Design Considerations </h4>
 
 Alternative 1 (current choice): check for topicIndex in handleCommand
+
 - Pros: easy to implement
 - Con: duplicate checking of topicIndex for article commands
 
 Alternative 2: loop in filter command
+
 - Con: have to come up with handle commands inside the filter command loop
 - Con: initialising another Scanner object may cause unexpected conflicts
 
+<br>
 
 <h3 id="suggest"> User Preferences (SUGGEST) Feature </h3>
 
+<br>
 
 <h4 id="suggest-implementation"> Implementation </h4>
 
@@ -481,6 +506,8 @@ processes user's favorite topics to suggest random articles.
 
 The decision to use a random selection approach was to provide a dynamic user experience. This encourages users to 
 discover a variety of articles within their favourite topics.
+
+<br>
 
 #### Alternatives Considered
 
@@ -515,6 +542,8 @@ The **URL** feature enables users to quickly access the URL of a specific news a
 4.  If the index is valid, it retrieves the article from the provided list and prints the URL. If the index is invalid, an error message is displayed. <br>
 
 <img src="UML_Diagrams/URLCommandSequence.png" alt="urlCommandSequence">
+
+<br>
 
 #### Additional Usage
 The URL are also utilized in other functionalities of the application without explicitly using the `url` command:
@@ -765,6 +794,7 @@ The flow can be seen from the sequence diagram below:
 
 <img src="UML_Diagrams/QuoteGeneratorSequence.png" alt="quoteGeneratorSequence">
 
+<br>
 
 <h2 id="product-scope"> Appendix A: Product Scope </h2>
 
@@ -781,6 +811,8 @@ A typical user ...
 
 Allows the exploration of a range of articles from a variety of sources faster than browsing the internet and various 
 news sources for articles.
+
+<br>
 
 <h2 id="user-stories"> Appendix B: User Stories </h2>
 
@@ -805,6 +837,7 @@ Priorities: High (must have) - <code>***</code>, Medium (nice to have) - <code>*
 | v2.1    | avid reader of news websites        | read the quote of the day                                                                         | get a daily dose of inspiration                                                                                  | <code>*</code>    |
 | v2.1    | busy student                        | access the summary of an article                                                                  | read up on the latest news quickly.                                                                              | <code>**</code>   |
 
+<br>
 
 <h2 id="non-functional-requirements"> Appendix C: Non-Functional Requirements </h2>
 
@@ -814,12 +847,16 @@ typical usage.
 3. Currently, parsing 80+ articles which takes around 1 minute, which should be an optimal amount of time for the user
 before it becomes an annoyance.
 
+<br>
+
 <h2 id="glossary"> Appendix D: Glossary </h2>
 
 * *Mainstream OS* - Windows, Linus, Unix, OS-X
 * *Article Scraper* - Scraps relevant information of the news article needed for the application based on the url 
 provided and stores them into a text file. 
 * *News Importer* - Imports news from a text file based on the specified format.
+
+<br>
 
 <h2 id="manual-testing"> Appendix E: Instructions for manual testing </h2>
 
