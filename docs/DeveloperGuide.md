@@ -467,7 +467,7 @@ The following sequence diagram shows how the topics, filter and source mechanism
 
 <br>
 
-<img src="UML_Diagrams/filterFunctionSequence.png"/ alt="filterFunctionSequence">
+<img src="UML_Diagrams/filterFunctionSequence.png" alt="filterFunctionSequence">
 
 <h4 id="topics-filter-design"> Design Considerations </h4>
 
