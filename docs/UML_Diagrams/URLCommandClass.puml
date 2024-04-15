@@ -1,0 +1,10 @@
+@startuml
+hide circle
+
+class URLCommand {
+- printArticleURL(line : String, list : List<NewsArticle>) : void
+- printArticleURLsForDay(articles : List<NewsArticle>) : void
+- parseArticleURL(articleLine : String) : String
+}
+
+@enduml

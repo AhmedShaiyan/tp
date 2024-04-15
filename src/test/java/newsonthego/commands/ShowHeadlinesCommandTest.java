@@ -10,6 +10,7 @@ import java.io.PrintStream;
 
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class ShowHeadlinesCommandTest {
 
@@ -27,28 +28,33 @@ public class ShowHeadlinesCommandTest {
         System.setOut(System.out);
 
     }
+    @Test
+    void printsCorrectHeadlines() {
+        ShowHeadlinesCommand.showHeadlines("headlines 3");
+        String output = outputStreamCaptor.toString();
+        String[] lines = output.split(System.lineSeparator());
 
-    //        @Test
-    //        void printsCorrectHeadlines() {
-    //            ShowHeadlinesCommand.showHeadlines("headlines 3");
-    //            String output = outputStreamCaptor.toString();
-    //            String[] lines = output.split(System.lineSeparator());
-    //
-    //
-    //            assertTrue(output.contains("Displaying the first 3 article headlines:"),
-    //                    "Should indicate it's displaying 3 headlines");
-    //            assertTrue(output.contains("Kristen Wiig initiated into "SNL" five-timers
-    //            club by Ryan Gosling, Matt Damon and? Lorne Michaels | CNN"),
-    //                    "Should display the first headline");
-    //            assertTrue(output.contains("?The Matrix? has a fifth film in the works and, no,
-    //            this is not a simulation | CNN"),
-    //                    "Should display the second headline");
-    //            assertTrue(output.contains("?Dune: Part Two? may be followed by a third
-    //            film, but Timoth?e Chalamet and Zendaya don?t know how it all ends | CNN"),
-    //                    "Should display the third headline");
-    //        }
+        // Assertions need to match the exact string output,
+        assertTrue(output.contains("Displaying the first 3 article headlines:"),
+                "Should indicate it's displaying 3 headlines");
+        assertTrue(output.contains("1. Kristen Wiig initiated into SNL fivetimers club" +
+                        " by Ryan Gosling Matt Damon and Lorne Michaels  CNN"),
+                "Should display the first headline");
+        assertTrue(output.contains("2. The Matrix has a fifth film in the works" +
+                        " and no this is not a simulation  CNN"),
+                "Should display the second headline");
+        assertTrue(output.contains("3. Dune Part Two may be followed by a third film " +
+                        "but Timothe Chalamet and Zendaya dont know how it all ends  CNN"),
+                "Should display the third headline");
+    }
 
-
+    @Test
+    void printsTooHighMessage() {
+        ShowHeadlinesCommand.showHeadlines("headlines 7000");
+        String output = outputStreamCaptor.toString().trim();
+        assertTrue(output.contains("Invalid index, too high. There are only 82 articles."),
+                "Should indicate the index is too high");
+    }
 
     @Test
     void printsFormatErrorMessage() {
