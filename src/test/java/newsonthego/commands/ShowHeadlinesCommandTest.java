@@ -29,22 +29,25 @@ public class ShowHeadlinesCommandTest {
 
     }
 
-    //    @Test
-    //    void printsCorrectHeadlines() {
-    //        ShowHeadlinesCommand.showHeadlines("headlines 3");
-    //        String output = outputStreamCaptor.toString();
-    //        String[] lines = output.split(System.lineSeparator());
+    //        @Test
+    //        void printsCorrectHeadlines() {
+    //            ShowHeadlinesCommand.showHeadlines("headlines 3");
+    //            String output = outputStreamCaptor.toString();
+    //            String[] lines = output.split(System.lineSeparator());
     //
     //
-    //        assertTrue(output.contains("Displaying the first 3 article headlines:"),
-    //                "Should indicate it's displaying 3 headlines");
-    //        assertTrue(output.contains("Scientists Discover New Species of Butterfly in the Amazon"),
-    //                "Should display the first headline");
-    //        assertTrue(output.contains("Stock Market Surges to Record Highs Amid Economic Recovery"),
-    //                "Should display the second headline");
-    //        assertTrue(output.contains("Political Tensions Rise in Region X Following Border Dispute"),
-    //                "Should display the third headline");
-    //    }
+    //            assertTrue(output.contains("Displaying the first 3 article headlines:"),
+    //                    "Should indicate it's displaying 3 headlines");
+    //            assertTrue(output.contains("Kristen Wiig initiated into "SNL" five-timers
+    //            club by Ryan Gosling, Matt Damon and? Lorne Michaels | CNN"),
+    //                    "Should display the first headline");
+    //            assertTrue(output.contains("?The Matrix? has a fifth film in the works and, no,
+    //            this is not a simulation | CNN"),
+    //                    "Should display the second headline");
+    //            assertTrue(output.contains("?Dune: Part Two? may be followed by a third
+    //            film, but Timoth?e Chalamet and Zendaya don?t know how it all ends | CNN"),
+    //                    "Should display the third headline");
+    //        }
 
 
 

@@ -1,0 +1,22 @@
+@startuml
+
+Create ":ArticleScraper"
+activate ":ArticleScraper"
+
+":StorageURL" --> ":ArticleScraper" : url
+
+Create ":testArticleScraper.txt"
+activate ":testArticleScraper.txt"
+
+":ArticleScraper" -> ":testArticleScraper.txt" : open file
+
+loop for each articleContent
+    ":ArticleScraper" -> ":testArticleScraper.txt" : use BufferedWriter
+end
+
+":ArticleScraper" -> ":testArticleScraper.txt" : close file
+
+deactivate ":testArticleScraper.txt"
+deactivate ":ArticleScraper"
+
+@enduml

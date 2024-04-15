@@ -38,10 +38,7 @@ public class StorageURL {
         urls.add("https://www.channelnewsasia.com/sport/buttler-roars-back-form-rajasthan-remain-unbeaten-4248676");
         urls.add("https://cnalifestyle.channelnewsasia.com/women/4b-movement-south-korea-viral-tiktok-388051");
         urls.add("https://cnalifestyle.channelnewsasia.com/entertainment/toy-story-5-2026-release-date-388071");
-        urls.add("https://www.channelnewsasia.com/world/climate-activist-greta-thunberg-" +
-                "detained-twice-dutch-protest-4248066");
         urls.add("https://www.channelnewsasia.com/world/alien-fever-dreams-fuel-peruvian-grave-robbings-4247641");
-        urls.add("https://www.firstpost.com/world/greta-thunberg-detained-by-dutch-police-13757012.html");
         urls.add("https://www.firstpost.com/world/mexico-breaks-off-ties-with-ecuador-mexican-embassy-stormed-in-" +
                 "quito13756857-13756857.html");
         urls.add("https://www.firstpost.com/world/peter-pellegrini-slovakia-president-elections-13757093.html");
@@ -78,7 +75,6 @@ public class StorageURL {
                 "on-march-31/?sh=4a289e996afa");
         urls.add("https://www.forbes.com/sites/sethmatlins/2024/04/01/on-the-evolution-of-creativity-" +
                 "and-creative-with-pj-pereira/?sh=6f093b4673db");
-
         urls.add("https://edition.cnn.com/2024/03/31/politics/trump-dangerous-rhetoric-analysis/index.html");
         urls.add("https://edition.cnn.com/2024/04/01/middleeast/israel-idf-withdraws-al-shifa-hospital" +
                 "-intl-hnk/index.html");
@@ -98,11 +94,8 @@ public class StorageURL {
                 "/index.html?iid=cnn_buildContentRecirc_end_recirc");
         urls.add("https://edition.cnn.com/2024/03/31/politics/navalny-russian-prisoner-database-hack" +
                 "/index.html?iid=cnn_buildContentRecirc_end_recirc");
-
         urls.add("https://www.channelnewsasia.com/singapore/parliament-order-paper-april-2-" +
                 "mental-capacity-bill-lpa-israel-hamas-cce-lessons-4234286");
-        urls.add("https://www.channelnewsasia.com/singapore/hdb-resale-private-home-prices-" +
-                "rise-waiting-period-property-analysts-4233876");
         urls.add("https://www.channelnewsasia.com/sport/badminton-loh-kean-yew-wins-spain-" +
                 "masters-first-title-world-championships-4233011");
         urls.add("https://www.channelnewsasia.com/singapore/foreign-domestic-workers-debt-" +
@@ -119,15 +112,12 @@ public class StorageURL {
                 "al-jazeera-tv-israel-4234736");
         urls.add("https://www.channelnewsasia.com/business/pakistan-annual-cpi-gauge-drops-" +
                 "207-march-data-shows-4234511");
-
         urls.add("https://www.firstpost.com/world/tamil-political-parties-in-sri-" +
                 "lanka-eye-minority-candidate-for-presidential-election-13754990.html");
         urls.add("https://www.firstpost.com/world/maldives-india-out-bangladesh-sheikh-" +
                 "hasina-13754953.html");
         urls.add("https://www.firstpost.com/world/japan-rejigs-definition-to-protect-its-" +
                 "world-famous-whisky-from-foreign-made-imposters-13754949.html");
-        urls.add("https://www.firstpost.com/world/channel-crossings-uk-migrants-rishi-" +
-                "sunak13754935-13754935.html");
         urls.add("https://www.firstpost.com/tech/microsoft-faces-2-4bn-by-the-eu-will-" +
                 "split-teams-and-office-amid-ongoing-antitrust-lawsuit-13754937.html");
         urls.add("https://www.firstpost.com/tech/waiting-for-xiaomi-customers-planning-" +
@@ -164,7 +154,6 @@ public class StorageURL {
     }
 
     public List<String> getURLs() {
-
         return urls;
     }
 

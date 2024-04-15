@@ -5,14 +5,16 @@ import newsonthego.commands.FilterNewsCommand;
 import newsonthego.commands.GetNewsSourceCommand;
 import newsonthego.commands.ShowHeadlinesCommand;
 import newsonthego.commands.URLCommand;
+import newsonthego.commands.QuoteGenerator;
+import newsonthego.commands.ShowExtractCommand;
+
 import newsonthego.newstopic.NewsTopic;
 import newsonthego.utilities.UI;
-import newsonthego.commands.QuoteGenerator;
 
 import static newsonthego.NewsOnTheGo.suggestArticle;
+import static newsonthego.utilities.UI.printLine;
 import static newsonthego.utilities.UI.printMessage;
 import static newsonthego.utilities.UI.printQuote;
-
 
 import java.util.List;
 
@@ -106,12 +108,14 @@ public class Parser {
 
         case QUOTE:
             String quote = quoteGenerator.getRandomQuote();
-            System.out.println("\n");
+            printLine();
             System.out.println("Some words of inspiration today: ");
             printQuote(quote);
-            System.out.println("\n");
+            printLine();
             break;
-
+        case EXTRACT:
+            ShowExtractCommand.showExtract(line, list);
+            break;
         case BYE:
             UI.printBye();
             break;

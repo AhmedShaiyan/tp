@@ -17,8 +17,11 @@ import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
+import java.util.logging.ConsoleHandler;
+import java.util.logging.Handler;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import java.util.logging.LogManager;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.stream.Collectors;
@@ -36,12 +39,12 @@ public class NewsOnTheGo {
     public static final String FILENAME = "data/testArticleScraper.txt";
     public static final ArrayList<NewsTopic> NEWS_TOPICS = new ArrayList<>();
     public static NewsFile savedNews;
-    private static final Logger logger = Logger.getLogger("NewsOnTheGo");
+    private static final Logger logger = Logger.getLogger(NewsOnTheGo.class.getName());
     private static final ArrayList<NewsTopic> favouriteTopics = new ArrayList<>();
 
     public enum Command {
         HELP, DAILY, TOPICS, FILTER, STAR, STARRED, REMOVE, URL, HEADLINES,
-        GET, SOURCE, SAVE, LOAD, SUGGEST, CLEAR, BACK, QUOTE, BYE, VOID
+        GET, SOURCE, SAVE, LOAD, SUGGEST, CLEAR, BACK, QUOTE, EXTRACT,  BYE, VOID
     }
 
     private static boolean processCommand(String command, String line, List<NewsArticle> list) {
@@ -107,13 +110,13 @@ public class NewsOnTheGo {
      * @param newsTopics      The list of available NewsTopic objects.
      * @param favouriteTopics The list of favorite NewsTopic objects to which the specified topic will be added.
      */
-
     public static void starTopic(String line, List<NewsTopic> newsTopics, List<NewsTopic> favouriteTopics) {
         String topicNameToStar = line.substring(4).trim();
         if (topicNameToStar.isEmpty()) {
             printMessage("Please provide a topic to add to your favourites.");
             return;
         }
+        //Check against current list of favourite topics to see if topic to star already exists
         long count = favouriteTopics.stream()
                 .filter(topic -> topic.getTopicName().equalsIgnoreCase(topicNameToStar))
                 .count();
@@ -123,7 +126,7 @@ public class NewsOnTheGo {
         }
         int topicIndex = NewsTopic.findTopicIndex(topicNameToStar, newsTopics);
         if (topicIndex < 0) {
-            printMessage("Sorry, this topic is not available right now :(");
+            printMessage("Sorry, this topic name is not available right now :(");
         } else {
             favouriteTopics.add(newsTopics.get(topicIndex));
             saveFavoriteTopics();
@@ -257,6 +260,14 @@ public class NewsOnTheGo {
      * Main entry-point for the java.newsonthego.NewsOnTheGo application.
      */
     public static void main(String[] args) throws IOException {
+
+        LogManager.getLogManager().reset();
+        Logger globalLogger = Logger.getLogger(Logger.GLOBAL_LOGGER_NAME);
+        globalLogger.setLevel(Level.SEVERE);
+
+        Handler consoleHandler = new ConsoleHandler();
+        consoleHandler.setLevel(Level.SEVERE);
+        globalLogger.addHandler(consoleHandler);
 
         String outputDirectoryPath = "data";
         String outputFileName = "testArticleScraper.txt";

@@ -5,15 +5,20 @@ import newsonthego.newstopic.NewsTopic;
 
 import java.util.List;
 import java.util.Scanner;
+
 import java.util.logging.Level;
 import java.util.logging.Logger;
+
 
 import static newsonthego.storage.NewsFile.SAVED_NEWS_PATH;
 
 public class UI {
+
+
     public static final String INVALID_ARTICLE_INDEX_MESSAGE = "Please provide a valid article index!!";
     public static final String INDENT = "    ";
     public static final String LINE = "____________________________________________________________\n";
+    private static final int MAX_LINE_WIDTH = 80;
 
     private static final Logger logger = Logger.getLogger("NewsOnTheGo");
     public static void initializeUI(Scanner in) {
@@ -58,6 +63,27 @@ public class UI {
         printLine();
     }
 
+    /**
+     * Prints a message with text wrapping to avoid horizontal scrolling in terminal.
+     * @param message The message to be printed.
+     */
+    public static void printWrappedMessage(String message) {
+        printLine();
+        String[] words = message.split(" ");
+        StringBuilder line = new StringBuilder();
+        for (String word : words) {
+            if (line.length() + word.length() + 1 > MAX_LINE_WIDTH) {
+                System.out.println(line.toString());
+                line = new StringBuilder();
+            }
+            line.append(word).append(" ");
+        }
+        if (line.length() > 0) {
+            System.out.println(line.toString()); // print any remaining text
+        }
+        printLine();
+    }
+
     public static void printError(String message) {
         System.err.println(message);
     }
@@ -82,8 +108,7 @@ public class UI {
                 INDENT+ "The date format is: \n" +
                 INDENT+ "\"MM dd yyyy\" (01 02 2024), \n" +
                 INDENT+ "\"MMMM dd yyyy\" (January 02 2024), \n" +
-                INDENT+ "\"dd MMMM yyyy\" (02 January 2024)" +
-                "\n");
+                INDENT+ "\"dd MMMM yyyy\" (02 January 2024)\n");
     }
 
     public static void printHeadlinesFound(String date) {
@@ -96,7 +121,7 @@ public class UI {
 
     public static void printSaveDailyDefaultMessage() {
         printLine();
-        System.out.println("Do you want to return? Type in: \"back\" ");
+        System.out.println("Do you want to return? Type in: \"back\"");
     }
 
     public static void printArticleIsSaved(NewsArticle article) {
@@ -214,8 +239,12 @@ public class UI {
                         "        | `headlines 10`       |\n" +
                         "| `GET`      | Details of a specific article.                              " +
                         "        | `get 3`              |\n" +
+                        "| `EXTRACT`  | Displays the extract of the article.                        " +
+                        "        | `extract 5`          |\n" +
                         "| `LOAD`     | Displays list of saved articles.                            " +
                         "        | `load`               |\n" +
+                        "| `EXTRACT`  | Displays a summary of the articles.                         " +
+                        "        | `extract 3`          |\n" +
                         "| `CLEAR`    | Clears the saved articles list.                             " +
                         "        | `clear`              |\n" +
                         "+------------+---------------------------------------------------------+" +

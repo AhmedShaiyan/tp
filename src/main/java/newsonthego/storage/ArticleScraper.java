@@ -126,7 +126,16 @@ public class ArticleScraper {
         if (theme.equalsIgnoreCase("tech") || theme.equalsIgnoreCase("technology")) {
             return "Technology";
         } else if (theme.equalsIgnoreCase("world") || theme.equalsIgnoreCase("international") ||
-                theme.equalsIgnoreCase("world news")) {
+                theme.equalsIgnoreCase("world news") || theme.equalsIgnoreCase("asia") ||
+                theme.equalsIgnoreCase("asian news") || theme.equalsIgnoreCase("singapore") ||
+                theme.equalsIgnoreCase("singapore news") || theme.equalsIgnoreCase("india") ||
+                theme.equalsIgnoreCase("indian news") || theme.equalsIgnoreCase("china") ||
+                theme.equalsIgnoreCase("chinese news") || theme.equalsIgnoreCase("americas") ||
+                theme.equalsIgnoreCase("american news") || theme.equalsIgnoreCase("north america") ||
+                theme.equalsIgnoreCase("south america") || theme.equalsIgnoreCase("europe") ||
+                theme.equalsIgnoreCase("european news") || theme.equalsIgnoreCase("uk") ||
+                theme.equalsIgnoreCase("united kingdom") || theme.equalsIgnoreCase("britain") ||
+                theme.equalsIgnoreCase("british news") || theme.equalsIgnoreCase("uk news")) {
             return "World";
         } else if (theme.equalsIgnoreCase("politics") || theme.equalsIgnoreCase("political")) {
             return "Politics";
@@ -139,25 +148,9 @@ public class ArticleScraper {
             return "Sports";
         } else if (theme.equalsIgnoreCase("entertainment") || theme.equalsIgnoreCase("celebrity")) {
             return "Entertainment";
-        } else if (theme.equalsIgnoreCase("asia") || theme.equalsIgnoreCase("asian news")) {
-            return "Asia";
-        } else if (theme.equalsIgnoreCase("singapore") || theme.equalsIgnoreCase("singapore news")) {
-            return "Singapore";
-        } else if (theme.equalsIgnoreCase("india") || theme.equalsIgnoreCase("indian news")) {
-            return "India";
-        } else if (theme.equalsIgnoreCase("china") || theme.equalsIgnoreCase("chinese news")) {
-            return "China";
-        } else if (theme.equalsIgnoreCase("americas") || theme.equalsIgnoreCase("american news") ||
-                theme.equalsIgnoreCase("north america") || theme.equalsIgnoreCase("south america")) {
-            return "Americas";
-        } else if (theme.equalsIgnoreCase("europe") || theme.equalsIgnoreCase("european news")) {
-            return "Europe";
-        } else if (theme.equalsIgnoreCase("uk") || theme.equalsIgnoreCase("united kingdom") ||
-                theme.equalsIgnoreCase("britain") || theme.equalsIgnoreCase("british news") ||
-                theme.equalsIgnoreCase("uk news")) {
-            return "UK";
+        } else {
+            return "Others";
         }
-        return theme;
     }
 
     /**

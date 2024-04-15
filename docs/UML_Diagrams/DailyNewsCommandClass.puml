@@ -1,0 +1,12 @@
+@startuml
+hide circle
+
+class DailyNewsCommand {
+- {static}articlesOfTheDay : List<NewsArticle>
+
+ + DailyNewsCommand(input : String, list : List<NewsArticle>)
+ + {static}save(input : String[]) : void
+ - {static}saveDailyArticlesParser() : void
+}
+
+@enduml
