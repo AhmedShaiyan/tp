@@ -115,7 +115,7 @@ Format: `daily {DATE}`
 
 * `daily 07 April 2024`
 
-![img.png](images/dailyImg.png)
+![img_10.png](img_10.png)
 
 <br>
 
