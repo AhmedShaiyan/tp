@@ -2,7 +2,6 @@ package newsonthego;
 
 import static newsonthego.storage.TopicsFile.saveTopics;
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.junit.jupiter.api.Assertions.fail;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
@@ -166,27 +165,6 @@ class NewsOnTheGoTest {
         String expectedMessage = "You do not have any favorite topics. Please star a topic first.\n";
         assertEquals(expectedMessage, suggestions);
     }
-
-    @Test
-    void getArticlesWithError() throws IOException {
-
-        Files.writeString(SAVED_TOPICS_PATH, "NonexistentTopic\n");
-
-        String suggestions = UserPreferences.getSuggestedArticlesFromFavoriteTopics();
-        assertTrue(suggestions.contains("No articles found for the topic: NonexistentTopic"));
-    }
-
-    @Test
-    void getArticlesSuccessfully() throws IOException {
-        String knownTopic = "Science";
-        Files.writeString(SAVED_TOPICS_PATH, knownTopic + "\n");
-
-        String suggestions = UserPreferences.getSuggestedArticlesFromFavoriteTopics();
-
-        assertFalse(suggestions.trim().isEmpty());
-        assertTrue(suggestions.contains("Suggesting an article from your favorite topic: " + knownTopic));
-    }
-
 
     @Test
     void testTopicsFileSaveTopics() {

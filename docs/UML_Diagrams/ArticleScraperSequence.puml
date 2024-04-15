@@ -1,25 +1,32 @@
 @startuml
+title Handling Article Scraping in NewsOnTheGo
 
-Create ":NewsOnTheGo"
+create ":NewsOnTheGo"
 activate ":NewsOnTheGo"
 
-alt Files.exists(outputFilePath) || isFileEmpty(String.valueOf(outputFilePath))
+ alt Files.exists() || isFileEmpty()
 
-    Create ":StorageURL"
+    ' If the file does not exist or is empty
+    create ":StorageURL"
     activate ":StorageURL"
 
+    ' NewsOnTheGo requests a list of URLs from StorageURL
     ":NewsOnTheGo" -> ":StorageURL" : getURLs()
     ":StorageURL" --> ":NewsOnTheGo" : List<String> URLs
     deactivate ":StorageURL"
 
-    Create ":ArticleScraper"
+    ' Create an instance of ArticleScraper for scraping articles
+    create ":ArticleScraper"
+
+    ' Loop through each URL in the list and scrape articles
     loop for each URL
         ":NewsOnTheGo" -> ":ArticleScraper" : scrapeArticle(url, outputDirectoryPath)
-        ":ArticleScraper" --> ":NewsOnTheGo" : void
     end
     deactivate ":ArticleScraper"
 
-else skip scraping
+else
+
 end
+
 deactivate ":NewsOnTheGo"
 @enduml

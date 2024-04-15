@@ -5,12 +5,16 @@ import newsonthego.newstopic.NewsTopic;
 
 import java.util.List;
 import java.util.Scanner;
+
 import java.util.logging.Level;
 import java.util.logging.Logger;
+
 
 import static newsonthego.storage.NewsFile.SAVED_NEWS_PATH;
 
 public class UI {
+
+
     public static final String INVALID_ARTICLE_INDEX_MESSAGE = "Please provide a valid article index!!";
     public static final String INDENT = "    ";
     public static final String LINE = "____________________________________________________________\n";
@@ -235,6 +239,8 @@ public class UI {
                         "        | `headlines 10`       |\n" +
                         "| `GET`      | Details of a specific article.                              " +
                         "        | `get 3`              |\n" +
+                        "| `EXTRACT`  | Displays the extract of the article.                        " +
+                        "        | `extract 5`          |\n" +
                         "| `LOAD`     | Displays list of saved articles.                            " +
                         "        | `load`               |\n" +
                         "| `EXTRACT`  | Displays a summary of the articles.                         " +

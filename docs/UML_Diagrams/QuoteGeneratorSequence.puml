@@ -1,0 +1,31 @@
+@startuml
+title Handling QUOTE Command
+
+' NewsOnTheGo initiates the QUOTE command
+NewsOnTheGo -> Parser: QUOTE Command
+
+activate Parser
+
+' Parser creates an instance of QuoteGenerator
+Parser -> QuoteGenerator: Create Instance
+activate QuoteGenerator
+
+' Parser calls getRandomQuote() method on QuoteGenerator
+Parser -> QuoteGenerator: getRandomQuote()
+
+' QuoteGenerator returns a random quote to Parser
+QuoteGenerator --> Parser: Return Random Quote
+deactivate QuoteGenerator
+
+' Parser calls UI and activates it to print the random quote
+Parser -> UI: printQuote(Random Quote)
+activate UI
+
+' UI prints the quote to the console
+UI --> Parser: Quote Printed
+deactivate UI
+
+' Parser completes the QUOTE command
+deactivate Parser
+
+@enduml

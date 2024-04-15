@@ -39,7 +39,6 @@ public class StorageURL {
         urls.add("https://cnalifestyle.channelnewsasia.com/women/4b-movement-south-korea-viral-tiktok-388051");
         urls.add("https://cnalifestyle.channelnewsasia.com/entertainment/toy-story-5-2026-release-date-388071");
         urls.add("https://www.channelnewsasia.com/world/alien-fever-dreams-fuel-peruvian-grave-robbings-4247641");
-        urls.add("https://www.firstpost.com/world/greta-thunberg-detained-by-dutch-police-13757012.html");
         urls.add("https://www.firstpost.com/world/mexico-breaks-off-ties-with-ecuador-mexican-embassy-stormed-in-" +
                 "quito13756857-13756857.html");
         urls.add("https://www.firstpost.com/world/peter-pellegrini-slovakia-president-elections-13757093.html");
