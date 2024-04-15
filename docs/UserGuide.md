@@ -193,6 +193,7 @@ Format: `suggest`
 
 ![img_1.png](images/suggestImg.png)
 
+Suggested articles cannot be saved or the article extract cannot be accessed. This feature is for accessing articles and there urls swiftly
 <br>
 
 <h3 id="filter"> Filtering Articles by Topic: <code>filter</code> </h3>
@@ -286,7 +287,7 @@ Format: `url {INDEX OF ARTICLE}`
 
 <h3 id="headlines"> Viewing Article Headline: <code>headlines</code> </h3>
 
-Retrieves the headlines of articles from the list of articles until the index specified by the user.
+Retrieves the headlines of articles from the main list of articles until the index specified by the user.
 
 Format: `headlines {INDEX OF ARTICLE}`
 
@@ -296,6 +297,7 @@ Format: `headlines {INDEX OF ARTICLE}`
 
 ![img.png](images/headlinesImg.png)
 
+Other commands such as `url`, or `extract` can be directly used, as `headlines` uses the main list of articles
 <br>
 
 <h3 id="extract"> Viewing Article Extract: <code>extract</code> </h3>
