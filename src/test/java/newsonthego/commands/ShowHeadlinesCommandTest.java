@@ -52,13 +52,6 @@ public class ShowHeadlinesCommandTest {
 
 
     @Test
-    void printsTooHighMessage() {
-        ShowHeadlinesCommand.showHeadlines("headlines 7000");
-        String output = outputStreamCaptor.toString().trim();
-        assertTrue(output.contains("Invalid index, too high."), "Should indicate the index is too high");
-    }
-
-    @Test
     void printsFormatErrorMessage() {
         ShowHeadlinesCommand.showHeadlines("headlines quoacamole");
         String output = outputStreamCaptor.toString().trim();

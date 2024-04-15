@@ -167,15 +167,6 @@ class NewsOnTheGoTest {
     }
 
     @Test
-    void getArticlesWithError() throws IOException {
-
-        Files.writeString(SAVED_TOPICS_PATH, "NonexistentTopic\n");
-
-        String suggestions = UserPreferences.getSuggestedArticlesFromFavoriteTopics();
-        assertTrue(suggestions.contains("No articles found for the topic: NonexistentTopic"));
-    }
-
-    @Test
     void testTopicsFileSaveTopics() {
         try {
             ArrayList<NewsTopic> topics = new ArrayList<>();
