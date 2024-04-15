@@ -213,7 +213,7 @@ public class UI {
                         "+------------+----------------------------------------------------------+" +
                         "---------------------------------+\n" +
                         "| `DAILY`    | Gives articles published on a specific date.               " +
-                        "         | `daily 10 March 2024`|\n" +
+                        "         | `daily April 07 2024`|\n" +
                         "| `TOPICS`   | Lists topics the articles are classified by.               " +
                         "         | `topics`             |\n" +
                         "| `STAR`     | Bookmarks a topic as favorite.                              " +
@@ -244,6 +244,8 @@ public class UI {
                         "        | `load`               |\n" +
                         "| `CLEAR`    | Clears the saved articles list.                             " +
                         "        | `clear`              |\n" +
+                        "| `QUOTE`    | Prints a random, inspirational quote.                             " +
+                        "        | `quote`              |\n" +
                         "+------------+---------------------------------------------------------+" +
                         "----------------------------------+\n" +
                         "Thank you for using News On The Go! Enjoy reading :))"
