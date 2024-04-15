@@ -41,12 +41,17 @@ randomly selects and returns a quote from the list.
 - Added documentation for the `quote` command 
 #### Contributions to the DG:
 - Added documentation for the implementation of the `Article Scraper` 
+- Illustrated how the code works using two sequence diagrams and one class diagram 
 - Added documentation for the `quote` function
+- Illustrated how the code works using one sequence diagram 
 
 ### Contributions to Team-Based Tasks
 - Organised code into different classes like `NewsImporter`, `UI` and `Parser` 
 - Integrated the Article Scraper to our application : [#113](https://github.com/AY2324S2-CS2113-T12-1/tp/issues/113)
 - Documented and resolved bugs for the team related to integration of the different functions : [#167](https://github.com/AY2324S2-CS2113-T12-1/tp/issues/167)
+- Conducted testing of the JAR file and surfaced potential bugs: [#182](https://github.com/AY2324S2-CS2113-T12-1/tp/issues/182), 
+[#183](https://github.com/AY2324S2-CS2113-T12-1/tp/issues/183), 
+[#185](https://github.com/AY2324S2-CS2113-T12-1/tp/issues/185)
 
 ### Contributions beyond Project Team
 

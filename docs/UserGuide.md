@@ -19,34 +19,29 @@ This guide will help you get started with using NewsOnTheGo and understand its f
     <li><a href="#quick-start" >Quick Start</a></li>
     <li><a href="#features">Features</a>
         <ol type="1" style="font-size: medium">
-            <li><code><a href="#help">help</a></code></li>
-            <li>
-                <code><a href="#daily">daily</a></code>
-                <ol style="font-size: small">
-                    <li><code><a href="#daily-save">save</a></code></li>
-                    <li><code><a href="#daily-back">back</a></code></li>
-                </ol>
-            </li>
-            <li><code><a href="#topics">topics</a></code></li>
-            <li><code><a href="#star">star</a></code></li>
-            <li><code><a href="#starred">starred</a></code></li>
-            <li><code><a href="#remove">remove</a></code></li>
-            <li><code><a href="#suggest">suggest</a></code></li>
-            <li><code><a href="#filter">filter</a></code></li>
-            <li><code><a href="#save">save</a></code></li>
-            <li><code><a href="#source">source</a></code></li>
-            <li><code><a href="#back">back</a></code></li>
-            <li><code><a href="#url">url</a></code></li>
-            <li><code><a href="#headlines">headlines</a></code></li>
-            <li><code><a href="#extract">extract</a></code></li>
-            <li><code><a href="#get">get</a></code></li>
-            <li><code><a href="#load">load</a></code></li>
-            <li><code><a href="#clear">clear</a></code></li>
-            <li><code><a href="#bye">bye</a></code></li>
+            <li><a href="#help">Getting Help: <code>help</code></a></li>
+            <li><a href="#daily">Finding Articles on a Particular Day: <code>daily</code></a></li>
+            <li><a href="#topics">List out Article Topics: <code>topics</code></a></li>
+            <li><a href="#star">Starring a Topic: <code>star</code></a></li>
+            <li><a href="#starred">Checking Starred Topics: <code>starred</code></a></li>
+            <li><a href="#remove">Removing a Starred Topic: <code>remove</code></a></li>
+            <li><a href="#suggest">Getting News Suggestions: <code>suggest</code></a></li>
+            <li><a href="#filter">Filtering Articles by Topic: <code>filter</code></a></li>
+            <li><a href="#save">Save Articles to Reading List: <code>save</code></a></li>
+            <li><a href="#source">Getting Article Source: <code>source</code></a></li>
+            <li><a href="#back">Returning to Main: <code>back</code></a></li>
+            <li><a href="#url">Getting Article Link: <code>url</code></a></li>
+            <li><a href="#headlines">Viewing Article Headlines: <code>headlines</code></a></li>
+            <li><a href="#extract">Viewing Article Extract: <code>extract</code></a></li>
+            <li><a href="#get">Getting Article Details: <code>get</code></a></li>
+            <li><a href="#load">Loading Saved Articles: <code>load</code></a></li>
+            <li><a href="#clear">Clearing Saved Articles: <code>clear</code></a></li>
+            <li><a href="#quote">Getting Inspirational Quote: <code>clear</code></a></li>
+            <li><a href="#bye">Exiting the Program: <code>bye</code></a></li>
         </ol>
     </li>
     <li><a href="#known-issues">Known Issues</a></li>
-    <li><a href="#command-summary">Command Summary</a></li>
+    <li><a href="#command-summary">Summary of Commands</a></li>
 </ol>
 
 
@@ -78,7 +73,10 @@ What is your name?
 The following interface should appear:
 ```
 Hello [name]
+____________________________________________________________
+
 What do you want from me?
+____________________________________________________________
 ```
 7. Type the command in the command box and press Enter to execute it.
 8. Refer to the [Features](#Features) section below for details of each command.
@@ -87,6 +85,10 @@ What do you want from me?
 <h2 id="features"> Features </h2>
 
 > [!NOTE]
+> 
+> When using the `daily` function, choose a date from late March to early April 2024, as that is when most of the 
+> articles are from.
+> 
 > Regarding the command format:
 > 
 > - Words in `{Curly Braces}` are parameters to be supplied by the user.
@@ -115,7 +117,7 @@ Here is a list of commands and functions for your reference:
 +------------+----------------------------------------------------------+---------------------------------+
 | Command    | Description                                                         | Example              |
 +------------+----------------------------------------------------------+---------------------------------+
-| `DAILY`    | Gives articles published on a specific date.                        | `daily 10 March 2024`|
+| `DAILY`    | Gives articles published on a specific date.                        | `daily 07 April 2024`|
 | `TOPICS`   | Lists topics the articles are classified by.                        | `topics`             |
 | `STAR`     | Bookmarks a topic as favorite.                                      | `star business`      |
 | `STARRED`  | Shows list of bookmarked topics.                                    | `starred`            |
@@ -156,79 +158,29 @@ Format: `daily {DATE}`
 
 #### Example of usage:
 
-* `daily 03 10 2024`
+* `daily 07 04 2024`
 
-* `daily March 10 2024`
+* `daily April 07 2024`
 
-* `daily 10 March 2024`
-
-
-```
-What do you want from me?
-____________________________________________________________
-
-daily 03 10 2024
-____________________________________________________________
-
-Sure! Here are the headlines for today (March 10, 2024) :
-
-    1: "Scientists Discover New Species of Butterfly in the Amazon"
-    URL: https://www.example.com/science/butterfly-discovery
-
-____________________________________________________________
-
-What do you want from me?
-To return to main, type in: back
-```
+* `daily 07 April 2024`
 
 <br>
 
-<h3>After using the <code>daily</code> command, you can use <code>save</code> and <code>back</code> commands.</h3>
+> [!NOTE] After using the `daily` command, you can use <a href = "#save">`save`</a> and <a href = "#back">`back`</a> commands.
+>
+> User should receive a message like this:
+> ```
+> ____________________________________________________________
+>
+> What do you want from me?
+>     To return to main, type in: back
+>
+> ```
+
 
 <br>
 
-<h3 id="daily-save"> Save articles from the daily function: <code>save</code> </h3>
-
-Format: `save {INDEX OF ARTICLE}`  
-This allows the user to save the news articles displayed by the `daily` function.  
-
-#### Example of usage:
-`save 1`.  
-
-```
-What do you want from me?
-To return to main, type in: back
-save 1
-____________________________________________________________
-
-Successfully saved "Scientists Discover New Species of Butterfly in the Amazon"
-find your saved articles at user_data\saved_news.txt
-____________________________________________________________
-
-What do you want from me?
-To return to main, type in: back
-```
-
-<br>
-
-<h3 id="daily-back"> Command to quit the daily function parser: <code>back</code> </h3>
-
-Format: `back`
-Use command to exit the daily function after done saving their desired articles.  
-
-#### Example of usage: `back`  
-
-```
-What do you want from me?
-To return to main, type in: back
-back
-You are back to the main function!
-____________________________________________________________
-```
-
-<br>
-
-<h3 id="topics"> Star a topic: <code>topics</code> </h3>
+<h3 id="topics"> Listing Out Article Topics: <code>topics</code> </h3>
 
 List the different topics our articles are classified into.
 
@@ -256,9 +208,9 @@ ____________________________________________________________
 
 <br>
 
-<h3 id="star"> Star a topic: <code>star</code> </h3>
+<h3 id="star"> Starring a Topic: <code>star</code> </h3>
 
-Stars a topic to add it to your list of favorite topics.
+Adds a topic to your list of favorite topics.
 
 Format: `star {TOPIC}`
 
@@ -279,7 +231,7 @@ ____________________________________________________________
 
 <br>
 
-<h3 id="starred"> Star a topic: <code>starred</code> </h3>
+<h3 id="starred"> Checking Starred Topics: <code>starred</code> </h3>
 
 List the different topics our articles are classified into.
 
@@ -295,14 +247,14 @@ starred
 ____________________________________________________________
 
 Here is the list of your favourite topics:
-- Science
-- Technology
+    - Science
+    - Technology
 ____________________________________________________________
 ```
 
 <br>
 
-<h3 id="remove"> Remove a topic: <code>remove</code> </h3>
+<h3 id="remove"> Removing a Starred Topic: <code>remove</code> </h3>
 
 Removes a topic from your list of favorite topics.
 
@@ -325,7 +277,7 @@ ____________________________________________________________
 
 <br>
 
-<h3 id="suggest"> Suggesting articles: <code>suggest</code> </h3>
+<h3 id="suggest"> Getting Article Suggestions: <code>suggest</code> </h3>
 
 Suggests articles from your favorite topics.
 
@@ -342,19 +294,19 @@ ____________________________________________________________
 suggest
 ____________________________________________________________
 
-1. Suggesting an article from your favorite topic: Science
-   Title: "Rare Lunar Phenomenon Captivates Skygazers Worldwide"
-   URL: https://www.example.com/science/lunar-phenomenon
-2. Suggesting an article from your favorite topic: Technology
-   Title: "Technology Company Faces Backlash Over Data Privacy Concerns"
-   URL: https://www.example.com/technology/data-privacy-backlash
+1. Suggesting an article from your favorite topic: Technology
+    Title: Technology Article  Technology News
+URL: www.techarticlesampleurl.com
+2. Suggesting an article from your favorite topic: Sports
+    Title: Sports Article  The Sports News
+URL: www.sportsarticlesampleurl.com
 
 ____________________________________________________________
 ```
 
 <br>
 
-<h3 id="filter"> Searching for articles on a particular topic: <code>filter</code> </h3>
+<h3 id="filter"> Filtering Articles by Topic: <code>filter</code> </h3>
 Find articles based on the topic input from the user.
 
 Format: `filter {TOPIC}`
@@ -379,22 +331,28 @@ Here are the news articles related to Technology:
 ____________________________________________________________
 
 You are currently in access to the list of articles in Technology,
-use command 'BACK' to return to main list of articles.
+    use command 'BACK' to return to main list of articles.
 ____________________________________________________________
 ```
 
 <br>
 
-### After using the `filter` command, you are able to use the `save`, `source` and `back` commands.
+>[!NOTE] 
+> After using the `filter` command, you are able to use the <a href = "#save">`save`</a>, 
+> <a href = "#sourcce">`source`</a>, <a href = "#url">`url`</a>, <a href = "#extract">`extract`</a>, 
+> <a href = "#get">`get`</a> commands on
+> the filtered list of articles.
+> 
+> Use `back` command to return to main list of articles.
 
 <br>
 
-<h3 id="save"> Saving articles from the filter command: <code>save</code> </h3>
+<h3 id="save"> Saving Articles to Reading List: <code>save</code> </h3>
 
-Saves the article title from the `filter` command into a text file.
+Saves the article title into a text file.
 
-> [NOTE!] 
-> Do not be confused with the other `save` function in `daily`.  
+> [!NOTE] 
+> `save` function can be used in `daily`, `filter`, or in the main.  
 
 Format: `save {INDEX OF ARTICLE ON DISPLAYED LIST}`
 
@@ -414,13 +372,28 @@ save 2
 ____________________________________________________________
 
 Successfully saved "Artificial Intelligence Breakthrough Promises Revolution in Healthcare"
-find your saved articles at user_data\saved_news.txt
+    find your saved articles at user_data\saved_news.txt
 ____________________________________________________________
+```
+
+OR, Assuming `daily` command is just executed.
+```
+What do you want from me?
+To return to main, type in: back
+save 1
+____________________________________________________________
+
+Successfully saved "Scientists Discover New Species of Butterfly in the Amazon"
+    find your saved articles at user_data\saved_news.txt
+____________________________________________________________
+
+What do you want from me?
+    To return to main, type in: back
 ```
 
 <br>
 
-<h3 id="source"> Get source of article: <code>source</code> </h3>
+<h3 id="source"> Getting Article Source: <code>source</code> </h3>
 Displays the source of the article and its APA citation.
 
 #### Format: `source {INDEX OF ARTICLE ON DISPLAYED LIST}`
@@ -441,21 +414,22 @@ URL: https://www.example.com/technology/sustainable-data-centers
 By: Jonathan Taylor    On: April 8, 2024
 Tech News Network
 
-APA Citation: Taylor, J. (2024, April 8). "Major Tech Company Announces Plans for Sustainable Data Centers". Tech News Network. https://www.example.com/technology/sustainable-data-centers
+APA Citation: Taylor, J. (2024, April 8). "Major Tech Company Announces Plans for Sustainable Data Centers". 
+Tech News Network. https://www.example.com/technology/sustainable-data-centers
 ____________________________________________________________
 ```
 
 <br>
 
-<h3 id="back"> Returning to the previous menu or list: <code>back</code> </h3>
+<h3 id="back"> Returning to Main: <code>back</code> </h3>
 Returns from a filtered list of news or the saved news window to the main list of articles.
 
 #### Format: `back`
 
-* Only applicable if you have filtered the list of news using the `filter` command or used the `save` command to
-  save an article.
+* Only applicable if you have filtered the list of news using the `filter` or `daily` command.
 
 #### Example of usage:
+Assuming we are currently in the list of articles under the topic Technology:
 
 ```
 What do you want from me?
@@ -469,9 +443,18 @@ Currently in access to the main list of articles
 ____________________________________________________________
 ```
 
+Or, assuming we have just executed the `daily` command and is currently in the daily loop.
+```
+What do you want from me?
+To return to main, type in: back
+back
+You are back to the main function!
+____________________________________________________________
+```
+
 <br>
 
-<h3 id="url"> Star a topic: <code>url</code> </h3>
+<h3 id="url"> Getting Article Link: <code>url</code> </h3>
 
 Retrieves the URL of a specific article.
 
@@ -494,7 +477,7 @@ ____________________________________________________________
 
 <br>
 
-<h3 id="headlines"> View article titles: <code>headlines</code> </h3>
+<h3 id="headlines"> Viewing Article Headline: <code>headlines</code> </h3>
 
 Retrieves the headlines of articles from the list of articles until the index specified by the user.
 
@@ -528,7 +511,7 @@ ____________________________________________________________
 
 
 
-<h3 id="extract"> Access article summary: <code>extract</code> </h3>
+<h3 id="extract"> Viewing Article Extract: <code>extract</code> </h3>
 
 Retrieves and displays the summary or extract of a specific article from the list of articles.
 
@@ -549,7 +532,7 @@ ____________________________________________________________
 
 <br>
 
-<h3 id="get"> Access article details: <code>get</code> </h3>
+<h3 id="get"> Getting Article Details: <code>get</code> </h3>
 
 Retrieves the details of a specific article.
 
@@ -560,20 +543,23 @@ Format: `get {INDEX OF ARTICLE}`
 - `get 5`
 
 ```
+What do you want from me?
+____________________________________________________________
+
 get 3
 ____________________________________________________________
 
-"Political Tensions Rise in Region X Following Border Dispute"
-URL: https://www.example.com/politics/border-dispute
-By: Samantha Lee    On: March 12, 2024
-The Guardian
+Four Takeaways on the Race to Amass Data for AI  The New York Times
+    URL: https://www.nytimes.com/2024/04/06/technology/ai-data-tech-takeaways.html
+    By: Unknown    On: April 06, 2024
+    NYTimes
 
+To make artificial intelligence systems more powerful tech companies need online data to feed the technology Heres what to know
 ____________________________________________________________
-
 ```
 <br>
 
-<h3 id="load"> Loading saved news: <code>load</code> </h3>
+<h3 id="load"> Loading Saved Articles: <code>load</code> </h3>
 Displays all saved news articles from the saved articles text file.
 
 Format: `load`  
@@ -604,7 +590,7 @@ ____________________________________________________________
 
 <br>
 
-<h3 id="clear"> Clear articles: <code>clear</code> </h3>
+<h3 id="clear"> Clear Saved Articles: <code>clear</code> </h3>
 
 Clears the list of articles saved.
 
@@ -625,7 +611,7 @@ ____________________________________________________________
 
 <br>
 
-<h3 id="clear"> Print a quote: <code>quote</code> </h3>
+<h3 id="quote"> Getting Inspirational Quote: <code>quote</code> </h3>
 
 Prints a random inspirational quote each time the command is called
 
@@ -635,22 +621,21 @@ Format: `quote`
 
 ```
 What do you want from me?
-______________________________________________________________________
+____________________________________________________________
 
 quote
-_______________________________________________________________________
+____________________________________________________________
 
-Some words of inpiration today: 
-
-         (-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~)
-         | Be yourself; everyone else is already taken. - Oscar Wilde |
-         (-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~)
-________________________________________________________________________
+Some words of inspiration today: 
+~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~
+| I have not failed. I've just found 10,000 ways that won't work. - Thomas Edison |
+~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~
+____________________________________________________________
 ```
 
 <br>
 
-<h3 id="bye"> Exiting the program: <code>bye</code> </h3>
+<h3 id="bye"> Exiting the Program: <code>bye</code> </h3>
 
 Exits the application.
 
@@ -663,6 +648,8 @@ What do you want from me?
 ____________________________________________________________
 
 bye
+____________________________________________________________
+
 Bye. Hope to see you again soon!
 ____________________________________________________________
 ```
@@ -675,12 +662,12 @@ function. Take note by keying in integers only. Make sure the integer do not exc
 
 <br>
 
-<h2 id="command-summary"> Command Summary </h2>
+<h2 id="command-summary"> Summary of Commands </h2>
 
 | Commands      | Format, Examples                            |
 |---------------|---------------------------------------------|
 | **HELP**      | `help`                                      |
-| **DAILY**     | `daily {DATE}`<br/>eg.`daily March 10 2024` |
+| **DAILY**     | `daily {DATE}`<br/>eg.`daily April 10 2024` |
 | **TOPICS**    | `topics`                                    |
 | **STAR**      | `star {TOPIC}`<br/>eg.`star Technology`     |
 | **STARRED**   | `starred`                                   |
